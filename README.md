@@ -1,2 +1,2 @@
 # SKADJ-CSCB07-Project
-See title
+Sports Application for CSCB07
