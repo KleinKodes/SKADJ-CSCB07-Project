@@ -31,11 +31,9 @@ public class AddEvent extends AppCompatActivity {
         Event event = new Event(eventName);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference(event.id+"");
+        DatabaseReference myRef = database.getReference();
 
-//        List<String> eventName = new List<String>();
-
-        myRef.setValue(event.name, event.name);
+        myRef.child("Denny").setValue(event);
 
 
 
