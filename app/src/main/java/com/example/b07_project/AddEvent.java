@@ -7,6 +7,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.List;
+
 public class AddEvent extends AppCompatActivity {
 
     @Override
@@ -22,5 +27,17 @@ public class AddEvent extends AppCompatActivity {
 
         TextView textView = findViewById(R.id.textView2);
         textView.setText(eventName);
+
+        Event event = new Event(eventName);
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference(event.id+"");
+
+//        List<String> eventName = new List<String>();
+
+        myRef.setValue(event.name, event.name);
+
+
+
     }
 }
