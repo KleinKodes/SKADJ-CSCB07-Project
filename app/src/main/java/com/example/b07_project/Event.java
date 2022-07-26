@@ -3,12 +3,15 @@ package com.example.b07_project;
 import java.util.Date;
 
 public class Event {
-    public int id;
-    public String name;
-    public String sport;
-    public Date startTime, endTime;
-    public int numOfParticipants;
-    public String eventDescription;
+    int id;
+    String name;
+    String sport;
+    Date startTime, endTime;
+    int attendeeNum;
+    String eventDescription;
+    int ownerId;
+    int venueId;
+
 
     public Event()
     {
