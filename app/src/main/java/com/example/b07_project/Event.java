@@ -22,4 +22,18 @@ public class Event {
         this.name = name;
         this.id = 0;
     }
+
+    
+    @Override
+    public int hashCode(){
+        return id;
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        if(!(obj instanceof Event)){return false;}
+        Event newObj = (Event)obj;
+        if(newObj.id == this.id){return true;}
+        else{return false;}
+    }
 }
