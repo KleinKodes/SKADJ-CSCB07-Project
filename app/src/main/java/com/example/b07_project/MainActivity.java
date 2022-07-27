@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void transitionToAddEvent(View view)
     {
-        Intent addEvent = new Intent(this, AddEvent.class);
+        Intent addEvent = new Intent(this, profile.class);
         startActivity(addEvent);
     }
 
