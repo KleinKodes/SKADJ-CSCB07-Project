@@ -1,9 +1,4 @@
 <resources>
     <string name="app_name">b07-Project</string>
     <string name="Event_Name">Event Name:</string>
-    <string name="Event_Sport">Sport:</string>
-    <string name="Event_StartTime">Start Time:</string>
-    <string name="Event_EndTime">End Time:</string>
-    <string name="Event_Capacity">Capacity:</string>
-    <string name="Event_Description">Capacity:</string>
 </resources>
