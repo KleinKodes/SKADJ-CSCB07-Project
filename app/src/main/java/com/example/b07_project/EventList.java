@@ -23,6 +23,7 @@ public class EventList extends AppCompatActivity {
         for(Event events: eventList){
             eventNames.add(events.name + "(" + events.sport + ")");
         }
+        eventNames.add("I lost");
         ArrayAdapter<?> arrayAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, eventNames);
         listView.setAdapter(arrayAdapter);
         //Figure out how to update this information dynamically.
