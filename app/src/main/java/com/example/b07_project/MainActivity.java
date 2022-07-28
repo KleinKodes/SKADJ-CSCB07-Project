@@ -14,6 +14,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    public void transitionToLogin(View view)
+    {
+        Intent addEvent = new Intent(this, LoginActivity.class);
+        startActivity(addEvent);
+    }
+
+    public void transitionToSignUp(View view){
+        Intent addEvent = new Intent(this, SignUpActivity.class);
+        startActivity(addEvent);
+    }
+
     public void transitionToAddEvent(View view)
     {
         Intent addEvent = new Intent(this, AddEvent.class);
