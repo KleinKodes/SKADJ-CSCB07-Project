@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "985630666630",
+    "firebase_url": "https://skadj-cscb07-project-default-rtdb.firebaseio.com",
+    "project_id": "skadj-cscb07-project",
+    "storage_bucket": "skadj-cscb07-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:985630666630:android:a1f89c36ad24b984058607",
+        "android_client_info": {
+          "package_name": "com.example.b07_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "985630666630-tnsu2s5q5vk19ek9ij000g9vfj1gj0bj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCExvhvn2k_379maOtNOUqRBzz9hcuatIQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "985630666630-tnsu2s5q5vk19ek9ij000g9vfj1gj0bj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
