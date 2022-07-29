@@ -80,5 +80,15 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void transitionToActivityDenny(View view){
+        Intent intent = new Intent(this, activityPageDenny.class);
+        startActivity(intent);
+    }
+
+    public void transitionToProfile(View view){
+        Intent intent = new Intent(this, profile.class);
+        startActivity(intent);
+    }
+
 
 }
