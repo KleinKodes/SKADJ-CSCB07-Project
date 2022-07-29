@@ -1,4 +1,4 @@
-package com.example.b07_project.Denny;
+package com.example.b07_project;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -11,8 +11,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
-
-import com.example.b07_project.R;
 
 public class profile extends AppCompatActivity {
     public static String tabState = "";

@@ -1,4 +1,3 @@
-<<<<<<< HEAD:app/src/main/java/com/example/b07_project/Venue.java
 package com.example.b07_project;
 
 import com.example.b07_project.Address;
@@ -72,23 +71,3 @@ public class Venue {
         return Objects.hash(id);
     }
 }
-=======
-package com.example.b07_project.Denny;
-
-import android.location.Address;
-
-import java.util.List;
-
-public class Venue {
-    int id;
-    String name;
-    String description;
-    Address address;
-    List<String> sports;
-    int capacity;
-
-    public Venue(){
-
-    }
-}
->>>>>>> Denny:app/src/main/java/com/example/b07_project/Denny/Venue.java

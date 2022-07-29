@@ -1,4 +1,4 @@
-package com.example.b07_project.Denny;
+package com.example.b07_project;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,24 +7,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-<<<<<<< HEAD:app/src/main/java/com/example/b07_project/AddEvent.java
 import android.widget.DatePicker;
-=======
->>>>>>> Denny:app/src/main/java/com/example/b07_project/Denny/AddEvent.java
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-<<<<<<< HEAD:app/src/main/java/com/example/b07_project/AddEvent.java
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
-=======
-import com.example.b07_project.R;
->>>>>>> Denny:app/src/main/java/com/example/b07_project/Denny/AddEvent.java
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 

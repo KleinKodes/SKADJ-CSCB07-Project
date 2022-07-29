@@ -1,4 +1,4 @@
-package com.example.b07_project.Denny;
+package com.example.b07_project;
 
 import com.google.firebase.database.Exclude;
 
