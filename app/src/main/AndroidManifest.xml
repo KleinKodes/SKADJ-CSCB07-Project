@@ -14,13 +14,13 @@
         android:theme="@style/Theme.B07Project"
         tools:targetApi="31" >
         <activity
-            android:name=".UpcomingEventsDriver"
+            android:name=".Jacky.UpcomingEventsDriver"
             android:exported="false" />
         <activity
             android:name=".SettingsDriver"
             android:exported="false" />
         <activity
-            android:name=".AddEvent"
+            android:name=".Jacky.AddEvent"
             android:exported="false"
             android:parentActivityName=".MainActivity" >
 
