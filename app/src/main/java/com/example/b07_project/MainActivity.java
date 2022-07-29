@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.b07_project.Denny.profile;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -16,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void transitionToAddEvent(View view)
     {
-        Intent addEvent = new Intent(this, activityPageDenny.class);
+        Intent addEvent = new Intent(this, profile.class);
         startActivity(addEvent);
     }
 

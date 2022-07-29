@@ -1,9 +1,8 @@
-package com.example.b07_project;
+package com.example.b07_project.Denny;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
-import androidx.core.graphics.drawable.DrawableCompat;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -12,6 +11,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
+
+import com.example.b07_project.R;
 
 public class profile extends AppCompatActivity {
     public static String tabState = "";

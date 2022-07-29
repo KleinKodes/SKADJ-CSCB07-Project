@@ -1,4 +1,4 @@
-package com.example.b07_project;
+package com.example.b07_project.Denny;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.b07_project.R;
 
 public class ActivityDesc extends AppCompatActivity {
     String[] activityInfo;

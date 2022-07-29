@@ -14,19 +14,19 @@
         android:theme="@style/Theme.B07Project"
         tools:targetApi="31">
         <activity
-            android:name=".ActivityDesc"
+            android:name=".Denny.ActivityDesc"
             android:exported="false" />
         <activity
-            android:name=".profile"
+            android:name=".Denny.profile"
             android:exported="false" />
         <activity
             android:name=".activity_card_2"
             android:exported="false" />
         <activity
-            android:name=".activityPageDenny"
+            android:name=".Denny.activityPageDenny"
             android:exported="false" />
         <activity
-            android:name=".AddEvent"
+            android:name=".Denny.AddEvent"
             android:exported="false"
             android:parentActivityName=".MainActivity">
 

@@ -1,7 +1,6 @@
-package com.example.b07_project;
+package com.example.b07_project.Denny;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -9,11 +8,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import com.example.b07_project.R;
 
 public class activityPageDenny extends AppCompatActivity {
     public static String activity;
