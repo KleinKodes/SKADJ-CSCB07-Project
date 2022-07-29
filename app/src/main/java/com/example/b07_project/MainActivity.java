@@ -69,5 +69,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AdminActivity.class);
         startActivity(intent);
     }
+    public void transitionToAddVenue(View view){
+        Intent intent = new Intent(this, AddVenue.class);
+        startActivity(intent);
+    }
+
 
 }

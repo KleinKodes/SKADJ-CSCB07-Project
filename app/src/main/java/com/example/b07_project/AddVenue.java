@@ -1,4 +1,4 @@
-package com.example.b07_project.Anthony;
+package com.example.b07_project;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -13,8 +13,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TimePicker;
 
-import com.example.b07_project.MainActivity;
-import com.example.b07_project.R;
+import com.example.b07_project.Venue;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -35,7 +34,7 @@ public class AddVenue extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void createVenue(View view)
     {
-        Venue venue = new Venue();
+        com.example.b07_project.Venue venue = new com.example.b07_project.Venue();
         venue.name = ((EditText)findViewById(R.id.venueName)).getText().toString();
         Locale locale = new Locale("English", ((EditText)findViewById(R.id.venueCountry)).getText().toString());
 

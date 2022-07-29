@@ -1,4 +1,4 @@
-package com.example.b07_project.Anthony;
+package com.example.b07_project;
 
 public class Time {
     private int hour;
