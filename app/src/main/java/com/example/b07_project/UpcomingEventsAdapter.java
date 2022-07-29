@@ -13,24 +13,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class VenueAdapter extends RecyclerView.Adapter<VenueAdapter.ViewHolder>{
+public class UpcomingEventsAdapter extends RecyclerView.Adapter<UpcomingEventsAdapter.ViewHolder>{
+
+    private ArrayList<Event> eventsList;
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView venueTextView;
+        public TextView upcomingTextView;
         public Button goToButton;
 
         public ViewHolder(View itemView){
             super(itemView);
-            venueTextView = itemView.findViewById(R.id.venueName);
+            upcomingTextView = itemView.findViewById(R.id.textName);
             goToButton = itemView.findViewById(R.id.go_to_button);
         }
     }
 
-    private ArrayList<Venue> Venues;
-
-    public VenueAdapter(ArrayList<Venue> Venues){
-        this.Venues = Venues;
+    public UpcomingEventsAdapter(ArrayList<Event> eventsList){
+        this.eventsList = eventsList;
     }
 
     @NonNull
@@ -41,25 +41,24 @@ public class VenueAdapter extends RecyclerView.Adapter<VenueAdapter.ViewHolder>{
 
         View venueView = inflater.inflate(R.layout.listlayout, parent, false);
 
-        ViewHolder viewHolder = new ViewHolder(venueView);
-        return viewHolder;
+        return new ViewHolder(venueView);
     }
 
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Venue venue = Venues.get(position);
+        Event event = eventsList.get(position);
 
-        TextView textView = holder.venueTextView;
-        textView.setText(venue.getName());
+        TextView textView = holder.upcomingTextView;
+        textView.setText(event.getName());
         Button button = holder.goToButton;
-        button.setText("Go");
+        button.setText("About");
         button.setEnabled(true);
     }
 
     @Override
     public int getItemCount() {
-        return Venues.size();
+        return eventsList.size();
     }
 
 }

@@ -4,8 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/jacky/OneDrive/Documents/GitHub/SKADJ-CSCB07-Project/app/src/main/res/layout/activity_add_event.xml" value="0.25052083333333336" />
+        <entry key="..\:/Users/jacky/OneDrive/Documents/GitHub/SKADJ-CSCB07-Project/app/src/main/res/layout/activity_customer_list.xml" value="0.25052083333333336" />
         <entry key="..\:/Users/jacky/OneDrive/Documents/GitHub/SKADJ-CSCB07-Project/app/src/main/res/layout/activity_event_list.xml" value="0.25052083333333336" />
         <entry key="..\:/Users/jacky/OneDrive/Documents/GitHub/SKADJ-CSCB07-Project/app/src/main/res/layout/activity_main.xml" value="0.4" />
+        <entry key="..\:/Users/jacky/OneDrive/Documents/GitHub/SKADJ-CSCB07-Project/app/src/main/res/layout/activity_settings.xml" value="0.25052083333333336" />
+        <entry key="..\:/Users/jacky/OneDrive/Documents/GitHub/SKADJ-CSCB07-Project/app/src/main/res/layout/activity_settings_driver.xml" value="0.25052083333333336" />
+        <entry key="..\:/Users/jacky/OneDrive/Documents/GitHub/SKADJ-CSCB07-Project/app/src/main/res/layout/activity_upcoming_events_driver.xml" value="0.23645833333333333" />
         <entry key="..\:/Users/jacky/OneDrive/Documents/GitHub/SKADJ-CSCB07-Project/app/src/main/res/layout/activity_venue_list.xml" value="0.25052083333333336" />
         <entry key="..\:/Users/jacky/OneDrive/Documents/GitHub/SKADJ-CSCB07-Project/app/src/main/res/layout/listlayout.xml" value="0.2" />
         <entry key="..\:/Users/qin25/AndroidStudioProjects/b07 stuff/SKADJ-CSCB07-Project/app/src/main/res/layout/activity_add_event.xml" value="0.35260416666666666" />
