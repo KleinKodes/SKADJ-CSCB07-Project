@@ -1,4 +1,4 @@
-package com.example.b07_project.Jacky;
+package com.example.b07_project;
 
 import android.location.Address;
 

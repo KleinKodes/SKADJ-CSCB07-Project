@@ -6,9 +6,6 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.b07_project.Jacky.AddEvent;
-import com.example.b07_project.Jacky.UpcomingEventsDriver;
-
 public class MainActivity extends AppCompatActivity {
 
     @Override

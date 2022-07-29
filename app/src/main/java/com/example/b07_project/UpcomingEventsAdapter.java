@@ -1,4 +1,4 @@
-package com.example.b07_project.Jacky;
+package com.example.b07_project;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -10,8 +10,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.b07_project.R;
 
 import java.util.ArrayList;
 
