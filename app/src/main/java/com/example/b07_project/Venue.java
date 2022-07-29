@@ -1,33 +1,28 @@
 package com.example.b07_project;
 
-import android.location.Address;
+import com.example.b07_project.Address;
+import com.example.b07_project.Time;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class Venue {
-    int id;
-    String name;
-    String description;
-    //Address address;
-    ArrayList<String> sports;
-    int capacity;
-    ArrayList<Integer> scheduledEvents;
+    public int id;
+    public String name;
+    public String description;
+    public Address address;
+    public ArrayList<String> sports;
+    public int maxConcurrentActivities;
+    public int capacity;
 
-    public Venue(int id, String name, String description, ArrayList<String> sports, int capacity){
-        this.name = name;
-        this.id = id;
-        this.description = description;
-        //this.address = address;
-        this.sports = sports;
-        this.capacity = capacity;
+    public ArrayList<String> getSports() {
+        return sports;
     }
-    
-    public boolean verifyCapacity(int numSpots){ // numSpots refers to the number of people in the event
-        if(numSpots / this.capacity == 1){return false;}
-        else{return true;}
-    }
+
+    public ArrayList<Integer> scheduledEvents;
+    public Time availableFrom, availableTo;
+    public String daysAvailable; //String containing 7 characters. "1" means available and "0" means its not. Week starts on Monday
+
 
     public int getId() {
         return id;
@@ -40,13 +35,13 @@ public class Venue {
     public String getDescription() {
         return description;
     }
-//
-//    public Address getAddress() {
-//        return address;
-//    }
 
-    public ArrayList<String> getSports() {
-        return sports;
+    public Address getAddress() {
+        return address;
+    }
+
+    public ArrayList<String> getActivities() {
+        return this.sports;
     }
 
     public int getCapacity() {
@@ -57,4 +52,22 @@ public class Venue {
         return scheduledEvents;
     }
 
+
+
+    public Venue(){
+
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        com.example.b07_project.Venue venue = (com.example.b07_project.Venue) o;
+        return id == venue.id && capacity == venue.capacity && Objects.equals(name, venue.name) && Objects.equals(description, venue.description) && Objects.equals(sports, venue.sports) && Objects.equals(scheduledEvents, venue.scheduledEvents);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }
