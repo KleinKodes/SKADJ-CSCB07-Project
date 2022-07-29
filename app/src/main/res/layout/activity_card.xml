@@ -51,7 +51,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/time"
+                android:id="@+id/startTime"
                 android:layout_width="77dp"
                 android:layout_height="17dp"
                 android:layout_marginEnd="52dp"

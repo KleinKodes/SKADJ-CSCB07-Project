@@ -7,7 +7,10 @@
     android:id="@+id/profilePage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FAFAFA">
+    android:background="#FAFAFA"
+    android:onClick="transtitionToDesc"
+    tools:layout_editor_absoluteX="-18dp"
+    tools:layout_editor_absoluteY="-283dp">
 
     <ImageView
         android:id="@+id/Header"
@@ -72,7 +75,7 @@
         app:srcCompat="@drawable/sports" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
@@ -93,7 +96,7 @@
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/activity"
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="SpeakableTextPresentCheck">
 
@@ -115,6 +118,7 @@
                 android:backgroundTint="#F4F4F4">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cardContainer"
                     android:layout_width="374dp"
                     android:layout_height="108dp"
                     android:layout_marginStart="5dp"
@@ -123,6 +127,7 @@
                     android:layout_marginBottom="16dp"
                     android:background="@drawable/roundedges"
                     android:backgroundTint="#C7D1C2"
+                    android:onClick="transtitionToDesc"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -132,8 +137,8 @@
                         android:id="@+id/date"
                         android:layout_width="132dp"
                         android:layout_height="22dp"
-                        android:layout_marginTop="28dp"
-                        android:layout_marginEnd="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="12dp"
                         android:text="@string/date"
                         android:textColor="#000000"
                         android:textSize="15sp"
@@ -141,7 +146,18 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/time"
+                        android:id="@+id/startTime"
+                        android:layout_width="130dp"
+                        android:layout_height="25dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="@string/time"
+                        android:textColor="#000000"
+                        android:textSize="15sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/date" />
+
+                    <TextView
+                        android:id="@+id/endTime"
                         android:layout_width="130dp"
                         android:layout_height="25dp"
                         android:layout_marginEnd="16dp"
@@ -150,7 +166,7 @@
                         android:textSize="15sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/date"
+                        app:layout_constraintTop_toBottomOf="@+id/startTime"
                         app:layout_constraintVertical_bias="0.0" />
 
                     <View
