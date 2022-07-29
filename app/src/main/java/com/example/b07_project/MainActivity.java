@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+<<<<<<< HEAD
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -15,6 +16,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.concurrent.CountDownLatch;
+=======
+import com.example.b07_project.Denny.profile;
+>>>>>>> Denny
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void transitionToAddEvent(View view)
     {
+<<<<<<< HEAD
 
 //        FirebaseDatabase database = FirebaseDatabase.getInstance();
 //        DatabaseReference venueRef = database.getReference("Venues");
@@ -63,6 +68,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         startActivity(addVenue);
+=======
+        Intent addEvent = new Intent(this, profile.class);
+        startActivity(addEvent);
+>>>>>>> Denny
     }
 
     public void transitionToAdminActivity(View view){
