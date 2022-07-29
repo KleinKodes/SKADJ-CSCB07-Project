@@ -33,6 +33,8 @@
                 android:value=".MainActivity" />
         </activity>
 
+        <activity android:name=".UpcomingEventsDriver" android:exported="false"></activity>
+
         <activity
             android:name=".AddVenue"
             android:exported="false"

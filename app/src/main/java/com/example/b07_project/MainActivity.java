@@ -74,5 +74,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void transitionToUpComingEvents(View view){
+        Intent intent = new Intent(this, UpcomingEventsDriver.class);
+        startActivity(intent);
+    }
+
 
 }
