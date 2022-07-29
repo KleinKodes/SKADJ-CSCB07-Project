@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.b07_project.Denny.profile;
-
 public class MainActivity extends AppCompatActivity {
 
     @Override

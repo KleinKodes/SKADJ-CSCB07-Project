@@ -1,4 +1,4 @@
-package com.example.b07_project.Denny;
+package com.example.b07_project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,8 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.example.b07_project.R;
 
 public class activityPageDenny extends AppCompatActivity {
     public static String activity;
