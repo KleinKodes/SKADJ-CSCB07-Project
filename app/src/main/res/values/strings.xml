@@ -11,4 +11,12 @@
     <string name="Choose_Sport">Choose Sport:</string>
     <string name="Create_Event">Create Event</string>
     <string name="Event_Date">Event Date:</string>
+    <string name="host">Host</string>
+    <string name="event_name">Event Name</string>
+    <string name="tittle">tittle</string>
+    <string name="venue">venue</string>
+    <string name="date">date</string>
+    <string name="time">time</string>
+    <string name="todo">TODO</string>
+    <string name="user_s_name">User\'s Name</string>
 </resources>

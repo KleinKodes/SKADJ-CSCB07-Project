@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         startActivity(addVenue);
+
     }
 
     public void transitionToAdminActivity(View view){
