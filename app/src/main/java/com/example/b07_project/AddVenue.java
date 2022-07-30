@@ -100,6 +100,9 @@ public class AddVenue extends AppCompatActivity {
         //set description
         venue.description = ((EditText)findViewById(R.id.venueDiscription)).getText().toString();
 
+        //initialze empty scheduled events list
+        venue.scheduledEvents = new ArrayList<Integer>();
+
         //sports
         venue.sports = new ArrayList<String>();
         LinearLayout layout = (LinearLayout)findViewById(R.id.sports);
@@ -111,7 +114,6 @@ public class AddVenue extends AppCompatActivity {
 
         //set max concurent events
         venue.maxConcurrentActivities = Integer.parseInt(((EditText)findViewById(R.id.maxActivities)).getText().toString());
-
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Venues");
 
