@@ -10,7 +10,6 @@ public class Event {
     public String name;
     public int capacity;
     public String sport;
-    //public GregorianCalendar startTime, endTime;
     public int attendeeNum;
     public String eventDescription;
     public int ownerId;
@@ -66,14 +65,6 @@ public class Event {
         return sport;
     }
 
-//    public GregorianCalendar getStartTime() {
-//        return startTime;
-//    }
-//
-//    public GregorianCalendar getEndTime() {
-//        return endTime;
-//    }
-
     public int getAttendeeNum() {
         return attendeeNum;
     }
@@ -90,6 +81,9 @@ public class Event {
         return venueId;
     }
 
+    public long getStartTimeStamp() {return startTimeStamp;}
+
+    public long getEndTimeStamp() {return endTimeStamp;}
 
 
     public Event()
