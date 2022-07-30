@@ -21,8 +21,9 @@ import java.util.ArrayList;
 public class ActivityDesc extends AppCompatActivity {
     String[] activityInfo;
     int eventId;
-    int userId;
+    String userId;
     Event event;
+    Boolean isThisMyEvent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +31,11 @@ public class ActivityDesc extends AppCompatActivity {
         Intent intent = getIntent();
         activityInfo= intent.getStringArrayExtra(activityPageDenny.activity);
         eventId = intent.getIntExtra("eventId", -1);
-        userId = intent.getIntExtra("userId", -1);
+        userId = intent.getStringExtra("userId");
+        isThisMyEvent = intent.getBooleanExtra("isThisMyEvent", false);
+
+
+        if (userId == null) userId = "";
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference eventRef = database.getReference("Events");
@@ -40,6 +45,12 @@ public class ActivityDesc extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 event = task.getResult().getValue(Event.class);
+                if (isThisMyEvent){
+                    Button button = findViewById(R.id.joinEventButton);
+                    button.setVisibility(View.GONE);
+                    //button.setClickable(false);
+
+                }else
                 if (event.attendees != null && event.attendees.contains(userId)){
                     Button button = findViewById(R.id.joinEventButton);
                     button.setText("Exit");
@@ -84,7 +95,7 @@ public class ActivityDesc extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 event = task.getResult().getValue(Event.class);
-                if (event.attendees == null) event.attendees = new ArrayList<Integer>();
+                if (event.attendees == null) event.attendees = new ArrayList<String>();
                 if (event.attendees.contains(userId)){
 
 
@@ -114,7 +125,7 @@ public class ActivityDesc extends AppCompatActivity {
                     userRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<DataSnapshot> task) {
-                            ArrayList<Integer> joinedEvents = task.getResult().getValue(ArrayList.class);
+                            ArrayList<Integer> joinedEvents = (ArrayList<Integer>) task.getResult().getValue();
                             if (joinedEvents== null) joinedEvents = new ArrayList<Integer>();
 
                             joinedEvents.add(eventId);

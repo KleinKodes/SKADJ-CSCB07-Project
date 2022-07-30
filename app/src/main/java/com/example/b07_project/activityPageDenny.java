@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +19,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.Calendar;
-
 public class activityPageDenny extends AppCompatActivity {
     public static String activity;
     public static String[] activityInfo = new String[5];
     public static String userId;
+    public static Boolean isThisMyEvent = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +32,7 @@ public class activityPageDenny extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         userId = getIntent().getStringExtra("userID");
+        if (userId == null) userId = "";
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference eventRef = database.getReference("Events");
@@ -68,13 +69,15 @@ public class activityPageDenny extends AppCompatActivity {
         View v = LayoutInflater.from(this).inflate(R.layout.activity_card2, null);
         TextView textView = v.findViewById(R.id.hostName);
         textView.setText(hostName);
+        textView.setHint(event.getOwnerId());
+        Log.i("ownerId", event.getOwnerId());
         textView = v.findViewById(R.id.cardEventDate);
         textView.setText(event.getStartDateString());
         textView = v.findViewById(R.id.startTime);
         textView.setText(event.getStartTimeString());
         textView = v.findViewById(R.id.endTime);
         textView.setText(event.getEndTimeString());
-        textView = v.findViewById(R.id.cardEventName);
+        textView = v.findViewById(R.id.profileEventName);
         textView.setText(event.getName());
         textView.setHint(event.getId() + "");
         layout.addView(v);
@@ -98,7 +101,11 @@ public class activityPageDenny extends AppCompatActivity {
         activityInfo[3] = event.getText().toString();
         activityInfo[4] = host.getText().toString();
         int eventId = Integer.parseInt(event.getHint().toString());
+        isThisMyEvent = host.getHint().toString().equals(userId);
+        //Log.i("host id", host.getHint());
+        Log.i("do i own this event?", isThisMyEvent.toString());
 
+        addProfile.putExtra("isThisMyEvent", isThisMyEvent);
         addProfile.putExtra(activity, activityInfo);
         addProfile.putExtra("eventId", eventId);
         addProfile.putExtra("userId", userId);

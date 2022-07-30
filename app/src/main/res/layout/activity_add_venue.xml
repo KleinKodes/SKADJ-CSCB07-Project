@@ -95,7 +95,7 @@
                 android:layout_marginTop="252dp"
                 android:text="Available To:"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView12" />
+                app:layout_constraintTop_toBottomOf="@+id/profileStartTime" />
 
             <TimePicker
                 android:id="@+id/venueStartTime"
@@ -108,14 +108,14 @@
                 app:layout_constraintTop_toBottomOf="@+id/sunday" />
 
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/profileStartTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="28dp"
                 android:layout_marginTop="444dp"
                 android:text="Available From:"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView11" />
+                app:layout_constraintTop_toBottomOf="@+id/profileDate" />
 
             <EditText
                 android:id="@+id/venueState"
@@ -184,7 +184,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/venueName" />
 
             <TextView
-                android:id="@+id/textView10"
+                android:id="@+id/profileVenueName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="264dp"
@@ -243,7 +243,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView11"
+                android:id="@+id/profileDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
@@ -251,11 +251,11 @@
                 android:layout_marginEnd="42dp"
                 android:layout_marginBottom="45dp"
                 android:text="Max Capacity:"
-                app:layout_constraintBottom_toTopOf="@+id/textView12"
+                app:layout_constraintBottom_toTopOf="@+id/profileStartTime"
                 app:layout_constraintEnd_toStartOf="@+id/venueMaxCapacity"
                 app:layout_constraintHorizontal_bias="0.833"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView10" />
+                app:layout_constraintTop_toBottomOf="@+id/profileVenueName" />
 
             <EditText
                 android:id="@+id/venueMaxCapacity"
@@ -277,7 +277,7 @@
                 android:layout_marginTop="56dp"
                 android:text="Days Available:"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView11" />
+                app:layout_constraintTop_toBottomOf="@+id/profileDate" />
 
             <CheckBox
                 android:id="@+id/monday"

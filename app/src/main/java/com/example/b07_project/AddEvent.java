@@ -79,7 +79,7 @@ public class AddEvent extends AppCompatActivity {
         event.setEndDate(new GregorianCalendar(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth(), timePicker.getCurrentHour(), timePicker.getCurrentMinute()));
         event.sport = getIntent().getStringExtra("sport");
         event.venueId = getIntent().getIntExtra("venueId", -1);
-        event.ownerId = getIntent().getIntExtra("userID", -1);
+        event.ownerId = getIntent().getStringExtra("userID");
 
 
         if (!validateEvent(view, event)) return;
@@ -118,7 +118,7 @@ public class AddEvent extends AppCompatActivity {
                     //Log.i("demo", task.getResult().getValue().toString());
 
                     event.id=curMaxId[0]+1;
-                event.ownerId = 0; //temporary until we make user class
+                //event.ownerId = 0; //temporary until we make user class
 
 
                 myRef.child(event.id + "").setValue(event);

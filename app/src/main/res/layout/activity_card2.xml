@@ -91,7 +91,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/cardEventName"
+                    android:id="@+id/profileEventName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/event_name"

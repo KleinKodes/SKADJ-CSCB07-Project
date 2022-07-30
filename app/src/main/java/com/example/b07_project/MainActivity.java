@@ -17,11 +17,18 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.concurrent.CountDownLatch;
 
 public class MainActivity extends AppCompatActivity {
+    Intent startIntent = getIntent();
+    String userId;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (startIntent != null) userId = getIntent().getStringExtra("userId");
+        if (userId == null) userId = "";
     }
 
     public void transitionToAddEvent(View view)
@@ -59,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
 //        });
 
         Intent addVenue = new Intent(this, ChooseVenue.class);
+        addVenue.putExtra("userId", userId);
 
 
 
@@ -68,25 +76,30 @@ public class MainActivity extends AppCompatActivity {
 
     public void transitionToAdminActivity(View view){
         Intent intent = new Intent(this, AdminActivity.class);
+        intent.putExtra("userId", userId);
         startActivity(intent);
     }
     public void transitionToAddVenue(View view){
         Intent intent = new Intent(this, AddVenue.class);
+        intent.putExtra("userId", userId);
         startActivity(intent);
     }
 
     public void transitionToUpComingEvents(View view){
         Intent intent = new Intent(this, UpcomingEventsDriver.class);
+        intent.putExtra("userId", userId);
         startActivity(intent);
     }
 
     public void transitionToActivityDenny(View view){
         Intent intent = new Intent(this, activityPageDenny.class);
+        intent.putExtra("userId", userId);
         startActivity(intent);
     }
 
     public void transitionToProfile(View view){
         Intent intent = new Intent(this, profile.class);
+        intent.putExtra("userId", userId);
         startActivity(intent);
     }
 

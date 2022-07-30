@@ -57,7 +57,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/cardEventName"
+                    android:id="@+id/profileEventName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/event_name"
@@ -67,6 +67,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/profileHostName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/host"
@@ -74,7 +75,7 @@
                     android:textColor="#FFFFFF" />
 
                 <TextView
-                    android:id="@+id/textView10"
+                    android:id="@+id/profileVenueName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/venue"
@@ -92,13 +93,13 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/textView11"
+                    android:id="@+id/profileDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/date" />
 
                 <TextView
-                    android:id="@+id/textView12"
+                    android:id="@+id/profileStartTime"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/time" />

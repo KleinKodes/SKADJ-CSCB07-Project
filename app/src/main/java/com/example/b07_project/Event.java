@@ -17,10 +17,10 @@ public class Event {
     public String sport;
     public int attendeeNum;
     public String eventDescription;
-    public int ownerId;
+    public String ownerId;
     public int venueId;
     public int groupId;
-    public ArrayList<Integer> attendees;
+    public ArrayList<String> attendees;
 
     public Long startTimeStamp;
     public Long endTimeStamp;
@@ -79,7 +79,7 @@ public class Event {
         return eventDescription;
     }
 
-    public int getOwnerId() {
+    public String getOwnerId() {
         return ownerId;
     }
 
@@ -91,6 +91,7 @@ public class Event {
 
     public long getEndTimeStamp() {return endTimeStamp;}
 
+    @Exclude
     public String getStartDateString() {
 
         GregorianCalendar calendar = this.getStartDate();
@@ -99,6 +100,7 @@ public class Event {
         return calendar.get(Calendar.DAY_OF_MONTH) + "/"+ calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.YEAR);
     }
 
+    @Exclude
     public String getStartTimeString() {
 
         GregorianCalendar calendar = this.getStartDate();
@@ -107,6 +109,7 @@ public class Event {
         return calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE);
     }
 
+    @Exclude
     public String getEndTimeString() {
 
         GregorianCalendar calendar = this.getEndDate();
@@ -114,6 +117,8 @@ public class Event {
         return calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE);
     }
 
+
+    @Exclude
     public String getEndDateString() {
 
         GregorianCalendar calendar = this.getEndDate();
@@ -131,14 +136,14 @@ public class Event {
     {
         this.name = name;
         this.id = 0;
-        this.ownerId=0;
+        this.ownerId= "-1";
         this.venueId=0;
         this.attendeeNum=0;
         this.capacity = 0;
         this.groupId=-1;
         this.startTimeStamp = 0L;
         this.endTimeStamp = 0L;
-        this.attendees = new ArrayList<Integer>();
+        this.attendees = new ArrayList<String>();
 
 
     }
