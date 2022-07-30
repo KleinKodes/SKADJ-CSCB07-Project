@@ -16,6 +16,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -54,27 +56,40 @@ public class SignUpActivity extends AppCompatActivity {
         EditText password = (EditText) findViewById(R.id.Password_SignUp_EditText);
 
 
+            mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                System.out.println("SIGN IN WAS SUCCESSFUL  :((((");
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                updateUserProfile(name.getText().toString() + " " + last_name.getText().toString());
+                                //user.updateProfile(new UserProfileChangeRequest.Builder);
 
-        mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            System.out.println("SIGN IN WAS SUCCESSFUL  :((((");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUserProfile(name.getText().toString() + " " + last_name.getText().toString());
-                            //user.updateProfile(new UserProfileChangeRequest.Builder);
-                            Intent main = new Intent(SignUpActivity.this, MainActivity.class);
-                            startActivity(main);
-                            finish();
-                        } else {
-                            System.out.println("SIGN IN FAILED   :((((");
+                                User newUser = new User();
+                                newUser.id = user.getUid();
+                                newUser.auth = 0;
+                                newUser.firstName = name.getText().toString();
+                                newUser.lastName = last_name.getText().toString();
+                                newUser.email = email.getText().toString();
 
-                            TextView loginFail = (TextView) findViewById(R.id.Sign_Up_Error_Message);
-                            loginFail.setText("SIGN UP FAILED :(");
-                            //fail
+                                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                DatabaseReference myRef = database.getReference("Users");
+
+                                myRef.child(newUser.id).setValue(newUser);
+
+
+                                Intent main = new Intent(SignUpActivity.this, MainActivity.class);
+                                startActivity(main);
+                                finish();
+                            } else {
+                                //fail
+                                System.out.println("SIGN IN FAILED   :((((");
+                                TextView loginFail = (TextView) findViewById(R.id.Sign_Up_Error_Message);
+                                loginFail.setText(task.getException().getMessage());
+                            }
                         }
-                    }
-                });
+                    });
+
     }
 }

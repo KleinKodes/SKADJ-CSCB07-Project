@@ -15,8 +15,14 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.w3c.dom.Text;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
     public FirebaseAuth mAuth;
@@ -49,8 +55,23 @@ public class LoginActivity extends AppCompatActivity {
                             Intent mainact = new Intent(LoginActivity.this, MainActivity.class);
                             FirebaseUser user = mAuth.getCurrentUser();
                             //user.getEmail();
-                            startActivity(mainact);
-                            finish();
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            DatabaseReference myRef = database.getReference("Users").child(user.getUid());
+
+                            myRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>(){
+
+                                    @Override
+                                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                                        User logUser = ((User)task.getResult().getValue(User.class));
+                                        mainact.putExtra("auth", logUser.auth);
+                                        mainact.putExtra("id", logUser.id);
+                                        startActivity(mainact);
+                                        finish();
+                                    }
+                                }
+                            );
+
+
                         } else {
                             System.out.println("LOGIN FAILED NOOO");
                             TextView loginFail = (TextView) findViewById(R.id.Login_Failed_TextView);
