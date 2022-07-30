@@ -28,7 +28,7 @@
       android:layout_marginTop="2dp"
       android:layout_marginEnd="49dp"
       android:onClick="onFilterByVenue"
-      android:text="Sort by Venue"
+      android:text="Filter by Venue"
       app:layout_constraintBottom_toTopOf="@+id/upcomingEventsList"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="1.0"

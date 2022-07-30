@@ -52,7 +52,7 @@ public class UpcomingEventsAdapter extends RecyclerView.Adapter<UpcomingEventsAd
         TextView textView = holder.upcomingTextView;
         textView.setText(event.getName());
         Button button = holder.goToButton;
-        button.setText("About");
+        button.setText("Join Event");
         button.setEnabled(true);
     }
 

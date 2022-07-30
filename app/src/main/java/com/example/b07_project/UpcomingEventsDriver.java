@@ -28,10 +28,10 @@ public class UpcomingEventsDriver extends AppCompatActivity {
 
         //below shows upcoming events, and upcoming events by venue if specified
         Bundle test = getIntent().getExtras();
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference().child("Events");
         if (test != null) {
-            String testTwo = test.getString("key");
-            Log.d("test", testTwo);
-            DatabaseReference database = FirebaseDatabase.getInstance().getReference().child("Events");
+            //String testTwo = test.getString("key");
+            //Log.d("test", testTwo);
             database.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -46,8 +46,22 @@ public class UpcomingEventsDriver extends AppCompatActivity {
                         }
                         else{continue;}
                     }
+
+                    ArrayList<Event> upcomingEvents = new ArrayList<>();
+                    ArrayList<Event> copyOfEvents = new ArrayList<>(Events);
+                    while (upcomingEvents.size() < Events.size()){
+                        Event newEvent = null;
+                        for(Event each: copyOfEvents) {
+                            if (newEvent == null || newEvent.startTimeStamp > each.startTimeStamp) {
+                                newEvent = each;
+                            }
+                        }
+                        upcomingEvents.add(newEvent);
+                        copyOfEvents.remove(newEvent);
+                    }
+
                     RecyclerView listVenues = (RecyclerView) findViewById(R.id.upcomingEventsList);
-                    UpcomingEventsAdapter adapter = new UpcomingEventsAdapter(Events);
+                    UpcomingEventsAdapter adapter = new UpcomingEventsAdapter(upcomingEvents);
                     listVenues.setAdapter(adapter);
                     listVenues.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                 }
@@ -58,7 +72,6 @@ public class UpcomingEventsDriver extends AppCompatActivity {
                 }
             });
         } else {
-            DatabaseReference database = FirebaseDatabase.getInstance().getReference().child("Events");
             database.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -66,10 +79,25 @@ public class UpcomingEventsDriver extends AppCompatActivity {
                     for (DataSnapshot data : snapshot.getChildren()) {
                         String name = data.child("name").getValue().toString();
                         Event event = new Event(name);
+                        event.startTimeStamp = Long.valueOf(data.child("startTimeStamp").getValue().toString());
                         Events.add(event);
                     }
+
+                    ArrayList<Event> upcomingEvents = new ArrayList<>();
+                    ArrayList<Event> copyOfEvents = new ArrayList<>(Events);
+                    while (upcomingEvents.size() < Events.size()){
+                        Event newEvent = null;
+                        for(Event each: copyOfEvents) {
+                            if (newEvent == null || newEvent.startTimeStamp > each.startTimeStamp) {
+                                newEvent = each;
+                            }
+                        }
+                        upcomingEvents.add(newEvent);
+                        copyOfEvents.remove(newEvent);
+                    }
+
                     RecyclerView listVenues = (RecyclerView) findViewById(R.id.upcomingEventsList);
-                    UpcomingEventsAdapter adapter = new UpcomingEventsAdapter(Events);
+                    UpcomingEventsAdapter adapter = new UpcomingEventsAdapter(upcomingEvents);
                     listVenues.setAdapter(adapter);
                     listVenues.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                 }
@@ -85,6 +113,7 @@ public class UpcomingEventsDriver extends AppCompatActivity {
 
     public void onFilterByVenue(View V){
         Intent I = new Intent(this, sortUpcomingByVenue.class);
+        finish();
         startActivity(I);
     }
 }

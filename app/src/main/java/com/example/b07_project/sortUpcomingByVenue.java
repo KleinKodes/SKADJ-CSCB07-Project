@@ -54,7 +54,6 @@ public class sortUpcomingByVenue extends AppCompatActivity {
 
     public void onEnter(View view){
         Intent newIntent = new Intent(this, UpcomingEventsDriver.class);
-        Intent newIntentTwo = new Intent(this, sortUpcomingByVenue.class);
 
         //Make sure the name is a valid venue
         DatabaseReference databaseVenues = FirebaseDatabase.getInstance().getReference().child("Venues");
@@ -65,34 +64,20 @@ public class sortUpcomingByVenue extends AppCompatActivity {
                 Spinner mySpinner = (Spinner) findViewById(R.id.spinner);
                 String message = mySpinner.getSelectedItem().toString();
 
-                int x = 0; // integer for logic check
                 String id = ""; // id string
                 String venueName = ""; // venue string
                 String [] listStrings = message.split(" ");
                 for(int i = 0; i < listStrings.length; i++){
                     if(i+1 == listStrings.length){id = listStrings[i];}
-                    else{venueName+=listStrings[i];}
+                    else if(i+2 == listStrings.length){venueName+=listStrings[i];}
+                    else{venueName+=listStrings[i] + " ";}
                 }
                 String[] listId = id.split(":");
                 String finalId = listId[1];
 
-                for(DataSnapshot data: snapshot.getChildren()){
-                    String venueId = data.child("venueId").getValue().toString();
-                    String thisVenueName = data.child("name").getValue().toString();
-                    if(Objects.equals(venueId, finalId) && Objects.equals(venueName, thisVenueName)){
-                        x = 1;
-                        break;
-                    }
-                }
-                if(x == 1){
-                    newIntent.putExtra("key", finalId);
-                    finish();
-                    startActivity(newIntent);
-                }
-                else{
-                    finish();
-                    startActivity(newIntentTwo);
-                }
+                newIntent.putExtra("key", finalId);
+                finish();
+                startActivity(newIntent);
             }
 
             @Override
