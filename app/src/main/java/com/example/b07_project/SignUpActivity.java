@@ -3,9 +3,12 @@ package com.example.b07_project;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -49,6 +52,9 @@ public class SignUpActivity extends AppCompatActivity {
         EditText name = (EditText) findViewById(R.id.Name_EditText);
         EditText email = (EditText) findViewById(R.id.Email_SignUp_EditText);
         EditText password = (EditText) findViewById(R.id.Password_SignUp_EditText);
+
+
+
         mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -58,8 +64,14 @@ public class SignUpActivity extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUserProfile(name.getText().toString() + " " + last_name.getText().toString());
                             //user.updateProfile(new UserProfileChangeRequest.Builder);
+                            Intent main = new Intent(SignUpActivity.this, MainActivity.class);
+                            startActivity(main);
+                            finish();
                         } else {
                             System.out.println("SIGN IN FAILED   :((((");
+
+                            TextView loginFail = (TextView) findViewById(R.id.Sign_Up_Error_Message);
+                            loginFail.setText("SIGN UP FAILED :(");
                             //fail
                         }
                     }
