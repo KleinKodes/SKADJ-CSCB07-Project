@@ -1,5 +1,6 @@
 package com.example.b07_project;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,24 +12,75 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Calendar;
+
 public class activityPageDenny extends AppCompatActivity {
     public static String activity;
     public static String[] activityInfo = new String[5];
+    public static String userId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page_denny);
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        userId = getIntent().getStringExtra("userID");
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference eventRef = database.getReference("Events");
+        DatabaseReference userRef = database.getReference("Users");
+
+        eventRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                Event event;
+                //((ViewGroup) findViewById(R.id.profilePage)).removeView(findViewById(R.id.sampleEventCard));
+                for(DataSnapshot i : task.getResult().getChildren())
+                {
+                    event = i.getValue(Event.class);
+                    Event finalEvent = event;
+                    userRef.child(event.getOwnerId() + "").child("firstName").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DataSnapshot> task) {
+                            String hostName = task.getResult().getValue(String.class);
+                            addCard(findViewById(R.id.profilePage), finalEvent, hostName);
+                        }
+                    });
+
+
+
+                }
+
+            }
+        });
+
     }
 
-    public void addCard(View view) {
+    public void addCard(View view, Event event, String hostName) {
         LinearLayout layout = (LinearLayout) findViewById(R.id.cardList);
         View v = LayoutInflater.from(this).inflate(R.layout.activity_card2, null);
+        TextView textView = v.findViewById(R.id.hostName);
+        textView.setText(hostName);
+        textView = v.findViewById(R.id.cardEventDate);
+        textView.setText(event.getStartDateString());
+        textView = v.findViewById(R.id.startTime);
+        textView.setText(event.getStartTimeString());
+        textView = v.findViewById(R.id.endTime);
+        textView.setText(event.getEndTimeString());
+        textView = v.findViewById(R.id.cardEventName);
+        textView.setText(event.getName());
+        textView.setHint(event.getId() + "");
         layout.addView(v);
     }
 
-    public void transtitionToDesc(View view){
+    public void transitionToDesc(View view){
         ViewGroup newView = (ViewGroup) view;
 
         TextView date = (TextView) newView.getChildAt(0);
@@ -45,9 +97,18 @@ public class activityPageDenny extends AppCompatActivity {
         activityInfo[2] = end.getText().toString();
         activityInfo[3] = event.getText().toString();
         activityInfo[4] = host.getText().toString();
+        int eventId = Integer.parseInt(event.getHint().toString());
 
         addProfile.putExtra(activity, activityInfo);
+        addProfile.putExtra("eventId", eventId);
+        addProfile.putExtra("userId", userId);
         startActivity(addProfile);
+    }
+
+    private void transitionToViewUpcomingEvents(View view){
+        Intent intent = new Intent(this, UpcomingEventsDriver.class);
+
+        startActivity(intent);
     }
 
 }

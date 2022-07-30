@@ -202,13 +202,14 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/joinEventButton"
             android:layout_width="73dp"
             android:layout_height="48dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="156dp"
             android:layout_marginBottom="4dp"
             android:backgroundTint="#2B782E"
+            android:onClick="joinEvent"
             android:text="Join"
             app:layout_constraintBottom_toBottomOf="@+id/divider3"
             app:layout_constraintEnd_toEndOf="parent"

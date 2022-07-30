@@ -5,7 +5,7 @@
              android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/card"
+        android:id="@+id/sampleEventCard"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFFFFF"
@@ -57,7 +57,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/cardEventName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/event_name"

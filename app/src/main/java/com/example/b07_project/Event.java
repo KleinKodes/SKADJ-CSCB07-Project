@@ -2,6 +2,11 @@ package com.example.b07_project;
 
 import com.google.firebase.database.Exclude;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Objects;
 
@@ -15,6 +20,7 @@ public class Event {
     public int ownerId;
     public int venueId;
     public int groupId;
+    public ArrayList<Integer> attendees;
 
     public Long startTimeStamp;
     public Long endTimeStamp;
@@ -85,6 +91,37 @@ public class Event {
 
     public long getEndTimeStamp() {return endTimeStamp;}
 
+    public String getStartDateString() {
+
+        GregorianCalendar calendar = this.getStartDate();
+
+
+        return calendar.get(Calendar.DAY_OF_MONTH) + "/"+ calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.YEAR);
+    }
+
+    public String getStartTimeString() {
+
+        GregorianCalendar calendar = this.getStartDate();
+
+
+        return calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE);
+    }
+
+    public String getEndTimeString() {
+
+        GregorianCalendar calendar = this.getEndDate();
+
+        return calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE);
+    }
+
+    public String getEndDateString() {
+
+        GregorianCalendar calendar = this.getEndDate();
+
+
+        return calendar.get(Calendar.DAY_OF_MONTH) + "/"+ calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.YEAR);
+    }
+
 
     public Event()
     {
@@ -101,6 +138,7 @@ public class Event {
         this.groupId=-1;
         this.startTimeStamp = 0L;
         this.endTimeStamp = 0L;
+        this.attendees = new ArrayList<Integer>();
 
 
     }

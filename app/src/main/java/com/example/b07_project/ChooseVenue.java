@@ -54,46 +54,10 @@ public class ChooseVenue extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference venueRef = database.getReference("Venues");
 
-        //int venueId = 69;
 
         Log.i("status", "potential crash site 1");
 
-//        venueRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
 //
-//
-//            @Override
-//            public void onComplete(@NonNull Task<DataSnapshot> task) {
-//
-//                Log.i("status", "potential crash site 2");
-//                if (!task.isSuccessful()) {
-//                    Log.e("demo", "Error getting data", task.getException());
-//                } else {
-//
-//                    Log.i("status", "adding venues to venues list");
-//
-//                    for (DataSnapshot childSnapshot:task.getResult().getChildren()){
-//                        venues.add(childSnapshot.getValue(Venue.class));
-//                    }
-//                    countDownLatch.countDown();
-//                }
-//
-//            }
-//        });
-
-//        try {
-//            Log.i("status", "potential crash site 3");
-//            countDownLatch.await();
-//        }catch (InterruptedException e){
-//            Log.e("InterruptedException", e.getMessage());
-//        }
-//
-//        Log.i("status", "potential crash site 4");
-
-//        try {
-//            Thread.sleep(100000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
         
         
         //BLOCK EXPERIMENT
