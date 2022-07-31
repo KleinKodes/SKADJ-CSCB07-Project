@@ -234,4 +234,5 @@ public class ChooseVenue extends AppCompatActivity {
         startActivity(intent);
 
     }
+
 }

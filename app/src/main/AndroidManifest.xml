@@ -14,7 +14,7 @@
         android:theme="@style/Theme.B07Project"
         tools:targetApi="31">
         <activity
-            android:name=".sortUpcomingByVenue"
+            android:name=".filterUpcomingByVenue"
             android:exported="false" />
         <activity
             android:name=".AdminActivity"

@@ -1,6 +1,5 @@
 package com.example.b07_project;
 
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import com.google.firebase.database.DataSnapshot;
@@ -111,8 +109,14 @@ public class UpcomingEventsDriver extends AppCompatActivity {
         }
     }
 
-    public void onFilterByVenue(View V){
-        Intent I = new Intent(this, sortUpcomingByVenue.class);
+    public void onFilterByVenue(View v){
+        Intent I = new Intent(this, filterUpcomingByVenue.class);
+        finish();
+        startActivity(I);
+    }
+
+    public void sortBy(View v){
+        Intent I = new Intent(this, UpcomingEventsDriver.class);
         finish();
         startActivity(I);
     }
