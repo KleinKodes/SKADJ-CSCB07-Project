@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="16dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
@@ -24,10 +24,11 @@
         android:id="@+id/Password_SignUp_EditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/Sign_Up_Error_Message"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Email_SignUp_EditText" />
@@ -40,8 +41,9 @@
         android:onClick="signUp"
         android:text="SIGN UP :)"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Password_SignUp_EditText" />
+        app:layout_constraintTop_toBottomOf="@+id/Sign_Up_Error_Message" />
 
     <EditText
         android:id="@+id/Name_EditText"
@@ -73,12 +75,19 @@
 
     <TextView
         android:id="@+id/Sign_Up_Error_Message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_width="391dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="32dp"
+        android:fontFamily="monospace"
         android:text="           "
+        android:textAlignment="center"
+        android:textColor="#FF0000"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/SignUp_Button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SignUp_Button" />
+        app:layout_constraintTop_toBottomOf="@+id/Password_SignUp_EditText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

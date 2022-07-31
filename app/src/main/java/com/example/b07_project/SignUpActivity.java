@@ -55,11 +55,33 @@ public class SignUpActivity extends AppCompatActivity {
         EditText email = (EditText) findViewById(R.id.Email_SignUp_EditText);
         EditText password = (EditText) findViewById(R.id.Password_SignUp_EditText);
 
+        if (last_name.getText().toString().equals("")){
+            TextView loginFail = (TextView) findViewById(R.id.Sign_Up_Error_Message);
+            loginFail.setText("Last Name is missing");
+            return;
+        }
+        if (name.getText().toString().equals("")){
+            TextView loginFail = (TextView) findViewById(R.id.Sign_Up_Error_Message);
+            loginFail.setText("First Name is missing");
+            return;
+        }
+        if (email.getText().toString().equals("")){
+            TextView loginFail = (TextView) findViewById(R.id.Sign_Up_Error_Message);
+            loginFail.setText("Email is missing");
+            return;
+        }
+        if (password.getText().toString().equals("")){
+            TextView loginFail = (TextView) findViewById(R.id.Sign_Up_Error_Message);
+            loginFail.setText("Password is missing");
+            return;
+        }
+
 
             mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
+
                             if (task.isSuccessful()) {
                                 System.out.println("SIGN IN WAS SUCCESSFUL  :((((");
                                 FirebaseUser user = mAuth.getCurrentUser();
@@ -79,7 +101,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 myRef.child(newUser.id).setValue(newUser);
 
 
-                                Intent main = new Intent(SignUpActivity.this, MainActivity.class);
+                                Intent main = new Intent(SignUpActivity.this, LoginActivity.class);
                                 startActivity(main);
                                 finish();
                             } else {

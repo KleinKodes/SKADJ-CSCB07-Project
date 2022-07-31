@@ -47,6 +47,17 @@ public class LoginActivity extends AppCompatActivity {
         System.out.println(email.getText());
         System.out.println(password.getText());
 
+        if (email.getText().toString().equals("")){
+            TextView loginFail = (TextView) findViewById(R.id.Login_Failed_TextView);
+            loginFail.setText("EMAIL is MISSING");
+            return;
+        }
+        if (password.getText().toString().equals("")){
+            TextView loginFail = (TextView) findViewById(R.id.Login_Failed_TextView);
+            loginFail.setText("PASSWORD is MISSING");
+            return;
+        }
+
         mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -71,11 +82,10 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                             );
 
-
                         } else {
                             System.out.println("LOGIN FAILED NOOO");
                             TextView loginFail = (TextView) findViewById(R.id.Login_Failed_TextView);
-                            loginFail.setText("LOGIN FAILED. CHECK IF YOU ENTERED EMAIL CORRECTLY");
+                            loginFail.setText(task.getException().getMessage());
                         }
                     }
                 });
