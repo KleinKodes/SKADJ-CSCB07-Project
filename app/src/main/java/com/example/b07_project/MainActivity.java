@@ -22,18 +22,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        int auth = this.getIntent().getIntExtra("auth", 0);
+        System.out.println("Main AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        System.out.println(auth);
     }
 
-    public void transitionToLogin(View view)
-    {
-        Intent addEvent = new Intent(this, LoginActivity.class);
-        startActivity(addEvent);
-    }
 
-    public void transitionToSignUp(View view){
-        Intent addEvent = new Intent(this, SignUpActivity.class);
-        startActivity(addEvent);
-    }
 
     public void transitionToAddEvent(View view)
     {
@@ -79,27 +74,50 @@ public class MainActivity extends AppCompatActivity {
 
     public void transitionToAdminActivity(View view){
         Intent intent = new Intent(this, AdminActivity.class);
+        int auth = this.getIntent().getIntExtra("auth", 0);
+        intent.putExtra("auth", auth);
         startActivity(intent);
     }
     public void transitionToAddVenue(View view){
         Intent intent = new Intent(this, AddVenue.class);
+        int auth = this.getIntent().getIntExtra("auth", 0);
+        intent.putExtra("auth", auth);
         startActivity(intent);
     }
 
     public void transitionToUpComingEvents(View view){
         Intent intent = new Intent(this, UpcomingEventsDriver.class);
+        int auth = this.getIntent().getIntExtra("auth", 0);
+        intent.putExtra("auth", auth);
         startActivity(intent);
     }
 
     public void transitionToActivityDenny(View view){
         Intent intent = new Intent(this, activityPageDenny.class);
+        int auth = this.getIntent().getIntExtra("auth", 0);
+        intent.putExtra("auth", auth);
         startActivity(intent);
     }
 
     public void transitionToProfile(View view){
         Intent intent = new Intent(this, profile.class);
+        int auth = this.getIntent().getIntExtra("auth", 0);
+        intent.putExtra("auth", auth);
         startActivity(intent);
     }
+    public void transitionToLogin(View view)
+    {
+        Intent addEvent = new Intent(this, LoginActivity.class);
+        int auth = this.getIntent().getIntExtra("auth", 0);
+        addEvent.putExtra("auth", auth);
+        startActivity(addEvent);
+    }
 
+    public void transitionToSignUp(View view){
+        Intent addEvent = new Intent(this, SignUpActivity.class);
+        int auth = this.getIntent().getIntExtra("auth", 0);
+        addEvent.putExtra("auth", auth);
+        startActivity(addEvent);
+    }
 
 }

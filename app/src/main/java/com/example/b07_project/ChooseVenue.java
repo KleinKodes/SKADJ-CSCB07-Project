@@ -42,8 +42,10 @@ public class ChooseVenue extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_venue_sport);
 
+        int auth = this.getIntent().getIntExtra("auth", 0);
+
         RecyclerView recyclerView = findViewById(R.id.rvVenues);
-        RecycleViewAdapter recycleViewAdapter = new RecycleViewAdapter(venues);
+        RecycleViewAdapter recycleViewAdapter = new RecycleViewAdapter(venues, auth);
         recyclerView.setAdapter(recycleViewAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -227,6 +229,8 @@ public class ChooseVenue extends AppCompatActivity {
         Log.i("sports-list:", sportsPass.toString());
 
 
+        int auth = this.getIntent().getIntExtra("auth", 0);
+        intent.putExtra("auth", auth);
 
         intent.putStringArrayListExtra("sports", sportsPass);
         intent.putExtra("venue", venueName.getText());

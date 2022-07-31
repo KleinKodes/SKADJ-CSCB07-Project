@@ -3,6 +3,7 @@ package com.example.b07_project;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +22,9 @@ public class AdminActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
+        int auth = this.getIntent().getIntExtra("auth", 0);
+        System.out.println("Admin AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        System.out.println(auth);
     }
 
 
@@ -151,6 +155,15 @@ public class AdminActivity extends AppCompatActivity {
 //event.venueId = 69;
         //ENDBLOCK
 
+
+    }
+
+    public void transitionToVenues(View view)
+    {
+        Intent intent = new Intent(this, ChooseVenue.class);
+        int auth = this.getIntent().getIntExtra("auth", 0);
+        intent.putExtra("auth", auth);
+        startActivity(intent);
 
     }
 

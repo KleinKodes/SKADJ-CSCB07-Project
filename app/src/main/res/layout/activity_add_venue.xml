@@ -1,28 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    tools:layout_editor_absoluteX="3dp"
+    tools:layout_editor_absoluteY="37dp">
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="37dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".AddVenue"
-            tools:layout_editor_absoluteX="7dp"
-            tools:layout_editor_absoluteY="72dp">
+            tools:layout_editor_absoluteX="3dp"
+            tools:layout_editor_absoluteY="37dp">
 
             <TextView
                 android:id="@+id/textView20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="308dp"
+                android:layout_marginTop="368dp"
                 android:text="Country:"
                 app:layout_constraintEnd_toStartOf="@+id/venueCountry"
-                app:layout_constraintHorizontal_bias="0.428"
+                app:layout_constraintHorizontal_bias="0.471"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,13 +35,13 @@
                 android:id="@+id/venueCountry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="44dp"
+                android:layout_marginTop="52dp"
                 android:ems="10"
                 android:hint="Country"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.653"
+                app:layout_constraintHorizontal_bias="0.696"
                 app:layout_constraintStart_toEndOf="@+id/textView4"
                 app:layout_constraintTop_toBottomOf="@+id/venueState" />
 
@@ -44,8 +49,8 @@
                 android:id="@+id/venueEndTime"
                 android:layout_width="211dp"
                 android:layout_height="189dp"
-                android:layout_marginStart="164dp"
-                android:layout_marginTop="51dp"
+                android:layout_marginStart="168dp"
+                android:layout_marginTop="80dp"
                 android:timePickerMode="spinner"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/venueStartTime" />
@@ -54,8 +59,8 @@
                 android:id="@+id/venueDiscription"
                 android:layout_width="266dp"
                 android:layout_height="181dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="35dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="84dp"
                 android:backgroundTint="#45000000"
                 android:ems="10"
                 android:gravity="start|top"
@@ -67,8 +72,8 @@
                 android:id="@+id/textView19"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="204dp"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="248dp"
                 android:text="Discription:"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sports" />
@@ -78,7 +83,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="161dp"
-                android:layout_marginTop="68dp"
+                android:layout_marginTop="120dp"
                 android:layout_marginEnd="160dp"
                 android:onClick="createVenue"
                 android:text="Submit"
@@ -91,8 +96,8 @@
                 android:id="@+id/textView18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="252dp"
+                android:layout_marginStart="44dp"
+                android:layout_marginTop="244dp"
                 android:text="Available To:"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView12" />
@@ -101,8 +106,8 @@
                 android:id="@+id/venueStartTime"
                 android:layout_width="211dp"
                 android:layout_height="189dp"
-                android:layout_marginStart="164dp"
-                android:layout_marginTop="67dp"
+                android:layout_marginStart="168dp"
+                android:layout_marginTop="72dp"
                 android:timePickerMode="spinner"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sunday" />
@@ -111,8 +116,8 @@
                 android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
-                android:layout_marginTop="444dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="536dp"
                 android:text="Available From:"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView11" />
@@ -121,12 +126,13 @@
                 android:id="@+id/venueState"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:ems="10"
                 android:hint="Province/State"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.651"
+                app:layout_constraintHorizontal_bias="0.686"
                 app:layout_constraintStart_toEndOf="@+id/textView4"
                 app:layout_constraintTop_toBottomOf="@+id/venueCity" />
 
@@ -134,13 +140,13 @@
                 android:id="@+id/venueCity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="8dp"
                 android:ems="10"
                 android:hint="City"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.662"
+                app:layout_constraintHorizontal_bias="0.696"
                 app:layout_constraintStart_toEndOf="@+id/textView4"
                 app:layout_constraintTop_toBottomOf="@+id/venueStreetAddress" />
 
@@ -148,12 +154,13 @@
                 android:id="@+id/venuePostalCode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:ems="10"
                 android:hint="Postal Code"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.651"
+                app:layout_constraintHorizontal_bias="0.686"
                 app:layout_constraintStart_toEndOf="@+id/textView4"
                 app:layout_constraintTop_toBottomOf="@+id/venueState" />
 
@@ -161,11 +168,11 @@
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="116dp"
+                android:layout_marginTop="152dp"
                 android:layout_marginEnd="24dp"
                 android:text="Street Address:"
                 app:layout_constraintEnd_toStartOf="@+id/venueName"
-                app:layout_constraintHorizontal_bias="0.6"
+                app:layout_constraintHorizontal_bias="0.65"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -173,13 +180,13 @@
                 android:id="@+id/venueStreetAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="24dp"
                 android:ems="10"
                 android:hint="Street Name"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.651"
+                app:layout_constraintHorizontal_bias="0.737"
                 app:layout_constraintStart_toEndOf="@+id/textView4"
                 app:layout_constraintTop_toBottomOf="@+id/venueName" />
 
@@ -187,10 +194,10 @@
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="264dp"
+                android:layout_marginTop="312dp"
                 android:text="Postal Code:"
                 app:layout_constraintEnd_toStartOf="@+id/venuePostalCode"
-                app:layout_constraintHorizontal_bias="0.428"
+                app:layout_constraintHorizontal_bias="0.459"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -198,10 +205,10 @@
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="160dp"
+                android:layout_marginTop="208dp"
                 android:text="City:"
                 app:layout_constraintEnd_toStartOf="@+id/venueCity"
-                app:layout_constraintHorizontal_bias="0.483"
+                app:layout_constraintHorizontal_bias="0.475"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -209,10 +216,10 @@
                 android:id="@+id/textView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="204dp"
+                android:layout_marginTop="260dp"
                 android:text="Province/State:"
                 app:layout_constraintEnd_toStartOf="@+id/venueState"
-                app:layout_constraintHorizontal_bias="0.45"
+                app:layout_constraintHorizontal_bias="0.425"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -220,7 +227,7 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="76dp"
                 android:layout_marginEnd="24dp"
                 android:text="Venue Name:"
                 app:layout_constraintEnd_toStartOf="@+id/venueName"
@@ -232,7 +239,7 @@
                 android:id="@+id/venueName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="31dp"
+                android:layout_marginTop="68dp"
                 android:ems="10"
                 android:hint="Venue Name"
                 android:inputType="textPersonName"
@@ -247,13 +254,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
-                android:layout_marginTop="132dp"
+                android:layout_marginTop="108dp"
                 android:layout_marginEnd="42dp"
-                android:layout_marginBottom="45dp"
                 android:text="Max Capacity:"
-                app:layout_constraintBottom_toTopOf="@+id/textView12"
                 app:layout_constraintEnd_toStartOf="@+id/venueMaxCapacity"
-                app:layout_constraintHorizontal_bias="0.833"
+                app:layout_constraintHorizontal_bias="0.333"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
@@ -261,8 +266,8 @@
                 android:id="@+id/venueMaxCapacity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"
-                android:layout_marginEnd="44dp"
+                android:layout_marginTop="72dp"
+                android:layout_marginEnd="40dp"
                 android:ems="10"
                 android:inputType="number"
                 android:minHeight="48dp"
@@ -273,8 +278,8 @@
                 android:id="@+id/textView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="56dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="32dp"
                 android:text="Days Available:"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView11" />
@@ -284,7 +289,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="114dp"
-                android:layout_marginTop="39dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="100dp"
                 android:text="monday"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -297,7 +302,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="114dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="100dp"
                 android:text="Sunday"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -310,11 +315,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="114dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="100dp"
                 android:text="Saturday"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/textView7"
                 app:layout_constraintTop_toBottomOf="@+id/friday" />
 
@@ -323,6 +328,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="114dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="100dp"
                 android:text="Friday"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -335,10 +341,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="114dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="100dp"
                 android:text="Thursday"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/textView7"
                 app:layout_constraintTop_toBottomOf="@+id/wednesday" />
 
@@ -347,10 +354,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="114dp"
+                android:layout_marginTop="28dp"
                 android:layout_marginEnd="100dp"
                 android:text="Wednesday"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.826"
+                app:layout_constraintHorizontal_bias="0.666"
                 app:layout_constraintStart_toEndOf="@+id/textView7"
                 app:layout_constraintTop_toBottomOf="@+id/tuesday" />
 
@@ -359,6 +367,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="114dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="100dp"
                 android:text="Tuesday"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -371,9 +380,10 @@
                 android:layout_width="339dp"
                 android:layout_height="122dp"
                 android:layout_marginStart="4dp"
-                android:layout_marginTop="9dp"
+                android:layout_marginTop="32dp"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.534"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView13">
 
@@ -383,15 +393,17 @@
                     android:layout_height="50dp"
                     android:ems="10"
                     android:hint="Sport"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    tools:layout_editor_absoluteX="51dp"
+                    tools:layout_editor_absoluteY="1456dp" />
             </LinearLayout>
 
             <TextView
                 android:id="@+id/textView13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="220dp"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="216dp"
                 android:text="Available Sports:"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView18" />
@@ -401,7 +413,7 @@
                 android:layout_width="77dp"
                 android:layout_height="58dp"
                 android:layout_marginStart="165dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="28dp"
                 android:layout_marginEnd="165dp"
                 android:onClick="addSport"
                 android:text="+"
@@ -409,6 +421,7 @@
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.625"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sports" />
 
@@ -417,9 +430,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="42dp"
-                android:layout_marginTop="119dp"
+                android:layout_marginTop="148dp"
                 android:layout_marginEnd="44dp"
-                android:text="TextView"
+                android:text="Max Activities:"
                 app:layout_constraintEnd_toStartOf="@+id/maxActivities"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sports" />
@@ -428,12 +441,27 @@
                 android:id="@+id/maxActivities"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="44dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="52dp"
                 android:ems="10"
                 android:inputType="number"
+                android:text="1"
                 app:layout_constraintStart_toEndOf="@+id/textView14"
                 app:layout_constraintTop_toBottomOf="@+id/addSport" />
+
+            <TextView
+                android:id="@+id/modeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="167dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="167dp"
+                android:text="Add Venue"
+                android:textAllCaps="false"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
