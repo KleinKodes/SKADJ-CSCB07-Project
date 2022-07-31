@@ -81,7 +81,6 @@ public class activityPageDenny extends AppCompatActivity {
         textView.setText(event.getName());
         textView.setHint(event.getId() + "");
         layout.addView(v);
-        addCard("d","d","d","d","d");
     }
 
     public void transitionToDesc(View view){

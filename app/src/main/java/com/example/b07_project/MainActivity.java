@@ -18,13 +18,14 @@ import java.util.concurrent.CountDownLatch;
 
 public class MainActivity extends AppCompatActivity {
 
+    int auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        int auth = this.getIntent().getIntExtra("auth", 0);
-        System.out.println("Main AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        auth = this.getIntent().getIntExtra("auth", 0);
+        //System.out.println("Main AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         System.out.println(auth);
     }
 
@@ -33,39 +34,10 @@ public class MainActivity extends AppCompatActivity {
     public void transitionToAddEvent(View view)
     {
 
-//        FirebaseDatabase database = FirebaseDatabase.getInstance();
-//        DatabaseReference venueRef = database.getReference("Venues");
-//
-//        //int venueId = 69;
-//
-//        CountDownLatch countDownLatch = new CountDownLatch(1);
-//
-//        Log.i("status", "potential crash site 1");
-//
-//        venueRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-//
-//
-//            @Override
-//            public void onComplete(@NonNull Task<DataSnapshot> task) {
-//
-//                Log.i("status", "potential crash site 2");
-//                if (!task.isSuccessful()) {
-//                    Log.e("demo", "Error getting data", task.getException());
-//                } else {
-//
-//                    Log.i("status", "adding venues to venues list");
-//
-//                    for (DataSnapshot childSnapshot:task.getResult().getChildren()){
-//                        venues.add(childSnapshot.getValue(Venue.class));
-//                    }
-//                    countDownLatch.countDown();
-//                }
-//
-//            }
-//        });
+
 
         Intent addVenue = new Intent(this, ChooseVenue.class);
-
+        addVenue.putExtra("auth", auth);
 
 
         startActivity(addVenue);
@@ -74,50 +46,56 @@ public class MainActivity extends AppCompatActivity {
 
     public void transitionToAdminActivity(View view){
         Intent intent = new Intent(this, AdminActivity.class);
-        int auth = this.getIntent().getIntExtra("auth", 0);
         intent.putExtra("auth", auth);
         startActivity(intent);
     }
     public void transitionToAddVenue(View view){
         Intent intent = new Intent(this, AddVenue.class);
-        int auth = this.getIntent().getIntExtra("auth", 0);
         intent.putExtra("auth", auth);
         startActivity(intent);
     }
 
     public void transitionToUpComingEvents(View view){
         Intent intent = new Intent(this, UpcomingEventsDriver.class);
-        int auth = this.getIntent().getIntExtra("auth", 0);
         intent.putExtra("auth", auth);
         startActivity(intent);
     }
 
     public void transitionToActivityDenny(View view){
         Intent intent = new Intent(this, activityPageDenny.class);
-        int auth = this.getIntent().getIntExtra("auth", 0);
         intent.putExtra("auth", auth);
         startActivity(intent);
     }
 
     public void transitionToProfile(View view){
         Intent intent = new Intent(this, profile.class);
-        int auth = this.getIntent().getIntExtra("auth", 0);
         intent.putExtra("auth", auth);
         startActivity(intent);
     }
     public void transitionToLogin(View view)
     {
         Intent addEvent = new Intent(this, LoginActivity.class);
-        int auth = this.getIntent().getIntExtra("auth", 0);
         addEvent.putExtra("auth", auth);
         startActivity(addEvent);
     }
 
     public void transitionToSignUp(View view){
         Intent addEvent = new Intent(this, SignUpActivity.class);
-        int auth = this.getIntent().getIntExtra("auth", 0);
+
         addEvent.putExtra("auth", auth);
         startActivity(addEvent);
     }
 
+    public void transitionToVenuePage(View view){
+        Intent intent = new Intent(this, VenuePageDennt.class);
+        intent.putExtra("auth", auth);
+        startActivity(intent);
+    }
+
+    public void transitionToNewEvent(View view){
+        Intent intent = new Intent(this, AddEventDenny.class);
+        intent.putExtra("auth", auth);
+        startActivity(intent);
+
+    }
 }
