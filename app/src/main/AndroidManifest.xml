@@ -60,6 +60,19 @@
         <activity
             android:name=".activityPageDenny"
             android:exported="false" />
+        <activity
+            android:name=".VenueDesc"
+            android:exported="false"
+            android:label="@string/title_activity_venue_desc"
+            android:theme="@style/Theme.B07Project.NoActionBar" />
+        <activity
+            android:name=".VenuePageDennt"
+            android:exported="false" />
+        <activity
+            android:name=".AddVenueDenny"
+            android:exported="false" />
+        <activity
+            android:name=".AddEventDenny"
+            android:exported="false" />
     </application>
-
 </manifest>

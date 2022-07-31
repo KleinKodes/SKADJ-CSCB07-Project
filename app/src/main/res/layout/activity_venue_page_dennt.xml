@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".profile">
+    tools:context=".VenuePageDennt">
 
     <androidx.constraintlayout.widget.ConstraintLayout
 
@@ -13,30 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FAFAFA">
-
-        <ScrollView
-            android:id="@+id/cards"
-            android:layout_width="410dp"
-            android:layout_height="378dp"
-            android:layout_marginTop="30dp"
-            android:background="#FFFFFF"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/venueDescVenue"
-            app:layout_constraintVertical_bias="0.0"
-            tools:ignore="SpeakableTextPresentCheck">
-
-            <LinearLayout
-                android:id="@+id/cardList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#FFFFFF"
-                android:baselineAligned="false"
-                android:minHeight="10dp"
-                android:orientation="vertical"
-                android:textAlignment="center"/>
-        </ScrollView>
 
         <ImageView
             android:id="@+id/AddPost"
@@ -49,17 +25,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/plus"
             tools:ignore="DuplicateSpeakableTextCheck" />
-
-        <View
-            android:id="@+id/divider2"
-            android:layout_width="409dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="100dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/AppName" />
 
         <ImageView
             android:id="@+id/imageView11"
@@ -76,7 +41,7 @@
 
         <ImageView
             android:id="@+id/Header"
-            android:layout_width="412dp"
+            android:layout_width="0dp"
             android:layout_height="58dp"
             android:background="#2B782E"
             android:contentDescription="@string/todo"
@@ -110,9 +75,84 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imageView11" />
 
+        <ScrollView
+            android:id="@+id/venuePageCards"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView11" >
+
+            <LinearLayout
+                android:id="@+id/venuePageCardList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/venuePageCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="146dp"
+                    android:layout_marginBottom="25dp"
+                    android:background="#123E13"
+                    android:onClick="transitionToVenueDesc">
+
+                    <TextView
+                        android:id="@+id/textView16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="20dp"
+                        android:text="Venue"
+                        android:textColor="#FFFFFF"
+                        android:textSize="40dp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:id="@+id/venueCardOptions"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="50dp"
+                        android:layout_marginBottom="1dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView16">
+
+                        <Button
+                            android:id="@+id/venueCardExplore"
+                            android:layout_width="20dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="20dp"
+                            android:layout_weight="1"
+                            android:backgroundTint="#2B782E"
+                            android:text="Explore" />
+
+                        <Button
+                            android:id="@+id/venuecardInfo"
+                            android:layout_width="20dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="20dp"
+                            android:layout_weight="1"
+                            android:backgroundTint="#2B782E"
+                            android:text="More Info" />
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </ScrollView>
+
         <LinearLayout
             android:id="@+id/linearLayout"
-            android:layout_width="406dp"
+            android:layout_width="0dp"
             android:layout_height="49dp"
             android:background="#000000"
             android:orientation="horizontal"
@@ -155,7 +195,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/profileUserName"
+            android:id="@+id/textView8"
             android:layout_width="172dp"
             android:layout_height="27dp"
             android:layout_marginStart="16dp"
@@ -166,62 +206,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/tab1"
-            android:layout_width="130dp"
-            android:layout_height="54dp"
-            android:background="@drawable/top_rounded_edge"
-            android:backgroundTint="#2B782E"
-            android:onClick="switchToCreate"
-            app:layout_constraintBottom_toTopOf="@+id/divider2"
-            app:layout_constraintEnd_toStartOf="@+id/tab2"
-            app:layout_constraintHorizontal_bias="0.518"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <TextView
-                android:id="@+id/create"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="See Created Events"
-                android:textColor="#FFFFFF"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/tab2"
-            android:layout_width="130dp"
-            android:layout_height="54dp"
-            android:layout_marginEnd="124dp"
-            android:background="@drawable/top_rounded_edge"
-            android:backgroundTint="#2B782E"
-            android:onClick="switchToJoin"
-            app:layout_constraintBottom_toTopOf="@+id/divider2"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <TextView
-                android:id="@+id/join"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="See Joined Events"
-                android:textColor="#FDFDFD"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
         <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="33dp"
-            android:layout_height="31dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="28dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider2"
-            app:srcCompat="@drawable/filter" />
+            android:id="@+id/venuePageAdd"
+            android:layout_width="36dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:onClick="addCard"
+            app:layout_constraintEnd_toStartOf="@+id/AddPost"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/plus"
+            tools:ignore="TouchTargetSizeCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
