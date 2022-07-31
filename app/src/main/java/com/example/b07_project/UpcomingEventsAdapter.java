@@ -33,6 +33,14 @@ public class UpcomingEventsAdapter extends RecyclerView.Adapter<UpcomingEventsAd
         this.eventsList = eventsList;
     }
 
+    public UpcomingEventsAdapter() {
+
+    }
+
+    public void setUpcomingEventsAdapterList (ArrayList<Event> eventsList){
+        this.eventsList = eventsList;
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

@@ -39,6 +39,12 @@
             android:name=".UpcomingEventsDriver"
             android:exported="false" />
         <activity
+            android:name=".SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddVenue"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
