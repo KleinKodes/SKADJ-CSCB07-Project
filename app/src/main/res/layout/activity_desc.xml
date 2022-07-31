@@ -112,7 +112,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/profileUserName"
             android:layout_width="172dp"
             android:layout_height="27dp"
             android:layout_marginStart="16dp"

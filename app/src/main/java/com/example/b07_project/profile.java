@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -21,9 +22,14 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.w3c.dom.Text;
+
 public class profile extends AppCompatActivity {
     public static String tabState = "";
     public static String userId;
+    public UserServices userServices;
+    public EventServices eventServices;
+    public int state;
     @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +37,13 @@ public class profile extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        userServices = new UserServices();
+        eventServices = new EventServices();
 
 
 
         Intent intent = getIntent();
-        int state = intent.getIntExtra(profile.tabState,1);
+        state = intent.getIntExtra(profile.tabState,1);
         userId = intent.getStringExtra("userId");
         if (userId == null) userId = "";
         Log.i("userid ", userId);
@@ -49,6 +57,16 @@ public class profile extends AppCompatActivity {
         DatabaseReference eventRef = database.getReference("Events");
         DatabaseReference userRef = database.getReference("Users");
         DatabaseReference venueRef = database.getReference("Venues");
+
+        userRef.child(userId).child("firstName").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                String firstName = task.getResult().getValue(String.class);
+                if (firstName == null) return;
+                TextView profileName = findViewById(R.id.profileUserName);
+                profileName.setText(firstName);
+            }
+        });
 
         eventRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
@@ -150,6 +168,27 @@ public class profile extends AppCompatActivity {
         textView = v.findViewById(R.id.profileEventName);
         textView.setText(event.getName());
         textView.setHint(event.getId() + "");
+        Button button = v.findViewById(R.id.profileDelete);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (state == 2) {
+                    Log.i("status", "about to remove user with uid " + userId +
+                            " from event with id " + event.getId() +
+                            " with the name " + event.getName());
+                    userServices.removeUserFromEvent(userId, event.getId());
+                    layout.removeView(v);
+                }else if (state == 1){
+                    Log.i("status", "about to delete event with id " + event.getId() +
+                            " and name " + event.getName() + " from database.");
+                    eventServices.deleteEventById(event.getId());
+                    v.setVisibility(View.GONE);
+
+                }
+            }
+        });
+
         layout.addView(v);
     }
 
@@ -157,11 +196,13 @@ public class profile extends AppCompatActivity {
         Intent addProfile = new Intent(this, profile.class);
         addProfile.putExtra(tabState, 1);
         startActivity(addProfile);
+        finish();
     }
 
     public void switchToJoin(View view) {
         Intent addProfile = new Intent(this, profile.class);
         addProfile.putExtra(tabState, 2);
         startActivity(addProfile);
+        finish();
     }
 }

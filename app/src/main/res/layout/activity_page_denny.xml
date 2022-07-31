@@ -79,7 +79,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
-        android:text="@string/venue"
+        android:text="Upcoming Events"
         android:textColor="#173C18"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -156,7 +156,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/profileUserName"
         android:layout_width="172dp"
         android:layout_height="27dp"
         android:layout_marginStart="16dp"

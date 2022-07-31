@@ -88,7 +88,7 @@ public class ActivityDesc extends AppCompatActivity {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference eventRef = database.getReference("Events");
-        DatabaseReference userRef = database.getReference("Users").child(userId + "").child("joinedEvents");
+        DatabaseReference userRef = database.getReference("Users").child(userId).child("joinedEvents");
 
 
         eventRef.child(eventId + "").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
@@ -103,7 +103,7 @@ public class ActivityDesc extends AppCompatActivity {
                     userRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<DataSnapshot> task) {
-                            ArrayList<Integer> joinedEvents = task.getResult().getValue(ArrayList.class);
+                            ArrayList<Integer> joinedEvents = (ArrayList<Integer>) task.getResult().getValue();
                             if (joinedEvents!= null) joinedEvents.remove(joinedEvents.indexOf(eventId));
 
                             userRef.setValue(joinedEvents);

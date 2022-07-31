@@ -105,7 +105,7 @@
                     android:text="@string/time" />
 
                 <Button
-                    android:id="@+id/button4"
+                    android:id="@+id/profileDelete"
                     android:layout_width="91dp"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#1E5120"
