@@ -19,6 +19,8 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
 
         //private String[] localDataSet;
         private ArrayList<Venue> venueArrayList;
+        private int auth;
+
 
         /**
          * Provide a reference to the type of views that you are using
@@ -55,8 +57,9 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
          * @param venueArrayList ArrayList<Venue> containing the data to populate views to be used
          * by RecyclerView.
          */
-        public RecycleViewAdapter(ArrayList<Venue>venueArrayList) {
+        public RecycleViewAdapter(ArrayList<Venue>venueArrayList, int auth) {
             this.venueArrayList= venueArrayList;
+            this.auth = auth;
         }
 
         // Create new views (invoked by the layout manager)
@@ -92,6 +95,10 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
 
                     Intent intent = new Intent(v.getContext(), ChooseSport.class);
 
+                    if(auth == 1) {
+                        intent.setClass(v.getContext(), AddVenue.class);
+                        intent.putExtra("mode", 1);
+                    }
 
 
 
@@ -99,6 +106,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
                     intent.putStringArrayListExtra("sports", venue.getSports());
                     intent.putExtra("venue", venue.getName());
                     intent.putExtra("venueId", venue.getId());
+                    intent.putExtra("auth", auth);
                     v.getContext().startActivity(intent);
 
 

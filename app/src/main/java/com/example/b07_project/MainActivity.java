@@ -17,19 +17,18 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.concurrent.CountDownLatch;
 
 public class MainActivity extends AppCompatActivity {
-    Intent startIntent = getIntent();
-    String userId;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (startIntent != null) userId = getIntent().getStringExtra("userId");
-        if (userId == null) userId = "";
+        int auth = this.getIntent().getIntExtra("auth", 0);
+        System.out.println("Main AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        System.out.println(auth);
     }
+
+
 
     public void transitionToAddEvent(View view)
     {
@@ -66,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
 //        });
 
         Intent addVenue = new Intent(this, ChooseVenue.class);
-        addVenue.putExtra("userId", userId);
 
 
 
@@ -76,32 +74,50 @@ public class MainActivity extends AppCompatActivity {
 
     public void transitionToAdminActivity(View view){
         Intent intent = new Intent(this, AdminActivity.class);
-        intent.putExtra("userId", userId);
+        int auth = this.getIntent().getIntExtra("auth", 0);
+        intent.putExtra("auth", auth);
         startActivity(intent);
     }
     public void transitionToAddVenue(View view){
         Intent intent = new Intent(this, AddVenue.class);
-        intent.putExtra("userId", userId);
+        int auth = this.getIntent().getIntExtra("auth", 0);
+        intent.putExtra("auth", auth);
         startActivity(intent);
     }
 
     public void transitionToUpComingEvents(View view){
         Intent intent = new Intent(this, UpcomingEventsDriver.class);
-        intent.putExtra("userId", userId);
+        int auth = this.getIntent().getIntExtra("auth", 0);
+        intent.putExtra("auth", auth);
         startActivity(intent);
     }
 
     public void transitionToActivityDenny(View view){
         Intent intent = new Intent(this, activityPageDenny.class);
-        intent.putExtra("userId", userId);
+        int auth = this.getIntent().getIntExtra("auth", 0);
+        intent.putExtra("auth", auth);
         startActivity(intent);
     }
 
     public void transitionToProfile(View view){
         Intent intent = new Intent(this, profile.class);
-        intent.putExtra("userId", userId);
+        int auth = this.getIntent().getIntExtra("auth", 0);
+        intent.putExtra("auth", auth);
         startActivity(intent);
     }
+    public void transitionToLogin(View view)
+    {
+        Intent addEvent = new Intent(this, LoginActivity.class);
+        int auth = this.getIntent().getIntExtra("auth", 0);
+        addEvent.putExtra("auth", auth);
+        startActivity(addEvent);
+    }
 
+    public void transitionToSignUp(View view){
+        Intent addEvent = new Intent(this, SignUpActivity.class);
+        int auth = this.getIntent().getIntExtra("auth", 0);
+        addEvent.putExtra("auth", auth);
+        startActivity(addEvent);
+    }
 
 }

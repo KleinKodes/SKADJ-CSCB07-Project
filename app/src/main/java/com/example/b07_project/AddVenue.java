@@ -7,10 +7,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.b07_project.Venue;
@@ -25,10 +27,67 @@ import java.util.Locale;
 
 public class AddVenue extends AppCompatActivity {
     int numOfSports = 0;
+    int auth = 0;
+    int mode = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_venue);
+        auth = this.getIntent().getIntExtra("auth", 0);
+        mode = this.getIntent().getIntExtra("mode", 0);
+
+        if(auth == 1 && mode == 1){
+            TextView modeText = ((TextView)findViewById(R.id.modeText));
+            modeText.setText("View/Edit Venue");
+
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+            System.out.println(""+this.getIntent().getIntExtra("venueId",-1) + "");
+            DatabaseReference myRef = database.getReference("Venues").child(this.getIntent().getIntExtra("venueId",-1)+"");
+
+            myRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @RequiresApi(api = Build.VERSION_CODES.M)
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    Venue venue = ((Venue)task.getResult().getValue(Venue.class));
+                    ((EditText)findViewById(R.id.venueName)).setText(venue.name);
+
+                    ((EditText)findViewById(R.id.venueStreetAddress)).setText(venue.address.streetAddress);
+                    ((EditText)findViewById(R.id.venueCity)).setText(venue.address.city);
+                    ((EditText)findViewById(R.id.venueCountry)).setText(venue.address.country);
+                    ((EditText)findViewById(R.id.venueState)).setText(venue.address.state);
+                    ((EditText)findViewById(R.id.venuePostalCode)).setText(venue.address.postalCode);
+
+                    ((EditText)findViewById(R.id.venueMaxCapacity)).setText(venue.capacity + "");
+
+                    ((TimePicker)findViewById(R.id.venueStartTime)).setHour(venue.availableFrom.getHour());
+                    ((TimePicker)findViewById(R.id.venueStartTime)).setMinute(venue.availableFrom.getMin());
+
+                    ((TimePicker)findViewById(R.id.venueEndTime)).setHour(venue.availableTo.getHour());
+                    ((TimePicker)findViewById(R.id.venueEndTime)).setMinute(venue.availableTo.getMin());
+
+                    String[] weeks = venue.daysAvailable.split("");
+                    if(weeks[0].equals("1")) ((CheckBox)findViewById(R.id.monday)).setChecked(true);
+                    if(weeks[1].equals("1")) ((CheckBox)findViewById(R.id.tuesday)).setChecked(true);
+                    if(weeks[2].equals("1")) ((CheckBox)findViewById(R.id.wednesday)).setChecked(true);
+                    if(weeks[3].equals("1")) ((CheckBox)findViewById(R.id.thursday)).setChecked(true);
+                    if(weeks[4].equals("1")) ((CheckBox)findViewById(R.id.friday)).setChecked(true);
+                    if(weeks[5].equals("1")) ((CheckBox)findViewById(R.id.saturday)).setChecked(true);
+                    if(weeks[6].equals("1")) ((CheckBox)findViewById(R.id.sunday)).setChecked(true);
+
+                    ((EditText)findViewById(R.id.venueDiscription)).setText(venue.description);
+
+                    ArrayList<String> sports = venue.sports;
+                    ((EditText)findViewById(R.id.sport)).setText(sports.get(0));
+                    for(int i=1; i<sports.size(); i++)
+                    {
+                        addSport(sports.get(i));
+                    }
+
+                    ((EditText)findViewById(R.id.maxActivities)).setText(venue.maxConcurrentActivities +"");
+                }
+            });
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -127,8 +186,10 @@ public class AddVenue extends AppCompatActivity {
                     tempId = i.getValue(Venue.class).id;
                     if(tempId > maxId) maxId = tempId;
                 }
+
                 venue.id = maxId + 1;
-                myRef.child(venue.id + "").setValue(venue);
+                if(auth == 1 && mode == 1) myRef.child(getIntent().getIntExtra("venueId",0) + "").setValue(venue);
+                else myRef.child(venue.id + "").setValue(venue);
             }
         });
 
@@ -143,7 +204,39 @@ public class AddVenue extends AppCompatActivity {
         LinearLayout layout = (LinearLayout)findViewById(R.id.sports);
 
         EditText newSport = new EditText(this);
+
         layout.getLayoutParams().height += 128;
+
+
+        newSport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                layout.removeView(view);
+                layout.getLayoutParams().height -= 120;
+            }
+        });
+
+
+        layout.addView(newSport);
+    }
+
+    public void addSport(String text)
+    {
+        numOfSports += 1;
+        LinearLayout layout = (LinearLayout)findViewById(R.id.sports);
+
+        EditText newSport = new EditText(this);
+        layout.getLayoutParams().height += 128;
+        newSport.setText(text);
+        newSport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                layout.removeView(view);
+                layout.getLayoutParams().height -= 120;
+            }
+        });
+
 
         layout.addView(newSport);
     }
