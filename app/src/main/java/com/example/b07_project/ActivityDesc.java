@@ -26,7 +26,7 @@ public class ActivityDesc extends AppCompatActivity {
         TextView start = (TextView)infoContainer.getChildAt(1);
         TextView end = (TextView)infoContainer.getChildAt(2);
         TextView date = (TextView)infoContainer.getChildAt(3);
-        TextView activity = (TextView) findViewById(R.id.activity);
+        TextView activity = (TextView) findViewById(R.id.venueDescVenue);
 
         host.setText(activityInfo[4]);
         start.setText(activityInfo[1]);

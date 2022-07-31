@@ -90,5 +90,14 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void transitionToNewEvent(View view){
+        Intent intent = new Intent(this, AddEventDenny.class);
+        startActivity(intent);
+    }
+
+    public void transitionToVenuePage(View view){
+        Intent intent = new Intent(this, VenuePageDennt.class);
+        startActivity(intent);
+    }
 
 }

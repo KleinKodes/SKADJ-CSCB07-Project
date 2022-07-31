@@ -26,6 +26,7 @@ public class activityPageDenny extends AppCompatActivity {
         LinearLayout layout = (LinearLayout) findViewById(R.id.cardList);
         View v = LayoutInflater.from(this).inflate(R.layout.activity_card2, null);
         layout.addView(v);
+        addCard("d","d","d","d","d");
     }
 
     public void transtitionToDesc(View view){
@@ -48,6 +49,32 @@ public class activityPageDenny extends AppCompatActivity {
 
         addProfile.putExtra(activity, activityInfo);
         startActivity(addProfile);
+    }
+
+    public void addCard(String event, String host, String date, String start, String end) {
+        LinearLayout layout = (LinearLayout) findViewById(R.id.cardList);
+        View v = LayoutInflater.from(this).inflate(R.layout.activity_card2, null);
+        layout.addView(v);
+
+        int index = layout.getChildCount()-1;
+
+        ViewGroup newView = (ViewGroup) layout.getChildAt(index);
+        newView = (ViewGroup) newView.getChildAt(0);
+        newView = (ViewGroup) newView.getChildAt(0);
+
+        TextView currDate = (TextView) newView.getChildAt(0);
+        TextView currStart = (TextView) newView.getChildAt(1);
+        TextView currEnd = (TextView) newView.getChildAt(2);
+
+        ViewGroup eventContainer = (ViewGroup) newView.getChildAt(4);
+        TextView currEvent = (TextView) eventContainer.getChildAt(0);
+        TextView currHost = (TextView) eventContainer.getChildAt(1);
+
+        currEvent.setText(event);
+        currStart.setText(start);
+        currEnd.setText(end);
+        currDate.setText(date);
+        currHost.setText(host);
     }
 
 }

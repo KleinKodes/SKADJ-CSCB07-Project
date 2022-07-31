@@ -11,6 +11,10 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
             tools:context=".AddVenue"
             tools:layout_editor_absoluteX="7dp"
             tools:layout_editor_absoluteY="72dp">
@@ -278,6 +282,12 @@
                 android:text="Days Available:"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                tools:layout_editor_absoluteY="194dp"></LinearLayout>
 
             <CheckBox
                 android:id="@+id/monday"
