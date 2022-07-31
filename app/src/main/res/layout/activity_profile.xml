@@ -35,119 +35,7 @@
                 android:baselineAligned="false"
                 android:minHeight="10dp"
                 android:orientation="vertical"
-                android:textAlignment="center">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/card"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#FFFFFF"
-                    android:backgroundTint="#F4F4F4">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="374dp"
-                        android:layout_height="108dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginEnd="5dp"
-                        android:layout_marginBottom="16dp"
-                        android:background="@drawable/roundedges"
-                        android:backgroundTint="#C7D1C2"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <View
-                            android:id="@+id/divider"
-                            android:layout_width="3dp"
-                            android:layout_height="106dp"
-                            android:background="?android:attr/listDivider"
-                            android:backgroundTint="#FFFFFF"
-                            android:foregroundTint="#FFFFFF"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.708"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="1.0" />
-
-                        <LinearLayout
-                            android:id="@+id/linearLayout2"
-                            android:layout_width="262dp"
-                            android:layout_height="108dp"
-                            android:layout_marginStart="1dp"
-                            android:background="#1E5120"
-                            android:orientation="vertical"
-                            android:paddingStart="20dp"
-                            android:paddingTop="20dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <TextView
-                                android:id="@+id/textView5"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/event_name"
-                                android:textAlignment="viewStart"
-                                android:textColor="#F8F8F8"
-                                android:textSize="20sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/host"
-                                android:textAlignment="viewStart"
-                                android:textColor="#FFFFFF" />
-
-                            <TextView
-                                android:id="@+id/textView10"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/venue"
-                                android:textColor="#FDFDFD" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="106dp"
-                            android:layout_height="91dp"
-                            android:layout_marginStart="16dp"
-                            android:orientation="vertical"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/linearLayout2"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <TextView
-                                android:id="@+id/textView11"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/date" />
-
-                            <TextView
-                                android:id="@+id/textView12"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/time" />
-
-                            <Button
-                                android:id="@+id/button4"
-                                android:layout_width="91dp"
-                                android:layout_height="wrap_content"
-                                android:backgroundTint="#1E5120"
-                                android:text="Delete"
-                                android:textSize="12dp"
-                                android:textStyle="bold"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                        </LinearLayout>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </LinearLayout>
+                android:textAlignment="center"/>
         </ScrollView>
 
         <ImageView
@@ -267,7 +155,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/profileUserName"
             android:layout_width="172dp"
             android:layout_height="27dp"
             android:layout_marginStart="16dp"
@@ -294,7 +182,7 @@
                 android:id="@+id/create"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:text="See Created Events"
                 android:textColor="#FFFFFF"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -317,7 +205,7 @@
                 android:id="@+id/join"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:text="See Joined Events"
                 android:textColor="#FDFDFD"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
