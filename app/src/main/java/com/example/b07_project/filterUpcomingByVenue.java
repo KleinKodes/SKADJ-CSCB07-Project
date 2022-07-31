@@ -72,6 +72,7 @@ public class filterUpcomingByVenue extends AppCompatActivity {
                 String finalId = listId[1];
 
                 newIntent.putExtra("key", finalId);
+                newIntent.putExtra("auth", 1);
                 finish();
                 startActivity(newIntent);
             }

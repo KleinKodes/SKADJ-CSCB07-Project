@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.google.firebase.database.DataSnapshot;
@@ -27,7 +28,16 @@ public class UpcomingEventsDriver extends AppCompatActivity {
         //below shows upcoming events, and upcoming events by venue if specified
         Bundle test = getIntent().getExtras();
         DatabaseReference database = FirebaseDatabase.getInstance().getReference().child("Events");
-        if (test != null) {
+
+        RecyclerView listVenues = (RecyclerView) findViewById(R.id.upcomingEventsList);
+        UpcomingEventsAdapter adapter = new UpcomingEventsAdapter(new ArrayList<Event>());
+
+        listVenues.setAdapter(adapter);
+        listVenues.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
+        Log.i("status", "created adapter and recycleview");
+
+        if (test.size() > 1) {
             //String testTwo = test.getString("key");
             //Log.d("test", testTwo);
             database.addValueEventListener(new ValueEventListener() {
@@ -47,6 +57,7 @@ public class UpcomingEventsDriver extends AppCompatActivity {
 
                     ArrayList<Event> upcomingEvents = new ArrayList<>();
                     ArrayList<Event> copyOfEvents = new ArrayList<>(Events);
+                    adapter.setUpcomingEventsAdapterList(upcomingEvents);
                     while (upcomingEvents.size() < Events.size()){
                         Event newEvent = null;
                         for(Event each: copyOfEvents) {
@@ -56,12 +67,15 @@ public class UpcomingEventsDriver extends AppCompatActivity {
                         }
                         upcomingEvents.add(newEvent);
                         copyOfEvents.remove(newEvent);
+                        adapter.notifyItemInserted(adapter.getItemCount());
                     }
 
-                    RecyclerView listVenues = (RecyclerView) findViewById(R.id.upcomingEventsList);
-                    UpcomingEventsAdapter adapter = new UpcomingEventsAdapter(upcomingEvents);
-                    listVenues.setAdapter(adapter);
-                    listVenues.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                    for (Event i: upcomingEvents) Log.i("arrayList Item", i.getName());
+
+                    adapter.notifyDataSetChanged();
+
+                    Log.i("status", "set adapter list5");
+
                 }
 
                 @Override
@@ -83,6 +97,7 @@ public class UpcomingEventsDriver extends AppCompatActivity {
 
                     ArrayList<Event> upcomingEvents = new ArrayList<>();
                     ArrayList<Event> copyOfEvents = new ArrayList<>(Events);
+                    adapter.setUpcomingEventsAdapterList(upcomingEvents);
                     while (upcomingEvents.size() < Events.size()){
                         Event newEvent = null;
                         for(Event each: copyOfEvents) {
@@ -92,12 +107,15 @@ public class UpcomingEventsDriver extends AppCompatActivity {
                         }
                         upcomingEvents.add(newEvent);
                         copyOfEvents.remove(newEvent);
+                        adapter.notifyItemInserted(adapter.getItemCount());
+
+
                     }
 
-                    RecyclerView listVenues = (RecyclerView) findViewById(R.id.upcomingEventsList);
-                    UpcomingEventsAdapter adapter = new UpcomingEventsAdapter(upcomingEvents);
-                    listVenues.setAdapter(adapter);
-                    listVenues.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                    for (Event i: upcomingEvents) Log.i("arrayList Item", i.getName());
+
+                    Log.i("status", "set adapter list");
+                    adapter.notifyDataSetChanged();
                 }
 
                 @Override
