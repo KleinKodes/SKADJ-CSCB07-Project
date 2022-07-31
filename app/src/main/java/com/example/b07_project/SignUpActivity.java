@@ -73,6 +73,9 @@ public class SignUpActivity extends AppCompatActivity {
                                 newUser.lastName = last_name.getText().toString();
                                 newUser.email = email.getText().toString();
 
+                                // User data should be complete here, now validating
+                                if(!(validateData(view, newUser))){return;}
+
                                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                                 DatabaseReference myRef = database.getReference("Users");
 
@@ -90,6 +93,18 @@ public class SignUpActivity extends AppCompatActivity {
                             }
                         }
                     });
+    }
 
+    private boolean validateData(View view, User user){
+        //Check if user has names
+        if(user.firstName.trim().isEmpty() || user.lastName.trim().isEmpty()){return false;}
+        //Check if user id is empty (if for any reason)
+        if(user.id.trim().isEmpty()){return false;}
+        //Check if user has inputted an email
+        if(user.email.trim().isEmpty()){return false;}
+        //Check if Auth values are valid
+        if(user.auth != 0){return false;}
+        else if(user.auth != 1){return false;}
+        return true;
     }
 }

@@ -24,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Objects;
 
 public class AddVenue extends AppCompatActivity {
     int numOfSports = 0;
@@ -176,6 +177,9 @@ public class AddVenue extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Venues");
 
+        // info should all be inputted by this point, code checks validity here
+        if(!validateData(view, venue)){return;}
+
         myRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             int maxId = -1;
             int tempId = 0;
@@ -239,5 +243,37 @@ public class AddVenue extends AppCompatActivity {
 
 
         layout.addView(newSport);
+    }
+
+    private boolean validateData(View view, Venue venue){
+
+        //Check if venue has a name
+        if(venue.getName().trim().isEmpty() || Objects.equals(venue.getName().trim(), "Venue Name")){
+            return false;
+        }
+        //Check if venue has a proper address
+        if(venue.address.city.trim().isEmpty() || venue.address.streetAddress.trim().isEmpty() ||
+        venue.address.country.trim().isEmpty() || venue.address.postalCode.trim().isEmpty() || venue.address.state.trim().isEmpty()){
+            return false;
+        }
+        //Check if venue has any available times
+        if(Objects.equals(venue.daysAvailable, "0000000")){return false;}
+        //Check if venue has a description
+        if(venue.description.trim().isEmpty()){return false;}
+        //Check if venue has any sports, if the number of sports exceeds the max event amount, or if the max amount is empty
+        if(venue.sports.size() == 0 || (venue.sports.size() > venue.maxConcurrentActivities)
+        || venue.maxConcurrentActivities == 0){return false;}
+        // check for valid capacity value
+        if(venue.capacity <= 0){return false;}
+        //check time for venue
+        if(venue.availableTo.getHour() < venue.availableFrom.getHour()){return false;}
+        else if(venue.availableTo.getHour() == venue.availableFrom.getHour())
+        {
+            if(venue.availableTo.getMin() < venue.availableFrom.getMin()){return false;}
+        }
+        // check if the scheduled events are empty (no one should be able to create a venue and simultaneously create an event)
+        if(venue.scheduledEvents.size() > 0){return false;}
+        return true;
+
     }
 }

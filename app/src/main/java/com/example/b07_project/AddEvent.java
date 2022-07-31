@@ -82,8 +82,8 @@ public class AddEvent extends AppCompatActivity {
         event.ownerId = getIntent().getStringExtra("userID");
 
 
+        // info should all be inputted by this point, code checks validity here
         if (!validateEvent(view, event)) return;
-
 
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -178,7 +178,6 @@ public class AddEvent extends AppCompatActivity {
 
         TextView textView = (TextView) popupView.findViewById(R.id.popup_text);
 
-
         textView.setText(message);
 
         // dismiss the popup window when touched
@@ -197,8 +196,6 @@ public class AddEvent extends AppCompatActivity {
             makePopUp(view, "Invalid start date");
             return false;
         }
-
-
 
         if (event.getEndTimeStamp() < event.getStartTimeStamp()) {
             makePopUp(view, "Invalid end date");
@@ -219,6 +216,10 @@ public class AddEvent extends AppCompatActivity {
             makePopUp(view, "Please give your event a good description.");
             return false;
         }
+        if (event.venueId < 0 || Integer.parseInt(event.ownerId) < 0){
+            makePopUp(view, "Venue Id or event Id invalid");
+            return false;}
+
 
         return true;
 

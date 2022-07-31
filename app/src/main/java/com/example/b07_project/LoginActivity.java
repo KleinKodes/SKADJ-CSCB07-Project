@@ -47,6 +47,9 @@ public class LoginActivity extends AppCompatActivity {
         System.out.println(email.getText());
         System.out.println(password.getText());
 
+        // validate that there are emails and passwords to check
+        if(!(validateData(email, password))){return;}
+
         mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -79,5 +82,12 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    private boolean validateData(EditText email, EditText password){
+        if(email.getText().toString().trim().isEmpty() || password.getText().toString().trim().isEmpty()){
+            return false;
+        }
+        return true;
     }
 }

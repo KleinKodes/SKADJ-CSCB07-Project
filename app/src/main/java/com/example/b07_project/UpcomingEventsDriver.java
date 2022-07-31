@@ -133,9 +133,4 @@ public class UpcomingEventsDriver extends AppCompatActivity {
         startActivity(I);
     }
 
-    public void sortBy(View v){
-        Intent I = new Intent(this, UpcomingEventsDriver.class);
-        finish();
-        startActivity(I);
-    }
 }
