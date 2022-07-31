@@ -21,8 +21,11 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import org.w3c.dom.Text;
 
+import java.nio.file.StandardWatchEventKinds;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.xml.stream.events.StartDocument;
 
 public class LoginActivity extends AppCompatActivity {
     public FirebaseAuth mAuth;
@@ -64,6 +67,8 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Intent mainact = new Intent(LoginActivity.this, MainActivity.class);
+                            Intent adminact = new Intent(LoginActivity.this, AdminActivity.class);
+
                             FirebaseUser user = mAuth.getCurrentUser();
                             //user.getEmail();
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -76,7 +81,14 @@ public class LoginActivity extends AppCompatActivity {
                                         User logUser = ((User)task.getResult().getValue(User.class));
                                         mainact.putExtra("auth", logUser.auth);
                                         mainact.putExtra("id", logUser.id);
-                                        startActivity(mainact);
+
+                                        if (logUser.auth == 1){
+                                            startActivity(adminact);
+                                        }
+                                        else{
+                                            startActivity(mainact);
+                                        }
+                                        
                                         finish();
                                     }
                                 }

@@ -21,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
+    
 
 
     @Override
@@ -81,7 +82,6 @@ public class SignUpActivity extends AppCompatActivity {
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-
                             if (task.isSuccessful()) {
                                 System.out.println("SIGN IN WAS SUCCESSFUL  :((((");
                                 FirebaseUser user = mAuth.getCurrentUser();
@@ -100,9 +100,34 @@ public class SignUpActivity extends AppCompatActivity {
 
                                 myRef.child(newUser.id).setValue(newUser);
 
+                                //dasdjfslkdajflkadsjfklasdjflksadsalkdfjsalkdjfklasdjflsadjflsadkjflksdaj
 
-                                Intent main = new Intent(SignUpActivity.this, LoginActivity.class);
-                                startActivity(main);
+                                mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
+                                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<AuthResult> task) {
+                                            if (task.isSuccessful()) {
+                                                Intent mainact = new Intent(SignUpActivity.this, MainActivity.class);
+                                                FirebaseUser user = mAuth.getCurrentUser();
+                                                //user.getEmail();
+                                                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                                DatabaseReference myRef = database.getReference("Users").child(user.getUid());
+
+                                                myRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>(){
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<DataSnapshot> task) {
+                                                            User logUser = ((User)task.getResult().getValue(User.class));
+                                                            mainact.putExtra("auth", logUser.auth);
+                                                            mainact.putExtra("id", logUser.id);
+                                                            startActivity(mainact);
+                                                            finish();
+                                                        }
+                                                    }
+                                                );
+                                            } 
+                                        }
+                                    });
+                                //fjalkdsjfasdlkjfkladsjfklsadjfklsdajflkasdjflksadjflksadjfklsadf
                                 finish();
                             } else {
                                 //fail
