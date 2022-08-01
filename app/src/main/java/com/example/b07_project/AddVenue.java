@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -15,7 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import com.example.b07_project.Venue;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -32,7 +30,7 @@ public class AddVenue extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_venue);
+        setContentView(R.layout.activity_add_venue_denny);
         auth = this.getIntent().getIntExtra("auth", 0);
         mode = this.getIntent().getIntExtra("mode", 0);
 
@@ -54,7 +52,7 @@ public class AddVenue extends AppCompatActivity {
 
                     ((EditText)findViewById(R.id.venueStreetAddress)).setText(venue.address.streetAddress);
                     ((EditText)findViewById(R.id.venueCity)).setText(venue.address.city);
-                    ((EditText)findViewById(R.id.venueCountry)).setText(venue.address.country);
+                    ((EditText)findViewById(R.id.venueStreetAddress)).setText(venue.address.country);
                     ((EditText)findViewById(R.id.venueState)).setText(venue.address.state);
                     ((EditText)findViewById(R.id.venuePostalCode)).setText(venue.address.postalCode);
 
@@ -95,7 +93,7 @@ public class AddVenue extends AppCompatActivity {
     {
         com.example.b07_project.Venue venue = new com.example.b07_project.Venue();
         venue.name = ((EditText)findViewById(R.id.venueName)).getText().toString();
-        Locale locale = new Locale("English", ((EditText)findViewById(R.id.venueCountry)).getText().toString());
+        Locale locale = new Locale("English", ((EditText)findViewById(R.id.venueStreetAddress)).getText().toString());
 
         System.out.println("Done Setting Name");
 
