@@ -4,9 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,7 +61,10 @@ public class SignUpActivity extends AppCompatActivity {
         EditText email = (EditText) findViewById(R.id.Email_SignUp_EditText);
         EditText password = (EditText) findViewById(R.id.Password_SignUp_EditText);
 
-
+        // User data should be complete here, now validating
+        if(!(validateData(view, last_name.getText().toString(),
+                name.getText().toString(), email.getText().toString(), password.getText().toString()))){return;}
+        
             mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -72,9 +81,6 @@ public class SignUpActivity extends AppCompatActivity {
                                 newUser.firstName = name.getText().toString();
                                 newUser.lastName = last_name.getText().toString();
                                 newUser.email = email.getText().toString();
-
-                                // User data should be complete here, now validating
-                                if(!(validateData(view, newUser))){return;}
 
                                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                                 DatabaseReference myRef = database.getReference("Users");
@@ -95,16 +101,49 @@ public class SignUpActivity extends AppCompatActivity {
                     });
     }
 
-    private boolean validateData(View view, User user){
+    private void makePopUp(View view, String message){
+        // inflate layout of popup window
+        LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.popup_window, null);
+        // popup window creation
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        boolean focusable = true;
+        PopupWindow popupWindow = new PopupWindow(view, width, height, focusable);
+        //showing popup window
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            popupWindow.setElevation(20);
+        }
+        //Create textview for popup
+        TextView textView = (TextView) popupView.findViewById(R.id.popup_text);
+        textView.setText(message);
+        // dismiss message when clicked
+        popupView.setOnTouchListener(new View.OnTouchListener(){
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                popupWindow.dismiss();
+                return true;
+            }
+        });
+    }
+
+    private boolean validateData(View view, String lastName, String name, String email, String password){
         //Check if user has names
-        if(user.firstName.trim().isEmpty() || user.lastName.trim().isEmpty()){return false;}
-        //Check if user id is empty (if for any reason)
-        if(user.id.trim().isEmpty()){return false;}
+        if(name.trim().isEmpty() || lastName.trim().isEmpty()){
+            makePopUp(view, "Please enter a first name or last name.");
+            return false;
+        }
         //Check if user has inputted an email
-        if(user.email.trim().isEmpty()){return false;}
-        //Check if Auth values are valid
-        if(user.auth != 0){return false;}
-        else if(user.auth != 1){return false;}
+        if(email.trim().isEmpty()){
+            makePopUp(view, "Please enter an email");
+            return false;
+        }
+        //Check if user has inputted a password
+        if(password.trim().isEmpty()){
+            makePopUp(view, "Please enter a password");
+            return false;
+        }
         return true;
     }
 }

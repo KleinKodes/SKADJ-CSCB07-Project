@@ -7,11 +7,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -245,34 +248,84 @@ public class AddVenue extends AppCompatActivity {
         layout.addView(newSport);
     }
 
+    private void makePopUp(View view, String message){
+        // inflate layout of popup window
+        LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.popup_window, null);
+        // popup window creation
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        boolean focusable = true;
+        PopupWindow popupWindow = new PopupWindow(view, width, height, focusable);
+        //showing popup window
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            popupWindow.setElevation(20);
+        }
+        //Create textview for popup
+        TextView textView = (TextView) popupView.findViewById(R.id.popup_text);
+        textView.setText(message);
+        // dismiss message when clicked
+        popupView.setOnTouchListener(new View.OnTouchListener(){
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                popupWindow.dismiss();
+                return true;
+            }
+        });
+    }
+
     private boolean validateData(View view, Venue venue){
 
         //Check if venue has a name
         if(venue.getName().trim().isEmpty() || Objects.equals(venue.getName().trim(), "Venue Name")){
+            makePopUp(view, "Invalid venue name.");
             return false;
         }
         //Check if venue has a proper address
         if(venue.address.city.trim().isEmpty() || venue.address.streetAddress.trim().isEmpty() ||
         venue.address.country.trim().isEmpty() || venue.address.postalCode.trim().isEmpty() || venue.address.state.trim().isEmpty()){
+            makePopUp(view, "Invalid venue address");
             return false;
         }
         //Check if venue has any available times
-        if(Objects.equals(venue.daysAvailable, "0000000")){return false;}
+        if(Objects.equals(venue.daysAvailable, "0000000")){
+            makePopUp(view, "Venue has to be available in at least one day");
+            return false;
+        }
         //Check if venue has a description
-        if(venue.description.trim().isEmpty()){return false;}
+        if(venue.description.trim().isEmpty()){
+            makePopUp(view, "Give your venue a description");
+            return false;
+        }
         //Check if venue has any sports, if the number of sports exceeds the max event amount, or if the max amount is empty
         if(venue.sports.size() == 0 || (venue.sports.size() > venue.maxConcurrentActivities)
-        || venue.maxConcurrentActivities == 0){return false;}
+        || venue.maxConcurrentActivities == 0){
+            makePopUp(view, "Number of sports/maximum sports size invalid.");
+            return false;
+        }
         // check for valid capacity value
-        if(venue.capacity <= 0){return false;}
+        if(venue.capacity <= 0){
+            makePopUp(view, "Venue capacity empty.");
+            return false;
+        }
         //check time for venue
-        if(venue.availableTo.getHour() < venue.availableFrom.getHour()){return false;}
+        if(venue.availableTo.getHour() < venue.availableFrom.getHour()){
+            makePopUp(view, "Invalid time");
+            return false;
+        }
         else if(venue.availableTo.getHour() == venue.availableFrom.getHour())
         {
-            if(venue.availableTo.getMin() < venue.availableFrom.getMin()){return false;}
+            if(venue.availableTo.getMin() < venue.availableFrom.getMin()){
+                makePopUp(view, "Invalid time");
+                return false;
+            }
         }
         // check if the scheduled events are empty (no one should be able to create a venue and simultaneously create an event)
-        if(venue.scheduledEvents.size() > 0){return false;}
+        if(venue.scheduledEvents.size() > 0){
+            makePopUp(view, "You time traveling bro????");
+            return false;
+        }
         return true;
 
     }

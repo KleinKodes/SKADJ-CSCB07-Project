@@ -4,9 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
         System.out.println(password.getText());
 
         // validate that there are emails and passwords to check
-        if(!(validateData(email, password))){return;}
+        if(!(validateData(view, email, password))){return;}
 
         mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -84,10 +90,38 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
-    private boolean validateData(EditText email, EditText password){
+    private boolean validateData(View view, EditText email, EditText password){
         if(email.getText().toString().trim().isEmpty() || password.getText().toString().trim().isEmpty()){
+            makePopUp(view, "Provide credentials to login.");
             return false;
         }
         return true;
+    }
+
+    private void makePopUp(View view, String message){
+        // inflate layout of popup window
+        LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.popup_window, null);
+        // popup window creation
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        boolean focusable = true;
+        PopupWindow popupWindow = new PopupWindow(view, width, height, focusable);
+        //showing popup window
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            popupWindow.setElevation(20);
+        }
+        //Create textview for popup
+        TextView textView = (TextView) popupView.findViewById(R.id.popup_text);
+        textView.setText(message);
+        // dismiss message when clicked
+        popupView.setOnTouchListener(new View.OnTouchListener(){
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                popupWindow.dismiss();
+                return true;
+            }
+        });
     }
 }
