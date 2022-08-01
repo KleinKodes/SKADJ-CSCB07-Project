@@ -6,12 +6,14 @@ public class User {
     public String id;
     public String firstName, lastName;
     public String email;
-    public ArrayList<Integer> events; //list of event IDs
+    public ArrayList<Integer> joinedEvents; //list of event IDs
+    public ArrayList<Integer> createdEvents;
     public int auth; //0 -> customer, 1 -> admin
 
     public User()
     {
-        events = new ArrayList<Integer>();
+        joinedEvents = new ArrayList<Integer>();
+        createdEvents = new ArrayList<Integer>();
     }
 
 }

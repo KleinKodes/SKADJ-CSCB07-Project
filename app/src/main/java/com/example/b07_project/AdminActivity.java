@@ -27,6 +27,22 @@ public class AdminActivity extends AppCompatActivity {
         System.out.println(auth);
     }
 
+    
+
+
+    public void signOut(View view){
+        FirebaseAuth.getInstance().signOut();
+        Intent login = new Intent(AdminActivity.this, LoginActivity.class);
+        startActivity(login);
+        Intent tempor = getIntent();
+        tempor.putExtra("auth", -1);
+        tempor.putExtra("id", -1);
+        finish();
+    }
+
+    
+
+
 
     public void deleteAllEvents(View view) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();

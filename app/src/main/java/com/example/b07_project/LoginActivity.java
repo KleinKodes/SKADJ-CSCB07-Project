@@ -25,7 +25,6 @@ import java.nio.file.StandardWatchEventKinds;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.xml.stream.events.StartDocument;
 
 public class LoginActivity extends AppCompatActivity {
     public FirebaseAuth mAuth;
@@ -62,12 +61,12 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Intent mainact = new Intent(LoginActivity.this, MainActivity.class);
-                            Intent adminact = new Intent(LoginActivity.this, AdminActivity.class);
+                            Intent mainAct = new Intent(LoginActivity.this, MainActivity.class);
+                            Intent adminAct = new Intent(LoginActivity.this, AdminActivity.class);
 
                             FirebaseUser user = mAuth.getCurrentUser();
                             //user.getEmail();
@@ -79,14 +78,14 @@ public class LoginActivity extends AppCompatActivity {
                                     @Override
                                     public void onComplete(@NonNull Task<DataSnapshot> task) {
                                         User logUser = ((User)task.getResult().getValue(User.class));
-                                        mainact.putExtra("auth", logUser.auth);
-                                        mainact.putExtra("id", logUser.id);
+                                        mainAct.putExtra("auth", logUser.auth);
+                                        mainAct.putExtra("id", logUser.id);
 
                                         if (logUser.auth == 1){
-                                            startActivity(adminact);
+                                            startActivity(adminAct);
                                         }
                                         else{
-                                            startActivity(mainact);
+                                            startActivity(mainAct);
                                         }
                                         
                                         finish();
