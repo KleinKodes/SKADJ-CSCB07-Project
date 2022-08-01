@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddVenue">
+    tools:context=".AddVenueDenny">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -21,7 +21,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/modeText"
+                android:id="@+id/textView2"
                 android:layout_width="216dp"
                 android:layout_height="0dp"
                 android:gravity="center"
@@ -71,7 +71,6 @@
                         tools:text="Venue Name" />
 
                     <EditText
-                        android:id="@+id/venueName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -101,7 +100,6 @@
                         tools:text="Street Address" />
 
                     <EditText
-                        android:id="@+id/venueStreetAddress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -131,7 +129,6 @@
                         tools:text="City" />
 
                     <EditText
-                        android:id="@+id/venueCity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -161,7 +158,6 @@
                         tools:text="Province/State" />
 
                     <EditText
-                        android:id="@+id/venueState"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -191,7 +187,6 @@
                         tools:text="Postal Code" />
 
                     <EditText
-                        android:id="@+id/venuePostalCode"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -203,7 +198,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/venueStreetAddress"
+                    android:id="@+id/venueCountry"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -221,7 +216,6 @@
                         tools:text="Country" />
 
                     <EditText
-                        android:id="@+id/venueCountry"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -251,7 +245,6 @@
                         tools:text="Max Capacity" />
 
                     <EditText
-                        android:id="@+id/venueMaxCapacity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -281,12 +274,12 @@
                         tools:text="Description" />
 
                     <EditText
-                        android:id="@+id/maxActivities"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
-                        android:inputType="number" />
+                        android:inputType="textPersonName"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
 
                 </LinearLayout>
@@ -303,15 +296,15 @@
                 <LinearLayout
                     android:id="@+id/venueDayAvailable"
                     android:layout_width="match_parent"
-                    android:layout_height="492dp"
+                    android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:paddingLeft="20dp"
                     android:paddingTop="20dp"
                     android:paddingRight="20dp">
 
                     <TextView
-                        android:layout_width="120dp"
-                        android:layout_height="12dp"
+                        android:layout_width="122dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Days Available"
                         android:textSize="20dp"
@@ -338,7 +331,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/venueMaxCapacity" />
 
                         <CheckBox
-                            android:id="@+id/tuesday"
+                            android:id="@+id/tuesday2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="114dp"
@@ -350,7 +343,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/monday" />
 
                         <CheckBox
-                            android:id="@+id/wednesday"
+                            android:id="@+id/wednesday2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="114dp"
@@ -362,7 +355,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/tuesday" />
 
                         <CheckBox
-                            android:id="@+id/thursday"
+                            android:id="@+id/thursday2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="114dp"
@@ -374,7 +367,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/wednesday" />
 
                         <CheckBox
-                            android:id="@+id/friday"
+                            android:id="@+id/friday2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="114dp"
@@ -386,7 +379,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/thursday" />
 
                         <CheckBox
-                            android:id="@+id/saturday"
+                            android:id="@+id/saturday2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="114dp"
@@ -400,7 +393,7 @@
                             tools:ignore="TouchTargetSizeCheck" />
 
                         <CheckBox
-                            android:id="@+id/sunday"
+                            android:id="@+id/sunday2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="114dp"
@@ -416,7 +409,6 @@
 
 
                 </LinearLayout>
-
                 <View
                     android:id="@+id/venueDivider5"
                     android:layout_width="match_parent"
@@ -443,7 +435,6 @@
                         tools:text="Available From" />
 
                     <TimePicker
-                        android:id="@+id/venueStartTime"
                         android:layout_width="match_parent"
                         android:layout_height="189dp"
                         android:layout_marginTop="24dp"
@@ -474,7 +465,6 @@
                         tools:text="Available To" />
 
                     <TimePicker
-                        android:id="@+id/venueEndTime"
                         android:layout_width="match_parent"
                         android:layout_height="189dp"
                         android:layout_marginTop="24dp"
@@ -509,6 +499,7 @@
                         tools:text="Sports" />
 
                     <LinearLayout
+                        android:id="@+id/sports"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginStart="4dp"
@@ -519,26 +510,13 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView13">
 
-                        <LinearLayout
+                        <EditText
+                            android:id="@+id/sport"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <LinearLayout
-                                android:id="@+id/sports"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical">
-
-                                <EditText
-                                    android:id="@+id/sport"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="65dp"
-                                    android:ems="10"
-                                    android:hint="Sport"
-                                    android:inputType="textPersonName" />
-                            </LinearLayout>
-                        </LinearLayout>
+                            android:layout_height="50dp"
+                            android:ems="10"
+                            android:hint="Sport"
+                            android:inputType="textPersonName" />
                     </LinearLayout>
 
                     <Button
@@ -557,12 +535,6 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/sports" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical"></LinearLayout>
 
 
                 </LinearLayout>
@@ -585,7 +557,7 @@
                         tools:text="Description" />
 
                     <EditText
-                        android:id="@+id/venueDiscription"
+                        android:id="@+id/editTextTextMultiLine"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
