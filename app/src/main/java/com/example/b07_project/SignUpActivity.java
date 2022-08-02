@@ -29,6 +29,7 @@ public class SignUpActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,8 +66,30 @@ public class SignUpActivity extends AppCompatActivity {
         if(!(validateData(view, last_name.getText().toString(),
                 name.getText().toString(), email.getText().toString(), password.getText().toString()))){return;}
 
+        if (last_name.getText().toString().equals("")){
+            TextView loginFail = (TextView) findViewById(R.id.Sign_Up_Error_Message);
+            loginFail.setText("Last Name is missing");
+            return;
+        }
+        if (name.getText().toString().equals("")){
+            TextView loginFail = (TextView) findViewById(R.id.Sign_Up_Error_Message);
+            loginFail.setText("First Name is missing");
+            return;
+        }
+        if (email.getText().toString().equals("")){
+            TextView loginFail = (TextView) findViewById(R.id.Sign_Up_Error_Message);
+            loginFail.setText("Email is missing");
+            return;
+        }
+        if (password.getText().toString().equals("")){
+            TextView loginFail = (TextView) findViewById(R.id.Sign_Up_Error_Message);
+            loginFail.setText("Password is missing");
+            return;
+        }
+
+
             mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
@@ -87,9 +110,34 @@ public class SignUpActivity extends AppCompatActivity {
 
                                 myRef.child(newUser.id).setValue(newUser);
 
+                                //dasdjfslkdajflkadsjfklasdjflksadsalkdfjsalkdjfklasdjflsadjflsadkjflksdaj
 
-                                Intent main = new Intent(SignUpActivity.this, MainActivity.class);
-                                startActivity(main);
+                                mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
+                                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<AuthResult> task) {
+                                            if (task.isSuccessful()) {
+                                                Intent mainAct = new Intent(SignUpActivity.this, MainActivity.class);
+                                                FirebaseUser user = mAuth.getCurrentUser();
+                                                //user.getEmail();
+                                                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                                DatabaseReference myRef = database.getReference("Users").child(user.getUid());
+
+                                                myRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>(){
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<DataSnapshot> task) {
+                                                            User logUser = ((User)task.getResult().getValue(User.class));
+                                                            mainAct.putExtra("auth", logUser.auth);
+                                                            mainAct.putExtra("id", logUser.id);
+                                                            startActivity(mainAct);
+                                                            finish();
+                                                        }
+                                                    }
+                                                );
+                                            }
+                                        }
+                                    });
+                                //fjalkdsjfasdlkjfkladsjfklsadjfklsdajflkasdjflksadjflksadjfklsadf
                                 finish();
                             } else {
                                 //fail

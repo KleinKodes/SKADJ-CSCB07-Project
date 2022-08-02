@@ -27,8 +27,10 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import org.w3c.dom.Text;
 
+import java.nio.file.StandardWatchEventKinds;
 import java.util.HashMap;
 import java.util.Map;
+
 
 public class LoginActivity extends AppCompatActivity {
     public FirebaseAuth mAuth;
@@ -57,12 +59,25 @@ public class LoginActivity extends AppCompatActivity {
         // validate that there are emails and passwords to check
         if(!(validateData(view, email, password))){return;}
 
+        if (email.getText().toString().equals("")){
+            TextView loginFail = (TextView) findViewById(R.id.Login_Failed_TextView);
+            loginFail.setText("EMAIL is MISSING");
+            return;
+        }
+        if (password.getText().toString().equals("")){
+            TextView loginFail = (TextView) findViewById(R.id.Login_Failed_TextView);
+            loginFail.setText("PASSWORD is MISSING");
+            return;
+        }
+
         mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Intent mainact = new Intent(LoginActivity.this, MainActivity.class);
+                            Intent mainAct = new Intent(LoginActivity.this, MainActivity.class);
+                            Intent adminAct = new Intent(LoginActivity.this, AdminActivity.class);
+
                             FirebaseUser user = mAuth.getCurrentUser();
                             //user.getEmail();
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -73,27 +88,26 @@ public class LoginActivity extends AppCompatActivity {
                                     @Override
                                     public void onComplete(@NonNull Task<DataSnapshot> task) {
                                         User logUser = ((User)task.getResult().getValue(User.class));
-                                        mainact.putExtra("auth", logUser.auth);
-                                        mainact.putExtra("id", logUser.id);
 
-                                        if(logUser.auth == 1)
-                                        {
-                                            Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
-                                            startActivity(intent);
-                                            finish();
-                                            return;
+                                        mainAct.putExtra("auth", logUser.auth);
+                                        mainAct.putExtra("id", logUser.id);
+
+                                        if (logUser.auth == 1){
+                                            startActivity(adminAct);
                                         }
-                                        startActivity(mainact);
+                                        else{
+                                            startActivity(mainAct);
+                                        }
+
                                         finish();
                                     }
                                 }
                             );
 
-
                         } else {
                             System.out.println("LOGIN FAILED NOOO");
                             TextView loginFail = (TextView) findViewById(R.id.Login_Failed_TextView);
-                            loginFail.setText("LOGIN FAILED. CHECK IF YOU ENTERED EMAIL CORRECTLY");
+                            loginFail.setText(task.getException().getMessage());
                         }
                     }
                 });
@@ -132,6 +146,8 @@ public class LoginActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
     public void trasitionToSignUp(View view)
     {
         Intent intent = new Intent(this, SignUpActivity.class);

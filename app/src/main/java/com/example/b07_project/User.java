@@ -12,7 +12,8 @@ public class User {
 
     public User()
     {
-
+        joinedEvents = new ArrayList<Integer>();
+        createdEvents = new ArrayList<Integer>();
     }
 
 }
