@@ -16,7 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.concurrent.CountDownLatch;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity { // new MainActivity will have a wrapper class
 
     int auth;
     @Override
