@@ -27,6 +27,7 @@ public class ActivityDesc extends AppCompatActivity {
     Boolean isThisMyEvent;
     Boolean mode;
     String firstName;
+    int auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +37,7 @@ public class ActivityDesc extends AppCompatActivity {
         eventId = intent.getIntExtra("eventId", -1);
         userId = intent.getStringExtra("userId");
         isThisMyEvent = intent.getBooleanExtra("isThisMyEvent", false);
+        auth = intent.getIntExtra("auth", 0);
 
         mode = intent.getBooleanExtra("approvalNeeded", false);
         Log.i("mode", mode.toString());
@@ -138,6 +140,10 @@ public class ActivityDesc extends AppCompatActivity {
                             eventRef.child(eventId + "").setValue(event);
 
                             Intent intent = new Intent(getBaseContext(), activityPageDenny.class);
+                            intent.putExtra("approvalNeeded", mode);
+                            intent.putExtra("userId", userId);
+                            intent.putExtra("firstName", firstName);
+                            intent.putExtra("auth", auth);
                             startActivity(intent);
                             finish();
 
@@ -162,6 +168,10 @@ public class ActivityDesc extends AppCompatActivity {
                             eventRef.child(eventId + "").setValue(event);
 
                             Intent intent = new Intent(getBaseContext(), activityPageDenny.class);
+                            intent.putExtra("approvalNeeded", mode);
+                            intent.putExtra("userId", userId);
+                            intent.putExtra("firstName", firstName);
+                            intent.putExtra("auth", auth);
                             startActivity(intent);
                             finish();
 
@@ -172,5 +182,19 @@ public class ActivityDesc extends AppCompatActivity {
             }
         });
 
+
+
+
+    }
+
+    public void DenyEvent(View view){
+        FirebaseDatabase.getInstance().getReference("Events").child(eventId + "").removeValue();
+        Intent intent = new Intent(getBaseContext(), activityPageDenny.class);
+        intent.putExtra("approvalNeeded", mode);
+        intent.putExtra("userId", userId);
+        intent.putExtra("firstName", firstName);
+        intent.putExtra("auth", auth);
+        startActivity(intent);
+        finish();
     }
 }
