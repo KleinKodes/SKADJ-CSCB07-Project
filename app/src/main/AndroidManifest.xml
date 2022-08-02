@@ -44,10 +44,10 @@
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
-        <activity
-            android:name=".AddVenue"
-            android:exported="false"
-            android:parentActivityName=".MainActivity" />
+<!--        <activity-->
+<!--            android:name=".AddVenue"-->
+<!--            android:exported="false"-->
+<!--            android:parentActivityName=".MainActivity" />-->
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -75,7 +75,7 @@
             android:name=".VenuePageDennt"
             android:exported="false" />
         <activity
-            android:name=".AddVenueDenny"
+            android:name=".AddVenue"
             android:exported="false" />
         <activity
             android:name=".AddEventDenny"
