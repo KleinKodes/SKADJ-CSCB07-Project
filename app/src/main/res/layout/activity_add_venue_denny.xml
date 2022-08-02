@@ -557,7 +557,7 @@
                         tools:text="Description" />
 
                     <EditText
-                        android:id="@+id/editTextTextMultiLine"
+                        android:id="@+id/eventDescriptionDenny"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"

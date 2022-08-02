@@ -21,6 +21,7 @@ public class Event {
     public int venueId;
     public int groupId;
     public ArrayList<String> attendees;
+    public boolean approved;
 
     public Long startTimeStamp;
     public Long endTimeStamp;
@@ -127,6 +128,8 @@ public class Event {
         return calendar.get(Calendar.DAY_OF_MONTH) + "/"+ calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.YEAR);
     }
 
+    public Boolean getApproval() {return this.approved;}
+
 
     public Event()
     {
@@ -144,6 +147,7 @@ public class Event {
         this.startTimeStamp = 0L;
         this.endTimeStamp = 0L;
         this.attendees = new ArrayList<String>();
+        this.approved = false;
 
 
     }
