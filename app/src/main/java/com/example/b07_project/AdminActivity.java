@@ -18,11 +18,15 @@ import java.util.ArrayList;
 
 public class AdminActivity extends AppCompatActivity {
 
+    int auth;
+    String firstName;
+    String userId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
-        int auth = this.getIntent().getIntExtra("auth", 0);
+        auth = this.getIntent().getIntExtra("auth", 0);
         System.out.println("Admin AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         System.out.println(auth);
     }
@@ -161,13 +165,24 @@ public class AdminActivity extends AppCompatActivity {
     public void transitionToVenues(View view)
     {
         Intent intent = new Intent(this, ChooseVenue.class);
-        int auth = this.getIntent().getIntExtra("auth", 0);
         intent.putExtra("auth", auth);
+        intent.putExtra("userId", userId);
+        intent.putExtra("firstName", firstName);
         startActivity(intent);
 
     }
 
     public void initializeTwoUsers(View view){
+
+    }
+
+    public void transitionToApproveEvents(View view){
+        Intent intent = new Intent(this, activityPageDenny.class);
+        intent.putExtra("auth", auth);
+        intent.putExtra("userId", userId);
+        intent.putExtra("firstName", firstName);
+        intent.putExtra("approvalNeeded", true);
+        startActivity(intent);
 
     }
 

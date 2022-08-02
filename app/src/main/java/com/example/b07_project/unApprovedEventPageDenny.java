@@ -1,8 +1,5 @@
 package com.example.b07_project;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -10,9 +7,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -20,15 +19,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import org.w3c.dom.Text;
-
-public class activityPageDenny extends AppCompatActivity {
+public class unApprovedEventPageDenny extends AppCompatActivity {
     public static String activity;
     public static String[] activityInfo = new String[5];
     public static String userId;
     public static Boolean isThisMyEvent = false;
-    public boolean mode;
-    private String firstName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,27 +31,8 @@ public class activityPageDenny extends AppCompatActivity {
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        mode = getIntent().getBooleanExtra("approvalNeeded", false);
-        //if mode == 0 then we want to view approved events
-        //if mode == 1 then we want to view unapproved events
-
-
-        firstName = getIntent().getStringExtra("firstName");
-        if(firstName != null){
-            TextView textView = findViewById(R.id.profileUserName);
-            textView.setText(firstName);
-        }
-
-
-
         userId = getIntent().getStringExtra("userID");
         if (userId == null) userId = "";
-
-        //changes text if we want to approve unapproved events
-        if (mode){
-            TextView textView = (TextView) findViewById(R.id.upcomingEventHeaderDenny);
-            textView.setText("Unapproved Events");
-        }
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference eventRef = database.getReference("Events");
@@ -71,11 +47,6 @@ public class activityPageDenny extends AppCompatActivity {
                 {
                     event = i.getValue(Event.class);
                     Event finalEvent = event;
-
-
-
-                    // only shows event if we want to see approved and it is or if we want to see unapproved and it isn't
-                    if ((!mode && event.approved) || mode && !event.approved)
                     userRef.child(event.getOwnerId() + "").child("firstName").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -139,10 +110,7 @@ public class activityPageDenny extends AppCompatActivity {
         addProfile.putExtra(activity, activityInfo);
         addProfile.putExtra("eventId", eventId);
         addProfile.putExtra("userId", userId);
-        addProfile.putExtra("approvalNeeded", mode);
-        addProfile.putExtra("firstName", firstName);
         startActivity(addProfile);
-        if (mode) finish();
     }
 
     private void transitionToViewUpcomingEvents(View view){
