@@ -54,7 +54,7 @@
             app:srcCompat="@drawable/sports" />
 
         <TextView
-            android:id="@+id/activity"
+            android:id="@+id/venueDescVenue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
@@ -62,7 +62,7 @@
             android:textColor="#173C18"
             android:textSize="30sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/joinEventButton"
             app:layout_constraintHorizontal_bias="0.051"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/AppName" />
@@ -130,7 +130,7 @@
             android:background="?android:attr/listDivider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activity" />
+            app:layout_constraintTop_toBottomOf="@+id/venueDescVenue" />
 
         <LinearLayout
             android:id="@+id/infoContainer"
@@ -203,7 +203,7 @@
 
         <Button
             android:id="@+id/joinEventButton"
-            android:layout_width="73dp"
+            android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="156dp"
@@ -214,7 +214,21 @@
             app:layout_constraintBottom_toBottomOf="@+id/divider3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.206"
-            app:layout_constraintStart_toEndOf="@+id/activity" />
+            app:layout_constraintStart_toEndOf="@+id/venueDescVenue" />
+
+        <Button
+            android:id="@+id/denyEventButton"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="4dp"
+            android:backgroundTint="#2B782E"
+            android:onClick="DenyEvent"
+            android:text="Deny"
+            app:layout_constraintBottom_toBottomOf="@+id/divider3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/joinEventButton" />
 
         <ImageView
             android:id="@+id/imageView3"

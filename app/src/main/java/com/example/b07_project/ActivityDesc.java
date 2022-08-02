@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -24,6 +25,9 @@ public class ActivityDesc extends AppCompatActivity {
     String userId;
     Event event;
     Boolean isThisMyEvent;
+    Boolean mode;
+    String firstName;
+    int auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,9 +37,17 @@ public class ActivityDesc extends AppCompatActivity {
         eventId = intent.getIntExtra("eventId", -1);
         userId = intent.getStringExtra("userId");
         isThisMyEvent = intent.getBooleanExtra("isThisMyEvent", false);
+        auth = intent.getIntExtra("auth", 0);
 
+        mode = intent.getBooleanExtra("approvalNeeded", false);
+        Log.i("mode", mode.toString());
 
         if (userId == null) userId = "";
+        firstName = intent.getStringExtra("firstName");
+        if(firstName != null){
+            TextView textView = findViewById(R.id.profileUserName);
+            textView.setText(firstName);
+        }
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference eventRef = database.getReference("Events");
@@ -44,15 +56,19 @@ public class ActivityDesc extends AppCompatActivity {
         eventRef.child(eventId + "").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
+                Button button = findViewById(R.id.joinEventButton);
                 event = task.getResult().getValue(Event.class);
+                if (mode){
+                    button.setText("Approve");
+
+                }else
                 if (isThisMyEvent){
-                    Button button = findViewById(R.id.joinEventButton);
+
                     button.setVisibility(View.GONE);
                     //button.setClickable(false);
 
                 }else
                 if (event.attendees != null && event.attendees.contains(userId)){
-                    Button button = findViewById(R.id.joinEventButton);
                     button.setText("Exit");
                     //button.setClickable(false);
 
@@ -91,10 +107,23 @@ public class ActivityDesc extends AppCompatActivity {
         DatabaseReference userRef = database.getReference("Users").child(userId).child("joinedEvents");
 
 
+
         eventRef.child(eventId + "").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 event = task.getResult().getValue(Event.class);
+                if (mode){
+                    event.approved = true;
+                    eventRef.child(eventId + "").setValue(event);
+                    Intent intent = new Intent(getBaseContext(), activityPageDenny.class);
+                    intent.putExtra("approvalNeeded", mode);
+                    intent.putExtra("userId", userId);
+                    intent.putExtra("firstName", firstName);
+                    startActivity(intent);
+                    finish();
+                    return;
+
+                }
                 if (event.attendees == null) event.attendees = new ArrayList<String>();
                 if (event.attendees.contains(userId)){
 
@@ -111,6 +140,10 @@ public class ActivityDesc extends AppCompatActivity {
                             eventRef.child(eventId + "").setValue(event);
 
                             Intent intent = new Intent(getBaseContext(), activityPageDenny.class);
+                            intent.putExtra("approvalNeeded", mode);
+                            intent.putExtra("userId", userId);
+                            intent.putExtra("firstName", firstName);
+                            intent.putExtra("auth", auth);
                             startActivity(intent);
                             finish();
 
@@ -135,6 +168,10 @@ public class ActivityDesc extends AppCompatActivity {
                             eventRef.child(eventId + "").setValue(event);
 
                             Intent intent = new Intent(getBaseContext(), activityPageDenny.class);
+                            intent.putExtra("approvalNeeded", mode);
+                            intent.putExtra("userId", userId);
+                            intent.putExtra("firstName", firstName);
+                            intent.putExtra("auth", auth);
                             startActivity(intent);
                             finish();
 
@@ -145,5 +182,19 @@ public class ActivityDesc extends AppCompatActivity {
             }
         });
 
+
+
+
+    }
+
+    public void DenyEvent(View view){
+        FirebaseDatabase.getInstance().getReference("Events").child(eventId + "").removeValue();
+        Intent intent = new Intent(getBaseContext(), activityPageDenny.class);
+        intent.putExtra("approvalNeeded", mode);
+        intent.putExtra("userId", userId);
+        intent.putExtra("firstName", firstName);
+        intent.putExtra("auth", auth);
+        startActivity(intent);
+        finish();
     }
 }

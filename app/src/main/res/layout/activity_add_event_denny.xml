@@ -120,17 +120,48 @@
                     android:layout_width="122dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Event"
+                    android:text="@string/Event_Name"
                     android:textSize="20dp"
                     tools:text="Event Name" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName"
+                    android:id="@+id/eventNameDenny"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="textPersonName" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/eventEventCapacity"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:paddingTop="20dp"
+                android:paddingRight="20dp">
+
+                <TextView
+                    android:layout_width="122dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/Event_Capacity"
+                    android:textSize="20dp"
+                    tools:text="@string/Event_Capacity" />
+
+                <EditText
+                    android:id="@+id/eventCapacityDenny"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:text="0"
+                    tools:text="0" />
 
 
             </LinearLayout>
@@ -162,7 +193,7 @@
                     tools:text="Event Date" />
 
                 <DatePicker
-                    android:id="@+id/eventEventDate2"
+                    android:id="@+id/eventDateDenny"
                     android:layout_width="352dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
@@ -194,7 +225,7 @@
                     tools:text="Start Time" />
 
                 <TimePicker
-                    android:id="@+id/eventStartTimer"
+                    android:id="@+id/eventStartTimeDenny"
                     android:layout_width="match_parent"
                     android:layout_height="189dp"
                     android:layout_marginTop="24dp"
@@ -225,7 +256,7 @@
                     tools:text="End Time" />
 
                 <TimePicker
-                    android:id="@+id/eventEndTimer"
+                    android:id="@+id/eventEndTimeDenny"
                     android:layout_width="match_parent"
                     android:layout_height="189dp"
                     android:layout_marginTop="24dp"
@@ -258,7 +289,7 @@
                     tools:text="Description" />
 
                 <EditText
-                    android:id="@+id/editTextTextMultiLine"
+                    android:id="@+id/eventDescriptionDenny"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
@@ -279,6 +310,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:backgroundTint="#2B782E"
+                android:onClick="createDennyEvent"
                 android:text="Submit" />
 
         </LinearLayout>
