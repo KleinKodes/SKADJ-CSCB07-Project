@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/modeText"
             android:layout_width="216dp"
             android:layout_height="0dp"
             android:gravity="center"

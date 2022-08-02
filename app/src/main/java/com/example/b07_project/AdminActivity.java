@@ -168,11 +168,27 @@ public class AdminActivity extends AppCompatActivity {
         intent.putExtra("auth", auth);
         intent.putExtra("userId", userId);
         intent.putExtra("firstName", firstName);
+
         startActivity(intent);
 
     }
 
-    public void initializeTwoUsers(View view){
+    public void transitionToAddVenue(View view)
+    {
+        Intent intent = new Intent(this, AddVenue.class);
+        int auth = this.getIntent().getIntExtra("auth", 0);
+        intent.putExtra("auth", 1);
+        intent.putExtra("mode", 0);
+        startActivity(intent);
+    }
+
+    public void transitionToEvents(View view)
+    {
+
+    }
+
+    public void transtionToUnapprovedEvents(View view)
+    {
 
     }
 

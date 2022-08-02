@@ -32,6 +32,7 @@ import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
     public FirebaseAuth mAuth;
+    public int auth;
 
 
     @Override
@@ -74,6 +75,14 @@ public class LoginActivity extends AppCompatActivity {
                                         User logUser = ((User)task.getResult().getValue(User.class));
                                         mainact.putExtra("auth", logUser.auth);
                                         mainact.putExtra("id", logUser.id);
+
+                                        if(logUser.auth == 1)
+                                        {
+                                            Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
+                                            startActivity(intent);
+                                            finish();
+                                            return;
+                                        }
                                         startActivity(mainact);
                                         finish();
                                     }
@@ -123,5 +132,9 @@ public class LoginActivity extends AppCompatActivity {
                 return true;
             }
         });
+    public void trasitionToSignUp(View view)
+    {
+        Intent intent = new Intent(this, SignUpActivity.class);
+        startActivity(intent);
     }
 }

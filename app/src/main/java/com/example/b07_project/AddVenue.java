@@ -18,7 +18,6 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import com.example.b07_project.Venue;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -36,7 +35,7 @@ public class AddVenue extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_venue);
+        setContentView(R.layout.activity_add_venue_denny);
         auth = this.getIntent().getIntExtra("auth", 0);
         mode = this.getIntent().getIntExtra("mode", 0);
 
@@ -45,8 +44,6 @@ public class AddVenue extends AppCompatActivity {
             modeText.setText("View/Edit Venue");
 
             FirebaseDatabase database = FirebaseDatabase.getInstance();
-            System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-            System.out.println(""+this.getIntent().getIntExtra("venueId",-1) + "");
             DatabaseReference myRef = database.getReference("Venues").child(this.getIntent().getIntExtra("venueId",-1)+"");
 
             myRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
@@ -195,12 +192,20 @@ public class AddVenue extends AppCompatActivity {
                 }
 
                 venue.id = maxId + 1;
-                if(auth == 1 && mode == 1) myRef.child(getIntent().getIntExtra("venueId",0) + "").setValue(venue);
+                if(auth == 1 && mode == 1)
+                {
+                    int id = getIntent().getIntExtra("venueId",0);
+                    venue.id = id;
+                    myRef.child(getIntent().getIntExtra("venueId",0) + "").setValue(venue);
+
+                }
                 else myRef.child(venue.id + "").setValue(venue);
             }
         });
 
         Intent addVenue = new Intent(this, MainActivity.class);
+        if(auth == 1) addVenue.setClass(this, AdminActivity.class);
+        addVenue.putExtra("auth", auth);
         startActivity(addVenue);
         finish();
     }
@@ -212,7 +217,7 @@ public class AddVenue extends AppCompatActivity {
 
         EditText newSport = new EditText(this);
 
-        layout.getLayoutParams().height += 128;
+//        layout.getLayoutParams().height += 130;
 
 
         newSport.setOnClickListener(new View.OnClickListener() {
@@ -220,7 +225,7 @@ public class AddVenue extends AppCompatActivity {
             public void onClick(View view) {
 
                 layout.removeView(view);
-                layout.getLayoutParams().height -= 120;
+//                layout.getLayoutParams().height -= 120;
             }
         });
 
@@ -234,13 +239,13 @@ public class AddVenue extends AppCompatActivity {
         LinearLayout layout = (LinearLayout)findViewById(R.id.sports);
 
         EditText newSport = new EditText(this);
-        layout.getLayoutParams().height += 128;
+//        layout.getLayoutParams().height += 130;
         newSport.setText(text);
         newSport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 layout.removeView(view);
-                layout.getLayoutParams().height -= 120;
+//                layout.getLayoutParams().height -= 120;
             }
         });
 
