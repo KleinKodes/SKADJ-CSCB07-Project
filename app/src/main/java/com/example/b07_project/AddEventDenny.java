@@ -46,6 +46,7 @@ public class AddEventDenny extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_event_denny);
 
+
         selectedVenueId = -1;
 
         firstName = getIntent().getStringExtra("firstName");
@@ -53,6 +54,11 @@ public class AddEventDenny extends AppCompatActivity {
             TextView textView = findViewById(R.id.profileUserName);
             textView.setText(firstName);
         }
+
+        View home = findViewById(R.id.homeButton);
+        home.setOnClickListener(new Navigation());
+        View profile = findViewById(R.id.profileButton);
+        profile.setOnClickListener(new Navigation());
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Venues");

@@ -28,9 +28,8 @@
 
         <ImageView
             android:id="@+id/imageView11"
-            android:layout_width="62dp"
-            android:layout_height="59dp"
-            android:layout_marginStart="5dp"
+            android:layout_width="70dp"
+            android:layout_height="52dp"
             android:layout_marginTop="108dp"
             android:contentDescription="@string/todo"
             app:layout_constraintEnd_toEndOf="parent"
@@ -63,7 +62,7 @@
 
         <TextView
             android:id="@+id/AppName"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="144dp"
             android:layout_marginTop="20dp"
@@ -95,7 +94,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/venuePageCard"
                     android:layout_width="match_parent"
-                    android:layout_height="146dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="25dp"
                     android:background="#123E13"
                     android:onClick="transitionToVenueDesc">
@@ -106,7 +105,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="20dp"
-                        android:text="Venue"
+                        android:text="Ass"
                         android:textColor="#FFFFFF"
                         android:textSize="40dp"
                         android:textStyle="bold"
@@ -116,11 +115,11 @@
                     <LinearLayout
                         android:id="@+id/venueCardOptions"
                         android:layout_width="0dp"
-                        android:layout_height="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="50dp"
-                        android:layout_marginBottom="1dp"
+                        android:layout_marginBottom="20dp"
                         android:orientation="horizontal"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -164,7 +163,7 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <ImageView
-                android:id="@+id/imageView21"
+                android:id="@+id/homeButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -174,14 +173,14 @@
                 app:srcCompat="@drawable/home" />
 
             <ImageView
-                android:id="@+id/imageView22"
+                android:id="@+id/profileButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:contentDescription="@string/todo"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                app:srcCompat="@drawable/doc" />
+                app:srcCompat="@drawable/profile" />
 
             <ImageView
                 android:id="@+id/imageView"

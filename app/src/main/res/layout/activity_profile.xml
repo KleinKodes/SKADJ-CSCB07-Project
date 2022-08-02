@@ -16,14 +16,13 @@
 
         <ScrollView
             android:id="@+id/cards"
-            android:layout_width="410dp"
-            android:layout_height="378dp"
-            android:layout_marginTop="30dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:background="#FFFFFF"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/venueDescVenue"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2"
             app:layout_constraintVertical_bias="0.0"
             tools:ignore="SpeakableTextPresentCheck">
 
@@ -35,7 +34,7 @@
                 android:baselineAligned="false"
                 android:minHeight="10dp"
                 android:orientation="vertical"
-                android:textAlignment="center"/>
+                android:textAlignment="center" />
         </ScrollView>
 
         <ImageView
@@ -112,7 +111,7 @@
 
         <LinearLayout
             android:id="@+id/linearLayout"
-            android:layout_width="406dp"
+            android:layout_width="0dp"
             android:layout_height="49dp"
             android:background="#000000"
             android:orientation="horizontal"
@@ -124,7 +123,7 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <ImageView
-                android:id="@+id/imageView21"
+                android:id="@+id/homeButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -134,14 +133,14 @@
                 app:srcCompat="@drawable/home" />
 
             <ImageView
-                android:id="@+id/imageView22"
+                android:id="@+id/profileButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:contentDescription="@string/todo"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                app:srcCompat="@drawable/doc" />
+                app:srcCompat="@drawable/profile" />
 
             <ImageView
                 android:id="@+id/imageView"
@@ -170,19 +169,18 @@
             android:id="@+id/tab1"
             android:layout_width="130dp"
             android:layout_height="54dp"
+            android:layout_marginStart="18dp"
             android:background="@drawable/top_rounded_edge"
             android:backgroundTint="#2B782E"
             android:onClick="switchToCreate"
             app:layout_constraintBottom_toTopOf="@+id/divider2"
-            app:layout_constraintEnd_toStartOf="@+id/tab2"
-            app:layout_constraintHorizontal_bias="0.518"
             app:layout_constraintStart_toStartOf="parent">
 
             <TextView
                 android:id="@+id/create"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="See Created Events"
+                android:text="created"
                 android:textColor="#FFFFFF"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -194,18 +192,18 @@
             android:id="@+id/tab2"
             android:layout_width="130dp"
             android:layout_height="54dp"
-            android:layout_marginEnd="124dp"
+            android:layout_marginStart="18dp"
             android:background="@drawable/top_rounded_edge"
             android:backgroundTint="#2B782E"
             android:onClick="switchToJoin"
             app:layout_constraintBottom_toTopOf="@+id/divider2"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintStart_toEndOf="@+id/tab1">
 
             <TextView
                 android:id="@+id/join"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="See Joined Events"
+                android:text="Joined"
                 android:textColor="#FDFDFD"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

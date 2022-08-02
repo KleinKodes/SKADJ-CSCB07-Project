@@ -47,6 +47,10 @@ public class activityPageDenny extends AppCompatActivity {
             textView.setText(firstName);
         }
 
+        View home = findViewById(R.id.homeButton);
+        home.setOnClickListener(new Navigation());
+        View profile = findViewById(R.id.profileButton);
+        profile.setOnClickListener(new Navigation());
 
 
         userId = getIntent().getStringExtra("userID");
