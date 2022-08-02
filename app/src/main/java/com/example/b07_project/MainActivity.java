@@ -98,4 +98,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+    public void transitionToCustomerView(View view){
+        Intent intent = new Intent(this, CustomerView.class);
+        intent.putExtra("auth", auth);
+        startActivity(intent);
+    }
 }

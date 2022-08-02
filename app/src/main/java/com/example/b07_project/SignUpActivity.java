@@ -64,7 +64,7 @@ public class SignUpActivity extends AppCompatActivity {
         // User data should be complete here, now validating
         if(!(validateData(view, last_name.getText().toString(),
                 name.getText().toString(), email.getText().toString(), password.getText().toString()))){return;}
-        
+
             mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
