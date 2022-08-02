@@ -46,7 +46,7 @@
                 android:minHeight="48dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.696"
-                app:layout_constraintStart_toEndOf="@+id/textView4"
+                app:layout_constraintStart_toEndOf="@+id/venueDescPostal"
                 app:layout_constraintTop_toBottomOf="@+id/venueState" />
 
             <TimePicker
@@ -137,7 +137,7 @@
                 android:minHeight="48dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.686"
-                app:layout_constraintStart_toEndOf="@+id/textView4"
+                app:layout_constraintStart_toEndOf="@+id/venueDescPostal"
                 app:layout_constraintTop_toBottomOf="@+id/venueCity" />
 
             <EditText
@@ -151,7 +151,7 @@
                 android:minHeight="48dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.696"
-                app:layout_constraintStart_toEndOf="@+id/textView4"
+                app:layout_constraintStart_toEndOf="@+id/venueDescPostal"
                 app:layout_constraintTop_toBottomOf="@+id/venueStreetAddress" />
 
             <EditText
@@ -165,7 +165,7 @@
                 android:minHeight="48dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.686"
-                app:layout_constraintStart_toEndOf="@+id/textView4"
+                app:layout_constraintStart_toEndOf="@+id/venueDescPostal"
                 app:layout_constraintTop_toBottomOf="@+id/venueState" />
 
             <TextView
@@ -191,7 +191,7 @@
                 android:minHeight="48dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.737"
-                app:layout_constraintStart_toEndOf="@+id/textView4"
+                app:layout_constraintStart_toEndOf="@+id/venueDescPostal"
                 app:layout_constraintTop_toBottomOf="@+id/venueName" />
 
             <TextView
@@ -217,7 +217,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/venueDescProvince"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="260dp"
@@ -228,7 +228,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/venueDescPostal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="76dp"
@@ -250,7 +250,7 @@
                 android:minHeight="48dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/textView4"
+                app:layout_constraintStart_toEndOf="@+id/venueDescPostal"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -395,7 +395,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.534"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView13">
+                app:layout_constraintTop_toBottomOf="@+id/venueDescStreetAddress">
 
                 <EditText
                     android:id="@+id/sport"
@@ -409,7 +409,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView13"
+                android:id="@+id/venueDescStreetAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="36dp"
@@ -436,7 +436,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/sports" />
 
             <TextView
-                android:id="@+id/textView14"
+                android:id="@+id/venueDescCity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="42dp"
@@ -456,7 +456,7 @@
                 android:ems="10"
                 android:inputType="number"
                 android:text="1"
-                app:layout_constraintStart_toEndOf="@+id/textView14"
+                app:layout_constraintStart_toEndOf="@+id/venueDescCity"
                 app:layout_constraintTop_toBottomOf="@+id/addSport" />
 
             <TextView

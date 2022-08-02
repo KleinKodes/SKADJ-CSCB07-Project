@@ -36,10 +36,10 @@ public class profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         userServices = new UserServices();
         eventServices = new EventServices();
-
 
 
         Intent intent = getIntent();
@@ -48,6 +48,11 @@ public class profile extends AppCompatActivity {
         if (userId == null) userId = "";
         Log.i("userid ", userId);
         System.out.println(state);
+
+        View home = findViewById(R.id.homeButton);
+        home.setOnClickListener(new Navigation());
+        View profile = findViewById(R.id.profileButton);
+        profile.setOnClickListener(new Navigation());
 
 
 

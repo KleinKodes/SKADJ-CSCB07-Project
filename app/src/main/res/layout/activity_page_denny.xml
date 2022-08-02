@@ -14,7 +14,7 @@
 
     <ImageView
         android:id="@+id/Header"
-        android:layout_width="412dp"
+        android:layout_width="0dp"
         android:layout_height="58dp"
         android:background="#2B782E"
         android:contentDescription="@string/todo"
@@ -24,26 +24,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/AddPost"
-        android:layout_width="30dp"
-        android:layout_height="29dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:contentDescription="@string/todo"
-        android:onClick="addCard"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/plus"
-        tools:ignore="DuplicateSpeakableTextCheck" />
-
-    <ImageView
         android:id="@+id/SearchPost"
         android:layout_width="33dp"
         android:layout_height="29dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="16dp"
         android:contentDescription="@string/todo"
-        app:layout_constraintEnd_toStartOf="@+id/AddPost"
+        app:layout_constraintEnd_toEndOf="@+id/Header"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/search" />
 
@@ -89,7 +76,7 @@
 
     <ScrollView
         android:id="@+id/cards"
-        android:layout_width="414dp"
+        android:layout_width="0dp"
         android:layout_height="415dp"
         android:layout_marginTop="30dp"
         android:background="#FFFFFF"
@@ -108,12 +95,12 @@
             android:baselineAligned="false"
             android:minHeight="10dp"
             android:orientation="vertical"
-            android:textAlignment="center"/>
+            android:textAlignment="center" />
     </ScrollView>
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="406dp"
+        android:layout_width="0dp"
         android:layout_height="49dp"
         android:background="#000000"
         android:orientation="horizontal"
@@ -125,7 +112,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
-            android:id="@+id/imageView21"
+            android:id="@+id/homeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -135,17 +122,17 @@
             app:srcCompat="@drawable/home" />
 
         <ImageView
-            android:id="@+id/imageView22"
+            android:id="@+id/profileButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:contentDescription="@string/todo"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            app:srcCompat="@drawable/doc" />
+            app:srcCompat="@drawable/profile" />
 
         <ImageView
-            android:id="@+id/imageView6"
+            android:id="@+id/signOutButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

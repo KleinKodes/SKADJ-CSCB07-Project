@@ -30,6 +30,11 @@ public class AddEventDenny extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_event_denny);
 
+        View home = findViewById(R.id.homeButton);
+        home.setOnClickListener(new Navigation());
+        View profile = findViewById(R.id.profileButton);
+        profile.setOnClickListener(new Navigation());
+
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Venues");
         getdata();

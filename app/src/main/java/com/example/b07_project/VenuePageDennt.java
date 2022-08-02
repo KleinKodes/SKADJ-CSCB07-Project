@@ -16,6 +16,11 @@ public class VenuePageDennt extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_venue_page_dennt);
+
+        View home = findViewById(R.id.homeButton);
+        home.setOnClickListener(new Navigation());
+        View profile = findViewById(R.id.profileButton);
+        profile.setOnClickListener(new Navigation());
     }
 
     public void addCard(View view) {

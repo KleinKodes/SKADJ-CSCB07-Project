@@ -11,13 +11,17 @@
 
 
         android:id="@+id/profilePage"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#FAFAFA">
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#FAFAFA"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/Header"
-            android:layout_width="412dp"
+            android:layout_width="0dp"
             android:layout_height="58dp"
             android:background="#2B782E"
             android:contentDescription="@string/todo"
@@ -70,7 +74,7 @@
 
         <LinearLayout
             android:id="@+id/linearLayout"
-            android:layout_width="406dp"
+            android:layout_width="0dp"
             android:layout_height="49dp"
             android:background="#000000"
             android:orientation="horizontal"
@@ -82,7 +86,7 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <ImageView
-                android:id="@+id/imageView21"
+                android:id="@+id/homeButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -92,7 +96,7 @@
                 app:srcCompat="@drawable/home" />
 
             <ImageView
-                android:id="@+id/imageView22"
+                android:id="@+id/profileButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -102,7 +106,7 @@
                 app:srcCompat="@drawable/doc" />
 
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/signOutButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -126,7 +130,7 @@
 
         <View
             android:id="@+id/divider3"
-            android:layout_width="409dp"
+            android:layout_width="0dp"
             android:layout_height="3dp"
             android:background="?android:attr/listDivider"
             app:layout_constraintEnd_toEndOf="parent"
@@ -155,7 +159,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/textView13"
+                        android:id="@+id/venueDescStreetAddress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
@@ -166,7 +170,7 @@
                         android:textSize="18dp" />
 
                     <TextView
-                        android:id="@+id/textView14"
+                        android:id="@+id/venueDescCity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
@@ -178,7 +182,7 @@
                         tools:text="City" />
 
                     <TextView
-                        android:id="@+id/textView9"
+                        android:id="@+id/venueDescProvince"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
@@ -190,19 +194,18 @@
                         tools:text="Province/State" />
 
                     <TextView
-                        android:id="@+id/textView4"
+                        android:id="@+id/venueDescPostal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
-                        android:text="Date"
                         android:textColor="#040000"
                         android:textSize="18dp"
                         tools:text="Postal Code" />
 
                     <TextView
-                        android:id="@+id/textView21"
+                        android:id="@+id/venueDescCountry"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingLeft="20dp"
@@ -211,6 +214,13 @@
                         android:textColor="#000000"
                         android:textSize="18dp" />
                 </LinearLayout>
+
+                <View
+                    android:id="@+id/divider7"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="?android:attr/listDivider" />
 
                 <LinearLayout
                     android:id="@+id/venueDescAvailability"
@@ -308,6 +318,12 @@
 
                 </LinearLayout>
 
+                <View
+                    android:id="@+id/divider6"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:background="?android:attr/listDivider" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
@@ -334,8 +350,14 @@
                         android:textSize="18dp" />
                 </LinearLayout>
 
+                <View
+                    android:id="@+id/divider5"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:background="?android:attr/listDivider" />
+
                 <TextView
-                    android:id="@+id/textView31"
+                    android:id="@+id/venueDescDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"

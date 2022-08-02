@@ -31,6 +31,11 @@ public class activityPageDenny extends AppCompatActivity {
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        View home = findViewById(R.id.homeButton);
+        home.setOnClickListener(new Navigation());
+        View profile = findViewById(R.id.profileButton);
+        profile.setOnClickListener(new Navigation());
+
         userId = getIntent().getStringExtra("userID");
         if (userId == null) userId = "";
 

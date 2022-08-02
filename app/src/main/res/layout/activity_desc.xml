@@ -10,13 +10,17 @@
 
 
         android:id="@+id/profilePage"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#FAFAFA">
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#FAFAFA"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/Header"
-            android:layout_width="412dp"
+            android:layout_width="0dp"
             android:layout_height="58dp"
             android:background="#2B782E"
             android:contentDescription="@string/todo"
@@ -69,7 +73,7 @@
 
         <LinearLayout
             android:id="@+id/linearLayout"
-            android:layout_width="406dp"
+            android:layout_width="0dp"
             android:layout_height="49dp"
             android:background="#000000"
             android:orientation="horizontal"
@@ -81,7 +85,7 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <ImageView
-                android:id="@+id/imageView21"
+                android:id="@+id/homeButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -91,7 +95,7 @@
                 app:srcCompat="@drawable/home" />
 
             <ImageView
-                android:id="@+id/imageView22"
+                android:id="@+id/profileButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -101,7 +105,7 @@
                 app:srcCompat="@drawable/doc" />
 
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/signOutButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -134,7 +138,7 @@
 
         <LinearLayout
             android:id="@+id/infoContainer"
-            android:layout_width="413dp"
+            android:layout_width="0dp"
             android:layout_height="427dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout"
@@ -145,7 +149,7 @@
             app:layout_constraintVertical_bias="1.0">
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/venueDescProvince"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
@@ -156,7 +160,7 @@
                 android:textSize="18dp" />
 
             <TextView
-                android:id="@+id/textView13"
+                android:id="@+id/venueDescStreetAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
@@ -167,7 +171,7 @@
                 android:textSize="18dp" />
 
             <TextView
-                android:id="@+id/textView14"
+                android:id="@+id/venueDescCity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
@@ -178,7 +182,7 @@
                 android:textSize="18dp" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/venueDescPostal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
