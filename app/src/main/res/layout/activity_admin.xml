@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#123E13"
     tools:context=".AdminActivity">
 
     <LinearLayout
@@ -12,48 +13,59 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:text="ADMIN  PANEL"
+            android:textColor="#FFFFFF"
+            android:textSize="40dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/adminAddVenue"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#2B782E"
             android:onClick="transitionToAddVenue"
-            android:text="Add Venue" />
+            android:text="Add Venue"
+            android:textSize="16dp" />
 
         <Button
-            android:id="@+id/adminVenueTransition"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/adminEditVenue"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#2B782E"
             android:onClick="transitionToVenues"
-            android:text="Venues" />
+            android:text="Edit Venues"
+            android:textSize="16dp" />
 
         <Button
-            android:id="@+id/button4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/adminUpcomingEvents"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#2B782E"
             android:onClick="transitionToEvents"
-            android:text="Up Coming Events" />
+            android:text="Upcoming Events"
+            android:textSize="16dp" />
 
         <Button
-            android:id="@+id/button5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="deleteAllVenues"
-            android:text="Delete all venues" />
-
-        <Button
-            android:id="@+id/button13"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
+            android:id="@+id/adminApproveEvents"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#2B782E"
             android:onClick="transitionToApproveEvents"
-            android:text="Approve Events" />
+            android:text="Approve Events"
+            android:textSize="16dp" />
 
-        <Button
-            android:id="@+id/profileDelete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="deleteAllUsers"
-            android:text="Delete all users" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

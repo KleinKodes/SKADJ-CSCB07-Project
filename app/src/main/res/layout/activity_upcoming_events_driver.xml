@@ -7,61 +7,118 @@
     android:onClick="onFilterByVenue"
     tools:context=".UpcomingEventsDriver">
 
-  <Spinner
-      android:id="@+id/sortspinner"
-      android:layout_width="215dp"
-      android:layout_height="48dp"
-      android:layout_marginStart="50dp"
-      android:layout_marginTop="19dp"
-      android:layout_marginEnd="2dp"
-      android:layout_marginBottom="33dp"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toStartOf="@+id/button14"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/upcomingEventsList" />
-
-  <Button
-      android:id="@+id/button14"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="2dp"
-      android:layout_marginTop="19dp"
-      android:layout_marginEnd="48dp"
-      android:layout_marginBottom="33dp"
-      android:text="Sort by"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toEndOf="@+id/sortspinner"
-      app:layout_constraintTop_toBottomOf="@+id/upcomingEventsList" />
-
-  <androidx.recyclerview.widget.RecyclerView
-      android:id="@+id/upcomingEventsList"
+  <LinearLayout
       android:layout_width="0dp"
       android:layout_height="0dp"
-      android:layout_marginStart="50dp"
-      android:layout_marginTop="50dp"
-      android:layout_marginEnd="50dp"
-      android:layout_marginBottom="100dp"
+      android:orientation="vertical"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.0"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.0" />
+      app:layout_constraintTop_toTopOf="parent">
 
-  <Button
-      android:id="@+id/button11"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="268dp"
-      android:layout_marginTop="2dp"
-      android:layout_marginEnd="49dp"
-      android:onClick="onFilterByVenue"
-      android:text="Filter by Venue"
-      app:layout_constraintBottom_toTopOf="@+id/upcomingEventsList"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="1.0"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.0" />
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:background="#2B782E"
+        android:contentDescription="@string/todo">
+
+      <TextView
+          android:id="@+id/textView9"
+          android:layout_width="match_parent"
+          android:layout_height="27dp"
+          android:layout_marginStart="16dp"
+          android:layout_marginTop="16dp"
+          android:text="Admin"
+          android:textColor="#FFFFFF"
+          android:textSize="20sp"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+      <ImageView
+          android:id="@+id/imageView6"
+          android:layout_width="62dp"
+          android:layout_height="59dp"
+          android:layout_marginEnd="128dp"
+          android:contentDescription="@string/todo"
+          app:layout_constraintBottom_toBottomOf="@+id/appName3"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintTop_toTopOf="@+id/appName3"
+          app:layout_constraintVertical_bias="0.485"
+          app:srcCompat="@drawable/sports" />
+
+      <TextView
+          android:id="@+id/appName3"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="60dp"
+          android:background="#FFFFFF"
+          android:letterSpacing="0.5"
+          android:text="@string/tittle"
+          android:textColor="#000000"
+          android:textSize="18sp"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toStartOf="@+id/imageView6"
+          app:layout_constraintHorizontal_bias="1.0"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingTop="20dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="20dp"
+        android:text="Upcoming Events"
+        android:textColor="#123E13"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <View
+        android:id="@+id/divider8"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="?android:attr/listDivider" />
+
+    <LinearLayout
+        android:id="@+id/sortUpcomingByVenue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="25dp">
+
+      <Button
+          android:id="@+id/button12"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:backgroundTint="#123E13"
+          android:gravity="center"
+          android:onClick="onEnter"
+          android:text="Filter" />
+
+      <Spinner
+          android:id="@+id/spinner"
+          android:layout_width="273dp"
+          android:layout_height="48dp" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/upcomingEventsList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="30dp" />
+
+  </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
