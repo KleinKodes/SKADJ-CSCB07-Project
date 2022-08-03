@@ -4,11 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/jacky/OneDrive/Documents/GitHub/SKADJ-CSCB07-Project/app/src/main/res/layout/activity_add_event.xml" value="0.25052083333333336" />
+        <entry key="..\:/Users/jacky/OneDrive/Documents/GitHub/SKADJ-CSCB07-Project/app/src/main/res/layout/activity_add_event_denny.xml" value="0.25052083333333336" />
+        <entry key="..\:/Users/jacky/OneDrive/Documents/GitHub/SKADJ-CSCB07-Project/app/src/main/res/layout/activity_add_venue.xml" value="0.25052083333333336" />
         <entry key="..\:/Users/jacky/OneDrive/Documents/GitHub/SKADJ-CSCB07-Project/app/src/main/res/layout/activity_choose_sport.xml" value="0.1685185185185185" />
         <entry key="..\:/Users/jacky/OneDrive/Documents/GitHub/SKADJ-CSCB07-Project/app/src/main/res/layout/activity_choose_venue_sport.xml" value="0.1685185185185185" />
         <entry key="..\:/Users/jacky/OneDrive/Documents/GitHub/SKADJ-CSCB07-Project/app/src/main/res/layout/activity_customer_view.xml" value="0.25052083333333336" />
         <entry key="..\:/Users/jacky/OneDrive/Documents/GitHub/SKADJ-CSCB07-Project/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Users/jacky/OneDrive/Documents/GitHub/SKADJ-CSCB07-Project/app/src/main/res/layout/activity_main.xml" value="0.4" />
+        <entry key="..\:/Users/jacky/OneDrive/Documents/GitHub/SKADJ-CSCB07-Project/app/src/main/res/layout/activity_sign_up.xml" value="0.25052083333333336" />
         <entry key="..\:/Users/jacky/OneDrive/Documents/GitHub/SKADJ-CSCB07-Project/app/src/main/res/layout/activity_sort_events.xml" value="0.4" />
         <entry key="..\:/Users/jacky/OneDrive/Documents/GitHub/SKADJ-CSCB07-Project/app/src/main/res/layout/activity_sort_upcoming_by_venue.xml" value="0.4" />
         <entry key="..\:/Users/jacky/OneDrive/Documents/GitHub/SKADJ-CSCB07-Project/app/src/main/res/layout/activity_upcoming_events_driver.xml" value="0.4" />

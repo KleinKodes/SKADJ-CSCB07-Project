@@ -21,6 +21,8 @@ import android.widget.TimePicker;
 import com.example.b07_project.Venue;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -114,7 +116,12 @@ public class AddVenue extends AppCompatActivity {
         System.out.println("Done Setting Address");
 
         //set max cap
-        venue.capacity = Integer.parseInt(((EditText)findViewById(R.id.venueMaxCapacity)).getText().toString());
+        if(((EditText) findViewById(R.id.venueMaxCapacity)).getText().toString().equals("")){
+            venue.capacity = 0;
+        }
+        else {
+            venue.capacity = Integer.parseInt(((EditText) findViewById(R.id.venueMaxCapacity)).getText().toString());
+        }
         System.out.println("Done Setting Max Cap");
 
         //Set availability
@@ -175,8 +182,13 @@ public class AddVenue extends AppCompatActivity {
             venue.sports.add(sport.getText().toString());
         }
 
-        //set max concurent events
-        venue.maxConcurrentActivities = Integer.parseInt(((EditText)findViewById(R.id.maxActivities)).getText().toString());
+        //set max concurrent events
+        if(((EditText) findViewById(R.id.maxActivities)).getText().toString().equals("")){
+            venue.maxConcurrentActivities = 0;
+        }
+        else {
+            venue.maxConcurrentActivities = Integer.parseInt(((EditText) findViewById(R.id.maxActivities)).getText().toString());
+        }
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Venues");
 
@@ -248,7 +260,7 @@ public class AddVenue extends AppCompatActivity {
         layout.addView(newSport);
     }
 
-    private void makePopUp(View view, String message){
+/*    private void makePopUp(View view, String message){
         // inflate layout of popup window
         LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.popup_window, null);
@@ -273,57 +285,75 @@ public class AddVenue extends AppCompatActivity {
                 return true;
             }
         });
-    }
+    }*/
 
     private boolean validateData(View view, Venue venue){
 
         //Check if venue has a name
         if(venue.getName().trim().isEmpty() || Objects.equals(venue.getName().trim(), "Venue Name")){
-            makePopUp(view, "Invalid venue name.");
+            //makePopUp(view, "Invalid venue name.");
+            Snackbar mySnackbar = Snackbar.make(view, "Invalid venue name", BaseTransientBottomBar.LENGTH_SHORT);
+            mySnackbar.show();
             return false;
         }
         //Check if venue has a proper address
         if(venue.address.city.trim().isEmpty() || venue.address.streetAddress.trim().isEmpty() ||
         venue.address.country.trim().isEmpty() || venue.address.postalCode.trim().isEmpty() || venue.address.state.trim().isEmpty()){
-            makePopUp(view, "Invalid venue address");
+            //makePopUp(view, "Invalid venue address");
+            Snackbar mySnackbar = Snackbar.make(view, "Invalid venue address", BaseTransientBottomBar.LENGTH_SHORT);
+            mySnackbar.show();
             return false;
         }
         //Check if venue has any available times
         if(Objects.equals(venue.daysAvailable, "0000000")){
-            makePopUp(view, "Venue has to be available in at least one day");
+            //makePopUp(view, "Venue has to be available in at least one day");
+            Snackbar mySnackbar = Snackbar.make(view, "Venue has to be available in at least one day", BaseTransientBottomBar.LENGTH_SHORT);
+            mySnackbar.show();
             return false;
         }
         //Check if venue has a description
         if(venue.description.trim().isEmpty()){
-            makePopUp(view, "Give your venue a description");
+            //makePopUp(view, "Give your venue a description");
+            Snackbar mySnackbar = Snackbar.make(view, "Give your venue a description", BaseTransientBottomBar.LENGTH_SHORT);
+            mySnackbar.show();
             return false;
         }
         //Check if venue has any sports, if the number of sports exceeds the max event amount, or if the max amount is empty
         if(venue.sports.size() == 0 || (venue.sports.size() > venue.maxConcurrentActivities)
         || venue.maxConcurrentActivities == 0){
-            makePopUp(view, "Number of sports/maximum sports size invalid.");
+            //makePopUp(view, "Number of sports/maximum sports size invalid.");
+            Snackbar mySnackbar = Snackbar.make(view, "Number of sports/maximum sports size invalid", BaseTransientBottomBar.LENGTH_SHORT);
+            mySnackbar.show();
             return false;
         }
         // check for valid capacity value
         if(venue.capacity <= 0){
-            makePopUp(view, "Venue capacity empty.");
+            //makePopUp(view, "Venue capacity empty.");
+            Snackbar mySnackbar = Snackbar.make(view, "Venue capacity empty", BaseTransientBottomBar.LENGTH_SHORT);
+            mySnackbar.show();
             return false;
         }
         //check time for venue
         if(venue.availableTo.getHour() < venue.availableFrom.getHour()){
-            makePopUp(view, "Invalid time");
+            //makePopUp(view, "Invalid time");
+            Snackbar mySnackbar = Snackbar.make(view, "Invalid time", BaseTransientBottomBar.LENGTH_SHORT);
+            mySnackbar.show();
             return false;
         }
         else if(venue.availableTo.getHour() == venue.availableFrom.getHour())
         {
             if(venue.availableTo.getMin() < venue.availableFrom.getMin()){
-                makePopUp(view, "Invalid time");
+                //makePopUp(view, "Invalid time");
+                Snackbar mySnackbar = Snackbar.make(view, "Invalid time", BaseTransientBottomBar.LENGTH_SHORT);
+                mySnackbar.show();
                 return false;
             }
         }
         // check if the scheduled events are empty (no one should be able to create a venue and simultaneously create an event)
         if(venue.scheduledEvents.size() > 0){
-            makePopUp(view, "You time traveling bro????");
+            //makePopUp(view, "You time traveling bro????");
+            Snackbar mySnackbar = Snackbar.make(view, "TIME LOOP", BaseTransientBottomBar.LENGTH_SHORT);
+            mySnackbar.show();
             return false;
         }
         return true;
