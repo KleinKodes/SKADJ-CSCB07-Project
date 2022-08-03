@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -118,13 +120,15 @@ public class LoginActivity extends AppCompatActivity {
 
     private boolean validateData(View view, EditText email, EditText password){
         if(email.getText().toString().trim().isEmpty() || password.getText().toString().trim().isEmpty()){
-            makePopUp(view, "Provide credentials to login.");
+            //makePopUp(view, "Provide credentials to login.");
+            Snackbar mySnackbar = Snackbar.make(view, "Provide credentials to login", BaseTransientBottomBar.LENGTH_SHORT);
+            mySnackbar.show();
             return false;
         }
         return true;
     }
 
-    private void makePopUp(View view, String message){
+/*    private void makePopUp(View view, String message){
         // inflate layout of popup window
         LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.popup_window, null);
@@ -149,11 +153,7 @@ public class LoginActivity extends AppCompatActivity {
                 return true;
             }
         });
-    }
 
-    public void trasitionToSignUp(View view)
-    {
-        Intent intent = new Intent(this, SignUpActivity.class);
-        startActivity(intent);
-    }
+
+    }*/
 }

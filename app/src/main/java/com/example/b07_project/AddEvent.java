@@ -24,6 +24,8 @@ import java.util.GregorianCalendar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -155,7 +157,7 @@ public class AddEvent extends AppCompatActivity {
     }
 
 
-    private void makePopUp(View view, String message) {
+/*    private void makePopUp(View view, String message) {
         // inflate the layout of the popup window
         LayoutInflater inflater = (LayoutInflater)
                 getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -188,37 +190,44 @@ public class AddEvent extends AppCompatActivity {
                 return true;
             }
         });
-    }
+    }*/
 
     private boolean validateEvent(View view, Event event) {
         Log.i("status", "validating event");
         if (event.getStartTimeStamp() < Instant.now().toEpochMilli()) {
-            makePopUp(view, "Invalid start date");
+            //makePopUp(view, "Invalid start date");
+            Snackbar mySnackbar = Snackbar.make(view, "Invalid start date", BaseTransientBottomBar.LENGTH_SHORT);
+            mySnackbar.show();
             return false;
         }
 
         if (event.getEndTimeStamp() < event.getStartTimeStamp()) {
-            makePopUp(view, "Invalid end date");
+            //makePopUp(view, "Invalid end date");
+            Snackbar mySnackbar = Snackbar.make(view, "Invalid end date", BaseTransientBottomBar.LENGTH_SHORT);
+            mySnackbar.show();
             return false;
         }
 
         if (event.getCapacity() < 10){
-            makePopUp(view, "Capacity too low");
+            //makePopUp(view, "Capacity too low");
             Log.i("status", "capacity low, should give popup");
+            Snackbar mySnackbar = Snackbar.make(view, "Capacity too low", BaseTransientBottomBar.LENGTH_SHORT);
+            mySnackbar.show();
             return false;
         }
 
         if (event.getName().trim().isEmpty() || event.getName().trim() == "Name"){
-            makePopUp(view, "Please give your event a name");
+            //makePopUp(view, "Please give your event a name");
+            Snackbar mySnackbar = Snackbar.make(view, "Please give your event a name", BaseTransientBottomBar.LENGTH_SHORT);
+            mySnackbar.show();
             return false;
         }
         if (event.getEventDescription().length() < 20){
-            makePopUp(view, "Please give your event a good description.");
+            //makePopUp(view, "Please give your event a good description.");
+            Snackbar mySnackbar = Snackbar.make(view, "Please give your event a good description", BaseTransientBottomBar.LENGTH_SHORT);
+            mySnackbar.show();
             return false;
         }
-        if (event.venueId < 0 || Integer.parseInt(event.ownerId) < 0){
-            makePopUp(view, "Venue Id or event Id invalid");
-            return false;}
 
 
         return true;

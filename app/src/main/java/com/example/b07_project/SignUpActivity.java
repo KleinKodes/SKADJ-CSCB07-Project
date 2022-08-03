@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -150,7 +152,7 @@ public class SignUpActivity extends AppCompatActivity {
                     });
     }
 
-    private void makePopUp(View view, String message){
+/*    private void makePopUp(View view, String message){
         // inflate layout of popup window
         LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.popup_window, null);
@@ -175,22 +177,28 @@ public class SignUpActivity extends AppCompatActivity {
                 return true;
             }
         });
-    }
+    }*/
 
     private boolean validateData(View view, String lastName, String name, String email, String password){
         //Check if user has names
         if(name.trim().isEmpty() || lastName.trim().isEmpty()){
-            makePopUp(view, "Please enter a first name or last name.");
+            //makePopUp(view, "Please enter a first name or last name.");
+            Snackbar mySnackbar = Snackbar.make(view, "Please enter a first name or last name", BaseTransientBottomBar.LENGTH_SHORT);
+            mySnackbar.show();
             return false;
         }
         //Check if user has inputted an email
         if(email.trim().isEmpty()){
-            makePopUp(view, "Please enter an email");
+            //makePopUp(view, "Please enter an email");
+            Snackbar mySnackbar = Snackbar.make(view, "Please enter an email", BaseTransientBottomBar.LENGTH_SHORT);
+            mySnackbar.show();
             return false;
         }
         //Check if user has inputted a password
         if(password.trim().isEmpty()){
-            makePopUp(view, "Please enter a password");
+            //makePopUp(view, "Please enter a password");
+            Snackbar mySnackbar = Snackbar.make(view, "Please enter a password", BaseTransientBottomBar.LENGTH_SHORT);
+            mySnackbar.show();
             return false;
         }
         return true;
