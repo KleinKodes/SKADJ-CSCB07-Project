@@ -26,7 +26,7 @@ public class UpcomingEventsAdapter extends RecyclerView.Adapter<UpcomingEventsAd
         public ViewHolder(View itemView){
             super(itemView);
             upcomingTextView = itemView.findViewById(R.id.textName);
-            goToButton = itemView.findViewById(R.id.go_to_button);
+            goToButton = itemView.findViewById(R.id.select_venue);
         }
     }
 
