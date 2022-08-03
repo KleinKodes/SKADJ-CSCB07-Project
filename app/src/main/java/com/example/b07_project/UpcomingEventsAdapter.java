@@ -2,6 +2,7 @@ package com.example.b07_project;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,8 +61,27 @@ public class UpcomingEventsAdapter extends RecyclerView.Adapter<UpcomingEventsAd
         TextView textView = holder.upcomingTextView;
         textView.setText(event.getName());
         Button button = holder.goToButton;
-        button.setText("Join Event");
+        button.setText("View Event");
         button.setEnabled(true);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), ActivityDesc.class);
+
+//                if(auth == 1) {
+//                    intent.setClass(v.getContext(), AddVenue.class);
+//                    intent.putExtra("mode", 1);
+//                    intent.putExtra("auth", 1);
+//                }
+
+//                intent.putStringArrayListExtra("sports", venue.getSports());
+//                intent.putExtra("venue", venue.getName());
+//                intent.putExtra("venueId", venue.getId());
+//                intent.putExtra("auth", auth);
+                v.getContext().startActivity(intent);
+
+            }
+        });
     }
 
     @Override

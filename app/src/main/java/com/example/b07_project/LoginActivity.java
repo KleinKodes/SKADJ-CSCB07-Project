@@ -92,6 +92,9 @@ public class LoginActivity extends AppCompatActivity {
                                         mainAct.putExtra("auth", logUser.auth);
                                         mainAct.putExtra("id", logUser.id);
 
+                                        adminAct.putExtra("auth", logUser.auth);
+                                        adminAct.putExtra("id", logUser.id);
+
                                         if (logUser.auth == 1){
                                             startActivity(adminAct);
                                         }

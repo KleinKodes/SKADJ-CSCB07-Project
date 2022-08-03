@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -200,6 +201,14 @@ public class AdminActivity extends AppCompatActivity {
 
     public void transitionToEvents(View view)
     {
+
+        Intent intent = new Intent(this, UpcomingEventsDriver.class);
+        intent.putExtra("auth", auth);
+        intent.putExtra("userId", userId);
+        intent.putExtra("firstName", firstName);
+        startActivity(intent);
+
+
 
     }
 

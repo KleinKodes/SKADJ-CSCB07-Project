@@ -11,6 +11,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -256,13 +257,20 @@ public class AddVenue extends AppCompatActivity {
     private void makePopUp(View view, String message){
         // inflate layout of popup window
         LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
-        View popupView = inflater.inflate(R.layout.popup_window, null);
+        View popupView = inflater.inflate(R.layout.popup_window, null, false);
         // popup window creation
         int width = LinearLayout.LayoutParams.WRAP_CONTENT;
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;
         boolean focusable = true;
         PopupWindow popupWindow = new PopupWindow(view, width, height, focusable);
         //showing popup window
+//        if(popupWindow. != null) {
+//            ((ViewGroup)popupWindow.getParent()).removeView(popupWindow); // <- fix
+//        }
+
+        if (popupView.getParent() != null){
+            ((ViewGroup) popupView.getParent()).removeView(popupView);
+        }
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             popupWindow.setElevation(20);

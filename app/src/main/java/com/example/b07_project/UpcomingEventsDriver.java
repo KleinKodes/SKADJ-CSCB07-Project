@@ -20,6 +20,11 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class UpcomingEventsDriver extends AppCompatActivity {
+    int auth;
+    String firstName;
+    String userId;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +42,7 @@ public class UpcomingEventsDriver extends AppCompatActivity {
 
         Log.i("status", "created adapter and recycleview");
 
-        if (test.size() > 1) {
+        if (test.get("key") != null) {
             //String testTwo = test.getString("key");
             //Log.d("test", testTwo);
             database.addValueEventListener(new ValueEventListener() {
