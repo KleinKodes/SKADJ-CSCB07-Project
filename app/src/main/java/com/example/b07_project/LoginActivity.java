@@ -4,17 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -26,12 +19,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import org.w3c.dom.Text;
-
-import java.nio.file.StandardWatchEventKinds;
-import java.util.HashMap;
-import java.util.Map;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -77,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Intent mainAct = new Intent(LoginActivity.this, MainActivity.class);
+                            Intent mainAct = new Intent(LoginActivity.this, MainActivityDeprecated.class);
                             Intent adminAct = new Intent(LoginActivity.this, AdminActivity.class);
 
                             FirebaseUser user = mAuth.getCurrentUser();
@@ -156,4 +143,9 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }*/
+public void trasitionToSignUp(View view)
+{
+    Intent intent = new Intent(this, SignUpActivity.class);
+    startActivity(intent);
+}
 }

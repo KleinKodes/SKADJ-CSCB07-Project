@@ -16,4 +16,31 @@ public class User {
         createdEvents = new ArrayList<Integer>();
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public ArrayList<Integer> getJoinedEvents() {
+        return joinedEvents;
+    }
+
+    public int getAuth() {
+        return auth;
+    }
+
+    public ArrayList<Integer> getCreatedEvents() {
+        return createdEvents;
+    }
 }

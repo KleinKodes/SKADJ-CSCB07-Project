@@ -227,4 +227,9 @@ public class AdminActivity extends AppCompatActivity {
 
     }
 
+    public void logOut(View view){
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth.signOut();
+    }
+
 }

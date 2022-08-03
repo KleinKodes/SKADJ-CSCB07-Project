@@ -4,17 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -120,7 +113,7 @@ public class SignUpActivity extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<AuthResult> task) {
                                             if (task.isSuccessful()) {
-                                                Intent mainAct = new Intent(SignUpActivity.this, MainActivity.class);
+                                                Intent mainAct = new Intent(SignUpActivity.this, MainActivityDeprecated.class);
                                                 FirebaseUser user = mAuth.getCurrentUser();
                                                 //user.getEmail();
                                                 FirebaseDatabase database = FirebaseDatabase.getInstance();

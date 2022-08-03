@@ -66,6 +66,16 @@
             android:text="Approve Events"
             android:textSize="16dp" />
 
+        <Button
+            android:id="@+id/adminLogOut"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#2B782E"
+            android:onClick="logOut"
+            android:text="Log Out"
+            android:textSize="16dp" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

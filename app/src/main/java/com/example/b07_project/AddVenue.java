@@ -7,15 +7,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -216,7 +211,7 @@ public class AddVenue extends AppCompatActivity {
             }
         });
 
-        Intent addVenue = new Intent(this, MainActivity.class);
+        Intent addVenue = new Intent(this, MainActivityDeprecated.class);
         if(auth == 1) addVenue.setClass(this, AdminActivity.class);
         addVenue.putExtra("auth", auth);
         startActivity(addVenue);
