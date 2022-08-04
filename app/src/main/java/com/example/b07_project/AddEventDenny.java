@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,12 +40,14 @@ public class AddEventDenny extends AppCompatActivity {
     DatabaseReference databaseReference;
     int selectedVenueId;
     String firstName;
+    EventServices eventServices;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_event_denny);
 
+        eventServices = new EventServices();
 
         selectedVenueId = -1;
 
@@ -199,7 +203,7 @@ public class AddEventDenny extends AppCompatActivity {
         if (event.ownerId == null) event.ownerId = "default";
 
 
-        if (!validateEvent(view, event)) return;
+        if (!eventServices.validateEvent(view, event)) return;
 
 
 
@@ -273,75 +277,6 @@ public class AddEventDenny extends AppCompatActivity {
     }
 
 
-    private void makePopUp(View view, String message) {
-        // inflate the layout of the popup window
-        LayoutInflater inflater = (LayoutInflater)
-                getSystemService(LAYOUT_INFLATER_SERVICE);
-        View popupView = inflater.inflate(R.layout.popup_window, null);
-
-
-        // create the popup window
-        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-        boolean focusable = true; // lets taps outside the popup also dismiss it
-        PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
-
-        // show the popup window
-        // which view you pass in doesn't matter, it is only used for the window tolken
-        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//            popupWindow.setElevation(20);
-//        }
-
-        TextView textView = (TextView) popupView.findViewById(R.id.popup_text);
-
-
-        textView.setText(message);
-
-        // dismiss the popup window when touched
-        popupView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                popupWindow.dismiss();
-                return true;
-            }
-        });
-    }
-
-    private boolean validateEvent(View view, Event event) {
-        Log.i("status", "validating event");
-        if (event.getStartTimeStamp() < Instant.now().toEpochMilli()) {
-            makePopUp(view, "Invalid start date");
-            return false;
-        }
-
-
-
-        if (event.getEndTimeStamp() < event.getStartTimeStamp()) {
-            makePopUp(view, "Invalid end date");
-            return false;
-        }
-
-        if (event.getCapacity() < 10){
-            makePopUp(view, "Capacity too low");
-            Log.i("status", "capacity low, should give popup");
-            return false;
-        }
-
-        if (event.getName().trim().isEmpty() || event.getName().trim() == "Name"){
-            makePopUp(view, "Please give your event a name");
-            return false;
-        }
-        if (event.getEventDescription().length() < 15){
-            makePopUp(view, "Please give your event a good description.");
-            return false;
-        }
-
-        return true;
-
-
-    }
 
 
 
