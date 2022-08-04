@@ -32,7 +32,7 @@
         android:contentDescription="@string/todo"
         app:layout_constraintEnd_toEndOf="@+id/Header"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/search" />
+        app:srcCompat="@drawable/plus" />
 
     <TextView
         android:id="@+id/AppName"
