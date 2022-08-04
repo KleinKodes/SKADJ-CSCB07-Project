@@ -65,15 +65,9 @@ public class profile extends AppCompatActivity {
         DatabaseReference userRef = database.getReference("Users");
         DatabaseReference venueRef = database.getReference("Venues");
 
-        userRef.child(userId).child("firstName").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                String firstName = task.getResult().getValue(String.class);
-                if (firstName == null) return;
-                TextView profileName = findViewById(R.id.profileUserName);
-                profileName.setText(firstName);
-            }
-        });
+        TextView profileName = findViewById(R.id.profileUserName);
+        profileName.setText(userServices.getCurrentUserName());
+
 
         eventRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
@@ -206,15 +200,22 @@ public class profile extends AppCompatActivity {
     public void switchToCreate(View view) {
         Intent addProfile = new Intent(this, profile.class);
         addProfile.putExtra(tabState, 1);
+        addProfile.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        //recreate();
         startActivity(addProfile);
+        overridePendingTransition(0, 0);
         finish();
     }
 
     public void switchToJoin(View view) {
         Intent addProfile = new Intent(this, profile.class);
         addProfile.putExtra(tabState, 2);
+        addProfile.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(addProfile);
+        overridePendingTransition(0, 0);
+
         finish();
+        //recreate();
     }
 
     public void deleteEvent(View view){
@@ -227,5 +228,10 @@ public class profile extends AppCompatActivity {
             userServices.removeUserFromEvent(userId, Integer.parseInt(textView.getHint().toString()));
 
         }
+    }
+
+    public void removeCards(View view){
+        LinearLayout layout = (LinearLayout) findViewById(R.id.cardList);
+        //layout.child
     }
 }
