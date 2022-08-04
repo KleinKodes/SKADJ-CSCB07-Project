@@ -49,17 +49,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/SearchPost"
-            android:layout_width="33dp"
-            android:layout_height="29dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="12dp"
-            android:contentDescription="@string/todo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/search" />
-
         <TextView
             android:id="@+id/AppName"
             android:layout_width="0dp"
@@ -147,18 +136,6 @@
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/venuePageAdd"
-            android:layout_width="36dp"
-            android:layout_height="28dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="12dp"
-            android:onClick="addCard"
-            app:layout_constraintEnd_toStartOf="@+id/AddPost"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/plus"
-            tools:ignore="TouchTargetSizeCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
