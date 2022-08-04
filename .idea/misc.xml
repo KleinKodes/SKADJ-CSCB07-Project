@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/denny/Desktop/SKADJ-CSCB07-Project/app/src/main/res/drawable/loginoutlineborder.xml" value="0.1" />
+        <entry key="..\:/Users/denny/Desktop/SKADJ-CSCB07-Project/app/src/main/res/drawable/outlineborder.xml" value="0.1" />
         <entry key="..\:/Users/denny/Desktop/SKADJ-CSCB07-Project/app/src/main/res/layout/activity_add_event.xml" value="0.23854166666666668" />
         <entry key="..\:/Users/denny/Desktop/SKADJ-CSCB07-Project/app/src/main/res/layout/activity_add_event_denny.xml" value="0.1962962962962963" />
         <entry key="..\:/Users/denny/Desktop/SKADJ-CSCB07-Project/app/src/main/res/layout/activity_add_venue.xml" value="0.23854166666666668" />

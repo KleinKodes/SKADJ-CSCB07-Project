@@ -196,4 +196,10 @@ public class SignUpActivity extends AppCompatActivity {
         }
         return true;
     }
+
+    public void transitionToSignIn(View view){
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
 }
