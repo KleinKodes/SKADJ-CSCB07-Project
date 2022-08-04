@@ -1,5 +1,6 @@
 package com.example.b07_project;
 
+import android.app.Activity;
 import android.util.Log;
 import android.view.View;
 
@@ -110,9 +111,25 @@ public class EventServices {
 
     }
 
-    public void addEvent(Event event){
+    public void addEvent(Activity activity, View view, Event event){
 
-        eventRef.child(event.getId() + "").setValue(event);
+
+        if(view != null && validateEvent(view, event)) {
+
+            DatabaseReference scheduledEvents = venueRef.child(event.venueId + "").child("scheduledEvents");
+                    scheduledEvents.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    ArrayList<Integer> scheduledEventsList = (ArrayList<Integer>) task.getResult().getValue();
+                    scheduledEventsList.add(event.getId());
+                    scheduledEvents.setValue(scheduledEventsList);
+                    eventRef.child(event.getId() + "").setValue(event);
+                    activity.finish();
+                }
+            });
+        }
+
+
 
     }
 
@@ -191,6 +208,7 @@ public class EventServices {
 //            }
 //        });
     }
+
 
 
 

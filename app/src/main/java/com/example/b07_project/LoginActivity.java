@@ -76,13 +76,6 @@ public class LoginActivity extends AppCompatActivity {
         return true;
     }
 
-
-    public void trasitionToSignUp(View view) {
-        Intent intent = new Intent(this, SignUpActivity.class);
-        startActivity(intent);
-    }
-
-
 public void trasitionToSignUp(View view)
 {
     Intent intent = new Intent(this, SignUpActivity.class);

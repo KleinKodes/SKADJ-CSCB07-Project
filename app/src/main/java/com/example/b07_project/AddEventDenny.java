@@ -153,24 +153,6 @@ public class AddEventDenny extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public void createDennyEvent(View view)
     {
         System.out.println("someone clicked the button");
@@ -203,76 +185,9 @@ public class AddEventDenny extends AppCompatActivity {
         if (event.ownerId == null) event.ownerId = "default";
 
 
-        if (!eventServices.validateEvent(view, event)) return;
 
+        eventServices.addEvent(this, view, event);
 
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Events");
-        Log.i("demo", "honestly idk");
-
-
-
-
-        myRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            int tempId;
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                System.out.println("why do we exist? just to suffer?");
-                if (!task.isSuccessful()) {
-                    Log.e("demo", "Error getting data", task.getException());
-                }
-                else {
-                    for (DataSnapshot childSnapshot : task.getResult().getChildren()) {
-                        tempId = childSnapshot.getValue(Event.class).id;
-                        Log.i("demo", "current max id: " + curMaxId[0]);
-                        if (tempId >= curMaxId[0]) curMaxId[0] = tempId;
-                        Log.i("demo", "id = " + tempId);
-                        Log.i("demo", "new current max id: " + curMaxId[0]);
-//
-//
-//                    tempId = task.getResult().getValue();
-//                    Log.i("demo", "id = " + tempId);
-//                    if (tempId >= curMaxId[0]) curMaxId[0] = tempId;
-
-                    }
-                    //Log.i("demo", task.getResult().getValue().toString());
-
-                    event.id=curMaxId[0]+1;
-                    //event.ownerId = 0; //temporary until we make user class
-
-
-                    myRef.child(event.id + "").setValue(event);
-
-                    DatabaseReference venueRef = database.getReference("Venues");
-                    venueRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<DataSnapshot> task) {
-                            for (DataSnapshot childSnapShot : task.getResult().getChildren()){
-                                Venue venue = childSnapShot.getValue(Venue.class);
-                                if (venue.scheduledEvents == null) venue.scheduledEvents = new ArrayList<Integer>();
-                                if (venue.getId() == event.getVenueId()) {
-                                    venue.scheduledEvents.add(event.getId());
-                                    //adds event id to venue's list of scheduled event id's
-                                    venueRef.child(venue.getId() + "").setValue(venue);
-                                    //updates said venue in database
-                                }
-
-                            }
-                        }
-                    });
-
-
-
-                }
-            }
-        });
-
-
-
-        Intent intent = new Intent(this, MainActivityDeprecated.class);
-        startActivity(intent);
-        finish();
 
     }
 

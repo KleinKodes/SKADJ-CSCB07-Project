@@ -29,19 +29,22 @@ public class activityPageDenny extends AppCompatActivity {
     public static Boolean isThisMyEvent = false;
     public boolean mode;
     private String firstName;
+    public int venueId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page_denny);
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        Intent intent = getIntent();
 
-        mode = getIntent().getBooleanExtra("approvalNeeded", false);
+        mode = intent.getBooleanExtra("approvalNeeded", false);
         //if mode == 0 then we want to view approved events
         //if mode == 1 then we want to view unapproved events
 
 
         firstName = getIntent().getStringExtra("firstName");
+        venueId = intent.getIntExtra("venueId", -1);
         if(firstName != null){
             TextView textView = findViewById(R.id.profileUserName);
             textView.setText(firstName);
@@ -78,8 +81,9 @@ public class activityPageDenny extends AppCompatActivity {
 
 
 
+
                     // only shows event if we want to see approved and it is or if we want to see unapproved and it isn't
-                    if ((!mode && event.approved) || mode && !event.approved)
+                    if (((!mode && event.approved) || mode && !event.approved )&& ((venueId == -1) || event.id == venueId))
                     userRef.child(event.getOwnerId() + "").child("firstName").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<DataSnapshot> task) {
