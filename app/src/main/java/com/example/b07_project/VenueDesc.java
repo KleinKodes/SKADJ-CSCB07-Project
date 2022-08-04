@@ -103,4 +103,8 @@ public class VenueDesc extends AppCompatActivity {
         end.setText(String.format("End Time %s:%s",venue.availableTo.getHour(),venue.availableFrom.getMin()));
     }
 
+    public void goBackToVenuePage(View view){
+        super.onBackPressed();
+    }
+
 }
