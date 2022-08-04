@@ -59,6 +59,8 @@ public class activityPageDenny extends AppCompatActivity {
         home.setOnClickListener(new Navigation());
         View profile = findViewById(R.id.profileButton);
         profile.setOnClickListener(new Navigation());
+        View logOut = findViewById(R.id.signOutButton);
+        logOut.setOnClickListener(new Navigation());
 
 
         userId = getIntent().getStringExtra("userID");
@@ -123,19 +125,26 @@ public class activityPageDenny extends AppCompatActivity {
         textView = v.findViewById(R.id.profileEventName);
         textView.setText(event.getName());
         textView.setHint(event.getId() + "");
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                transitionToDesc(v);
+            }
+        });
         layout.addView(v);
     }
 
     public void transitionToDesc(View view){
         ViewGroup newView = (ViewGroup) view;
 
-        TextView date = (TextView) newView.getChildAt(0);
-        TextView start = (TextView) newView.getChildAt(1);
-        TextView end = (TextView) newView.getChildAt(2);
+        ViewGroup eventContainer1 = (ViewGroup) newView.getChildAt(1);
+        TextView date = (TextView) eventContainer1.getChildAt(0);
+        TextView start = (TextView) eventContainer1.getChildAt(1);
+        TextView end = (TextView) eventContainer1.getChildAt(2);
 
-        ViewGroup eventContainer = (ViewGroup) newView.getChildAt(4);
-        TextView event = (TextView) eventContainer.getChildAt(0);
-        TextView host = (TextView) eventContainer.getChildAt(1);
+        ViewGroup eventContainer2 = (ViewGroup) newView.getChildAt(0);
+        TextView event = (TextView) eventContainer2.getChildAt(0);
+        TextView host = (TextView) eventContainer2.getChildAt(1);
 
         Intent addProfile = new Intent(this, ActivityDesc.class);
         activityInfo[0] = date.getText().toString();
