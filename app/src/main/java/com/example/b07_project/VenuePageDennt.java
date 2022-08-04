@@ -21,11 +21,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.stream.Stream;
 
 public class VenuePageDennt extends AppCompatActivity {
     public static String venueName;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    UserServices userServices;
+
 
 
     @Override
@@ -33,12 +36,22 @@ public class VenuePageDennt extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_venue_page_dennt);
 
+        userServices = new UserServices();
+
+
+
         View home = findViewById(R.id.homeButton);
         home.setOnClickListener(new Navigation());
         View profile = findViewById(R.id.profileButton);
         profile.setOnClickListener(new Navigation());
         View logout = findViewById(R.id.logOutButton);
         logout.setOnClickListener(new Navigation());
+        TextView userName = findViewById(R.id.userName);
+        userName.setText(userServices.findUserByUserId(userServices.firebaseAuth.getCurrentUser().getUid()).getFirstName());
+
+
+
+
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Venues");

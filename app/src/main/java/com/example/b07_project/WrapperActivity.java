@@ -9,26 +9,79 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class WrapperActivity extends AppCompatActivity {
 
     int auth;
-    User currentUser;
+
     UserServices userServices;
     FirebaseAuth firebaseAuth;
+    MutableLiveData<User> currentUser;
+    User currentUser2;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference userRef;
 
 
 
     @Override
     public void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.loading_activity);
 
         firebaseAuth = FirebaseAuth.getInstance();
         userServices = new UserServices();
-        currentUser = new User();
+        currentUser = new MutableLiveData<User>();
+        currentUser.setValue(new User());
+        currentUser2 = new User();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        userRef = firebaseDatabase.getReference("Users");
 
+
+
+//        currentUser.observe(WrapperActivity.this, new Observer<User>() {
+//            @Override
+//            public void onChanged(User user) {
+//
+//                if (user.getEmail() == null) return;
+//
+//                if (user.getAuth() == 1){
+//                    Intent adminIntent = new Intent(getBaseContext(), AdminActivity.class);
+//                    adminIntent.putExtra("auth", user.getAuth());
+//                    adminIntent.putExtra("firstName", user.getFirstName());
+//                    adminIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                    startActivity(adminIntent);
+//                    finish();
+//
+//                }else if (user.getAuth() == 0){
+//                    Intent customerIntent = new Intent(getBaseContext(), VenuePageDennt.class);
+//                    customerIntent.putExtra("auth", user.getAuth());
+//                    customerIntent.putExtra("firstName", user.getFirstName());
+//                    startActivity(customerIntent);
+//                    customerIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                    finish();
+//                } else{
+//                    Log.e("LoginIssue", "user does not have correct auth value");
+//                }
+//
+//
+//                return;
+//
+//            }
+//        });
+
+
+        //if (firebaseAuth.getCurrentUser() != null) currentUser = userServices.findUserByUserId(firebaseAuth.getUid());
+
+        //Log.i("current user", currentUser.getEmail());
 
 //        if (firebaseAuth.getCurrentUser() == null){
 //            Intent loginIntent = new Intent(this, LoginActivity.class);
@@ -41,6 +94,8 @@ public class WrapperActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
 
 
+                //Log.i("userInfo", "email:" + currentUser.getEmail() + " auth:" + currentUser.getAuth());
+
                 Intent loginIntent = new Intent(getBaseContext(), LoginActivity.class);
                 if (firebaseAuth.getCurrentUser() == null){
 
@@ -49,33 +104,71 @@ public class WrapperActivity extends AppCompatActivity {
                     finish();
                     return;
                 }
-                currentUser = userServices.findUserByUserId(firebaseAuth.getUid());
+
+                userServices.routeUser(getBaseContext());
+
+//                userRef.child(firebaseAuth.getCurrentUser().getUid()).child("auth").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+//                        int auth = task.getResult().getValue(int.class);
+//
+//                        if (auth == 1){
+//                            Intent adminIntent = new Intent(getBaseContext(), AdminActivity.class);
+//                            adminIntent.putExtra("auth", currentUser2.getAuth());
+//                            adminIntent.putExtra("firstName", currentUser2.getFirstName());
+//                            adminIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                            startActivity(adminIntent);
+//                            finish();
+//                        }else if (auth == 0){
+//                            Intent customerIntent = new Intent(getBaseContext(), VenuePageDennt.class);
+//                            customerIntent.putExtra("auth", currentUser2.getAuth());
+//                            customerIntent.putExtra("firstName", currentUser2.getFirstName());
+//                            startActivity(customerIntent);
+//                            customerIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                            finish();
+//
+//                        }else{
+//                            Log.e("LoginIssue", "user does not have correct auth value");
+//                        }
+//                    }
+//                });
 
 
 
-                if (currentUser.getAuth() == 1){
-                    Intent adminIntent = new Intent(getBaseContext(), AdminActivity.class);
-                    adminIntent.putExtra("auth", currentUser.getAuth());
-                    adminIntent.putExtra("firstName", currentUser.getFirstName());
-                    adminIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(adminIntent);
-                    finish();
 
-                }else if (currentUser.getAuth() == 0){
-                    Intent customerIntent = new Intent(getBaseContext(), VenuePageDennt.class);
-                    customerIntent.putExtra("auth", currentUser.getAuth());
-                    customerIntent.putExtra("firstName", currentUser.getFirstName());
-                    startActivity(customerIntent);
-                    customerIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    finish();
-                } else{
-                    Log.e("LoginIssue", "user does not have correct auth value");
-                }
+//                currentUser2 = userServices.findUserByUserId(firebaseAuth.getCurrentUser().getUid());
+//
+////                Log.i("userInfo", "email:" + currentUser.getEmail() + " auth:" + currentUser.getAuth());
+////
+////
+////
+////                //userServices.routeUser(getBaseContext(), firebaseAuth.getUid());
+////
+////
+////
+//                if (currentUser2.getAuth() == 1){
+//                    Intent adminIntent = new Intent(getBaseContext(), AdminActivity.class);
+//                    adminIntent.putExtra("auth", currentUser2.getAuth());
+//                    adminIntent.putExtra("firstName", currentUser2.getFirstName());
+//                    adminIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                    startActivity(adminIntent);
+//                    finish();
+//
+//                }else if (currentUser2.getAuth() == 0){
+//                    Intent customerIntent = new Intent(getBaseContext(), VenuePageDennt.class);
+//                    customerIntent.putExtra("auth", currentUser2.getAuth());
+//                    customerIntent.putExtra("firstName", currentUser2.getFirstName());
+//                    startActivity(customerIntent);
+//                    customerIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                    finish();
+//                } else{
+//                    Log.e("LoginIssue", "user does not have correct auth value");
+//                }
 
 
                 return;
 
-            }
+           }
         });
 
 
