@@ -35,6 +35,11 @@ public class activityPageDenny extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page_denny);
 
+        LayoutInflater layoutInflater = (LayoutInflater)
+                getSystemService(LAYOUT_INFLATER_SERVICE);
+        View loadingView = layoutInflater.inflate(R.layout.loading_activity, null);
+
+
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Intent intent = getIntent();
 
