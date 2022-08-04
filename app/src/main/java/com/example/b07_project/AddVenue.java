@@ -7,7 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -222,43 +224,33 @@ public class AddVenue extends AppCompatActivity {
     {
         numOfSports += 1;
         LinearLayout layout = (LinearLayout)findViewById(R.id.sports);
-
-        EditText newSport = new EditText(this);
-
-//        layout.getLayoutParams().height += 130;
-
-
-        newSport.setOnClickListener(new View.OnClickListener() {
+        View v = LayoutInflater.from(this).inflate(R.layout.sport_card, null);
+        ((ViewGroup)v).getChildAt(1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 layout.removeView(view);
-//                layout.getLayoutParams().height -= 120;
             }
         });
 
 
-        layout.addView(newSport);
+        layout.addView(v);
     }
 
     public void addSport(String text)
     {
         numOfSports += 1;
         LinearLayout layout = (LinearLayout)findViewById(R.id.sports);
-
-        EditText newSport = new EditText(this);
-//        layout.getLayoutParams().height += 130;
-        newSport.setText(text);
-        newSport.setOnClickListener(new View.OnClickListener() {
+        View v = LayoutInflater.from(this).inflate(R.layout.sport_card, null);
+        //Fuck this i'll do it later
+        ((ViewGroup)(((ViewGroup)v).getChildAt(0))).getChildAt(1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 layout.removeView(view);
-//                layout.getLayoutParams().height -= 120;
             }
         });
 
 
-        layout.addView(newSport);
+        layout.addView(v);
     }
 
 /*    private void makePopUp(View view, String message){
