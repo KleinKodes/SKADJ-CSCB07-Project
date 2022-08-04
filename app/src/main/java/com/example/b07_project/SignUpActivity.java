@@ -200,6 +200,7 @@ public class SignUpActivity extends AppCompatActivity {
     public void transitionToSignIn(View view){
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+        finish();
     }
 
 }

@@ -158,5 +158,6 @@ public void trasitionToSignUp(View view)
 {
     Intent intent = new Intent(this, SignUpActivity.class);
     startActivity(intent);
+    finish();
 }
 }
