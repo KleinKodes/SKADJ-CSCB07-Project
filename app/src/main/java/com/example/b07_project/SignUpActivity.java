@@ -62,26 +62,6 @@ public class SignUpActivity extends AppCompatActivity {
         if(!(validateData(view, last_name.getText().toString(),
                 name.getText().toString(), email.getText().toString(), password.getText().toString()))){return;}
 
-        if (last_name.getText().toString().equals("")){
-            TextView loginFail = (TextView) findViewById(R.id.Sign_Up_Error_Message);
-            loginFail.setText("Last Name is missing");
-            return;
-        }
-        if (name.getText().toString().equals("")){
-            TextView loginFail = (TextView) findViewById(R.id.Sign_Up_Error_Message);
-            loginFail.setText("First Name is missing");
-            return;
-        }
-        if (email.getText().toString().equals("")){
-            TextView loginFail = (TextView) findViewById(R.id.Sign_Up_Error_Message);
-            loginFail.setText("Email is missing");
-            return;
-        }
-        if (password.getText().toString().equals("")){
-            TextView loginFail = (TextView) findViewById(R.id.Sign_Up_Error_Message);
-            loginFail.setText("Password is missing");
-            return;
-        }
 
 
             mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
@@ -133,7 +113,7 @@ public class SignUpActivity extends AppCompatActivity {
                                             }
                                         }
                                     });
-                                //fjalkdsjfasdlkjfkladsjfklsadjfklsdajflkasdjflksadjflksadjfklsadf
+
                                 finish();
                             } else {
                                 //fail
@@ -145,32 +125,6 @@ public class SignUpActivity extends AppCompatActivity {
                     });
     }
 
-/*    private void makePopUp(View view, String message){
-        // inflate layout of popup window
-        LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
-        View popupView = inflater.inflate(R.layout.popup_window, null);
-        // popup window creation
-        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-        boolean focusable = true;
-        PopupWindow popupWindow = new PopupWindow(view, width, height, focusable);
-        //showing popup window
-        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
-            popupWindow.setElevation(20);
-        }
-        //Create textview for popup
-        TextView textView = (TextView) popupView.findViewById(R.id.popup_text);
-        textView.setText(message);
-        // dismiss message when clicked
-        popupView.setOnTouchListener(new View.OnTouchListener(){
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                popupWindow.dismiss();
-                return true;
-            }
-        });
-    }*/
 
     private boolean validateData(View view, String lastName, String name, String email, String password){
         //Check if user has names

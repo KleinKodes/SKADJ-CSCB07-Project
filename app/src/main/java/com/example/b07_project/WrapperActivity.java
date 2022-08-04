@@ -30,19 +30,23 @@ public class WrapperActivity extends AppCompatActivity {
         currentUser = new User();
 
 
-        if (firebaseAuth.getCurrentUser() == null){
-            Intent loginIntent = new Intent(this, LoginActivity.class);
-            startActivity(loginIntent);
-        }
+//        if (firebaseAuth.getCurrentUser() == null){
+//            Intent loginIntent = new Intent(this, LoginActivity.class);
+//            startActivity(loginIntent);
+//            finish();
+//        }
 
         firebaseAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
 
 
+                Intent loginIntent = new Intent(getBaseContext(), LoginActivity.class);
                 if (firebaseAuth.getCurrentUser() == null){
-                    Intent loginIntent = new Intent(getBaseContext(), LoginActivity.class);
+
+                    loginIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(loginIntent);
+                    finish();
                     return;
                 }
                 currentUser = userServices.findUserByUserId(firebaseAuth.getUid());
@@ -53,16 +57,21 @@ public class WrapperActivity extends AppCompatActivity {
                     Intent adminIntent = new Intent(getBaseContext(), AdminActivity.class);
                     adminIntent.putExtra("auth", currentUser.getAuth());
                     adminIntent.putExtra("firstName", currentUser.getFirstName());
+                    adminIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(adminIntent);
+                    finish();
 
                 }else if (currentUser.getAuth() == 0){
                     Intent customerIntent = new Intent(getBaseContext(), VenuePageDennt.class);
                     customerIntent.putExtra("auth", currentUser.getAuth());
                     customerIntent.putExtra("firstName", currentUser.getFirstName());
                     startActivity(customerIntent);
+                    customerIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    finish();
                 } else{
                     Log.e("LoginIssue", "user does not have correct auth value");
                 }
+
 
                 return;
 

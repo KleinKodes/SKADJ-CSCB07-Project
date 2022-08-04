@@ -1,5 +1,6 @@
 package com.example.b07_project;
 
+import android.app.Activity;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -189,7 +190,29 @@ public class UserServices {
         firebaseAuth.signOut();
     }
 
-    public void logInUser(String email, String password, View view){
+    public void logInUser(String email, String password, View view, Activity activity){
+        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+
+
+                    currentUser = findUserByUserId(task.getResult().getUser().getUid());
+                    activity.finish();
+
+                } else {
+                    Log.i("Login", "LOGIN FAILED NOOO");
+
+                    Snackbar mySnackbar = Snackbar.make(view, "Invalid email/password combination.", BaseTransientBottomBar.LENGTH_SHORT);
+                    mySnackbar.show();
+                }
+
+            }
+        });
+
+    }
+
+    public void signUpUser(String email, String password, View view){
         firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
