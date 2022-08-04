@@ -2,6 +2,11 @@ package com.example.b07_project;
 
 import com.google.firebase.database.Exclude;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Objects;
 
@@ -10,12 +15,13 @@ public class Event {
     public String name;
     public int capacity;
     public String sport;
-    //public GregorianCalendar startTime, endTime;
     public int attendeeNum;
     public String eventDescription;
-    public int ownerId;
+    public String ownerId;
     public int venueId;
     public int groupId;
+    public ArrayList<String> attendees;
+    public boolean approved;
 
     public Long startTimeStamp;
     public Long endTimeStamp;
@@ -66,14 +72,6 @@ public class Event {
         return sport;
     }
 
-//    public GregorianCalendar getStartTime() {
-//        return startTime;
-//    }
-//
-//    public GregorianCalendar getEndTime() {
-//        return endTime;
-//    }
-
     public int getAttendeeNum() {
         return attendeeNum;
     }
@@ -82,7 +80,7 @@ public class Event {
         return eventDescription;
     }
 
-    public int getOwnerId() {
+    public String getOwnerId() {
         return ownerId;
     }
 
@@ -90,6 +88,47 @@ public class Event {
         return venueId;
     }
 
+    public long getStartTimeStamp() {return startTimeStamp;}
+
+    public long getEndTimeStamp() {return endTimeStamp;}
+
+    @Exclude
+    public String getStartDateString() {
+
+        GregorianCalendar calendar = this.getStartDate();
+
+
+        return calendar.get(Calendar.DAY_OF_MONTH) + "/"+ calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.YEAR);
+    }
+
+    @Exclude
+    public String getStartTimeString() {
+
+        GregorianCalendar calendar = this.getStartDate();
+
+
+        return calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE);
+    }
+
+    @Exclude
+    public String getEndTimeString() {
+
+        GregorianCalendar calendar = this.getEndDate();
+
+        return calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE);
+    }
+
+
+    @Exclude
+    public String getEndDateString() {
+
+        GregorianCalendar calendar = this.getEndDate();
+
+
+        return calendar.get(Calendar.DAY_OF_MONTH) + "/"+ calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.YEAR);
+    }
+
+    public Boolean getApproval() {return this.approved;}
 
 
     public Event()
@@ -100,13 +139,15 @@ public class Event {
     {
         this.name = name;
         this.id = 0;
-        this.ownerId=0;
+        this.ownerId= "-1";
         this.venueId=0;
         this.attendeeNum=0;
         this.capacity = 0;
         this.groupId=-1;
         this.startTimeStamp = 0L;
         this.endTimeStamp = 0L;
+        this.attendees = new ArrayList<String>();
+        this.approved = false;
 
 
     }

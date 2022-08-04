@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -18,11 +19,34 @@ import java.util.ArrayList;
 
 public class AdminActivity extends AppCompatActivity {
 
+    int auth;
+    String firstName;
+    String userId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
+        auth = this.getIntent().getIntExtra("auth", 0);
+        System.out.println("Admin AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        System.out.println(auth);
     }
+
+    
+
+
+    public void signOut(View view){
+        FirebaseAuth.getInstance().signOut();
+        Intent login = new Intent(AdminActivity.this, LoginActivity.class);
+        startActivity(login);
+        Intent tempor = getIntent();
+        tempor.putExtra("auth", -1);
+        tempor.putExtra("id", -1);
+        finish();
+    }
+
+    
+
 
 
     public void deleteAllEvents(View view) {
@@ -158,11 +182,54 @@ public class AdminActivity extends AppCompatActivity {
     public void transitionToVenues(View view)
     {
         Intent intent = new Intent(this, ChooseVenue.class);
+        intent.putExtra("auth", auth);
+        intent.putExtra("userId", userId);
+        intent.putExtra("firstName", firstName);
+
+        startActivity(intent);
+
+    }
+
+    public void transitionToAddVenue(View view)
+    {
+        Intent intent = new Intent(this, AddVenue.class);
+        int auth = this.getIntent().getIntExtra("auth", 0);
+        intent.putExtra("auth", 1);
+        intent.putExtra("mode", 0);
         startActivity(intent);
     }
 
-    public void initializeTwoUsers(View view){
+    public void transitionToEvents(View view)
+    {
 
+        Intent intent = new Intent(this, UpcomingEventsDriver.class);
+        intent.putExtra("auth", auth);
+        intent.putExtra("userId", userId);
+        intent.putExtra("firstName", firstName);
+        startActivity(intent);
+
+
+
+    }
+
+    public void transtionToUnapprovedEvents(View view)
+    {
+
+    }
+
+    public void transitionToApproveEvents(View view){
+        Intent intent = new Intent(this, activityPageDenny.class);
+        intent.putExtra("auth", auth);
+        intent.putExtra("userId", userId);
+        intent.putExtra("firstName", firstName);
+        intent.putExtra("approvalNeeded", true);
+        startActivity(intent);
+
+    }
+
+    public void logOut(View view){
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth.signOut();
     }
 
 }

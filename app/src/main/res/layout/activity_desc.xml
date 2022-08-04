@@ -10,13 +10,17 @@
 
 
         android:id="@+id/profilePage"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#FAFAFA">
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#FAFAFA"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/Header"
-            android:layout_width="412dp"
+            android:layout_width="0dp"
             android:layout_height="58dp"
             android:background="#2B782E"
             android:contentDescription="@string/todo"
@@ -54,22 +58,23 @@
             app:srcCompat="@drawable/sports" />
 
         <TextView
-            android:id="@+id/activity"
+            android:id="@+id/venueDescVenue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="44dp"
             android:text="Activity"
             android:textColor="#173C18"
             android:textSize="30sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.051"
+            app:layout_constraintEnd_toEndOf="@+id/joinEventButton"
+            app:layout_constraintHorizontal_bias="0.266"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/AppName" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
-            android:layout_width="406dp"
+            android:layout_width="0dp"
             android:layout_height="49dp"
             android:background="#000000"
             android:orientation="horizontal"
@@ -81,7 +86,7 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <ImageView
-                android:id="@+id/imageView21"
+                android:id="@+id/homeButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -91,7 +96,7 @@
                 app:srcCompat="@drawable/home" />
 
             <ImageView
-                android:id="@+id/imageView22"
+                android:id="@+id/profileButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -101,7 +106,7 @@
                 app:srcCompat="@drawable/doc" />
 
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/signOutButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -112,7 +117,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/profileUserName"
             android:layout_width="172dp"
             android:layout_height="27dp"
             android:layout_marginStart="16dp"
@@ -130,11 +135,11 @@
             android:background="?android:attr/listDivider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activity" />
+            app:layout_constraintTop_toBottomOf="@+id/venueDescVenue" />
 
         <LinearLayout
             android:id="@+id/infoContainer"
-            android:layout_width="413dp"
+            android:layout_width="0dp"
             android:layout_height="427dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout"
@@ -144,8 +149,34 @@
             app:layout_constraintTop_toBottomOf="@+id/divider3"
             app:layout_constraintVertical_bias="1.0">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal"
+                android:paddingHorizontal="20dp">
+
+                <Button
+                    android:id="@+id/joinEventButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginRight="20dp"
+                    android:backgroundTint="#2B782E"
+                    android:onClick="joinEvent"
+                    android:text="Join" />
+
+                <Button
+                    android:id="@+id/denyEventButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginRight="20dp"
+                    android:backgroundTint="#2B782E"
+                    android:onClick="DenyEvent"
+                    android:text="Deny" />
+            </LinearLayout>
+
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/venueDescProvince"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
@@ -156,7 +187,7 @@
                 android:textSize="18dp" />
 
             <TextView
-                android:id="@+id/textView13"
+                android:id="@+id/venueDescStreetAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
@@ -167,7 +198,7 @@
                 android:textSize="18dp" />
 
             <TextView
-                android:id="@+id/textView14"
+                android:id="@+id/venueDescCity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
@@ -178,7 +209,7 @@
                 android:textSize="18dp" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/venueDescPostal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
@@ -201,26 +232,13 @@
                 android:textSize="18dp" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="73dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="156dp"
-            android:layout_marginBottom="4dp"
-            android:backgroundTint="#2B782E"
-            android:text="Join"
-            app:layout_constraintBottom_toBottomOf="@+id/divider3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.206"
-            app:layout_constraintStart_toEndOf="@+id/activity" />
-
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="34dp"
             android:layout_height="26dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
+            android:onClick="backToActivityPage"
             app:layout_constraintEnd_toEndOf="@+id/Header"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/returntopage" />

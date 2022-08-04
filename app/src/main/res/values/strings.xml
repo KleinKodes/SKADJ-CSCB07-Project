@@ -19,7 +19,7 @@
     <string name="time">time</string>
     <string name="todo">TODO</string>
     <string name="user_s_name">User\'s Name</string>
-    <string name="title_activity_edit_venue">EditVenue</string>
+    <string name="title_activity_venue_desc">VenueDesc</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>

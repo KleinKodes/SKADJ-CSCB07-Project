@@ -1,15 +1,12 @@
 package com.example.b07_project;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,6 +16,8 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
 
         //private String[] localDataSet;
         private ArrayList<Venue> venueArrayList;
+        private int auth;
+
 
         /**
          * Provide a reference to the type of views that you are using
@@ -55,8 +54,9 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
          * @param venueArrayList ArrayList<Venue> containing the data to populate views to be used
          * by RecyclerView.
          */
-        public RecycleViewAdapter(ArrayList<Venue>venueArrayList) {
+        public RecycleViewAdapter(ArrayList<Venue>venueArrayList, int auth) {
             this.venueArrayList= venueArrayList;
+            this.auth = auth;
         }
 
         // Create new views (invoked by the layout manager)
@@ -90,22 +90,18 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
                 @Override
                 public void onClick(View v) {
 
-
-
                     Intent intent = new Intent(v.getContext(), ChooseSport.class);
-                    int auth = intent.getIntExtra("auth", 0);
-                    if(auth == 1)
-                    {
-                        intent.setClass(v.getContext(), EditVenue.class);
 
+                    if(auth == 1) {
+                        intent.setClass(v.getContext(), AddVenue.class);
+                        intent.putExtra("mode", 1);
+                        intent.putExtra("auth", 1);
                     }
-
-
-
 
                     intent.putStringArrayListExtra("sports", venue.getSports());
                     intent.putExtra("venue", venue.getName());
                     intent.putExtra("venueId", venue.getId());
+                    intent.putExtra("auth", auth);
                     v.getContext().startActivity(intent);
 
 

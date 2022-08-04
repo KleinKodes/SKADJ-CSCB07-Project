@@ -35,7 +35,7 @@ public class ChooseSport extends AppCompatActivity {
         Intent intent = new Intent(this, AddEvent.class);
         intent.putExtra("venue", intent.getStringExtra("venue"));
         intent.putExtra("sport", sport);
-        intent.putExtra("venueId", intent.getStringExtra("venueId"));
+        intent.putExtra("venueId", intent.getIntExtra("venueId", -1));
 
         startActivity(intent);
     }
