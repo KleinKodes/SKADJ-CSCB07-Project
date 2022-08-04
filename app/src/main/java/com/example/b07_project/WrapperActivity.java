@@ -43,6 +43,7 @@ public class WrapperActivity extends AppCompatActivity {
                 if (firebaseAuth.getCurrentUser() == null){
                     Intent loginIntent = new Intent(getBaseContext(), LoginActivity.class);
                     startActivity(loginIntent);
+                    return;
                 }
                 currentUser = userServices.findUserByUserId(firebaseAuth.getUid());
 
@@ -62,6 +63,8 @@ public class WrapperActivity extends AppCompatActivity {
                 } else{
                     Log.e("LoginIssue", "user does not have correct auth value");
                 }
+
+                return;
 
             }
         });
