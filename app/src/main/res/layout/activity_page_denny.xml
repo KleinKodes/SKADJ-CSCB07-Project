@@ -24,12 +24,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/SearchPost"
+        android:id="@+id/addPost"
         android:layout_width="33dp"
         android:layout_height="29dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:contentDescription="@string/todo"
+        android:onClick="transitionToAddEvent"
         app:layout_constraintEnd_toEndOf="@+id/Header"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/plus" />

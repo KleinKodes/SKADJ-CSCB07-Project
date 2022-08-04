@@ -96,10 +96,6 @@ public class ActivityDesc extends AppCompatActivity {
         activity.setText(activityInfo[3]);
     }
 
-    public void backToActivities(View view){
-        finish();
-    }
-
     public void joinEvent(View view){
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -196,5 +192,9 @@ public class ActivityDesc extends AppCompatActivity {
         intent.putExtra("auth", auth);
         startActivity(intent);
         finish();
+    }
+
+    public void backToActivityPage(View view){
+        super.onBackPressed();
     }
 }
