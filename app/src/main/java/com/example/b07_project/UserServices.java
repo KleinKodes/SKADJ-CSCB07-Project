@@ -3,6 +3,7 @@ package com.example.b07_project;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -50,7 +51,7 @@ public class UserServices {
 
     }
 
-    public String getCurrentUserId() {return currentUser.id;}
+    public String getCurrentUserId() {return firebaseAuth.getCurrentUser().getUid();}
     public String getCurrentUserName(){return currentUser.firstName;}
     public User getCurrentUser(){return currentUser;}
     public int getCurrentUserAuth(){return currentUser.auth;}
@@ -107,22 +108,53 @@ public class UserServices {
 
     public void removeUserFromEvent(String userId, int eventId){
         //two parts - delete event from user's joined events list, delete user from attendees list
+//
+//        userRef.child(userId).child("joinedEvents").child(eventId + "").removeValue();
+//        eventRef.child(eventId + "").child("attendees").child(userId).removeValue();
 
-        userRef.child(userId).child("joinedEvents").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+
+        Log.i("status", "event id =" + eventId);
+        Log.i("status", "AAAAAAA");
+        DatabaseReference joinedEventsRef = userRef.child(userId).child("joinedEvents");
+        joinedEventsRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
-                ArrayList<Integer> joinedEvents = (ArrayList<Integer>) task.getResult().getValue();
-                if (joinedEvents == null) return;
-                if (!joinedEvents.contains(eventId)) return;
-                joinedEvents.remove(joinedEvents.indexOf(eventId));
+                ArrayList<Long> joinedEvents = (ArrayList<Long>) task.getResult().getValue();
+                if (joinedEvents == null) { Log.i("status", "joined events was null");return;}
+                //if (!joinedEvents.contains((Integer)eventId)) { Log.i("status", "joined events did not have correct event id..." + joinedEvents.toString());return;}
+                Boolean flag = false;
+                for (Long i : joinedEvents){
+                    if (i == eventId) flag = true;
+                }
+                if (!flag) return;
 
-                eventRef.child(eventId + "").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                joinedEvents.remove(joinedEvents.indexOf((long)eventId));
+
+                DatabaseReference attendeesRef = eventRef.child(eventId + "").child("attendees");
+
+                Log.i("status", "AAAAAAA");
+
+                attendeesRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DataSnapshot> task) {
                         ArrayList<String> attendees = (ArrayList<String>) task.getResult().getValue();
                         if (attendees == null) return;
                         if (!attendees.contains(userId)) return;
-                        attendees.remove(attendees.indexOf(userId));
+                        DatabaseReference attendeeNumRef= eventRef.child(eventId + "").child("attendeeNum");
+                        Log.i("status", "AAAAAAA");
+                        attendeeNumRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                                int attendeeNum = task.getResult().getValue(int.class);
+                                attendeeNum -= 1;
+                                attendees.remove(attendees.indexOf(userId));
+                                joinedEventsRef.setValue(joinedEvents);
+                                attendeesRef.setValue(attendees);
+                                attendeeNumRef.setValue(attendeeNum);
+                                Log.i("status", "AAAAAAA");
+                            }
+                        });
+
                     }
                 });
             }
@@ -138,8 +170,8 @@ public class UserServices {
                 ArrayList<Integer> joinedEvents = (ArrayList<Integer>) task.getResult().getValue();
                 if (joinedEvents == null) joinedEvents = new ArrayList<Integer>();
                 if (joinedEvents.contains(userId)) return;
-                joinedEvents.add(eventId);
-                joinedEventsRef.setValue(joinedEvents);
+
+                joinedEventsRef.child(eventId + "").setValue(eventId);
 
 
                 DatabaseReference attendeeRef = eventRef.child(eventId + "").child("attendees");
@@ -160,6 +192,9 @@ public class UserServices {
 
     public void addCurrentUserToEvent(int eventId){
 
+        currentUser.id = getCurrentUserId();
+
+
                 DatabaseReference attendeesRef = eventRef.child(eventId + "").child("attendees");
                 attendeesRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                     @Override
@@ -168,9 +203,27 @@ public class UserServices {
                         if (attendees == null) return;
                         if (attendees.contains(currentUser.id)) return;
                         attendees.add(currentUser.id);
-                        attendeesRef.setValue(attendees);
-                        currentUser.joinedEvents.add(eventId);
-                        userRef.child(currentUser.id).child("joinedEvents").setValue(currentUser.joinedEvents);
+
+                        DatabaseReference joinedEventsRef = userRef.child(currentUser.getId()).child("joinedEvents");
+
+                       joinedEventsRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                                ArrayList<Integer> joinedEvents = (ArrayList<Integer>) task.getResult().getValue();
+                                joinedEvents.add(eventId);
+
+                                attendeesRef.setValue(attendees);
+
+                                joinedEventsRef.setValue(joinedEvents);
+
+                            }
+                        });
+
+
+
+
+
+
                     }
                 });
 
@@ -249,9 +302,15 @@ public class UserServices {
 //        Log.i("userInfo", "email:" + currentUser.getEmail() + " auth:" + currentUser.getAuth());
 
 
+        Log.i("Current user", firebaseAuth.getCurrentUser().getUid());
         userRef.child(firebaseAuth.getCurrentUser().getUid()).child("auth").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (task.getResult().getValue() == null){
+                    Intent loginIntent = new Intent(context, LoginActivity.class);
+                    loginIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    context.startActivity(loginIntent);
+                }
                 int auth = task.getResult().getValue(int.class);
 
                 if (auth == 1){

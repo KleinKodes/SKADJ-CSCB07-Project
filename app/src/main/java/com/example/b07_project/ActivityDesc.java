@@ -28,14 +28,16 @@ public class ActivityDesc extends AppCompatActivity {
     Boolean mode;
     String firstName;
     int auth;
+    UserServices userServices;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_desc);
         Intent intent = getIntent();
+        userServices = new UserServices();
         activityInfo= intent.getStringArrayExtra(activityPageDenny.activity);
         eventId = intent.getIntExtra("eventId", -1);
-        userId = intent.getStringExtra("userId");
+        userId = userServices.getCurrentUserId();
         isThisMyEvent = intent.getBooleanExtra("isThisMyEvent", false);
         auth = intent.getIntExtra("auth", 0);
 
@@ -47,6 +49,11 @@ public class ActivityDesc extends AppCompatActivity {
         if(firstName != null){
             TextView textView = findViewById(R.id.profileUserName);
             textView.setText(firstName);
+        }
+
+        if (mode){
+             View navView =(View) findViewById(R.id.logOutButton).getParent();
+             navView.setVisibility(View.GONE);
         }
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -150,7 +157,10 @@ public class ActivityDesc extends AppCompatActivity {
                 }else {
 
 
-                    //TODO: Add the event to the user's joined events list
+                    //TODO: OPTIMIZE
+//
+//                    userRef.child(eventId + "").setValue(eventId);
+//                    eventRef.child(eventId + "").child("attendees").child(userId).setValue(userId);
                     userRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<DataSnapshot> task) {

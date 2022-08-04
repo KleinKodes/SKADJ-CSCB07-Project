@@ -70,6 +70,10 @@ public class activityPageDenny extends AppCompatActivity {
         if (mode){
             TextView textView = (TextView) findViewById(R.id.upcomingEventHeaderDenny);
             textView.setText("Unapproved Events");
+
+                View navView =(View) logOut.getParent();
+                navView.setVisibility(View.GONE);
+
         }
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -90,7 +94,7 @@ public class activityPageDenny extends AppCompatActivity {
 
 
                     // only shows event if we want to see approved and it is or if we want to see unapproved and it isn't
-                    if (((!mode && event.approved) || mode && !event.approved )&& ((venueId == -1) || event.id == venueId))
+                    if (((!mode && event.approved) || mode && !event.approved )&& ((venueId == -1) || event.getVenueId() == venueId))
                     userRef.child(event.getOwnerId() + "").child("firstName").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<DataSnapshot> task) {

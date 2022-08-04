@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -47,7 +48,7 @@ public class VenuePageDennt extends AppCompatActivity {
         View logout = findViewById(R.id.logOutButton);
         logout.setOnClickListener(new Navigation());
         TextView userName = findViewById(R.id.userName);
-        userName.setText(userServices.findUserByUserId(userServices.firebaseAuth.getCurrentUser().getUid()).getFirstName());
+        userName.setText(userServices.firebaseAuth.getCurrentUser().getDisplayName());
 
 
 
