@@ -155,4 +155,9 @@ public class activityPageDenny extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void transitionToAddEvent(View view){
+        Intent intent = new Intent(this, AddEventDenny.class);
+        startActivity(intent);
+    }
+
 }

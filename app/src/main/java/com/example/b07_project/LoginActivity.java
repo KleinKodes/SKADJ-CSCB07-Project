@@ -80,14 +80,7 @@ public class LoginActivity extends AppCompatActivity {
     public void trasitionToSignUp(View view) {
         Intent intent = new Intent(this, SignUpActivity.class);
         startActivity(intent);
+        finish();
     }
-
-
-public void trasitionToSignUp(View view)
-{
-    Intent intent = new Intent(this, SignUpActivity.class);
-    startActivity(intent);
-    finish();
-}
 
 }

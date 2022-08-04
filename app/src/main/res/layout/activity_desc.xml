@@ -61,13 +61,14 @@
             android:id="@+id/venueDescVenue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="44dp"
             android:text="Activity"
             android:textColor="#173C18"
             android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/joinEventButton"
-            app:layout_constraintHorizontal_bias="0.051"
+            app:layout_constraintHorizontal_bias="0.266"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/AppName" />
 
@@ -148,6 +149,32 @@
             app:layout_constraintTop_toBottomOf="@+id/divider3"
             app:layout_constraintVertical_bias="1.0">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal"
+                android:paddingHorizontal="20dp">
+
+                <Button
+                    android:id="@+id/joinEventButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginRight="20dp"
+                    android:backgroundTint="#2B782E"
+                    android:onClick="joinEvent"
+                    android:text="Join" />
+
+                <Button
+                    android:id="@+id/denyEventButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginRight="20dp"
+                    android:backgroundTint="#2B782E"
+                    android:onClick="DenyEvent"
+                    android:text="Deny" />
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/venueDescProvince"
                 android:layout_width="match_parent"
@@ -205,41 +232,13 @@
                 android:textSize="18dp" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/joinEventButton"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="156dp"
-            android:layout_marginBottom="4dp"
-            android:backgroundTint="#2B782E"
-            android:onClick="joinEvent"
-            android:text="Join"
-            app:layout_constraintBottom_toBottomOf="@+id/divider3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.206"
-            app:layout_constraintStart_toEndOf="@+id/venueDescVenue" />
-
-        <Button
-            android:id="@+id/denyEventButton"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="4dp"
-            android:backgroundTint="#2B782E"
-            android:onClick="DenyEvent"
-            android:text="Deny"
-            app:layout_constraintBottom_toBottomOf="@+id/divider3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/joinEventButton" />
-
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="34dp"
             android:layout_height="26dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
+            android:onClick="backToActivityPage"
             app:layout_constraintEnd_toEndOf="@+id/Header"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/returntopage" />
