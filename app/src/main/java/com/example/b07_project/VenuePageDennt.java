@@ -21,6 +21,8 @@ public class VenuePageDennt extends AppCompatActivity {
         home.setOnClickListener(new Navigation());
         View profile = findViewById(R.id.profileButton);
         profile.setOnClickListener(new Navigation());
+        View logout = findViewById(R.id.logOutButton);
+        logout.setOnClickListener(new Navigation());
     }
 
     public void addCard(View view) {

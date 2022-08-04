@@ -8,6 +8,7 @@ public class Navigation extends AppCompatActivity implements View.OnClickListene
     @Override
     public void onClick(View view)
     {
+        UserServices userServices = new UserServices();
         System.out.println(view.getId());
         switch (view.getId())
         {
@@ -27,9 +28,12 @@ public class Navigation extends AppCompatActivity implements View.OnClickListene
                 view.getContext().startActivity(intent2);
                 finish();
                 break;
+            case R.id.logOutButton:
             case R.id.signOutButton:
-                LoginActivity login = new LoginActivity();
+
+                userServices.logOutCurrentUser();
                 break;
+
 
         }
     }

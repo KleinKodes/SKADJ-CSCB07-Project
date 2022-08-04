@@ -28,6 +28,8 @@ public class User {
         return lastName;
     }
 
+    public String getFullName(){return getFirstName() + " " + getLastName();}
+
     public String getEmail() {
         return email;
     }

@@ -3,9 +3,11 @@ package com.example.b07_project;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -20,10 +22,13 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.nio.charset.StandardCharsets;
+
 
 public class LoginActivity extends AppCompatActivity {
     public FirebaseAuth mAuth;
     public int auth;
+    private UserServices userServices;
 
 
     @Override
@@ -31,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
         setContentView(R.layout.activity_login);
+        userServices = new UserServices();
 
         //FirebaseUser currentUser = mAuth.getCurrentUser();
         //if(currentUser != null){
@@ -42,67 +48,72 @@ public class LoginActivity extends AppCompatActivity {
     public void login(View view){
         EditText email = (EditText) findViewById(R.id.Email_EditText);
         EditText password = (EditText) findViewById(R.id.Password_EditText);
-        System.out.println(email.getText());
-        System.out.println(password.getText());
+        String emailString = email.getText().toString();
+        String passwordString = password.getText().toString();
+        TextView loginFail = findViewById(R.id.Login_Failed_TextView);
+
+        InputMethodManager imm = (InputMethodManager) this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
         // validate that there are emails and passwords to check
         if(!(validateData(view, email, password))){return;}
 
-        if (email.getText().toString().equals("")){
-            TextView loginFail = (TextView) findViewById(R.id.Login_Failed_TextView);
+        if (emailString.equals("")){
+
             loginFail.setText("EMAIL is MISSING");
             return;
         }
-        if (password.getText().toString().equals("")){
-            TextView loginFail = (TextView) findViewById(R.id.Login_Failed_TextView);
+        if (passwordString.equals("")){
+
             loginFail.setText("PASSWORD is MISSING");
             return;
         }
 
-        mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Intent mainAct = new Intent(LoginActivity.this, MainActivityDeprecated.class);
-                            Intent adminAct = new Intent(LoginActivity.this, AdminActivity.class);
-
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            //user.getEmail();
-                            FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            DatabaseReference myRef = database.getReference("Users").child(user.getUid());
-
-                            myRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>(){
-
-                                    @Override
-                                    public void onComplete(@NonNull Task<DataSnapshot> task) {
-                                        User logUser = ((User)task.getResult().getValue(User.class));
-
-                                        mainAct.putExtra("auth", logUser.auth);
-                                        mainAct.putExtra("id", logUser.id);
-
-                                        adminAct.putExtra("auth", logUser.auth);
-                                        adminAct.putExtra("id", logUser.id);
-
-                                        if (logUser.auth == 1){
-                                            startActivity(adminAct);
-                                        }
-                                        else{
-                                            startActivity(mainAct);
-                                        }
-
-                                        finish();
-                                    }
-                                }
-                            );
-
-                        } else {
-                            System.out.println("LOGIN FAILED NOOO");
-                            TextView loginFail = (TextView) findViewById(R.id.Login_Failed_TextView);
-                            loginFail.setText(task.getException().getMessage());
-                        }
-                    }
-                });
+        userServices.logInUser(emailString, passwordString, view);
+//        mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
+//                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        if (task.isSuccessful()) {
+//                            Intent mainAct = new Intent(LoginActivity.this, MainActivityDeprecated.class);
+//                            Intent adminAct = new Intent(LoginActivity.this, AdminActivity.class);
+//
+//                            FirebaseUser user = mAuth.getCurrentUser();
+//                            //user.getEmail();
+//                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+//                            DatabaseReference myRef = database.getReference("Users").child(user.getUid());
+//
+//                            myRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>(){
+//
+//                                    @Override
+//                                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+//                                        User logUser = ((User)task.getResult().getValue(User.class));
+//
+//                                        mainAct.putExtra("auth", logUser.auth);
+//                                        mainAct.putExtra("id", logUser.id);
+//
+//                                        adminAct.putExtra("auth", logUser.auth);
+//                                        adminAct.putExtra("id", logUser.id);
+//
+//                                        if (logUser.auth == 1){
+//                                            startActivity(adminAct);
+//                                        }
+//                                        else{
+//                                            startActivity(mainAct);
+//                                        }
+//
+//                                        finish();
+//                                    }
+//                                }
+//                            );
+//
+//                        } else {
+//                            System.out.println("LOGIN FAILED NOOO");
+//                            TextView loginFail = (TextView) findViewById(R.id.Login_Failed_TextView);
+//                            loginFail.setText(task.getException().getMessage());
+//                        }
+//                    }
+//                });
     }
 
     private boolean validateData(View view, EditText email, EditText password){

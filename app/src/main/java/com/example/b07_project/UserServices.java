@@ -1,11 +1,16 @@
 package com.example.b07_project;
 
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
@@ -19,6 +24,7 @@ public class UserServices {
     DatabaseReference userRef;
     DatabaseReference venueRef;
     FirebaseAuth firebaseAuth;
+    //EventServices eventServices;
 
     public User currentUser;
 
@@ -29,18 +35,22 @@ public class UserServices {
         this.userRef = database.getReference("Users");
         this.venueRef = database.getReference("Venues");
         this.currentUser = new User();
-        userRef.child(firebaseAuth.getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                currentUser = task.getResult().getValue(User.class);
-            }
-        });
+        //this.eventServices = new EventServices();
+        if (firebaseAuth.getCurrentUser() != null) {
+            userRef.child(firebaseAuth.getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    currentUser = task.getResult().getValue(User.class);
+                }
+            });
+        }
 
     }
 
     public String getCurrentUserId() {return currentUser.id;}
     public String getCurrentUserName(){return currentUser.firstName;}
     public User getCurrentUser(){return currentUser;}
+    public int getCurrentUserAuth(){return currentUser.auth;}
 
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
@@ -52,6 +62,7 @@ public class UserServices {
 
     //EXPERIMENTAL CODE - AVOID USING WHENEVER POSSIBLE
 
+    //it's so funny that i accidentally used this and it really works so far
     public User findUserByUserId(String userId) {
         final User[] user = {new User()};
 
@@ -81,6 +92,10 @@ public class UserServices {
     }
 
     //END EXPERIMENTAL CODE BLOCK
+
+
+
+
 
 
     public void deleteUserFromDatabase(String userId){
@@ -167,6 +182,31 @@ public class UserServices {
     public Boolean checkIfUserOwnsEvent(String userId, int eventId){
 
         return findUserByUserId(userId).createdEvents.contains(eventId);
+
+    }
+
+    public void logOutCurrentUser(){
+        firebaseAuth.signOut();
+    }
+
+    public void logInUser(String email, String password, View view){
+        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+
+
+                    currentUser = findUserByUserId(task.getResult().getUser().getUid());
+
+                } else {
+                    Log.i("Login", "LOGIN FAILED NOOO");
+
+                    Snackbar mySnackbar = Snackbar.make(view, "Invalid email/password combination.", BaseTransientBottomBar.LENGTH_SHORT);
+                    mySnackbar.show();
+                }
+
+            }
+        });
 
     }
 
