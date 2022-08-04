@@ -83,10 +83,10 @@ public class ActivityDesc extends AppCompatActivity {
     public void initializevalues(){
 
         ViewGroup infoContainer = (ViewGroup) findViewById(R.id.infoContainer);
-        TextView host = (TextView)infoContainer.getChildAt(0);
-        TextView start = (TextView)infoContainer.getChildAt(1);
-        TextView end = (TextView)infoContainer.getChildAt(2);
-        TextView date = (TextView)infoContainer.getChildAt(3);
+        TextView host = (TextView)infoContainer.getChildAt(1);
+        TextView start = (TextView)infoContainer.getChildAt(2);
+        TextView end = (TextView)infoContainer.getChildAt(3);
+        TextView date = (TextView)infoContainer.getChildAt(4);
         TextView activity = (TextView) findViewById(R.id.venueDescVenue);
 
         host.setText(activityInfo[4]);

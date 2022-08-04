@@ -30,7 +30,6 @@ public class Navigation extends AppCompatActivity implements View.OnClickListene
                 break;
             case R.id.logOutButton:
             case R.id.signOutButton:
-
                 userServices.logOutCurrentUser();
                 finish();
                 break;
