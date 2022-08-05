@@ -32,38 +32,29 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </LinearLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp">
-
-            <ImageView
-                android:id="@+id/imageView6"
-                android:layout_width="62dp"
-                android:layout_height="59dp"
-                android:layout_marginEnd="128dp"
-                android:contentDescription="@string/todo"
-                app:layout_constraintBottom_toBottomOf="@+id/appName3"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/appName3"
-                app:layout_constraintVertical_bias="0.485"
-                app:srcCompat="@drawable/sports" />
+            android:layout_height="100dp"
+            android:gravity="center">
 
             <TextView
                 android:id="@+id/appName3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="60dp"
                 android:background="#FFFFFF"
                 android:letterSpacing="0.5"
                 android:text="@string/tittle"
                 android:textColor="#000000"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageView6"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="62dp"
+                android:layout_height="59dp"
+                android:contentDescription="@string/todo"
+                app:srcCompat="@drawable/sports" />
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/textView5"

@@ -16,7 +16,7 @@ public class Navigation extends AppCompatActivity implements View.OnClickListene
             case R.id.homeButton:
                 Intent intent1 = new Intent(view.getContext(), VenuePageDennt.class);
                 //intent1.putExtra("auth", intent1.g;
-                userId = getIntent().getStringExtra("userId");
+                //userId = getIntent().getStringExtra("userId");
                 if (userId != null)intent1.putExtra("userId", userId);
                 System.out.println("BRUH");
                 view.getContext().startActivity(intent1);
@@ -32,7 +32,6 @@ public class Navigation extends AppCompatActivity implements View.OnClickListene
                 finish();
                 break;
             case R.id.logOutButton:
-            case R.id.signOutButton:
                 userServices.logOutCurrentUser();
                 finish();
                 break;

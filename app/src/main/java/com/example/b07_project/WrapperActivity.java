@@ -2,7 +2,9 @@ package com.example.b07_project;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.PersistableBundle;
 import android.util.Log;
 
@@ -105,7 +107,17 @@ public class WrapperActivity extends AppCompatActivity {
                     return;
                 }
 
-                userServices.routeUser(getBaseContext());
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        userServices.routeUser(getBaseContext());
+
+                    }
+                }, 1000);
+
+                Resources res = getResources();
+                //res.
+                //firebaseAuth.getCurrentUser().getPhoneNumber();
 
 //                userRef.child(firebaseAuth.getCurrentUser().getUid()).child("auth").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
 //                    @Override

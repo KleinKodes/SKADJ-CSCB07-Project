@@ -37,6 +37,8 @@ public class VenueDesc extends AppCompatActivity {
         home.setOnClickListener(new Navigation());
         View profile = findViewById(R.id.profileButton);
         profile.setOnClickListener(new Navigation());
+        View logout = findViewById(R.id.logOutButton);
+        logout.setOnClickListener(new Navigation());
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Venues");
@@ -47,7 +49,6 @@ public class VenueDesc extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ArrayList<String> list = new ArrayList<String>();
                 for (DataSnapshot snap : snapshot.getChildren()) {
                     Venue venue = snap.getValue(Venue.class);
                     System.out.printf("%s %s\n",venue.getName(), venueName);

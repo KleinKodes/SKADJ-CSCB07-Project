@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -19,8 +18,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import org.w3c.dom.Text;
 
 public class activityPageDenny extends AppCompatActivity {
     public static String activity;
@@ -59,8 +56,9 @@ public class activityPageDenny extends AppCompatActivity {
         home.setOnClickListener(new Navigation());
         View profile = findViewById(R.id.profileButton);
         profile.setOnClickListener(new Navigation());
-        View logOut = findViewById(R.id.signOutButton);
+        View logOut = findViewById(R.id.logOutButton);
         logOut.setOnClickListener(new Navigation());
+
 
 
         userId = getIntent().getStringExtra("userID");
@@ -70,6 +68,10 @@ public class activityPageDenny extends AppCompatActivity {
         if (mode){
             TextView textView = (TextView) findViewById(R.id.upcomingEventHeaderDenny);
             textView.setText("Unapproved Events");
+
+                View navView =(View) logOut.getParent();
+                navView.setVisibility(View.GONE);
+
         }
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -90,7 +92,7 @@ public class activityPageDenny extends AppCompatActivity {
 
 
                     // only shows event if we want to see approved and it is or if we want to see unapproved and it isn't
-                    if (((!mode && event.approved) || mode && !event.approved )&& ((venueId == -1) || event.id == venueId))
+                    if (((!mode && event.approved) || mode && !event.approved )&& ((venueId == -1) || event.getVenueId() == venueId))
                     userRef.child(event.getOwnerId() + "").child("firstName").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<DataSnapshot> task) {

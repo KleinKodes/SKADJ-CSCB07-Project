@@ -8,11 +8,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FAFAFA"
-    android:onClick="transitionToDesc"
     tools:layout_editor_absoluteX="-18dp"
     tools:layout_editor_absoluteY="-283dp">
 
-    <ImageView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/Header"
         android:layout_width="0dp"
         android:layout_height="58dp"
@@ -21,59 +20,79 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.551"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/addPost"
-        android:layout_width="33dp"
-        android:layout_height="29dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:contentDescription="@string/todo"
-        android:onClick="transitionToAddEvent"
-        app:layout_constraintEnd_toEndOf="@+id/Header"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/plus" />
+        <TextView
+            android:id="@+id/profileUserName"
+            android:layout_width="172dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/user_s_name"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/AppName"
-        android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/addPost"
+            android:layout_width="33dp"
+            android:layout_height="29dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="@string/todo"
+            android:onClick="transitionToAddEvent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/plus" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/Logo"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="144dp"
-        android:layout_marginTop="20dp"
-        android:background="#FFFFFF"
-        android:letterSpacing="0.5"
-        android:text="@string/tittle"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView11" />
-
-    <ImageView
-        android:id="@+id/imageView11"
-        android:layout_width="62dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="108dp"
-        android:contentDescription="@string/todo"
+        android:gravity="center"
+        android:paddingTop="40dp"
+        android:paddingBottom="30dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/AppName"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/sports" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Header">
+
+        <TextView
+            android:id="@+id/appName3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:letterSpacing="0.5"
+            android:text="@string/tittle"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="62dp"
+            android:layout_height="59dp"
+            android:contentDescription="@string/todo"
+            app:srcCompat="@drawable/sports" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/upcomingEventHeaderDenny"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:text="Upcoming Events"
         android:textColor="#173C18"
         android:textSize="30sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/cards"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AppName" />
+        app:layout_constraintTop_toBottomOf="@+id/Logo" />
 
     <ScrollView
         android:id="@+id/cards"
@@ -81,7 +100,7 @@
         android:layout_height="415dp"
         android:layout_marginTop="30dp"
         android:background="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintBottom_toTopOf="@+id/Navbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/upcomingEventHeaderDenny"
@@ -100,7 +119,7 @@
     </ScrollView>
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/Navbar"
         android:layout_width="0dp"
         android:layout_height="49dp"
         android:background="#000000"
@@ -133,7 +152,7 @@
             app:srcCompat="@drawable/profile" />
 
         <ImageView
-            android:id="@+id/signOutButton"
+            android:id="@+id/logOutButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -142,17 +161,5 @@
             app:srcCompat="@drawable/signout" />
 
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/profileUserName"
-        android:layout_width="172dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/user_s_name"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
