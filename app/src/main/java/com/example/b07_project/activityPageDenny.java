@@ -48,7 +48,7 @@ public class activityPageDenny extends AppCompatActivity {
         //if mode == 1 then we want to view unapproved events
 
 
-        firstName = getIntent().getStringExtra("firstName");
+        firstName = userServices.getCurrentUser;
         venueId = intent.getIntExtra("venueId", -1);
         if(firstName != null){
             TextView textView = findViewById(R.id.profileUserName);
@@ -63,7 +63,7 @@ public class activityPageDenny extends AppCompatActivity {
         logOut.setOnClickListener(new Navigation());
 
 
-        userId = getIntent().getStringExtra("userID");
+        userId = userServices.getCurrentUserId();
         if (userId == null) userId = "";
 
         //changes text if we want to approve unapproved events

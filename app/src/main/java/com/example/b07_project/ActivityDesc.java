@@ -39,13 +39,13 @@ public class ActivityDesc extends AppCompatActivity {
         eventId = intent.getIntExtra("eventId", -1);
         userId = userServices.getCurrentUserId();
         isThisMyEvent = intent.getBooleanExtra("isThisMyEvent", false);
-        auth = intent.getIntExtra("auth", 0);
+        auth = userServices.getCurrentUserAuth();
 
         mode = intent.getBooleanExtra("approvalNeeded", false);
         Log.i("mode", mode.toString());
 
         if (userId == null) userId = "";
-        firstName = intent.getStringExtra("firstName");
+        firstName = userServices.getCurrentUserName();
         if(firstName != null){
             TextView textView = findViewById(R.id.profileUserName);
             textView.setText(firstName);

@@ -41,8 +41,9 @@ public class ChooseVenue extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_venue_sport);
+        UserServices userServices = new UserServices();
 
-        int auth = this.getIntent().getIntExtra("auth", 0);
+        int auth = userServices.getCurrentUserAuth();
 
         RecyclerView recyclerView = findViewById(R.id.rvVenues);
         RecycleViewAdapter recycleViewAdapter = new RecycleViewAdapter(venues, auth);
@@ -192,8 +193,8 @@ public class ChooseVenue extends AppCompatActivity {
 
         Log.i("sports-list:", sportsPass.toString());
 
-
-        int auth = this.getIntent().getIntExtra("auth", 0);
+        UserServices userServices = new UserServices();
+        int auth = userServices.getCurrentUserAuth();
         intent.putExtra("auth", auth);
 
         intent.putStringArrayListExtra("sports", sportsPass);

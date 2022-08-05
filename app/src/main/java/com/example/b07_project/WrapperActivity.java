@@ -115,7 +115,7 @@ public class WrapperActivity extends AppCompatActivity {
                     }
                 }, 1000);
 
-                Resources res = getResources();
+                //Resources res = getResources();
                 //res.
                 //firebaseAuth.getCurrentUser().getPhoneNumber();
 

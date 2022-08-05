@@ -75,7 +75,7 @@ public class AddEvent extends AppCompatActivity {
         event.setEndDate(new GregorianCalendar(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth(), timePicker.getCurrentHour(), timePicker.getCurrentMinute()));
         event.sport = getIntent().getStringExtra("sport");
         event.venueId = getIntent().getIntExtra("venueId", -1);
-        event.ownerId = getIntent().getStringExtra("userID");
+        event.ownerId = userServices.getCurrentUserId();
 
 
         // info should all be inputted by this point, code checks validity here

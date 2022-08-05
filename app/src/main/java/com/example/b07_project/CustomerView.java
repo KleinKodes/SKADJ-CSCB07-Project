@@ -12,7 +12,8 @@ public class CustomerView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_view);
-        auth = this.getIntent().getIntExtra("auth", 0);
+        UserServices userServices = new UserServices();
+        auth = userServices.getCurrentUserAuth();
     }
     public void transitionToProfile(View view){
         Intent intent = new Intent(this, profile.class);
