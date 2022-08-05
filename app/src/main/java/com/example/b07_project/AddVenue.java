@@ -245,7 +245,7 @@ public class AddVenue extends AppCompatActivity {
         numOfSports += 1;
         LinearLayout layout = (LinearLayout)findViewById(R.id.sports);
         View v = LayoutInflater.from(this).inflate(R.layout.sport_card, null);
-        ((EditText)v.findViewById(R.id.sportName)).setText(text);
+        ((EditText)(v.findViewById(R.id.sportName))).setText(text);
         ((Button)v.findViewById(R.id.minus)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
