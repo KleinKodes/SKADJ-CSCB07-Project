@@ -38,10 +38,9 @@ public class AddVenue extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_venue_denny);
-        auth = this.getIntent().getIntExtra("auth", 0);
         mode = this.getIntent().getIntExtra("mode", 0);
 
-        if(auth == 1 && mode == 1){
+        if(mode == 1){
             TextView modeText = ((TextView)findViewById(R.id.modeText));
             modeText.setText("View/Edit Venue");
 
