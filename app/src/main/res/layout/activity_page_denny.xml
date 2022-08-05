@@ -97,9 +97,11 @@
     <ScrollView
         android:id="@+id/cards"
         android:layout_width="0dp"
-        android:layout_height="415dp"
+        android:layout_height="0dp"
         android:layout_marginTop="30dp"
         android:background="#FFFFFF"
+        android:scrollbarStyle="insideOverlay"
+        android:scrollbarFadeDuration="0"
         app:layout_constraintBottom_toTopOf="@+id/Navbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
