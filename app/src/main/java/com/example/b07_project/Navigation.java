@@ -1,10 +1,13 @@
 package com.example.b07_project;
 import android.content.Intent;
+import android.os.Handler;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Navigation extends AppCompatActivity implements View.OnClickListener{
+    private int pStatus = 0;
     String userId;
     @Override
     public void onClick(View view)
