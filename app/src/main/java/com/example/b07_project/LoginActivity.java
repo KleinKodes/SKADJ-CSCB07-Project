@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
         // validate that there are emails and passwords to check
         if(!(validateData(view, email, password))){return;}
 
-/*        setContentView(R.layout.loading_activity);
+        setContentView(R.layout.loading_activity);
         ProgressBar p = (ProgressBar)findViewById(R.id.progressBar);
         Handler h = new Handler();
         new Thread(new Runnable() {
@@ -78,9 +78,8 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     });
                 }
-                userServices.logInUser(emailString, passwordString, view, this);
             }
-        }).start();*/
+        }).start();
         userServices.logInUser(emailString, passwordString, view, this);
 
 

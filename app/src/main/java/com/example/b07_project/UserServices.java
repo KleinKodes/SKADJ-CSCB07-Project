@@ -253,7 +253,7 @@ public class UserServices {
 
 
                     currentUser = findUserByUserId(task.getResult().getUser().getUid());
-                    activity.finish();
+                    //activity.finish();
 
                 } else {
                     Log.i("Login", "LOGIN FAILED NOOO");
