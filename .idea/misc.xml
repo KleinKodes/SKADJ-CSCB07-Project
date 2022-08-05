@@ -75,6 +75,7 @@
         <entry key="..\:/Users/qin25/AndroidStudioProjects/b07 stuff/SKADJ-CSCB07-Project/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3575" />
         <entry key="..\:/Users/qin25/AndroidStudioProjects/b07 stuff/SKADJ-CSCB07-Project/app/src/main/res/layout/activity_add_event.xml" value="0.35260416666666666" />
         <entry key="..\:/Users/qin25/AndroidStudioProjects/b07 stuff/SKADJ-CSCB07-Project/app/src/main/res/layout/activity_add_venue.xml" value="0.33539780848022865" />
+        <entry key="..\:/Users/qin25/AndroidStudioProjects/b07 stuff/SKADJ-CSCB07-Project/app/src/main/res/layout/activity_add_venue_denny.xml" value="0.17831813576494426" />
         <entry key="..\:/Users/qin25/AndroidStudioProjects/b07 stuff/SKADJ-CSCB07-Project/app/src/main/res/layout/activity_admin.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/qin25/AndroidStudioProjects/b07 stuff/SKADJ-CSCB07-Project/app/src/main/res/layout/activity_card.xml" value="0.17831813576494426" />
         <entry key="..\:/Users/qin25/AndroidStudioProjects/b07 stuff/SKADJ-CSCB07-Project/app/src/main/res/layout/activity_card2.xml" value="0.17831813576494426" />
@@ -89,6 +90,7 @@
         <entry key="..\:/Users/qin25/AndroidStudioProjects/b07 stuff/SKADJ-CSCB07-Project/app/src/main/res/layout/activity_upcoming_events_driver.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/qin25/AndroidStudioProjects/b07 stuff/SKADJ-CSCB07-Project/app/src/main/res/layout/listlayout.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/qin25/AndroidStudioProjects/b07 stuff/SKADJ-CSCB07-Project/app/src/main/res/layout/profile_card.xml" value="0.17831813576494426" />
+        <entry key="..\:/Users/qin25/AndroidStudioProjects/b07 stuff/SKADJ-CSCB07-Project/app/src/main/res/layout/sport_card.xml" value="0.3380208333333333" />
         <entry key="..\:/Users/qin25/AndroidStudioProjects/b07 stuff/SKADJ-CSCB07-Project/app/src/main/res/layout/venue_card.xml" value="0.33" />
         <entry key="..\:/Users/qin25/Documents/GitHub/SKADJ-CSCB07-Project/app/src/main/res/layout/activity_card2.xml" value="0.1" />
         <entry key="..\:/Users/qin25/Documents/GitHub/SKADJ-CSCB07-Project/app/src/main/res/layout/activity_edit_venue.xml" value="0.1693840579710145" />

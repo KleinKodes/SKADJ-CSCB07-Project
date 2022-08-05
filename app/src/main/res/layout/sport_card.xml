@@ -7,13 +7,14 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -36,7 +37,7 @@
                 android:paddingRight="20dp">
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName"
+                    android:id="@+id/sportName"
                     android:layout_width="326dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -54,7 +55,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/button3"
+                    android:id="@+id/minus"
                     android:layout_width="62dp"
                     android:layout_height="45dp"
                     android:layout_weight="1"

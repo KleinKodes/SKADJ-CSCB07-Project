@@ -7,9 +7,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -171,9 +173,11 @@ public class AddVenue extends AppCompatActivity {
         //sports
         venue.sports = new ArrayList<String>();
         LinearLayout layout = (LinearLayout)findViewById(R.id.sports);
-        for(int i=0; i<layout.getChildCount(); i++)
+        venue.sports.add(((EditText)layout.findViewById(R.id.sport)).getText().toString());
+        for(int i=1; i<layout.getChildCount(); i++)
         {
-            EditText sport = (EditText)layout.getChildAt(i);
+            View v = layout.getChildAt(i);
+            EditText sport = (EditText)v.findViewById(R.id.sportName);
             venue.sports.add(sport.getText().toString());
         }
 
@@ -225,10 +229,10 @@ public class AddVenue extends AppCompatActivity {
         numOfSports += 1;
         LinearLayout layout = (LinearLayout)findViewById(R.id.sports);
         View v = LayoutInflater.from(this).inflate(R.layout.sport_card, null);
-        ((ViewGroup)v).getChildAt(1).setOnClickListener(new View.OnClickListener() {
+        ((Button)v.findViewById(R.id.minus)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                layout.removeView(view);
+                layout.removeView(v);
             }
         });
 
@@ -241,11 +245,11 @@ public class AddVenue extends AppCompatActivity {
         numOfSports += 1;
         LinearLayout layout = (LinearLayout)findViewById(R.id.sports);
         View v = LayoutInflater.from(this).inflate(R.layout.sport_card, null);
-        //Fuck this i'll do it later
-        ((ViewGroup)(((ViewGroup)v).getChildAt(0))).getChildAt(1).setOnClickListener(new View.OnClickListener() {
+        ((EditText)v.findViewById(R.id.sportName)).setText(text);
+        ((Button)v.findViewById(R.id.minus)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                layout.removeView(view);
+                layout.removeView(v);
             }
         });
 
