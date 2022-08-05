@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -19,8 +18,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import org.w3c.dom.Text;
 
 public class activityPageDenny extends AppCompatActivity {
     public static String activity;
@@ -59,8 +56,9 @@ public class activityPageDenny extends AppCompatActivity {
         home.setOnClickListener(new Navigation());
         View profile = findViewById(R.id.profileButton);
         profile.setOnClickListener(new Navigation());
-        View logOut = findViewById(R.id.signOutButton);
+        View logOut = findViewById(R.id.logOutButton);
         logOut.setOnClickListener(new Navigation());
+
 
 
         userId = getIntent().getStringExtra("userID");

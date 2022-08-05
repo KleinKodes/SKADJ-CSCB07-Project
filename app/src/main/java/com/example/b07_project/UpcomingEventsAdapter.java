@@ -3,6 +3,7 @@ package com.example.b07_project;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 public class UpcomingEventsAdapter extends RecyclerView.Adapter<UpcomingEventsAdapter.ViewHolder>{
 
     private ArrayList<Event> eventsList;
+    public static String currClass;
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
@@ -56,18 +58,25 @@ public class UpcomingEventsAdapter extends RecyclerView.Adapter<UpcomingEventsAd
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Event event = eventsList.get(position);
 
+
+        Event event = eventsList.get(position);
         TextView textView = holder.upcomingTextView;
         textView.setText(event.getName());
+//        textView.setHint(event.get);
+        Log.i("Jacky", String.valueOf(event.getId()));
         Button button = holder.goToButton;
         button.setText("View Event");
         button.setEnabled(true);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int eventId = event.getId();
+                Log.i("Jacky", "pre-event: "+eventId);
+                currClass = "UpcomingEvent";
                 Intent intent = new Intent(v.getContext(), ActivityDesc.class);
-
+                intent.putExtra("eventId", eventId);
+                intent.putExtra("currClass", currClass);
 //                if(auth == 1) {
 //                    intent.setClass(v.getContext(), AddVenue.class);
 //                    intent.putExtra("mode", 1);

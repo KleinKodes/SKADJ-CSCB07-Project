@@ -14,12 +14,16 @@ import android.widget.TextView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 public class ActivityDesc extends AppCompatActivity {
+    DatabaseReference eventRef;
+    DatabaseReference userRef;
     String[] activityInfo;
     int eventId;
     String userId;
@@ -41,6 +45,13 @@ public class ActivityDesc extends AppCompatActivity {
         isThisMyEvent = intent.getBooleanExtra("isThisMyEvent", false);
         auth = intent.getIntExtra("auth", 0);
 
+        View home = findViewById(R.id.homeButton);
+        home.setOnClickListener(new Navigation());
+        View profile = findViewById(R.id.profileButton);
+        profile.setOnClickListener(new Navigation());
+        View logout = findViewById(R.id.logOutButton);
+        logout.setOnClickListener(new Navigation());
+
         mode = intent.getBooleanExtra("approvalNeeded", false);
         Log.i("mode", mode.toString());
 
@@ -57,8 +68,8 @@ public class ActivityDesc extends AppCompatActivity {
         }
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference eventRef = database.getReference("Events");
-        DatabaseReference userRef = database.getReference("Users");
+        eventRef = database.getReference("Events");
+        userRef = database.getReference("Users");
 
         eventRef.child(eventId + "").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
@@ -84,23 +95,43 @@ public class ActivityDesc extends AppCompatActivity {
             }
         });
 
+
         initializevalues();
+
     }
 
     public void initializevalues(){
+        Log.i("Jacky", "EventID:" + eventId);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        eventRef = database.getReference("Events");
+        eventRef.child(eventId + "").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                event = task.getResult().getValue(Event.class);
+                ViewGroup infoContainer = (ViewGroup) findViewById(R.id.infoContainer);
+                TextView host = (TextView)infoContainer.getChildAt(1);
+                TextView start = (TextView)infoContainer.getChildAt(2);
+                TextView startEnd = (TextView)infoContainer.getChildAt(3);
+                TextView date = (TextView)infoContainer.getChildAt(4);
+                TextView activity = (TextView) findViewById(R.id.venueDescVenue);
+                TextView endDate = (TextView) findViewById(R.id.activityDescEndDate);
+                TextView sports = (TextView) findViewById(R.id.activityDescSports);
+                TextView desc = (TextView) findViewById(R.id.activityDescDescription);
+                TextView cap = (TextView) findViewById(R.id.activityDescCapacity);
 
-        ViewGroup infoContainer = (ViewGroup) findViewById(R.id.infoContainer);
-        TextView host = (TextView)infoContainer.getChildAt(1);
-        TextView start = (TextView)infoContainer.getChildAt(2);
-        TextView end = (TextView)infoContainer.getChildAt(3);
-        TextView date = (TextView)infoContainer.getChildAt(4);
-        TextView activity = (TextView) findViewById(R.id.venueDescVenue);
+                host.setText(event.getOwnerId());
+                start.setText("Start Time: "+event.getStartTimeString());
+                startEnd.setText("End Time: "+event.getEndTimeString());
+                date.setText("Start Date: "+event.getStartDateString());
+                endDate.setText("End Date: "+event.getEndDateString());
+                sports.setText("Sport: "+event.getSport());
+                cap.setText(event.getAttendeeNum()+"/"+event.getCapacity());
+                desc.setText(event.getEventDescription());
+                activity.setText(event.getName());
 
-        host.setText(activityInfo[4]);
-        start.setText(activityInfo[1]);
-        end.setText(activityInfo[2]);
-        date.setText(activityInfo[0]);
-        activity.setText(activityInfo[3]);
+            }
+        });
+
     }
 
     public void joinEvent(View view){

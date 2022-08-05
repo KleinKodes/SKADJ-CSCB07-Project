@@ -47,7 +47,7 @@ public class VenuePageDennt extends AppCompatActivity {
         profile.setOnClickListener(new Navigation());
         View logout = findViewById(R.id.logOutButton);
         logout.setOnClickListener(new Navigation());
-        TextView userName = findViewById(R.id.userName);
+        TextView userName = findViewById(R.id.profileUserName);
         userName.setText(userServices.firebaseAuth.getCurrentUser().getDisplayName());
 
 

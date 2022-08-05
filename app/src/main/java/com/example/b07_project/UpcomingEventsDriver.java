@@ -99,10 +99,13 @@ public class UpcomingEventsDriver extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     ArrayList<Event> Events = new ArrayList<>();
                     for (DataSnapshot data : snapshot.getChildren()) {
-                        String name = data.child("name").getValue().toString();
-                        Event event = new Event(name);
-                        event.startTimeStamp = Long.valueOf(data.child("startTimeStamp").getValue().toString());
+                        //Denny added this
+                        Event event = data.getValue(Event.class);
                         Events.add(event);
+//                        String name = data.child("name").getValue().toString();
+//                        Event event = new Event(name);
+//                        event.startTimeStamp = Long.valueOf(data.child("startTimeStamp").getValue().toString());
+//                        Events.add(event);
                     }
 
                     ArrayList<Event> upcomingEvents = new ArrayList<>();
@@ -200,8 +203,9 @@ public class UpcomingEventsDriver extends AppCompatActivity {
                 newIntent.putExtra("key", finalId);
                 newIntent.putExtra("auth", 1);
                 newIntent.putExtra("pos", pos); //spinner position
-                finish();
                 startActivity(newIntent);
+                overridePendingTransition(0, 0);
+                finish();
             }
 
             @Override
