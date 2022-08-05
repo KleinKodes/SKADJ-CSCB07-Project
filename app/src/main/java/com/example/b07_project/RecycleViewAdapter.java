@@ -90,18 +90,16 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
                 @Override
                 public void onClick(View v) {
 
-                    Intent intent = new Intent(v.getContext(), ChooseSport.class);
 
-                    if(auth == 1) {
-                        intent.setClass(v.getContext(), AddVenue.class);
-                        intent.putExtra("mode", 1);
-                        intent.putExtra("auth", 1);
-                    }
+                    Intent intent = new    Intent(v.getContext(), AddVenue.class);
+                    intent.putExtra("mode", 1);
+                        //intent.putExtra("auth", 1);
+
 
                     intent.putStringArrayListExtra("sports", venue.getSports());
                     intent.putExtra("venue", venue.getName());
                     intent.putExtra("venueId", venue.getId());
-                    intent.putExtra("auth", auth);
+                    //intent.putExtra("auth", auth);
                     v.getContext().startActivity(intent);
 
 
