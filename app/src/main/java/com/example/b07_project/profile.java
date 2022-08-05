@@ -9,11 +9,13 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,6 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import org.w3c.dom.Text;
 
 public class profile extends AppCompatActivity {
+    private int pStatus=0;
     public static String tabState = "";
     public static String userId;
     public UserServices userServices;
@@ -199,15 +202,51 @@ public class profile extends AppCompatActivity {
 
     public void switchToCreate(View view) {
         Intent addProfile = new Intent(this, profile.class);
-        addProfile.putExtra(tabState, 1);
-        startActivity(addProfile);
-        finish();
+        setContentView(R.layout.loading_activity);
+        ProgressBar p = (ProgressBar)findViewById(R.id.progressBar);
+        Handler h = new Handler();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(pStatus < 100){
+                    pStatus++;
+                    android.os.SystemClock.sleep(10);
+                    h.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            p.setProgress(pStatus);
+                        }
+                    });
+                }
+                addProfile.putExtra(tabState, 1);
+                startActivity(addProfile);
+                finish();
+            }
+        }).start();
     }
 
     public void switchToJoin(View view) {
         Intent addProfile = new Intent(this, profile.class);
-        addProfile.putExtra(tabState, 2);
-        startActivity(addProfile);
-        finish();
+        setContentView(R.layout.loading_activity);
+        ProgressBar p = (ProgressBar)findViewById(R.id.progressBar);
+        Handler h = new Handler();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(pStatus < 100){
+                    pStatus++;
+                    android.os.SystemClock.sleep(10);
+                    h.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            p.setProgress(pStatus);
+                        }
+                    });
+                }
+                addProfile.putExtra(tabState, 2);
+                startActivity(addProfile);
+                finish();
+            }
+        }).start();
     }
 }

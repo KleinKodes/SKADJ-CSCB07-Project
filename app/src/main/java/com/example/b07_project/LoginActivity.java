@@ -6,9 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     public FirebaseAuth mAuth;
     public int auth;
     private UserServices userServices;
+    private int pStatus = 0;
 
 
     @Override
@@ -46,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public void login(View view){
+
         EditText email = (EditText) findViewById(R.id.Email_EditText);
         EditText password = (EditText) findViewById(R.id.Password_EditText);
         String emailString = email.getText().toString();
@@ -61,9 +65,6 @@ public class LoginActivity extends AppCompatActivity {
         userServices.logInUser(emailString, passwordString, view, this);
 
 
-
-
-//
     }
 
     private boolean validateData(View view, EditText email, EditText password){
@@ -78,9 +79,27 @@ public class LoginActivity extends AppCompatActivity {
 
 public void trasitionToSignUp(View view)
 {
+    setContentView(R.layout.loading_activity);
     Intent intent = new Intent(this, SignUpActivity.class);
-    startActivity(intent);
-    finish();
+    ProgressBar p = (ProgressBar)findViewById(R.id.progressBar);
+    Handler h = new Handler();
+    new Thread(new Runnable() {
+        @Override
+        public void run() {
+            while(pStatus < 100){
+                pStatus++;
+                android.os.SystemClock.sleep(10);
+                h.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        p.setProgress(pStatus);
+                    }
+                });
+            }
+            startActivity(intent);
+            finish();
+        }
+    }).start();
 }
 
 }
