@@ -62,6 +62,25 @@ public class LoginActivity extends AppCompatActivity {
         // validate that there are emails and passwords to check
         if(!(validateData(view, email, password))){return;}
 
+/*        setContentView(R.layout.loading_activity);
+        ProgressBar p = (ProgressBar)findViewById(R.id.progressBar);
+        Handler h = new Handler();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(pStatus < 100){
+                    pStatus++;
+                    android.os.SystemClock.sleep(10);
+                    h.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            p.setProgress(pStatus);
+                        }
+                    });
+                }
+                userServices.logInUser(emailString, passwordString, view, this);
+            }
+        }).start();*/
         userServices.logInUser(emailString, passwordString, view, this);
 
 
