@@ -193,7 +193,8 @@
                     android:layout_marginRight="20dp"
                     android:backgroundTint="#2B782E"
                     android:onClick="DenyEvent"
-                    android:text="Deny" />
+                    android:text="Deny"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/activityDescCapacity"
