@@ -69,11 +69,11 @@ public class SignUpActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                System.out.println("SIGN IN WAS SUCCESSFUL  :((((");
+                                System.out.println("SIGN UP WAS SUCCESSFUL  :((((");
                                 FirebaseUser user = mAuth.getCurrentUser();
-                                updateUserProfile(name.getText().toString() + " " + last_name.getText().toString());
+                                updateUserProfile(name.getText().toString());
                                 //user.updateProfile(new UserProfileChangeRequest.Builder);
-
+                                //user.
                                 User newUser = new User();
                                 newUser.id = user.getUid();
                                 newUser.auth = 0;
@@ -93,7 +93,6 @@ public class SignUpActivity extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<AuthResult> task) {
                                             if (task.isSuccessful()) {
-                                                Intent mainAct = new Intent(SignUpActivity.this, MainActivityDeprecated.class);
                                                 FirebaseUser user = mAuth.getCurrentUser();
                                                 //user.getEmail();
                                                 FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -103,10 +102,8 @@ public class SignUpActivity extends AppCompatActivity {
                                                         @Override
                                                         public void onComplete(@NonNull Task<DataSnapshot> task) {
                                                             User logUser = ((User)task.getResult().getValue(User.class));
-                                                            mainAct.putExtra("auth", logUser.auth);
-                                                            mainAct.putExtra("id", logUser.id);
-                                                            startActivity(mainAct);
-                                                            finish();
+
+
                                                         }
                                                     }
                                                 );
@@ -114,7 +111,7 @@ public class SignUpActivity extends AppCompatActivity {
                                         }
                                     });
 
-                                finish();
+
                             } else {
                                 //fail
                                 System.out.println("SIGN IN FAILED   :((((");

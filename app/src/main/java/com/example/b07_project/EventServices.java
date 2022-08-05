@@ -121,16 +121,43 @@ public class EventServices {
                 @Override
                 public void onComplete(@NonNull Task<DataSnapshot> task) {
                     ArrayList<Integer> scheduledEventsList = (ArrayList<Integer>) task.getResult().getValue();
-                    scheduledEventsList.add(event.getId());
-                    scheduledEvents.setValue(scheduledEventsList);
-                    eventRef.child(event.getId() + "").setValue(event);
-                    activity.finish();
+                    if (scheduledEventsList == null) scheduledEventsList = new ArrayList<Integer>();
+
+
+                    ArrayList<Integer> finalScheduledEventsList = scheduledEventsList;
+                    eventRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DataSnapshot> task) {
+                            ArrayList<Event> allEventsList = new ArrayList<Event>();
+                            for (DataSnapshot childSnapshot : task.getResult().getChildren()){
+                                allEventsList.add(childSnapshot.getValue(Event.class));
+                            }
+
+                            event.ownerId = userServices.getCurrentUserId();
+                            event.id = findMaxEventId(allEventsList);
+                            finalScheduledEventsList.add(event.getId());
+                            scheduledEvents.setValue(finalScheduledEventsList);
+
+                            eventRef.child(event.getId() + "").setValue(event);
+                            activity.finish();
+                        }
+                    });
+
                 }
             });
         }
 
 
 
+    }
+
+    public int findMaxEventId(ArrayList<Event> eventArrayList){
+        int curMax = -1;
+        for (Event e: eventArrayList) {
+            if (e.getId() != curMax + 1) return curMax + 1;
+            else if (e.getId() > curMax) curMax = e.getId();
+        }
+            return curMax + 1;
     }
 
     public Boolean validateEvent(View view, Event event){

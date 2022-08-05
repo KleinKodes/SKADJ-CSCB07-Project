@@ -9,13 +9,11 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,7 +25,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import org.w3c.dom.Text;
 
 public class profile extends AppCompatActivity {
-    private int pStatus=0;
     public static String tabState = "";
     public static String userId;
     public UserServices userServices;
@@ -47,7 +44,7 @@ public class profile extends AppCompatActivity {
 
         Intent intent = getIntent();
         state = intent.getIntExtra(profile.tabState,1);
-        userId = intent.getStringExtra("userId");
+        userId = userServices.getCurrentUserId();
         if (userId == null) userId = "";
         Log.i("userid ", userId);
         System.out.println(state);
@@ -56,6 +53,8 @@ public class profile extends AppCompatActivity {
         home.setOnClickListener(new Navigation());
         View profile = findViewById(R.id.profileButton);
         profile.setOnClickListener(new Navigation());
+        View logout = findViewById(R.id.logOutButton);
+        logout.setOnClickListener(new Navigation());
 
 
 
@@ -66,15 +65,9 @@ public class profile extends AppCompatActivity {
         DatabaseReference userRef = database.getReference("Users");
         DatabaseReference venueRef = database.getReference("Venues");
 
-        userRef.child(userId).child("firstName").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                String firstName = task.getResult().getValue(String.class);
-                if (firstName == null) return;
-                TextView profileName = findViewById(R.id.profileUserName);
-                profileName.setText(firstName);
-            }
-        });
+        TextView profileName = findViewById(R.id.profileUserName);
+        profileName.setText(userServices.getCurrentUserName());
+
 
         eventRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
@@ -177,6 +170,7 @@ public class profile extends AppCompatActivity {
         textView.setText(event.getName());
         textView.setHint(event.getId() + "");
         Button button = v.findViewById(R.id.profileDelete);
+        button.setHint(event.getId() + "");
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -186,14 +180,17 @@ public class profile extends AppCompatActivity {
                             " from event with id " + event.getId() +
                             " with the name " + event.getName());
                     userServices.removeUserFromEvent(userId, event.getId());
-                    layout.removeView(v);
+                    //switchToCreate(view);
                 }else if (state == 1){
                     Log.i("status", "about to delete event with id " + event.getId() +
                             " and name " + event.getName() + " from database.");
                     eventServices.deleteEventById(event.getId());
-                    v.setVisibility(View.GONE);
+
+
 
                 }
+                View parent = (View)v.getParent().getParent();
+                parent.setVisibility(View.GONE);
             }
         });
 
@@ -202,51 +199,39 @@ public class profile extends AppCompatActivity {
 
     public void switchToCreate(View view) {
         Intent addProfile = new Intent(this, profile.class);
-        setContentView(R.layout.loading_activity);
-        ProgressBar p = (ProgressBar)findViewById(R.id.progressBar);
-        Handler h = new Handler();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while(pStatus < 100){
-                    pStatus++;
-                    android.os.SystemClock.sleep(10);
-                    h.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            p.setProgress(pStatus);
-                        }
-                    });
-                }
-                addProfile.putExtra(tabState, 1);
-                startActivity(addProfile);
-                finish();
-            }
-        }).start();
+        addProfile.putExtra(tabState, 1);
+        addProfile.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        //recreate();
+        startActivity(addProfile);
+        overridePendingTransition(0, 0);
+        finish();
     }
 
     public void switchToJoin(View view) {
         Intent addProfile = new Intent(this, profile.class);
-        setContentView(R.layout.loading_activity);
-        ProgressBar p = (ProgressBar)findViewById(R.id.progressBar);
-        Handler h = new Handler();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while(pStatus < 100){
-                    pStatus++;
-                    android.os.SystemClock.sleep(10);
-                    h.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            p.setProgress(pStatus);
-                        }
-                    });
-                }
-                addProfile.putExtra(tabState, 2);
-                startActivity(addProfile);
-                finish();
-            }
-        }).start();
+        addProfile.putExtra(tabState, 2);
+        addProfile.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivity(addProfile);
+        overridePendingTransition(0, 0);
+
+        finish();
+        //recreate();
+    }
+
+    public void deleteEvent(View view){
+        TextView textView = view.findViewById(R.id.profileDelete);
+
+        if (state == 1) {
+            eventServices.deleteEventById(Integer.parseInt(textView.getHint().toString()));
+            switchToCreate(view);
+        }else if (state == 0) {
+            userServices.removeUserFromEvent(userId, Integer.parseInt(textView.getHint().toString()));
+
+        }
+    }
+
+    public void removeCards(View view){
+        LinearLayout layout = (LinearLayout) findViewById(R.id.cardList);
+        //layout.child
     }
 }

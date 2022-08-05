@@ -5,11 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="413dp"
         android:layout_height="97dp"
         android:background="#2B782E"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,17 +19,14 @@
 
         <TextView
             android:id="@+id/modeText"
-            android:layout_width="216dp"
-            android:layout_height="0dp"
+            android:layout_width="213dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Create An Event"
             android:textColor="#FFFFFF"
             android:textSize="25dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="0dp"

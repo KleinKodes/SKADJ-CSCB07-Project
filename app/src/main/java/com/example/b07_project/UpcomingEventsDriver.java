@@ -156,9 +156,14 @@ public class UpcomingEventsDriver extends AppCompatActivity {
                     venueNames.add(venueName);
                 }
                 Spinner spinner = (Spinner)findViewById(R.id.spinner);
+
+
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, venueNames);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinner.setAdapter(adapter);
+                //spinner.setPrompt("Select");
+                spinner.setSelection(getIntent().getIntExtra("pos", 0));
+
             }
 
             @Override
@@ -179,6 +184,7 @@ public class UpcomingEventsDriver extends AppCompatActivity {
 
                 Spinner mySpinner = (Spinner) findViewById(R.id.spinner);
                 String message = mySpinner.getSelectedItem().toString();
+                int pos = mySpinner.getSelectedItemPosition();
 
                 String id = ""; // id string
                 String venueName = ""; // venue string
@@ -193,6 +199,7 @@ public class UpcomingEventsDriver extends AppCompatActivity {
 
                 newIntent.putExtra("key", finalId);
                 newIntent.putExtra("auth", 1);
+                newIntent.putExtra("pos", pos); //spinner position
                 finish();
                 startActivity(newIntent);
             }

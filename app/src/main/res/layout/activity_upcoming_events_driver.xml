@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:onClick="onFilterByVenue"
     tools:context=".UpcomingEventsDriver">
 
   <LinearLayout
@@ -107,7 +106,8 @@
       <Spinner
           android:id="@+id/spinner"
           android:layout_width="273dp"
-          android:layout_height="48dp" />
+          android:layout_height="48dp"
+          android:spinnerMode="dialog" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

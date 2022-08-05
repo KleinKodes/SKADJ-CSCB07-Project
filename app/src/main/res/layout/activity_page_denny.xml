@@ -8,7 +8,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FAFAFA"
-    android:onClick="transitionToDesc"
     tools:layout_editor_absoluteX="-18dp"
     tools:layout_editor_absoluteY="-283dp">
 
