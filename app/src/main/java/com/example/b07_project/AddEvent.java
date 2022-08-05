@@ -186,7 +186,7 @@ public class AddEvent extends AppCompatActivity {
         });
     }*/
 
-    private boolean validateEvent(View view, Event event) {
+    private boolean validateEvent(View view, Event event) { // check capacity for events
         Log.i("status", "validating event");
         if (event.getStartTimeStamp() < Instant.now().toEpochMilli()) {
             //makePopUp(view, "Invalid start date");

@@ -11,11 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -32,6 +34,7 @@ import java.util.concurrent.CountDownLatch;
 
 public class ChooseVenue extends AppCompatActivity {
 
+    private int pStatus=0;
     public static final ArrayList<Venue> venues = new ArrayList<Venue>();
     ConstraintLayout constraintLayout;
     int id_count = 0;
@@ -199,8 +202,9 @@ public class ChooseVenue extends AppCompatActivity {
         intent.putStringArrayListExtra("sports", sportsPass);
         intent.putExtra("venue", venueName.getText());
         intent.putExtra("venueId", venueID);
-        startActivity(intent);
 
+
+        startActivity(intent);
     }
 
 }
