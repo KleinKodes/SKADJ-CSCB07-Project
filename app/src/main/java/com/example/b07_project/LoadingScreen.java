@@ -3,36 +3,40 @@ package com.example.b07_project;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.ProgressBar;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class LoadingScreen {
-    int zero = 0;
-    public void makeLoadingScreen(View view, Context context, Class next){
-        Intent i = new Intent(context, next);
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        ProgressBar p = (ProgressBar) view.findViewById(R.id.progressBar);
+public class LoadingScreen extends AppCompatActivity {
+    private int pStatus=0;
+
+    public void onCreateLoading(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.loading_activity);
+        ProgressBar p = (ProgressBar)findViewById(R.id.progressBar);
         Handler h = new Handler();
         new Thread(new Runnable() {
             @Override
             public void run() {
-                while(zero < 100){
-                    zero++;
+                while(pStatus < 100){
+                    pStatus++;
                     android.os.SystemClock.sleep(10);
                     h.post(new Runnable() {
                         @Override
                         public void run() {
-                            p.setProgress(zero);
+                            p.setProgress(pStatus);
                         }
                     });
                 }
-                context.startActivity(i);
-                ((Activity)context).finish();
+
+                finish();
             }
         }).start();
+
     }
 /*    View view = findViewById(android.R.id.content);
     Context context = getBaseContext();
