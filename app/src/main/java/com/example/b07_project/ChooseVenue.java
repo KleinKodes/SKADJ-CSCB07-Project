@@ -35,10 +35,10 @@ import java.util.concurrent.CountDownLatch;
 public class ChooseVenue extends AppCompatActivity {
 
     private int pStatus=0;
-    public static final ArrayList<Venue> venues = new ArrayList<Venue>();
+    public final ArrayList<Venue> venues = new ArrayList<Venue>();
     ConstraintLayout constraintLayout;
     int id_count = 0;
-    public static ArrayList<String> sportsPass = new ArrayList<String>();
+    public ArrayList<String> sportsPass = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -204,6 +204,12 @@ public class ChooseVenue extends AppCompatActivity {
         intent.putExtra("venueId", venueID);
 
 
+        startActivity(intent);
+    }
+
+    public void backToAdminView(View view)
+    {
+        Intent intent = new Intent(this, AdminActivity.class);
         startActivity(intent);
     }
 

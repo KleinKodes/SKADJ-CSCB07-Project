@@ -231,6 +231,7 @@ public class AddVenue extends AppCompatActivity {
 
     public void deleteVenue(View view)
     {
+        Intent chooseVenue = new Intent(this, ChooseVenue.class);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference("Events");
         ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
@@ -238,7 +239,7 @@ public class AddVenue extends AppCompatActivity {
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 for(DataSnapshot i : task.getResult().getChildren())
                 {
-
+                    System.out.println("NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
                     Event event = (Event)i.getValue(Event.class);
                     if(event.venueId == venueID){
                         Snackbar mySnackbar = Snackbar.make(view, "There are still Events at this Venue!", BaseTransientBottomBar.LENGTH_SHORT);
@@ -253,6 +254,8 @@ public class AddVenue extends AppCompatActivity {
                     public void onComplete(@NonNull Task<DataSnapshot> task) {
                         myRef.removeValue();
 
+                        startActivity(chooseVenue);
+                        finish();
 
                     }
                 });
@@ -260,10 +263,7 @@ public class AddVenue extends AppCompatActivity {
 
             }
         });
-        Intent addVenue = new Intent(this, AdminActivity.class);
-        addVenue.putExtra("auth", auth);
-        startActivity(addVenue);
-        finish();
+
     }
 
     public void addSport(View view)

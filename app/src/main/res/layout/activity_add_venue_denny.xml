@@ -30,7 +30,7 @@
                 android:layout_marginEnd="97dp"
                 android:layout_marginBottom="39dp"
                 android:layout_weight="0.5"
-                android:backgroundTint="#D57272"
+                android:backgroundTint="@color/dark_green"
                 android:onClick="deleteVenue"
                 android:text="Delete"
                 android:textSize="10sp"
