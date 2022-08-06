@@ -10,12 +10,12 @@ import android.widget.Spinner;
 
 import java.util.ArrayList;
 
-public class ChooseSport extends AppCompatActivity {
+public class ChooseSportDeprecated extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_sport);
+        setContentView(R.layout.activity_choose_sport_deprecated);
 
         ArrayList<String> sports = new ArrayList<String>();
 
@@ -32,7 +32,7 @@ public class ChooseSport extends AppCompatActivity {
         Spinner sportSpinner = findViewById(R.id.spinner2);
         String sport = sportSpinner.getSelectedItem().toString();
 
-        Intent intent = new Intent(this, AddEvent.class);
+        Intent intent = new Intent(this, AddEventDeprecated.class);
         intent.putExtra("venue", intent.getStringExtra("venue"));
         intent.putExtra("sport", sport);
         intent.putExtra("venueId", intent.getIntExtra("venueId", -1));

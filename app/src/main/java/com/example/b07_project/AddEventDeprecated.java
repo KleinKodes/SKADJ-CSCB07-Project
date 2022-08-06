@@ -26,7 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 
 
-public class AddEvent extends AppCompatActivity {
+public class AddEventDeprecated extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

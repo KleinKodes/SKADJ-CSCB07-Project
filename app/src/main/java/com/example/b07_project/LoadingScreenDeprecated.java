@@ -9,7 +9,7 @@ import android.widget.ProgressBar;
 
 import androidx.annotation.Nullable;
 
-public class LoadingScreen {
+public class LoadingScreenDeprecated {
     int zero = 0;
     public void makeLoadingScreen(View view, Context context, Class next){
         Intent i = new Intent(context, next);

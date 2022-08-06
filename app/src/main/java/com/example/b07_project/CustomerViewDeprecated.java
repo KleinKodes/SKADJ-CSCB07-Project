@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class CustomerView extends AppCompatActivity {
+public class CustomerViewDeprecated extends AppCompatActivity {
     int auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

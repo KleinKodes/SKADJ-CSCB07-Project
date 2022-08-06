@@ -45,4 +45,9 @@ public class User {
     public ArrayList<Integer> getCreatedEvents() {
         return createdEvents;
     }
+
+    @Override
+    public String toString() {
+        return "User: " + getFullName() + "\nEmail: " + getEmail() + "\nAuth: " + getAuth() + "\nId: " + getId();
+    }
 }

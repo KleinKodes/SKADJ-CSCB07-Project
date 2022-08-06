@@ -27,6 +27,7 @@ public class activityPageDenny extends AppCompatActivity {
     public boolean mode;
     private String firstName;
     public int venueId;
+    UserServices userServices;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +46,8 @@ public class activityPageDenny extends AppCompatActivity {
         //if mode == 1 then we want to view unapproved events
 
 
-        firstName = getIntent().getStringExtra("firstName");
+        userServices = new UserServices();
+        firstName = userServices.getCurrentUserName();
         venueId = intent.getIntExtra("venueId", -1);
         if(firstName != null){
             TextView textView = findViewById(R.id.profileUserName);
