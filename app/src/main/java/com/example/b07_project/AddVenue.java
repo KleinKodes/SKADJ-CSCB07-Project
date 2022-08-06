@@ -216,9 +216,7 @@ public class AddVenue extends AppCompatActivity {
             }
         });
 
-        Intent addVenue = new Intent(this, MainActivityDeprecated.class);
-        if(auth == 1) addVenue.setClass(this, AdminActivity.class);
-        addVenue.putExtra("auth", auth);
+        Intent addVenue = new Intent(this, AdminActivity.class);
         startActivity(addVenue);
         finish();
     }

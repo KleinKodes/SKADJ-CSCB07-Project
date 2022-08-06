@@ -14,7 +14,7 @@
         android:theme="@style/Theme.B07Project"
         tools:targetApi="31">
         <activity
-            android:name=".CustomerView"
+            android:name=".CustomerViewDeprecated"
             android:exported="false" />
         <activity
             android:name=".filterUpcomingByVenue"
@@ -23,13 +23,13 @@
             android:name=".AdminActivity"
             android:exported="false" />
         <activity
-            android:name=".ChooseSport"
+            android:name=".ChooseSportDeprecated"
             android:exported="false" />
         <activity
             android:name=".ChooseVenue"
             android:exported="false" />
         <activity
-            android:name=".AddEvent"
+            android:name=".AddEventDeprecated"
             android:exported="false"
             android:parentActivityName=".MainActivityDeprecated">
 

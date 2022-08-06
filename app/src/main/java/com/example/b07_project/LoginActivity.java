@@ -1,5 +1,7 @@
 package com.example.b07_project;
 
+import static java.lang.System.exit;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -65,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.loading_activity);
         ProgressBar p = (ProgressBar)findViewById(R.id.progressBar);
         Handler h = new Handler();
+
         new Thread(new Runnable() {
             @Override
             public void run() {

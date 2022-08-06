@@ -43,7 +43,8 @@ public class ActivityDesc extends AppCompatActivity {
         eventId = intent.getIntExtra("eventId", -1);
         userId = userServices.getCurrentUserId();
         isThisMyEvent = intent.getBooleanExtra("isThisMyEvent", false);
-        auth = intent.getIntExtra("auth", 0);
+        auth = userServices.getCurrentUserAuth();
+        Log.i("Status", "UserInfo: " + userServices.getCurrentUser());
 
         View home = findViewById(R.id.homeButton);
         home.setOnClickListener(new Navigation());
