@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.PersistableBundle;
 import android.util.Log;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class WrapperActivity extends AppCompatActivity {
 
     int auth;
+    private int pStatus=0;
 
     UserServices userServices;
     FirebaseAuth firebaseAuth;
@@ -47,7 +49,8 @@ public class WrapperActivity extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         userRef = firebaseDatabase.getReference("Users");
 
-
+        ProgressBar p = (ProgressBar)findViewById(R.id.progressBar);
+        Handler h = new Handler();
 
 //        currentUser.observe(WrapperActivity.this, new Observer<User>() {
 //            @Override
@@ -102,20 +105,52 @@ public class WrapperActivity extends AppCompatActivity {
                 if (firebaseAuth.getCurrentUser() == null){
 
                     loginIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(loginIntent);
-                    finish();
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            while(pStatus < 100){
+                                pStatus++;
+                                android.os.SystemClock.sleep(10);
+                                h.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        p.setProgress(pStatus);
+                                    }
+                                });
+                            }
+                            startActivity(loginIntent);
+                            finish();
+                        }
+                    }).start();
+/*                    startActivity(loginIntent);
+                    finish();*/
                     return;
                 }
 
-                new Handler().postDelayed(new Runnable() {
+                new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        userServices.routeUser(getBaseContext());
+                        while(pStatus < 100){
+                            pStatus++;
+                            android.os.SystemClock.sleep(10);
+                            h.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    p.setProgress(pStatus);
+                                }
+                            });
+                        }
+                    }
+                }).start();
 
+                new Handler().postDelayed(new Runnable() { // can I change this?
+                    @Override
+                    public void run(){
+                        userServices.routeUser(getBaseContext());
                     }
                 }, 1000);
 
-                Resources res = getResources();
+                //Resources res = getResources();
                 //res.
                 //firebaseAuth.getCurrentUser().getPhoneNumber();
 

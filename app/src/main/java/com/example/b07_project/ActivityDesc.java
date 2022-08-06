@@ -56,7 +56,7 @@ public class ActivityDesc extends AppCompatActivity {
         Log.i("mode", mode.toString());
 
         if (userId == null) userId = "";
-        firstName = intent.getStringExtra("firstName");
+        firstName = userServices.getCurrentUserName();
         if(firstName != null){
             TextView textView = findViewById(R.id.profileUserName);
             textView.setText(firstName);
@@ -65,6 +65,8 @@ public class ActivityDesc extends AppCompatActivity {
         if (mode){
              View navView =(View) findViewById(R.id.logOutButton).getParent();
              navView.setVisibility(View.GONE);
+             View denyView = (View) findViewById(R.id.denyEventButton);
+             denyView.setVisibility(View.VISIBLE);
         }
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -162,59 +164,59 @@ public class ActivityDesc extends AppCompatActivity {
                 if (event.attendees.contains(userId)){
 
 
+                    userServices.removeUserFromEvent(userId, eventId);
+
                     //TODO: Remove the event from the user's joined events list
-                    userRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<DataSnapshot> task) {
-                            ArrayList<Integer> joinedEvents = (ArrayList<Integer>) task.getResult().getValue();
-                            if (joinedEvents!= null) joinedEvents.remove(joinedEvents.indexOf(eventId));
-
-                            userRef.setValue(joinedEvents);
-                            event.attendees.remove(event.attendees.indexOf(userId));
-                            eventRef.child(eventId + "").setValue(event);
-
-                            Intent intent = new Intent(getBaseContext(), activityPageDenny.class);
-                            intent.putExtra("approvalNeeded", mode);
-                            intent.putExtra("userId", userId);
-                            intent.putExtra("firstName", firstName);
-                            intent.putExtra("auth", auth);
-                            startActivity(intent);
-                            finish();
-
-                        }
-                    });
+//                    userRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<DataSnapshot> task) {
+//                            ArrayList<Integer> joinedEvents = (ArrayList<Integer>) task.getResult().getValue();
+//                            if (joinedEvents!= null) joinedEvents.remove(joinedEvents.indexOf(eventId));
+//
+//                            userRef.setValue(joinedEvents);
+//                            event.attendees.remove(event.attendees.indexOf(userId));
+//                            eventRef.child(eventId + "").setValue(event);
+//
+//                            Intent intent = new Intent(getBaseContext(), activityPageDenny.class);
+//                            intent.putExtra("approvalNeeded", mode);
+//                            startActivity(intent);
+//                            finish();
+//
+//                        }
+//                    });
 
 
                 }else {
 
 
                     //TODO: OPTIMIZE
+
+                    userServices.addCurrentUserToEvent(eventId);
 //
 //                    userRef.child(eventId + "").setValue(eventId);
 //                    eventRef.child(eventId + "").child("attendees").child(userId).setValue(userId);
-                    userRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<DataSnapshot> task) {
-                            ArrayList<Integer> joinedEvents = (ArrayList<Integer>) task.getResult().getValue();
-                            if (joinedEvents== null) joinedEvents = new ArrayList<Integer>();
+//                    userRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<DataSnapshot> task) {
+//                            ArrayList<Integer> joinedEvents = (ArrayList<Integer>) task.getResult().getValue();
+//                            if (joinedEvents== null) joinedEvents = new ArrayList<Integer>();
+//
+//                            joinedEvents.add(eventId);
+//
+//                            userRef.setValue(joinedEvents);
+//                            event.attendees.add(userId);
+//                            eventRef.child(eventId + "").setValue(event);
+//
 
-                            joinedEvents.add(eventId);
-
-                            userRef.setValue(joinedEvents);
-                            event.attendees.add(userId);
-                            eventRef.child(eventId + "").setValue(event);
-
-                            Intent intent = new Intent(getBaseContext(), activityPageDenny.class);
-                            intent.putExtra("approvalNeeded", mode);
-                            intent.putExtra("userId", userId);
-                            intent.putExtra("firstName", firstName);
-                            intent.putExtra("auth", auth);
-                            startActivity(intent);
-                            finish();
-
-                        }
-                    });
+//
+//                        }
+//                    });
                 }
+
+                Intent intent = new Intent(getBaseContext(), activityPageDenny.class);
+                intent.putExtra("approvalNeeded", mode);
+                startActivity(intent);
+                finish();
 
             }
         });
@@ -228,9 +230,6 @@ public class ActivityDesc extends AppCompatActivity {
         FirebaseDatabase.getInstance().getReference("Events").child(eventId + "").removeValue();
         Intent intent = new Intent(getBaseContext(), activityPageDenny.class);
         intent.putExtra("approvalNeeded", mode);
-        intent.putExtra("userId", userId);
-        intent.putExtra("firstName", firstName);
-        intent.putExtra("auth", auth);
         startActivity(intent);
         finish();
     }

@@ -53,12 +53,12 @@ public class UserServices {
 
     public String getCurrentUserId() {return firebaseAuth.getCurrentUser().getUid();}
     public String getCurrentUserName(){return firebaseAuth.getCurrentUser().getDisplayName();}
-    public User getCurrentUser(){return currentUser;}
-    public int getCurrentUserAuth(){return currentUser.auth;}
+//    public User getCurrentUser(){return currentUser;}
+//    public int getCurrentUserAuth(){return currentUser.auth;}
 
-    public void setCurrentUser(User currentUser) {
-        this.currentUser = currentUser;
-    }
+//    public void setCurrentUser(User currentUser) {
+//        this.currentUser = currentUser;
+//    }
 
     public ArrayList<Integer> getCurrentUserJoinedEventIds() {return currentUser.joinedEvents;}
     public ArrayList<Integer> getCurrentUserCreatedEventIds() {return currentUser.createdEvents;}
@@ -196,33 +196,43 @@ public class UserServices {
 
 
                 DatabaseReference attendeesRef = eventRef.child(eventId + "").child("attendees");
-                attendeesRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                DatabaseReference attendeeNumRef = eventRef.child(eventId + "").child("attendeeNum");
+                attendeeNumRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DataSnapshot> task) {
-                        ArrayList<String> attendees = (ArrayList<String>) task.getResult().getValue();
-                        if (attendees == null) return;
-                        if (attendees.contains(currentUser.id)) return;
-                        attendees.add(currentUser.id);
-
-                        DatabaseReference joinedEventsRef = userRef.child(currentUser.getId()).child("joinedEvents");
-
-                       joinedEventsRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                        int attendeeNum = task.getResult().getValue(int.class) + 1;
+                        attendeesRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<DataSnapshot> task) {
-                                ArrayList<Integer> joinedEvents = (ArrayList<Integer>) task.getResult().getValue();
-                                joinedEvents.add(eventId);
+                                ArrayList<String> attendees = (ArrayList<String>) task.getResult().getValue();
+                                if (attendees == null) return;
+                                if (attendees.contains(currentUser.id)) return;
+                                attendees.add(currentUser.id);
 
-                                attendeesRef.setValue(attendees);
+                                DatabaseReference joinedEventsRef = userRef.child(currentUser.getId()).child("joinedEvents");
 
-                                joinedEventsRef.setValue(joinedEvents);
+                                joinedEventsRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                                        ArrayList<Integer> joinedEvents = (ArrayList<Integer>) task.getResult().getValue();
+                                        if (joinedEvents == null) joinedEvents = new ArrayList<Integer>();
+                                        joinedEvents.add(eventId);
+
+                                        attendeesRef.setValue(attendees);
+
+                                        joinedEventsRef.setValue(joinedEvents);
+                                        attendeeNumRef.setValue(attendeeNum);
+
+                                    }
+                                });
+
+
+
+
+
 
                             }
                         });
-
-
-
-
-
 
                     }
                 });
@@ -253,7 +263,7 @@ public class UserServices {
 
 
                     currentUser = findUserByUserId(task.getResult().getUser().getUid());
-                    activity.finish();
+                    //activity.finish();
 
                 } else {
                     Log.i("Login", "LOGIN FAILED NOOO");
