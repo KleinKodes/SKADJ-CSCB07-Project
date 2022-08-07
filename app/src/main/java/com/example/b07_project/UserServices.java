@@ -28,8 +28,6 @@ public class UserServices {
     DatabaseReference userRef;
     DatabaseReference venueRef;
     FirebaseAuth firebaseAuth;
-    //EventServices eventServices;
-
     public static User currentUser;
 
     public UserServices(){
@@ -244,8 +242,6 @@ public class UserServices {
                             currentUser = task.getResult().getValue(User.class);
                         }
                     });
-                    //activity.finish();
-
                 } else {
                     Log.i("Login", "LOGIN FAILED NOOO");
 

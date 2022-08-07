@@ -187,7 +187,6 @@ public class profile extends AppCompatActivity {
         Intent addProfile = new Intent(this, profile.class);
         addProfile.putExtra(tabState, 1);
         addProfile.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        //recreate();
         startActivity(addProfile);
         overridePendingTransition(0, 0);
         finish();

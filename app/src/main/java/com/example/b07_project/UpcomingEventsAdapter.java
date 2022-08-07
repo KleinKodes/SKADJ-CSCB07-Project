@@ -63,7 +63,6 @@ public class UpcomingEventsAdapter extends RecyclerView.Adapter<UpcomingEventsAd
         Event event = eventsList.get(position);
         TextView textView = holder.upcomingTextView;
         textView.setText(event.getName());
-//        textView.setHint(event.get);
         Log.i("Jacky", String.valueOf(event.getId()));
         Button button = holder.goToButton;
         button.setText("View Event");
