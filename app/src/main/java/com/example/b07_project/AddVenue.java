@@ -7,7 +7,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Layout;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -30,6 +34,7 @@ public class AddVenue extends AppCompatActivity {
     int numOfSports = 0;
     int auth = 0;
     int mode = 0;
+    int venueID = -1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,9 +44,14 @@ public class AddVenue extends AppCompatActivity {
         auth = userServices.getCurrentUserAuth();
         mode = this.getIntent().getIntExtra("mode", 0);
 
-        if(auth == 1 && mode == 1){
+        venueID = this.getIntent().getIntExtra("venueId",-1);
+        ((Button)findViewById(R.id.deleteButton)).setVisibility(View.INVISIBLE);
+
+
+        if(mode == 1){
             TextView modeText = ((TextView)findViewById(R.id.modeText));
             modeText.setText("View/Edit Venue");
+            ((Button)findViewById(R.id.deleteButton)).setVisibility(View.VISIBLE);
 
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference myRef = database.getReference("Venues").child(this.getIntent().getIntExtra("venueId",-1)+"");
@@ -171,9 +181,11 @@ public class AddVenue extends AppCompatActivity {
         //sports
         venue.sports = new ArrayList<String>();
         LinearLayout layout = (LinearLayout)findViewById(R.id.sports);
-        for(int i=0; i<layout.getChildCount(); i++)
+        venue.sports.add(((EditText)layout.findViewById(R.id.sport)).getText().toString());
+        for(int i=1; i<layout.getChildCount(); i++)
         {
-            EditText sport = (EditText)layout.getChildAt(i);
+            View v = layout.getChildAt(i);
+            EditText sport = (EditText)v.findViewById(R.id.sportName);
             venue.sports.add(sport.getText().toString());
         }
 
@@ -213,54 +225,80 @@ public class AddVenue extends AppCompatActivity {
             }
         });
 
-        Intent addVenue = new Intent(this, MainActivityDeprecated.class);
-        if(auth == 1) addVenue.setClass(this, AdminActivity.class);
-        addVenue.putExtra("auth", auth);
+
+        Intent addVenue = new Intent(this, AdminActivity.class);
         startActivity(addVenue);
         finish();
+    }
+
+    public void deleteVenue(View view)
+    {
+        Intent chooseVenue = new Intent(this, ChooseVenue.class);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference("Events");
+        ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                for(DataSnapshot i : task.getResult().getChildren())
+                {
+                    System.out.println("NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+                    Event event = (Event)i.getValue(Event.class);
+                    if(event.venueId == venueID){
+                        Snackbar mySnackbar = Snackbar.make(view, "There are still Events at this Venue!", BaseTransientBottomBar.LENGTH_SHORT);
+                        mySnackbar.show();
+                        return;
+                    }
+                }
+                DatabaseReference myRef = database.getReference("Venues").child(venueID + "");
+
+                myRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                        myRef.removeValue();
+
+                        startActivity(chooseVenue);
+                        finish();
+
+                    }
+                });
+
+
+            }
+        });
+
     }
 
     public void addSport(View view)
     {
         numOfSports += 1;
         LinearLayout layout = (LinearLayout)findViewById(R.id.sports);
-
-        EditText newSport = new EditText(this);
-
-//        layout.getLayoutParams().height += 130;
-
-
-        newSport.setOnClickListener(new View.OnClickListener() {
+        View v = LayoutInflater.from(this).inflate(R.layout.sport_card, null);
+        ((Button)v.findViewById(R.id.minus)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                layout.removeView(view);
-//                layout.getLayoutParams().height -= 120;
+                layout.removeView(v);
             }
         });
 
 
-        layout.addView(newSport);
+        layout.addView(v);
     }
 
     public void addSport(String text)
     {
         numOfSports += 1;
         LinearLayout layout = (LinearLayout)findViewById(R.id.sports);
-
-        EditText newSport = new EditText(this);
-//        layout.getLayoutParams().height += 130;
-        newSport.setText(text);
-        newSport.setOnClickListener(new View.OnClickListener() {
+        View v = LayoutInflater.from(this).inflate(R.layout.sport_card, null);
+        ((EditText)(v.findViewById(R.id.sportName))).setText(text);
+        ((Button)v.findViewById(R.id.minus)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                layout.removeView(view);
-//                layout.getLayoutParams().height -= 120;
+                layout.removeView(v);
             }
         });
 
 
-        layout.addView(newSport);
+        layout.addView(v);
     }
 
 /*    private void makePopUp(View view, String message){
@@ -329,8 +367,7 @@ public class AddVenue extends AppCompatActivity {
             return false;
         }
         //Check if venue has any sports, if the number of sports exceeds the max event amount, or if the max amount is empty
-        if(venue.sports.size() == 0 || (venue.sports.size() > venue.maxConcurrentActivities)
-        || venue.maxConcurrentActivities == 0){
+        if(venue.sports.size() == 0 || venue.maxConcurrentActivities == 0){
             //makePopUp(view, "Number of sports/maximum sports size invalid.");
             Snackbar mySnackbar = Snackbar.make(view, "Number of sports/maximum sports size invalid", BaseTransientBottomBar.LENGTH_SHORT);
             mySnackbar.show();

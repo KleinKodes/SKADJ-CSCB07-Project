@@ -14,7 +14,7 @@ public class MainActivityDeprecated extends AppCompatActivity { // new MainActiv
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_deprecated);
 
         UserServices userServices = new UserServices();
         auth = userServices.getCurrentUserAuth();
@@ -104,7 +104,7 @@ public class MainActivityDeprecated extends AppCompatActivity { // new MainActiv
     }
 
     public void transitionToCustomerView(View view){
-        Intent intent = new Intent(this, CustomerView.class);
+        Intent intent = new Intent(this, CustomerViewDeprecated.class);
         intent.putExtra("auth", auth);
         startActivity(intent);
     }

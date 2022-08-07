@@ -14,16 +14,138 @@
         android:layout_height="match_parent"
         android:background="#FAFAFA">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/Header"
+            android:layout_width="0dp"
+            android:layout_height="58dp"
+            android:background="#2B782E"
+            android:contentDescription="@string/todo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.551"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/profileUserName"
+                android:layout_width="172dp"
+                android:layout_height="27dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/user_s_name"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/Logo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="40dp"
+            android:paddingBottom="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Header">
+
+            <TextView
+                android:id="@+id/appName3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:letterSpacing="0.5"
+                android:text="@string/tittle"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="62dp"
+                android:layout_height="59dp"
+                android:contentDescription="@string/todo"
+                app:srcCompat="@drawable/sports" />
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/tabs"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Logo">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/tab2"
+                android:layout_width="130dp"
+                android:layout_height="54dp"
+                android:layout_marginStart="17dp"
+                android:background="@drawable/top_rounded_edge"
+                android:backgroundTint="@color/dark_green"
+                android:onClick="switchToJoin"
+                app:layout_constraintStart_toEndOf="@+id/tab1"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/join"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Joined"
+                    android:textColor="#FDFDFD"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/tab1"
+                android:layout_width="130dp"
+                android:layout_height="54dp"
+                android:layout_marginStart="18dp"
+                android:background="@drawable/top_rounded_edge"
+                android:backgroundTint="@color/dark_green"
+                android:onClick="switchToCreate"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/create"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="created"
+                    android:textColor="#FFFFFF"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="0dp"
+                android:layout_height="3dp"
+                android:background="?android:attr/listDivider"
+                android:backgroundTint="#000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tab1" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <ScrollView
             android:id="@+id/cards"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginTop="15dp"
             android:background="#FFFFFF"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintBottom_toTopOf="@+id/Navbar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2"
-            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintTop_toBottomOf="@+id/tabs"
             tools:ignore="SpeakableTextPresentCheck">
 
             <LinearLayout
@@ -37,69 +159,8 @@
                 android:textAlignment="center" />
         </ScrollView>
 
-        <ImageView
-            android:id="@+id/AddPost"
-            android:layout_width="30dp"
-            android:layout_height="29dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:contentDescription="@string/todo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/plus"
-            tools:ignore="DuplicateSpeakableTextCheck" />
-
-        <View
-            android:id="@+id/divider2"
-            android:layout_width="409dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="100dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/AppName" />
-
-        <ImageView
-            android:id="@+id/imageView11"
-            android:layout_width="62dp"
-            android:layout_height="59dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="108dp"
-            android:contentDescription="@string/todo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/AppName"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/sports" />
-
-        <ImageView
-            android:id="@+id/Header"
-            android:layout_width="412dp"
-            android:layout_height="58dp"
-            android:background="#2B782E"
-            android:contentDescription="@string/todo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.551"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/AppName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="144dp"
-            android:layout_marginTop="20dp"
-            android:background="#FFFFFF"
-            android:letterSpacing="0.5"
-            android:text="@string/tittle"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageView11" />
-
         <LinearLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/Navbar"
             android:layout_width="0dp"
             android:layout_height="49dp"
             android:background="#000000"
@@ -141,74 +202,6 @@
                 app:srcCompat="@drawable/signout" />
 
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/profileUserName"
-            android:layout_width="172dp"
-            android:layout_height="27dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/user_s_name"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/tab1"
-            android:layout_width="130dp"
-            android:layout_height="54dp"
-            android:layout_marginStart="18dp"
-            android:background="@drawable/top_rounded_edge"
-            android:backgroundTint="#2B782E"
-            android:onClick="switchToCreate"
-            app:layout_constraintBottom_toTopOf="@+id/divider2"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <TextView
-                android:id="@+id/create"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="created"
-                android:textColor="#FFFFFF"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/tab2"
-            android:layout_width="130dp"
-            android:layout_height="54dp"
-            android:layout_marginStart="18dp"
-            android:background="@drawable/top_rounded_edge"
-            android:backgroundTint="#2B782E"
-            android:onClick="switchToJoin"
-            app:layout_constraintBottom_toTopOf="@+id/divider2"
-            app:layout_constraintStart_toEndOf="@+id/tab1">
-
-            <TextView
-                android:id="@+id/join"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Joined"
-                android:textColor="#FDFDFD"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="33dp"
-            android:layout_height="31dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="28dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider2"
-            app:srcCompat="@drawable/filter" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

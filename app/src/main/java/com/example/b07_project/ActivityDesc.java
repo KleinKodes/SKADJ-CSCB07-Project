@@ -14,16 +14,22 @@ import android.widget.TextView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 public class ActivityDesc extends AppCompatActivity {
+    DatabaseReference eventRef;
+    DatabaseReference venueRef;
+    DatabaseReference userRef;
     String[] activityInfo;
     int eventId;
     String userId;
     Event event;
+    Venue venue;
     Boolean isThisMyEvent;
     Boolean mode;
     String firstName;
@@ -41,8 +47,25 @@ public class ActivityDesc extends AppCompatActivity {
         isThisMyEvent = intent.getBooleanExtra("isThisMyEvent", false);
         auth = userServices.getCurrentUserAuth();
 
+        Log.i("Status", "UserInfo: " + userServices.getCurrentUser());
+
+        View home = findViewById(R.id.homeButton);
+        home.setOnClickListener(new Navigation());
+        View profile = findViewById(R.id.profileButton);
+        profile.setOnClickListener(new Navigation());
+        View logout = findViewById(R.id.logOutButton);
+        logout.setOnClickListener(new Navigation());
+
+        ((TextView)findViewById(R.id.profileUserName)).setText(userServices.getCurrentUserName());
+
         mode = intent.getBooleanExtra("approvalNeeded", false);
         Log.i("mode", mode.toString());
+
+
+        if(auth == 1)
+        {
+            findViewById(R.id.joinEventButton).setVisibility(View.GONE);
+        }
 
         if (userId == null) userId = "";
         firstName = userServices.getCurrentUserName();
@@ -54,11 +77,13 @@ public class ActivityDesc extends AppCompatActivity {
         if (mode){
              View navView =(View) findViewById(R.id.logOutButton).getParent();
              navView.setVisibility(View.GONE);
+             View denyView = (View) findViewById(R.id.denyEventButton);
+             denyView.setVisibility(View.VISIBLE);
         }
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference eventRef = database.getReference("Events");
-        DatabaseReference userRef = database.getReference("Users");
+        eventRef = database.getReference("Events");
+        userRef = database.getReference("Users");
 
         eventRef.child(eventId + "").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
@@ -84,23 +109,55 @@ public class ActivityDesc extends AppCompatActivity {
             }
         });
 
+
         initializevalues();
+
     }
 
     public void initializevalues(){
+        Log.i("Jacky", "EventID:" + eventId);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        eventRef = database.getReference("Events");
+        eventRef.child(eventId + "").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
 
-        ViewGroup infoContainer = (ViewGroup) findViewById(R.id.infoContainer);
-        TextView host = (TextView)infoContainer.getChildAt(1);
-        TextView start = (TextView)infoContainer.getChildAt(2);
-        TextView end = (TextView)infoContainer.getChildAt(3);
-        TextView date = (TextView)infoContainer.getChildAt(4);
-        TextView activity = (TextView) findViewById(R.id.venueDescVenue);
+                event = task.getResult().getValue(Event.class);
 
-        host.setText(activityInfo[4]);
-        start.setText(activityInfo[1]);
-        end.setText(activityInfo[2]);
-        date.setText(activityInfo[0]);
-        activity.setText(activityInfo[3]);
+                venueRef = database.getReference("Venues");
+                venueRef.child(event.getVenueId() + "").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                     @Override
+                     public void onComplete(@NonNull Task<DataSnapshot> task) {
+                            venue = task.getResult().getValue(Venue.class);
+                            TextView venueName = (TextView) findViewById(R.id.activityDescVenue);
+                            venueName.setText(venue.getName());
+                       }
+                     });
+                ViewGroup infoContainer = (ViewGroup) findViewById(R.id.infoContainer);
+                TextView host = (TextView)infoContainer.getChildAt(1);
+                TextView start = (TextView)infoContainer.getChildAt(2);
+                TextView startEnd = (TextView)infoContainer.getChildAt(3);
+                TextView date = (TextView)infoContainer.getChildAt(4);
+                TextView activity = (TextView) findViewById(R.id.venueDescVenue);
+                TextView endDate = (TextView) findViewById(R.id.activityDescEndDate);
+                TextView sports = (TextView) findViewById(R.id.activityDescSports);
+                TextView desc = (TextView) findViewById(R.id.activityDescDescription);
+                TextView cap = (TextView) findViewById(R.id.activityDescCapacity);
+                TextView venueName = (TextView) findViewById(R.id.activityDescVenue);
+
+                host.setText(event.getOwnerId());
+                start.setText("Start Time: "+event.getStartTimeString());
+                startEnd.setText("End Time: "+event.getEndTimeString());
+                date.setText("Start Date: "+event.getStartDateString());
+                endDate.setText("End Date: "+event.getEndDateString());
+                sports.setText("Sport: "+event.getSport());
+                cap.setText(event.getAttendeeNum()+"/"+event.getCapacity());
+                desc.setText(event.getEventDescription());
+                activity.setText(event.getName());
+
+            }
+        });
+
     }
 
     public void joinEvent(View view){
@@ -131,59 +188,59 @@ public class ActivityDesc extends AppCompatActivity {
                 if (event.attendees.contains(userId)){
 
 
+                    userServices.removeUserFromEvent(userId, eventId);
+
                     //TODO: Remove the event from the user's joined events list
-                    userRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<DataSnapshot> task) {
-                            ArrayList<Integer> joinedEvents = (ArrayList<Integer>) task.getResult().getValue();
-                            if (joinedEvents!= null) joinedEvents.remove(joinedEvents.indexOf(eventId));
-
-                            userRef.setValue(joinedEvents);
-                            event.attendees.remove(event.attendees.indexOf(userId));
-                            eventRef.child(eventId + "").setValue(event);
-
-                            Intent intent = new Intent(getBaseContext(), activityPageDenny.class);
-                            intent.putExtra("approvalNeeded", mode);
-                            intent.putExtra("userId", userId);
-                            intent.putExtra("firstName", firstName);
-                            intent.putExtra("auth", auth);
-                            startActivity(intent);
-                            finish();
-
-                        }
-                    });
+//                    userRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<DataSnapshot> task) {
+//                            ArrayList<Integer> joinedEvents = (ArrayList<Integer>) task.getResult().getValue();
+//                            if (joinedEvents!= null) joinedEvents.remove(joinedEvents.indexOf(eventId));
+//
+//                            userRef.setValue(joinedEvents);
+//                            event.attendees.remove(event.attendees.indexOf(userId));
+//                            eventRef.child(eventId + "").setValue(event);
+//
+//                            Intent intent = new Intent(getBaseContext(), activityPageDenny.class);
+//                            intent.putExtra("approvalNeeded", mode);
+//                            startActivity(intent);
+//                            finish();
+//
+//                        }
+//                    });
 
 
                 }else {
 
 
                     //TODO: OPTIMIZE
+
+                    userServices.addCurrentUserToEvent(eventId);
 //
 //                    userRef.child(eventId + "").setValue(eventId);
 //                    eventRef.child(eventId + "").child("attendees").child(userId).setValue(userId);
-                    userRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<DataSnapshot> task) {
-                            ArrayList<Integer> joinedEvents = (ArrayList<Integer>) task.getResult().getValue();
-                            if (joinedEvents== null) joinedEvents = new ArrayList<Integer>();
+//                    userRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<DataSnapshot> task) {
+//                            ArrayList<Integer> joinedEvents = (ArrayList<Integer>) task.getResult().getValue();
+//                            if (joinedEvents== null) joinedEvents = new ArrayList<Integer>();
+//
+//                            joinedEvents.add(eventId);
+//
+//                            userRef.setValue(joinedEvents);
+//                            event.attendees.add(userId);
+//                            eventRef.child(eventId + "").setValue(event);
+//
 
-                            joinedEvents.add(eventId);
-
-                            userRef.setValue(joinedEvents);
-                            event.attendees.add(userId);
-                            eventRef.child(eventId + "").setValue(event);
-
-                            Intent intent = new Intent(getBaseContext(), activityPageDenny.class);
-                            intent.putExtra("approvalNeeded", mode);
-                            intent.putExtra("userId", userId);
-                            intent.putExtra("firstName", firstName);
-                            intent.putExtra("auth", auth);
-                            startActivity(intent);
-                            finish();
-
-                        }
-                    });
+//
+//                        }
+//                    });
                 }
+
+                Intent intent = new Intent(getBaseContext(), activityPageDenny.class);
+                intent.putExtra("approvalNeeded", mode);
+                startActivity(intent);
+                finish();
 
             }
         });
@@ -197,9 +254,6 @@ public class ActivityDesc extends AppCompatActivity {
         FirebaseDatabase.getInstance().getReference("Events").child(eventId + "").removeValue();
         Intent intent = new Intent(getBaseContext(), activityPageDenny.class);
         intent.putExtra("approvalNeeded", mode);
-        intent.putExtra("userId", userId);
-        intent.putExtra("firstName", firstName);
-        intent.putExtra("auth", auth);
         startActivity(intent);
         finish();
     }

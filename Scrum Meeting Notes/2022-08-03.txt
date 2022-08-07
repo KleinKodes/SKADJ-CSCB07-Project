@@ -1,0 +1,16 @@
+2022/08/03
+Denny
+Tasks Done: Made UI for admin view.
+Needs to put all java and xml files together.
+Jacky
+Tasks Done: Fixed major bug involving popups crashing the app.
+Should work on loading screens for app and debugging validation later on
+Klein
+Tasks Done: Worked on other courses, including CSCB58
+Needs to put all java and xml files together.
+Anthony
+Tasks Done: Worked on other courses including CSCB36 and MATB24
+Needs to work on deleting venues and deleting sports from venues. 
+Seven 
+Tasks Done: Out of commission
+Needs to come back from trip

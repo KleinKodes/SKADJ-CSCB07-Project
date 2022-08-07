@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="#0C0C0C"
     tools:context=".ActivityDesc">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,62 +19,74 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/Header"
             android:layout_width="0dp"
             android:layout_height="58dp"
             android:background="#2B782E"
             android:contentDescription="@string/todo"
-            android:onClick="backToActivities"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.551"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/AppName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="144dp"
-            android:layout_marginTop="20dp"
-            android:background="#FFFFFF"
-            android:letterSpacing="0.5"
-            android:text="@string/tittle"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageView11" />
+            <TextView
+                android:id="@+id/profileUserName"
+                android:layout_width="172dp"
+                android:layout_height="27dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/user_s_name"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/imageView11"
-            android:layout_width="62dp"
-            android:layout_height="59dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="108dp"
-            android:contentDescription="@string/todo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/AppName"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/sports" />
-
-        <TextView
-            android:id="@+id/venueDescVenue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="44dp"
-            android:text="Activity"
-            android:textColor="#173C18"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/joinEventButton"
-            app:layout_constraintHorizontal_bias="0.266"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/AppName" />
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="34dp"
+                android:layout_height="26dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:onClick="backToActivityPage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/returntopage" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/Logo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="40dp"
+            android:paddingBottom="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Header">
+
+            <TextView
+                android:id="@+id/appName3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:letterSpacing="0.5"
+                android:text="@string/tittle"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="62dp"
+                android:layout_height="59dp"
+                android:contentDescription="@string/todo"
+                app:srcCompat="@drawable/sports" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Navbar"
             android:layout_width="0dp"
             android:layout_height="49dp"
             android:background="#000000"
@@ -103,10 +116,10 @@
                 android:contentDescription="@string/todo"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                app:srcCompat="@drawable/doc" />
+                app:srcCompat="@drawable/profile" />
 
             <ImageView
-                android:id="@+id/signOutButton"
+                android:id="@+id/logOutButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -116,43 +129,63 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/profileUserName"
-            android:layout_width="172dp"
-            android:layout_height="27dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/user_s_name"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <View
-            android:id="@+id/divider3"
-            android:layout_width="409dp"
-            android:layout_height="3dp"
-            android:background="?android:attr/listDivider"
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingVertical="10dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/venueDescVenue" />
+            app:layout_constraintTop_toBottomOf="@+id/Logo">
+
+            <TextView
+                android:id="@+id/venueDescVenue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Activity"
+                android:textColor="#173C18"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/activityDescVenue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="5dp"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif"
+                android:text="Venue"
+                android:textColor="@color/light_green"
+                android:textSize="18dp" />
+
+            <View
+                android:id="@+id/divider3"
+                android:layout_width="409dp"
+                android:layout_height="3dp"
+                android:background="?android:attr/listDivider" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/infoContainer"
             android:layout_width="0dp"
-            android:layout_height="427dp"
+            android:layout_height="0dp"
             android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintBottom_toTopOf="@+id/Navbar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider3"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
             app:layout_constraintVertical_bias="1.0">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
+                android:gravity="center"
                 android:orientation="horizontal"
                 android:paddingHorizontal="20dp">
 
@@ -172,7 +205,18 @@
                     android:layout_marginRight="20dp"
                     android:backgroundTint="#2B782E"
                     android:onClick="DenyEvent"
-                    android:text="Deny" />
+                    android:text="Deny"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/activityDescCapacity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text=": / :"
+                    android:textColor="#2B782E"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <TextView
@@ -220,7 +264,52 @@
                 android:textSize="18dp" />
 
             <TextView
-                android:id="@+id/textView15"
+                android:id="@+id/activityDescEndDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="Date"
+                android:textColor="#040000"
+                android:textSize="18dp" />
+
+            <View
+                android:id="@+id/divider12"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider"
+                android:backgroundTint="#000000" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/activityDescSports"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="5dp"
+                    android:layout_marginRight="10dp"
+                    android:fontFamily="sans-serif"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="20dp"
+                    android:text="Sport"
+                    android:textColor="#040000"
+                    android:textSize="18dp" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider13"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider"
+                android:backgroundTint="#000000" />
+
+            <TextView
+                android:id="@+id/activityDescDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
@@ -231,17 +320,6 @@
                 android:textColor="#000000"
                 android:textSize="18dp" />
         </LinearLayout>
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="34dp"
-            android:layout_height="26dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:onClick="backToActivityPage"
-            app:layout_constraintEnd_toEndOf="@+id/Header"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/returntopage" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

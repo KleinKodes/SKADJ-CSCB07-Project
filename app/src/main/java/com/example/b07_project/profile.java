@@ -150,7 +150,7 @@ public class profile extends AppCompatActivity {
         else{
             layout = (ConstraintLayout) findViewById(R.id.tab2);
         }
-        layout.setBackgroundTintList(ContextCompat.getColorStateList(this,R.color.dark_green));
+        layout.setBackgroundTintList(ContextCompat.getColorStateList(this,R.color.light_green));
     }
 
     public void addProfileCard(View view, Event event, String hostName, String venueName) {

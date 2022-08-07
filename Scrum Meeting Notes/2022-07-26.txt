@@ -1,0 +1,20 @@
+2022/07/26
+Denny
+Tasks Done: N/A
+Needs suggestions for UI interface 
+Can help with event pages
+Jacky
+Tasks Done: Familiarized with Github desktop and android studio environment. 
+Finalize UI with the application.
+Figure out how to make lists in android studio.
+Klein (Scrum Master)
+Tasks Done: N/A
+Should set up Firebase backend and github repo
+Help with UI and event pages
+Anthony
+Tasks Done: Created the form the admin fills out to create a venue
+Need to add functionality to push data to server
+Seven 
+Tasks Done: N/A
+Should figure out how to create login for admin and customers
+Can help with event pages

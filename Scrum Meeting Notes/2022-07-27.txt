@@ -1,0 +1,30 @@
+2022/07/27
+Denny
+Split some work with Jacky
+Jacky is doing list of venues design
+Tasks Done: Events page, profile page (see all joined/created events)
+To do: make functionality work
+Jacky
+Tasks Done: Created github branch and started progress on venue lists
+Should continue working on venue lists
+Needs help with dynamic pages for each venue with a sports list
+Needs help with updating the venue and sports information on firebase
+Klein
+Tasks Done: Created github repo and got functionality for create/add/edit event page
+Switched Task: Took on create/add event page from Anthony
+Needs to work on the layout of create/add/edit event page
+Anthony
+Tasks Done: Implemented the ability to read input data from the user.
+Switched Task: Gave create/add event page to Klein and took on admin view add venue page
+Needs to work on creating the venues and editing the venues.
+Seven 
+Created Login and Registration UI (Created Login and Registration Activity)
+Made it so that App launches with Login Activity instead of Main Activity
+Got 3 Blue screens lmao and Android Emulator kept on breaking
+I think it has something to do with my Firewall or something
+Helped Denny debug
+To do: Connect firebase authentication to buttons… 
+Registration
+App User Class stuff
+Admin vs. Customer Class
+First Name and Last Name

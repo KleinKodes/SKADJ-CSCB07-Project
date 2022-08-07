@@ -30,7 +30,7 @@ public class UserServices {
     FirebaseAuth firebaseAuth;
     //EventServices eventServices;
 
-    public User currentUser;
+    public static User currentUser;
 
     public UserServices(){
         this.firebaseAuth = FirebaseAuth.getInstance();
@@ -38,13 +38,15 @@ public class UserServices {
         this.eventRef = database.getReference("Events");
         this.userRef = database.getReference("Users");
         this.venueRef = database.getReference("Venues");
-        this.currentUser = new User();
+        //this.currentUser = new User();
         //this.eventServices = new EventServices();
-        if (firebaseAuth.getCurrentUser() != null) {
+        if (this.currentUser != null)Log.i("UserInfo", "Name: " + currentUser.getFirstName() + " email: " + currentUser.getEmail() + " id: " + currentUser.getId() + " auth: " + currentUser.getAuth());
+        if (firebaseAuth.getCurrentUser() != null && this.currentUser == null) {
             userRef.child(firebaseAuth.getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DataSnapshot> task) {
                     currentUser = task.getResult().getValue(User.class);
+                    Log.i("UserInfo", "got current user");
                 }
             });
         }
@@ -56,9 +58,9 @@ public class UserServices {
     public User getCurrentUser(){return currentUser;}
     public int getCurrentUserAuth(){return currentUser.auth;}
 
-    public void setCurrentUser(User currentUser) {
-        this.currentUser = currentUser;
-    }
+//    public void setCurrentUser(User currentUser) {
+//        this.currentUser = currentUser;
+//    }
 
     public ArrayList<Integer> getCurrentUserJoinedEventIds() {return currentUser.joinedEvents;}
     public ArrayList<Integer> getCurrentUserCreatedEventIds() {return currentUser.createdEvents;}
@@ -114,7 +116,7 @@ public class UserServices {
 
 
         Log.i("status", "event id =" + eventId);
-        Log.i("status", "AAAAAAA");
+        //Log.i("status", "AAAAAAA");
         DatabaseReference joinedEventsRef = userRef.child(userId).child("joinedEvents");
         joinedEventsRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
@@ -196,33 +198,44 @@ public class UserServices {
 
 
                 DatabaseReference attendeesRef = eventRef.child(eventId + "").child("attendees");
-                attendeesRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                DatabaseReference attendeeNumRef = eventRef.child(eventId + "").child("attendeeNum");
+                attendeeNumRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DataSnapshot> task) {
-                        ArrayList<String> attendees = (ArrayList<String>) task.getResult().getValue();
-                        if (attendees == null) return;
-                        if (attendees.contains(currentUser.id)) return;
-                        attendees.add(currentUser.id);
-
-                        DatabaseReference joinedEventsRef = userRef.child(currentUser.getId()).child("joinedEvents");
-
-                       joinedEventsRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                        int attendeeNum = task.getResult().getValue(int.class) + 1;
+                        attendeesRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<DataSnapshot> task) {
-                                ArrayList<Integer> joinedEvents = (ArrayList<Integer>) task.getResult().getValue();
-                                joinedEvents.add(eventId);
+                                ArrayList<String> attendees = (ArrayList<String>) task.getResult().getValue();
+                                if (attendees == null) attendees = new ArrayList<String>();
+                                if (attendees.contains(currentUser.id)) return;
+                                attendees.add(currentUser.id);
 
-                                attendeesRef.setValue(attendees);
+                                DatabaseReference joinedEventsRef = userRef.child(currentUser.getId()).child("joinedEvents");
 
-                                joinedEventsRef.setValue(joinedEvents);
+                                ArrayList<String> finalAttendees = attendees;
+                                joinedEventsRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                                        ArrayList<Integer> joinedEvents = (ArrayList<Integer>) task.getResult().getValue();
+                                        if (joinedEvents == null) joinedEvents = new ArrayList<Integer>();
+                                        joinedEvents.add(eventId);
+
+                                        attendeesRef.setValue(finalAttendees);
+
+                                        joinedEventsRef.setValue(joinedEvents);
+                                        attendeeNumRef.setValue(attendeeNum);
+
+                                    }
+                                });
+
+
+
+
+
 
                             }
                         });
-
-
-
-
-
 
                     }
                 });
@@ -242,6 +255,7 @@ public class UserServices {
     }
 
     public void logOutCurrentUser(){
+        currentUser = null;
         firebaseAuth.signOut();
     }
 
@@ -252,13 +266,19 @@ public class UserServices {
                 if (task.isSuccessful()) {
 
 
-                    currentUser = findUserByUserId(task.getResult().getUser().getUid());
-                    activity.finish();
+                    userRef.child(firebaseAuth.getUid()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DataSnapshot> task) {
+                            currentUser = task.getResult().getValue(User.class);
+                        }
+                    });
+                    //activity.finish();
 
                 } else {
                     Log.i("Login", "LOGIN FAILED NOOO");
 
-                    Snackbar mySnackbar = Snackbar.make(view, "Invalid email/password combination.", BaseTransientBottomBar.LENGTH_SHORT);
+                    activity.setContentView(R.layout.activity_login);
+                    Snackbar mySnackbar = Snackbar.make(activity.findViewById(R.id.signUp), "Invalid email/password combination.", BaseTransientBottomBar.LENGTH_SHORT);
                     mySnackbar.show();
                 }
 

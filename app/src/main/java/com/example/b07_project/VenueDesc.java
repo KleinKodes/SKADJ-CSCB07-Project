@@ -2,8 +2,10 @@ package com.example.b07_project;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -22,11 +24,54 @@ public class VenueDesc extends AppCompatActivity {
     String venueName;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    UserServices userServices;
+    private int pStatus=0;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.loading_activity); // FIX
+        ProgressBar p = (ProgressBar)findViewById(R.id.progressBar);
+        Handler h = new Handler();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(pStatus < 100) {
+                    pStatus++;
+                    android.os.SystemClock.sleep(10);
+                    h.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            p.setProgress(pStatus);
+                        }
+                    });
+                }
+            }
+        }).start();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run(){
+                setContentView(R.layout.activity_venue_desc);
+                Intent intent = getIntent();
+                venueName = intent.getStringExtra(VenuePageDennt.venueName);
+                TextView venueText = (TextView) findViewById(R.id.venueDescVenue);
+                venueText.setText(venueName);
+
+                View home = findViewById(R.id.homeButton);
+                home.setOnClickListener(new Navigation());
+                View profile = findViewById(R.id.profileButton);
+                profile.setOnClickListener(new Navigation());
+                View logout = findViewById(R.id.logOutButton);
+                logout.setOnClickListener(new Navigation());
+
+                firebaseDatabase = FirebaseDatabase.getInstance();
+                databaseReference = firebaseDatabase.getReference("Venues");
+                initializeInfo();
+            }
+        }, 1200);
+/*        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_venue_desc);
         Intent intent = getIntent();
         venueName = intent.getStringExtra(VenuePageDennt.venueName);
@@ -37,17 +82,22 @@ public class VenueDesc extends AppCompatActivity {
         home.setOnClickListener(new Navigation());
         View profile = findViewById(R.id.profileButton);
         profile.setOnClickListener(new Navigation());
+        View logout = findViewById(R.id.logOutButton);
+        logout.setOnClickListener(new Navigation());
+
+        userServices = new UserServices();
+        ((TextView)findViewById(R.id.profileUserName)).setText(userServices.getCurrentUserName());
+
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Venues");
-        initializeInfo();
+        initializeInfo();*/
     }
 
     public void initializeInfo(){
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ArrayList<String> list = new ArrayList<String>();
                 for (DataSnapshot snap : snapshot.getChildren()) {
                     Venue venue = snap.getValue(Venue.class);
                     System.out.printf("%s %s\n",venue.getName(), venueName);
