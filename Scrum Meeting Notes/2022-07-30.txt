@@ -1,0 +1,17 @@
+2022/07/30
+Denny
+Tasks Done: Finished UI for creating an event page and adding venue page.
+Work on Events page UI. 
+Jacky
+Tasks Done: Finished filtering upcoming events by venue, and upcoming events are now sorted by latest to furthest via time.
+Currently working on sorting features for more lists and data validation.
+Klein
+Tasks Done: Added database Integration to multiple pages, fixed a bug in view upcoming events page
+Needs to merge branch with login branch to remove hardcoded user info, do more testing with more user information, and refactor search user by id.
+Anthony
+Tasks Done: Users can now be added to the firebase database when accounts are made.
+Needs to edit venues: make it so that it can dynamically react to session data to people who login with an account, and connect old xml with new UI
+Seven 
+Tasks Done: Helped with user connection to the database. 
+Needs to continue refactoring code.
+

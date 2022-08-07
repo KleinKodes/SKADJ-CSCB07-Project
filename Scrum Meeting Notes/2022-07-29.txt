@@ -1,0 +1,19 @@
+2022/07/29
+Denny
+Tasks Done: UI for activity, profile, and description page done.
+Continue working on UI design for pages
+Jacky
+Tasks Done: Merged personal branch with main branch and finished planning out tasks for the second sprint. 
+Work on implementing sorting features on recyclerview lists and apply them to functionalities
+Help with data validation for classes. 
+Klein
+Tasks Done: Completed add events page and hooked up with venues and sports. Did a bit of data validation for events. Created an id connection between venues and events.
+Work mostly on data validation and database connection for pages.
+Anthony
+Tasks Done: Made new page for editing venues
+Needs to get user data pushed to the database to take use of data authentication.  
+Seven 
+Tasks Done: Trying to fix android studio from crashing his laptop, needs to reinstall all applications.
+Passed login activities and tasks and is now assisting with them.
+Refactor code and fix warnings if code does not break doing so
+

@@ -1,0 +1,16 @@
+2022/08/05
+Denny
+Tasks Done: Made it so that upcoming events navigates to activity description
+Find bugs on the app and fix/report them if need be.
+Jacky
+Tasks Done: Created loading screen for logging in and signing up
+Work on capacity logic for events and adding loading screens to areas where data loads. Also fix bugs 
+Klein
+Tasks Done: Fixed bugs to the app involving phone returning to home screen when trying to log in.
+Work on finding more bugs
+Anthony
+Tasks Done: Created minus button to get rid of venues.
+Needs to work on capacity logic for venues and fix bugs. 
+Seven 
+Tasks Done: Back from trip.
+Find bugs and refactor code if needed. 

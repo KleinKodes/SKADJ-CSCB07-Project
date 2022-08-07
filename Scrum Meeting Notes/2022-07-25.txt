@@ -1,0 +1,21 @@
+2022/07/25
+Denny
+Tasks Done: N/A
+Needs suggestions for UI interface 
+Can help with event pages
+Jacky
+Tasks Done: N/A
+Should figure out how to display venue lists and customers’ scheduled events
+Can help with UI or event Page 
+Klein (Scrum Master)
+Tasks Done: N/A
+Should set up Firebase backend and github repo
+Help with UI and event pages
+Anthony
+Tasks Done: N/A
+Work on creating a page for admin view
+Should need help on admin view vs customer view
+Seven 
+Tasks Done: N/A
+Should figure out how to create login for admin and customers
+Can help with event pages
