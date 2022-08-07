@@ -48,8 +48,6 @@ public class UpcomingEventsDriver extends AppCompatActivity {
         Log.i("status", "created adapter and recycleview");
 
         if (test.get("key") != null) {
-            //String testTwo = test.getString("key");
-            //Log.d("test", testTwo);
             database.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -59,8 +57,6 @@ public class UpcomingEventsDriver extends AppCompatActivity {
                         String compareId = data.child("venueId").getValue().toString();
                         if(Objects.equals(inputId, compareId)){
                             Event event = data.getValue(Event.class);
-//                            String name = data.child("name").getValue().toString();
-//                            Event event = new Event(name);
                             Events.add(event);
                         }
                         else{continue;}
@@ -100,13 +96,8 @@ public class UpcomingEventsDriver extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     ArrayList<Event> Events = new ArrayList<>();
                     for (DataSnapshot data : snapshot.getChildren()) {
-                        //Denny added this
                         Event event = data.getValue(Event.class);
                         Events.add(event);
-//                        String name = data.child("name").getValue().toString();
-//                        Event event = new Event(name);
-//                        event.startTimeStamp = Long.valueOf(data.child("startTimeStamp").getValue().toString());
-//                        Events.add(event);
                     }
 
                     ArrayList<Event> upcomingEvents = new ArrayList<>();

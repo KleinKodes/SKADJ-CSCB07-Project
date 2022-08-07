@@ -78,18 +78,7 @@ public class UpcomingEventsAdapter extends RecyclerView.Adapter<UpcomingEventsAd
                 intent.putExtra("eventId", eventId);
                 intent.putExtra("currClass", currClass);
                 intent.putExtra("auth", 1);
-//                if(auth == 1) {
-//                    intent.setClass(v.getContext(), AddVenue.class);
-//                    intent.putExtra("mode", 1);
-//                    intent.putExtra("auth", 1);
-//                }
-
-//                intent.putStringArrayListExtra("sports", venue.getSports());
-//                intent.putExtra("venue", venue.getName());
-//                intent.putExtra("venueId", venue.getId());
-//                intent.putExtra("auth", auth);
                 v.getContext().startActivity(intent);
-
             }
         });
     }

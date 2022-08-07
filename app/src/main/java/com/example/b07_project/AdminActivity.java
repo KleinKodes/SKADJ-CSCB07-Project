@@ -67,8 +67,6 @@ public class AdminActivity extends AppCompatActivity {
                 else {
                     for (DataSnapshot childSnapshot : task.getResult().getChildren()) {
                         myRef.child(childSnapshot.getKey()).removeValue();
-
-//
                     }
 
 
@@ -85,7 +83,6 @@ public class AdminActivity extends AppCompatActivity {
 
 
         myRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 System.out.println("why do we exist? just to suffer?");
@@ -95,11 +92,7 @@ public class AdminActivity extends AppCompatActivity {
                 else {
                     for (DataSnapshot childSnapshot : task.getResult().getChildren()) {
                         myRef.child(childSnapshot.getKey()).removeValue();
-
-//
                     }
-
-
                 }
             }
         });

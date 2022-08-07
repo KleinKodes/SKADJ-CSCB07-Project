@@ -174,7 +174,6 @@ public class activityPageDenny extends AppCompatActivity {
         activityInfo[4] = host.getText().toString();
         int eventId = Integer.parseInt(event.getHint().toString());
         isThisMyEvent = host.getHint().toString().equals(userId);
-        //Log.i("host id", host.getHint());
         Log.i("do i own this event?", isThisMyEvent.toString());
 
         addProfile.putExtra("isThisMyEvent", isThisMyEvent);

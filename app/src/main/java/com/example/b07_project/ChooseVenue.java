@@ -110,31 +110,17 @@ public class ChooseVenue extends AppCompatActivity {
         );
 
         ViewGroup.LayoutParams params1 = new ViewGroup.LayoutParams(CardView.LayoutParams.WRAP_CONTENT, CardView.LayoutParams.WRAP_CONTENT);
-
-
         params.setMargins(12, 12, 12, 12);
         cardView.setLayoutParams(params1);
         venueName.setLayoutParams(params);
         venueSports.setLayoutParams(params);
-
-
-
-        //set card attributes and add text views to card
-
-            cardView.setCardBackgroundColor(255);
-            cardView.setCardElevation((float) 1.2);
-            cardView.setContentPadding(5, 5, 5, 5);
-            cardView.addView(venueName);
-            cardView.addView(venueSports);
-            cardView.addView(selectVenue);
-
-
-            constraintLayout.addView(cardView);
-
-
-
-
-
+        cardView.setCardBackgroundColor(255);
+        cardView.setCardElevation((float) 1.2);
+        cardView.setContentPadding(5, 5, 5, 5);
+        cardView.addView(venueName);
+        cardView.addView(venueSports);
+        cardView.addView(selectVenue);
+        constraintLayout.addView(cardView);
     }
 
     public void chooseVenue(View view, int sportsId, int venueNameId, int venueID){

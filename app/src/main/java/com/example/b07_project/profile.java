@@ -73,26 +73,17 @@ public class profile extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 Event event;
-                //((ViewGroup) findViewById(R.id.profilePage)).removeView(findViewById(R.id.sampleEventCard));
                 for(DataSnapshot i : task.getResult().getChildren()) {
                     event = i.getValue(Event.class);
                     if (event.ownerId == null) event.ownerId = "";
                     Log.i("ownerId", event.getOwnerId());
-
-
-
                     if (state == 1 && event.getOwnerId() != null && event.getOwnerId().equals(userId)) {
-
                         Log.i("status", "found a owner match");
-
                         Event finalEvent = event;
-
-
                         userRef.child(event.getOwnerId() + "").child("firstName").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<DataSnapshot> task) {
                                 String hostName = task.getResult().getValue(String.class);
-
                                 venueRef.child(finalEvent.venueId + "").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                                     @Override
                                     public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -100,8 +91,6 @@ public class profile extends AppCompatActivity {
                                         addProfileCard(findViewById(R.id.profilePage), finalEvent, hostName, venue.getName());
                                     }
                                 });
-
-
                             }
                         });
 
@@ -162,8 +151,6 @@ public class profile extends AppCompatActivity {
         textView.setText(event.getStartDateString());
         textView = v.findViewById(R.id.profileStartTime);
         textView.setText(event.getStartTimeString());
-        //textView = v.findViewById(R.id.profileEndTi);
-        //textView.setText(event.getEndTimeString());
         textView = v.findViewById(R.id.profileVenueName);
         textView.setText(venueName);
         textView = v.findViewById(R.id.profileEventName);
@@ -180,7 +167,6 @@ public class profile extends AppCompatActivity {
                             " from event with id " + event.getId() +
                             " with the name " + event.getName());
                     userServices.removeUserFromEvent(userId, event.getId());
-                    //switchToCreate(view);
                 }else if (state == 1){
                     Log.i("status", "about to delete event with id " + event.getId() +
                             " and name " + event.getName() + " from database.");
@@ -213,9 +199,7 @@ public class profile extends AppCompatActivity {
         addProfile.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(addProfile);
         overridePendingTransition(0, 0);
-
         finish();
-        //recreate();
     }
 
     public void deleteEvent(View view){
@@ -232,6 +216,5 @@ public class profile extends AppCompatActivity {
 
     public void removeCards(View view){
         LinearLayout layout = (LinearLayout) findViewById(R.id.cardList);
-        //layout.child
     }
 }

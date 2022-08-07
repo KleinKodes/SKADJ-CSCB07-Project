@@ -122,8 +122,6 @@ public class WrapperActivity extends AppCompatActivity {
                             finish();
                         }
                     }).start();
-/*                    startActivity(loginIntent);
-                    finish();*/
                     return;
                 }
 

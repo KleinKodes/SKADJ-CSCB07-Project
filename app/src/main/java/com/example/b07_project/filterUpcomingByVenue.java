@@ -23,7 +23,6 @@ public class filterUpcomingByVenue extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter_upcoming_by_venue_deprecated);
-        // create spinner for list of venues
         Intent testIntent = new Intent(this, filterUpcomingByVenue.class);
         DatabaseReference databaseVenues = FirebaseDatabase.getInstance().getReference().child("Venues");
         databaseVenues.addValueEventListener(new ValueEventListener() {
@@ -50,8 +49,6 @@ public class filterUpcomingByVenue extends AppCompatActivity {
 
     public void onEnter(View view){
         Intent newIntent = new Intent(this, UpcomingEventsDriver.class);
-
-        //Make sure the name is a valid venue
         DatabaseReference databaseVenues = FirebaseDatabase.getInstance().getReference().child("Venues");
         databaseVenues.addValueEventListener(new ValueEventListener() {
             @Override
@@ -60,8 +57,8 @@ public class filterUpcomingByVenue extends AppCompatActivity {
                 Spinner mySpinner = (Spinner) findViewById(R.id.spinner);
                 String message = mySpinner.getSelectedItem().toString();
 
-                String id = ""; // id string
-                String venueName = ""; // venue string
+                String id = ""; 
+                String venueName = ""; 
                 String [] listStrings = message.split(" ");
                 for(int i = 0; i < listStrings.length; i++){
                     if(i+1 == listStrings.length){id = listStrings[i];}

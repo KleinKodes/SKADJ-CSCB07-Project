@@ -165,14 +165,12 @@ public class EventServices {
 
             Log.i("status", "validating event");
             if (event.getStartTimeStamp() < Instant.now().toEpochMilli()) {
-                //makePopUp(view, "Invalid start date");
                 Snackbar mySnackbar = Snackbar.make(view, "Invalid start date", BaseTransientBottomBar.LENGTH_SHORT);
                 mySnackbar.show();
                 return false;
             }
 
             if (event.getEndTimeStamp() < event.getStartTimeStamp()) {
-                //makePopUp(view, "Invalid end date");
                 Snackbar mySnackbar = Snackbar.make(view, "Invalid end date", BaseTransientBottomBar.LENGTH_SHORT);
                 mySnackbar.show();
                 return false;
@@ -223,11 +221,4 @@ public class EventServices {
         for (String id : findEventById(eventId).attendees) searchResults.add(userServices.findUserByUserId(id).getFullName());
         return searchResults;
     }
-
-    public void purgeOldEvents(){
-    }
-
-
-
-
 }

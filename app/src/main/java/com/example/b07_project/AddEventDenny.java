@@ -153,10 +153,7 @@ public class AddEventDenny extends AppCompatActivity {
     public void createDennyEvent(View view)
     {
         System.out.println("someone clicked the button");
-        final int[] curMaxId = {-1}; //java made me use a final length 1 array instead of an integer idk y
-
-
-
+        final int[] curMaxId = {-1};
         EditText editText = (EditText) findViewById(R.id.eventNameDenny);
         String eventName = editText.getText().toString();
         editText = (EditText) findViewById(R.id.eventCapacityDenny);

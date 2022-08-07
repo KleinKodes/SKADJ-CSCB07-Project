@@ -42,11 +42,6 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         setContentView(R.layout.activity_login);
         userServices = new UserServices();
-
-        //FirebaseUser currentUser = mAuth.getCurrentUser();
-        //if(currentUser != null){
-        //    System.out.println("CREATE NEW INTENT OF MAIN ACTIVE");
-        //}
     }
 
 
@@ -60,10 +55,7 @@ public class LoginActivity extends AppCompatActivity {
 
         InputMethodManager imm = (InputMethodManager) this.getSystemService(Activity.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-
-        // validate that there are emails and passwords to check
         if(!(validateData(view, email, password))){return;}
-
         setContentView(R.layout.loading_activity);
         ProgressBar p = (ProgressBar)findViewById(R.id.progressBar);
         Handler h = new Handler();
@@ -90,7 +82,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private boolean validateData(View view, EditText email, EditText password){
         if(email.getText().toString().trim().isEmpty() || password.getText().toString().trim().isEmpty()){
-            //makePopUp(view, "Provide credentials to login.");
             Snackbar mySnackbar = Snackbar.make(view, "Provide credentials to login", BaseTransientBottomBar.LENGTH_SHORT);
             mySnackbar.show();
             return false;
