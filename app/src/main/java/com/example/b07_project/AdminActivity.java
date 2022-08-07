@@ -117,8 +117,6 @@ public class AdminActivity extends AppCompatActivity {
                 else {
                     for (DataSnapshot childSnapshot : task.getResult().getChildren()) {
                         myRef.child(childSnapshot.getKey()).removeValue();
-
-//
                     }
 
 

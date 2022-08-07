@@ -35,7 +35,6 @@ public class UpcomingEventsDriver extends AppCompatActivity {
         filterUpcomingByVenue filter = new filterUpcomingByVenue();
         setSpinner();
 
-        //below shows upcoming events, and upcoming events by venue if specified
         Bundle test = getIntent().getExtras();
         DatabaseReference database = FirebaseDatabase.getInstance().getReference().child("Events");
 
@@ -128,7 +127,6 @@ public class UpcomingEventsDriver extends AppCompatActivity {
 
                 }
             });
-            //Adds and displays the upcoming events for the user.
         }
     }
 
@@ -139,7 +137,6 @@ public class UpcomingEventsDriver extends AppCompatActivity {
     }
 
     public void setSpinner(){
-        // create spinner for list of venues
         Intent testIntent = new Intent(this, filterUpcomingByVenue.class);
         DatabaseReference databaseVenues = FirebaseDatabase.getInstance().getReference().child("Venues");
         databaseVenues.addValueEventListener(new ValueEventListener() {
@@ -156,7 +153,6 @@ public class UpcomingEventsDriver extends AppCompatActivity {
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, venueNames);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinner.setAdapter(adapter);
-                //spinner.setPrompt("Select");
                 spinner.setSelection(getIntent().getIntExtra("pos", 0));
 
             }
@@ -170,8 +166,6 @@ public class UpcomingEventsDriver extends AppCompatActivity {
 
     public void onEnter(View view){
         Intent newIntent = new Intent(this, UpcomingEventsDriver.class);
-
-        //Make sure the name is a valid venue
         DatabaseReference databaseVenues = FirebaseDatabase.getInstance().getReference().child("Venues");
         databaseVenues.addValueEventListener(new ValueEventListener() {
             @Override
@@ -181,8 +175,8 @@ public class UpcomingEventsDriver extends AppCompatActivity {
                 String message = mySpinner.getSelectedItem().toString();
                 int pos = mySpinner.getSelectedItemPosition();
 
-                String id = ""; // id string
-                String venueName = ""; // venue string
+                String id = ""; 
+                String venueName = ""; 
                 String [] listStrings = message.split(" ");
                 for(int i = 0; i < listStrings.length; i++){
                     if(i+1 == listStrings.length){id = listStrings[i];}
@@ -194,7 +188,7 @@ public class UpcomingEventsDriver extends AppCompatActivity {
 
                 newIntent.putExtra("key", finalId);
                 newIntent.putExtra("auth", 1);
-                newIntent.putExtra("pos", pos); //spinner position
+                newIntent.putExtra("pos", pos); 
                 startActivity(newIntent);
                 overridePendingTransition(0, 0);
                 finish();
