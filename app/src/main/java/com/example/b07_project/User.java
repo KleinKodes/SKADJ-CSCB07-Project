@@ -6,8 +6,8 @@ public class User {
     public String id;
     public String firstName, lastName;
     public String email;
-    public ArrayList<Integer> joinedEvents; //list of event IDs
-    public int auth; //0 -> customer, 1 -> admin
+    public ArrayList<Integer> joinedEvents; 
+    public int auth; 
     public ArrayList<Integer> createdEvents;
 
     public User()

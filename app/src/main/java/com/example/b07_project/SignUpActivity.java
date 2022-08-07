@@ -60,8 +60,6 @@ public class SignUpActivity extends AppCompatActivity {
         EditText name = (EditText) findViewById(R.id.Name_EditText);
         EditText email = (EditText) findViewById(R.id.Email_SignUp_EditText);
         EditText password = (EditText) findViewById(R.id.Password_SignUp_EditText);
-
-        // User data should be complete here, now validating
         if(!(validateData(view, last_name.getText().toString(),
                 name.getText().toString(), email.getText().toString(), password.getText().toString()))){return;}
 
@@ -75,29 +73,21 @@ public class SignUpActivity extends AppCompatActivity {
                                 System.out.println("SIGN UP WAS SUCCESSFUL  :((((");
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 updateUserProfile(name.getText().toString());
-                                //user.updateProfile(new UserProfileChangeRequest.Builder);
-                                //user.
                                 User newUser = new User();
                                 newUser.id = user.getUid();
                                 newUser.auth = 0;
                                 newUser.firstName = name.getText().toString();
                                 newUser.lastName = last_name.getText().toString();
                                 newUser.email = email.getText().toString();
-
                                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                                 DatabaseReference myRef = database.getReference("Users");
-
                                 myRef.child(newUser.id).setValue(newUser);
-
-                                //dasdjfslkdajflkadsjfklasdjflksadsalkdfjsalkdjfklasdjflsadjflsadkjflksdaj
-
                                 mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
                                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                         @Override
                                         public void onComplete(@NonNull Task<AuthResult> task) {
                                             if (task.isSuccessful()) {
                                                 FirebaseUser user = mAuth.getCurrentUser();
-                                                //user.getEmail();
                                                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                                                 DatabaseReference myRef = database.getReference("Users").child(user.getUid());
 
@@ -113,10 +103,7 @@ public class SignUpActivity extends AppCompatActivity {
                                             }
                                         }
                                     });
-
-
                             } else {
-                                //fail
                                 System.out.println("SIGN IN FAILED   :((((");
                                 TextView loginFail = (TextView) findViewById(R.id.Sign_Up_Error_Message);
                                 loginFail.setText(task.getException().getMessage());
@@ -127,23 +114,17 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     private boolean validateData(View view, String lastName, String name, String email, String password){
-        //Check if user has names
         if(name.trim().isEmpty() || lastName.trim().isEmpty()){
-            //makePopUp(view, "Please enter a first name or last name.");
             Snackbar mySnackbar = Snackbar.make(view, "Please enter a first name or last name", BaseTransientBottomBar.LENGTH_SHORT);
             mySnackbar.show();
             return false;
         }
-        //Check if user has inputted an email
         if(email.trim().isEmpty()){
-            //makePopUp(view, "Please enter an email");
             Snackbar mySnackbar = Snackbar.make(view, "Please enter an email", BaseTransientBottomBar.LENGTH_SHORT);
             mySnackbar.show();
             return false;
         }
-        //Check if user has inputted a password
         if(password.trim().isEmpty()){
-            //makePopUp(view, "Please enter a password");
             Snackbar mySnackbar = Snackbar.make(view, "Please enter a password", BaseTransientBottomBar.LENGTH_SHORT);
             mySnackbar.show();
             return false;
