@@ -1,0 +1,16 @@
+2022/08/02
+Denny
+Tasks Done: created functionality for home, logout, and profile buttons on the bottom page. 
+Needs to take out plus and search from the top window of the UI
+Jacky
+Tasks Done: Created buttons for implementation of what customer view should look like. 
+Needs to debug and fix issues regarding data validation
+Continue working on the pathing for customer view
+Klein
+Tasks Done: created event confirmation on admin side, and when event gets denied, it is removed from the list of upcoming events.
+Work on fixing bugs when merging branches
+Anthony
+Tasks Done: Created buttons for implementation of what admin view should look like.
+Seven 
+Tasks Done: Out of commission
+Needs to come back from trip

@@ -207,12 +207,13 @@ public class UserServices {
                             @Override
                             public void onComplete(@NonNull Task<DataSnapshot> task) {
                                 ArrayList<String> attendees = (ArrayList<String>) task.getResult().getValue();
-                                if (attendees == null) return;
+                                if (attendees == null) attendees = new ArrayList<String>();
                                 if (attendees.contains(currentUser.id)) return;
                                 attendees.add(currentUser.id);
 
                                 DatabaseReference joinedEventsRef = userRef.child(currentUser.getId()).child("joinedEvents");
 
+                                ArrayList<String> finalAttendees = attendees;
                                 joinedEventsRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                                     @Override
                                     public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -220,7 +221,7 @@ public class UserServices {
                                         if (joinedEvents == null) joinedEvents = new ArrayList<Integer>();
                                         joinedEvents.add(eventId);
 
-                                        attendeesRef.setValue(attendees);
+                                        attendeesRef.setValue(finalAttendees);
 
                                         joinedEventsRef.setValue(joinedEvents);
                                         attendeeNumRef.setValue(attendeeNum);

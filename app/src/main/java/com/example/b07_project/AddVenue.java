@@ -34,15 +34,21 @@ public class AddVenue extends AppCompatActivity {
     int numOfSports = 0;
     int auth = 0;
     int mode = 0;
+    int venueID = -1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_venue_denny);
         mode = this.getIntent().getIntExtra("mode", 0);
 
+        venueID = this.getIntent().getIntExtra("venueId",-1);
+        ((Button)findViewById(R.id.deleteButton)).setVisibility(View.INVISIBLE);
+
+
         if(mode == 1){
             TextView modeText = ((TextView)findViewById(R.id.modeText));
             modeText.setText("View/Edit Venue");
+            ((Button)findViewById(R.id.deleteButton)).setVisibility(View.VISIBLE);
 
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference myRef = database.getReference("Venues").child(this.getIntent().getIntExtra("venueId",-1)+"");
@@ -216,9 +222,47 @@ public class AddVenue extends AppCompatActivity {
             }
         });
 
+
         Intent addVenue = new Intent(this, AdminActivity.class);
         startActivity(addVenue);
         finish();
+    }
+
+    public void deleteVenue(View view)
+    {
+        Intent chooseVenue = new Intent(this, ChooseVenue.class);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference("Events");
+        ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                for(DataSnapshot i : task.getResult().getChildren())
+                {
+                    System.out.println("NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+                    Event event = (Event)i.getValue(Event.class);
+                    if(event.venueId == venueID){
+                        Snackbar mySnackbar = Snackbar.make(view, "There are still Events at this Venue!", BaseTransientBottomBar.LENGTH_SHORT);
+                        mySnackbar.show();
+                        return;
+                    }
+                }
+                DatabaseReference myRef = database.getReference("Venues").child(venueID + "");
+
+                myRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                        myRef.removeValue();
+
+                        startActivity(chooseVenue);
+                        finish();
+
+                    }
+                });
+
+
+            }
+        });
+
     }
 
     public void addSport(View view)
