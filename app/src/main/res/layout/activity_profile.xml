@@ -84,7 +84,7 @@
                 android:layout_height="54dp"
                 android:layout_marginStart="17dp"
                 android:background="@drawable/top_rounded_edge"
-                android:backgroundTint="#2B782E"
+                android:backgroundTint="@color/dark_green"
                 android:onClick="switchToJoin"
                 app:layout_constraintStart_toEndOf="@+id/tab1"
                 app:layout_constraintTop_toTopOf="parent">
@@ -107,7 +107,7 @@
                 android:layout_height="54dp"
                 android:layout_marginStart="18dp"
                 android:background="@drawable/top_rounded_edge"
-                android:backgroundTint="#2B782E"
+                android:backgroundTint="@color/dark_green"
                 android:onClick="switchToCreate"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">

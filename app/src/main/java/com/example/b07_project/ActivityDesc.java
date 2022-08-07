@@ -23,11 +23,13 @@ import java.util.ArrayList;
 
 public class ActivityDesc extends AppCompatActivity {
     DatabaseReference eventRef;
+    DatabaseReference venueRef;
     DatabaseReference userRef;
     String[] activityInfo;
     int eventId;
     String userId;
     Event event;
+    Venue venue;
     Boolean isThisMyEvent;
     Boolean mode;
     String firstName;
@@ -52,6 +54,8 @@ public class ActivityDesc extends AppCompatActivity {
         profile.setOnClickListener(new Navigation());
         View logout = findViewById(R.id.logOutButton);
         logout.setOnClickListener(new Navigation());
+
+        ((TextView)findViewById(R.id.profileUserName)).setText(userServices.getCurrentUserName());
 
         mode = intent.getBooleanExtra("approvalNeeded", false);
         Log.i("mode", mode.toString());
@@ -110,7 +114,18 @@ public class ActivityDesc extends AppCompatActivity {
         eventRef.child(eventId + "").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
+
                 event = task.getResult().getValue(Event.class);
+
+                venueRef = database.getReference("Venues");
+                venueRef.child(event.getVenueId() + "").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                     @Override
+                     public void onComplete(@NonNull Task<DataSnapshot> task) {
+                            venue = task.getResult().getValue(Venue.class);
+                            TextView venueName = (TextView) findViewById(R.id.activityDescVenue);
+                            venueName.setText(venue.getName());
+                       }
+                     });
                 ViewGroup infoContainer = (ViewGroup) findViewById(R.id.infoContainer);
                 TextView host = (TextView)infoContainer.getChildAt(1);
                 TextView start = (TextView)infoContainer.getChildAt(2);
@@ -121,6 +136,7 @@ public class ActivityDesc extends AppCompatActivity {
                 TextView sports = (TextView) findViewById(R.id.activityDescSports);
                 TextView desc = (TextView) findViewById(R.id.activityDescDescription);
                 TextView cap = (TextView) findViewById(R.id.activityDescCapacity);
+                TextView venueName = (TextView) findViewById(R.id.activityDescVenue);
 
                 host.setText(event.getOwnerId());
                 start.setText("Start Time: "+event.getStartTimeString());

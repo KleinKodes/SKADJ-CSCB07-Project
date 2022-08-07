@@ -22,6 +22,7 @@ public class VenueDesc extends AppCompatActivity {
     String venueName;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    UserServices userServices;
 
 
     @Override
@@ -39,6 +40,10 @@ public class VenueDesc extends AppCompatActivity {
         profile.setOnClickListener(new Navigation());
         View logout = findViewById(R.id.logOutButton);
         logout.setOnClickListener(new Navigation());
+
+        userServices = new UserServices();
+        ((TextView)findViewById(R.id.profileUserName)).setText(userServices.getCurrentUserName());
+
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Venues");
