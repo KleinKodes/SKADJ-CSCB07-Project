@@ -51,7 +51,7 @@ public class VenuePageDennt extends AppCompatActivity {
         View logout = findViewById(R.id.logOutButton);
         logout.setOnClickListener(new Navigation());
         TextView userName = findViewById(R.id.profileUserName);
-        userName.setText(userServices.firebaseAuth.getCurrentUser().getDisplayName());
+        userName.setText(userServices.getCurrentUserName());
 
 
 
@@ -61,12 +61,12 @@ public class VenuePageDennt extends AppCompatActivity {
         databaseReference = firebaseDatabase.getReference("Venues");
         initialzieVenues();
     }
-
-    public void addCard(View view) {
-        LinearLayout layout = (LinearLayout) findViewById(R.id.venuePageCardList);
-        View v = LayoutInflater.from(this).inflate(R.layout.venue_place_card, null);
-        layout.addView(v);
-    }
+//
+//    public void addCard(View view) {
+//        LinearLayout layout = (LinearLayout) findViewById(R.id.venuePageCardList);
+//        View v = LayoutInflater.from(this).inflate(R.layout.venue_place_card, null);
+//        layout.addView(v);
+//    }
 
     public void initialzieVenues() {
 
@@ -121,10 +121,10 @@ public class VenuePageDennt extends AppCompatActivity {
     }
 
 
-    public void transitionToVenueDesc(View view) {
-        Intent intent = new Intent(this, VenueDesc.class);
-        TextView venue = (TextView) ((ViewGroup) view).getChildAt(0);
-        intent.putExtra(venueName, venue.getText());
-        startActivity(intent);
-    }
+//    public void transitionToVenueDesc(View view) {
+//        Intent intent = new Intent(this, VenueDesc.class);
+//        TextView venue = (TextView) ((ViewGroup) view).getChildAt(0);
+//        intent.putExtra(venueName, venue.getText());
+//        startActivity(intent);
+//    }
 }

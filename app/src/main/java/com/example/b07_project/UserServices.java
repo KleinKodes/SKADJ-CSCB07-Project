@@ -54,7 +54,7 @@ public class UserServices {
     }
 
     public String getCurrentUserId() {return firebaseAuth.getCurrentUser().getUid();}
-    public String getCurrentUserName(){return firebaseAuth.getCurrentUser().getDisplayName();}
+    public String getCurrentUserName(){return currentUser.getFirstName();}
     public User getCurrentUser(){return currentUser;}
     public int getCurrentUserAuth(){return currentUser.auth;}
 

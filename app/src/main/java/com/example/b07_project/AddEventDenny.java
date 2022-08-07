@@ -41,6 +41,7 @@ public class AddEventDenny extends AppCompatActivity {
     int selectedVenueId;
     String firstName;
     EventServices eventServices;
+    UserServices userServices;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
