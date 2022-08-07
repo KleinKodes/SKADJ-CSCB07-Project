@@ -58,8 +58,9 @@ public class UpcomingEventsDriver extends AppCompatActivity {
                     for (DataSnapshot data : snapshot.getChildren()) {
                         String compareId = data.child("venueId").getValue().toString();
                         if(Objects.equals(inputId, compareId)){
-                            String name = data.child("name").getValue().toString();
-                            Event event = new Event(name);
+                            Event event = data.getValue(Event.class);
+//                            String name = data.child("name").getValue().toString();
+//                            Event event = new Event(name);
                             Events.add(event);
                         }
                         else{continue;}
