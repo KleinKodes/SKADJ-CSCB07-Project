@@ -14,7 +14,7 @@ public class LoadingScreenDeprecated {
     public void makeLoadingScreen(View view, Context context, Class next){
         Intent i = new Intent(context, next);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        ProgressBar p = (ProgressBar) view.findViewById(R.id.progressBar);
+        ProgressBar p = (ProgressBar)view.findViewById(R.id.progressBar);
         Handler h = new Handler();
         new Thread(new Runnable() {
             @Override

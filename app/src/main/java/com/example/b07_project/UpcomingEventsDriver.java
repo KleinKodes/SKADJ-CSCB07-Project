@@ -7,9 +7,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 
 import com.google.firebase.database.DataSnapshot;
@@ -25,12 +27,149 @@ public class UpcomingEventsDriver extends AppCompatActivity {
     int auth;
     String firstName;
     String userId;
+    private int pStatus=0;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_upcoming_events_driver);
+
+        setContentView(R.layout.loading_activity);
+        ProgressBar p = (ProgressBar)findViewById(R.id.progressBar);
+        Handler h = new Handler();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(pStatus < 100){
+                    pStatus++;
+                    android.os.SystemClock.sleep(10);
+                    h.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            p.setProgress(pStatus);
+                        }
+                    });
+                }
+            }
+        }).start();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run(){
+                setContentView(R.layout.activity_upcoming_events_driver);
+
+                filterUpcomingByVenue filter = new filterUpcomingByVenue();
+                setSpinner();
+
+                //below shows upcoming events, and upcoming events by venue if specified
+                Bundle test = getIntent().getExtras();
+                DatabaseReference database = FirebaseDatabase.getInstance().getReference().child("Events");
+
+                RecyclerView listVenues = (RecyclerView) findViewById(R.id.upcomingEventsList);
+                UpcomingEventsAdapter adapter = new UpcomingEventsAdapter(new ArrayList<Event>());
+
+                listVenues.setAdapter(adapter);
+                listVenues.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
+                Log.i("status", "created adapter and recycleview");
+
+                if (test.get("key") != null) {
+                    //String testTwo = test.getString("key");
+                    //Log.d("test", testTwo);
+                    database.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            ArrayList<Event> Events = new ArrayList<>();
+                            String inputId = test.getString("key");
+                            for (DataSnapshot data : snapshot.getChildren()) {
+                                String compareId = data.child("venueId").getValue().toString();
+                                if(Objects.equals(inputId, compareId)){
+                                    Event event = data.getValue(Event.class);
+//                            String name = data.child("name").getValue().toString();
+//                            Event event = new Event(name);
+                                    Events.add(event);
+                                }
+                                else{continue;}
+                            }
+
+                            ArrayList<Event> upcomingEvents = new ArrayList<>();
+                            ArrayList<Event> copyOfEvents = new ArrayList<>(Events);
+                            adapter.setUpcomingEventsAdapterList(upcomingEvents);
+                            while (upcomingEvents.size() < Events.size()){
+                                Event newEvent = null;
+                                for(Event each: copyOfEvents) {
+                                    if (newEvent == null || newEvent.startTimeStamp > each.startTimeStamp) {
+                                        newEvent = each;
+                                    }
+                                }
+                                upcomingEvents.add(newEvent);
+                                copyOfEvents.remove(newEvent);
+                                adapter.notifyItemInserted(adapter.getItemCount());
+                            }
+
+                            for (Event i: upcomingEvents) Log.i("arrayList Item", i.getName());
+
+                            adapter.notifyDataSetChanged();
+
+                            Log.i("status", "set adapter list5");
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                } else {
+                    database.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            ArrayList<Event> Events = new ArrayList<>();
+                            for (DataSnapshot data : snapshot.getChildren()) {
+                                //Denny added this
+                                Event event = data.getValue(Event.class);
+                                Events.add(event);
+//                        String name = data.child("name").getValue().toString();
+//                        Event event = new Event(name);
+//                        event.startTimeStamp = Long.valueOf(data.child("startTimeStamp").getValue().toString());
+//                        Events.add(event);
+                            }
+
+                            ArrayList<Event> upcomingEvents = new ArrayList<>();
+                            ArrayList<Event> copyOfEvents = new ArrayList<>(Events);
+                            adapter.setUpcomingEventsAdapterList(upcomingEvents);
+                            while (upcomingEvents.size() < Events.size()){
+                                Event newEvent = null;
+                                for(Event each: copyOfEvents) {
+                                    if (newEvent == null || newEvent.startTimeStamp > each.startTimeStamp) {
+                                        newEvent = each;
+                                    }
+                                }
+                                upcomingEvents.add(newEvent);
+                                copyOfEvents.remove(newEvent);
+                                adapter.notifyItemInserted(adapter.getItemCount());
+
+
+                            }
+
+                            for (Event i: upcomingEvents) Log.i("arrayList Item", i.getName());
+
+                            Log.i("status", "set adapter list");
+                            adapter.notifyDataSetChanged();
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                    //Adds and displays the upcoming events for the user.
+                }
+            }
+        }, 1200);
+
+/*        setContentView(R.layout.activity_upcoming_events_driver);
 
         filterUpcomingByVenue filter = new filterUpcomingByVenue();
         setSpinner();
@@ -138,7 +277,7 @@ public class UpcomingEventsDriver extends AppCompatActivity {
                 }
             });
             //Adds and displays the upcoming events for the user.
-        }
+        }*/
     }
 
     public void onFilterByVenue(View v){
