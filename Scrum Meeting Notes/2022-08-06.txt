@@ -1,0 +1,16 @@
+2022/08/06
+Denny
+Tasks Done: Add more information from firebase to the activity description.
+Needs to fix overridden changes from previous branches.
+Jacky
+Tasks Done: finished loading screen for venue description and upcoming events for each venue
+Add loading screens for data in admin view (add all notes on github as well)
+Klein
+Tasks Done: Worked on CSCB09 Assignment, Fixed bug regarding loading screen.
+Debug more and do other coursework
+Anthony
+Tasks Done: Add delete button for sports when editing venues in admin view.
+Debug delete button, get the latest version of the branch when editing.
+Seven 
+Tasks Done: Figure out what files are needed to delete, refactored code
+Need to delete comments and clean out redundant code. 

@@ -1,0 +1,18 @@
+2022/08/04
+Denny
+Tasks Done: Fixed minor bugs on description page and other pages.
+Work more on testing the app via bug fixes.
+Jacky
+Tasks Done: Checked up on app and oversaw the merging of pages with UI.
+Make sure loading screens work on all pages (i.e implement all loading screens for the app).
+Work on bug fixing the app as well.
+Klein
+Tasks Done: Created layout for app loading screen for one specific page, also fixed bugs and merged pages with UI.
+Work more on merging the pages and testing apps more.
+Debug events joined for customer view
+Anthony
+Tasks Done: worked on other coursework and also oversaw merging of UI.
+Add minus button for adding venues, also testing. 
+Seven 
+Tasks Done: On trip
+Needs to come back

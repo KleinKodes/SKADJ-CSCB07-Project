@@ -1,0 +1,21 @@
+2022/07/31
+Denny
+Tasks Done: Finished making 4 new UI
+Created UI for add venue form fill out
+Created UI for add event form fill out and connected spinner to backend
+Created UI for venue page
+Created UI for venue description page
+Jacky
+Tasks Done: rename sort by venue to filter by venue to distinguish between the features.
+Focus on working with sorting features for lists and data validation for classes if possible (upcoming events should be by filter, venues should be by sorting).
+Klein
+Tasks Done: Added delete event and remove user from event functions and buttons to profile page, also fixed bugs when merging.
+TODO: fix upcoming merge issues and make code interact with new User class
+Anthony
+Tasks Done: 
+Added ability for Admins to view and edit created venues
+We are now able to track session data and also login and stuff
+Seven 
+Tasks Done: Did some refactoring on the code, could not figure out how to make sure my changes don’t break the program (because can’t test/run the app). Solution: Trust me. 
+Continue to refactor code and work on tasks with Anthony with his and my sprint stuff.
+Still need to redirect Admins to a different page and logging out and make certain changes for efficiency in the User database

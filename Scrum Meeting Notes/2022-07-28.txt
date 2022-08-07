@@ -1,0 +1,21 @@
+2022/07/28
+Denny
+Tasks Done: Applied UI interface on venue join/create pages
+Work on UI for activity, profile, and description page
+Jacky
+Tasks Done: Created a functional available/upcoming events page using firebase to query information. 
+Needs to work on the list so that it clearly represents available events.
+Needs to work on making the events page list in order of upcoming.
+Klein
+Tasks Done: Main functionality of adding a new event page (including admin functionality).
+Do data validation, link events to creators, modularize venue recyclerview to make reusability easier.
+Anthony
+Tasks Done: Created and completed main functionality for adding venues 
+Still need to implement the ability for the admin to view/edit all venues.
+Seven 
+Had to completely restart and started a new branch
+Nothing in the previous branch was working (was using a predefined template for Logins and Sign up Activities) and got many Blue Screen Errors and Emulator errors for the past week. 
+Tasks Done: Created signup and login activity page, logins now check credentials and signups creates new users. 
+Needs to do regex for login values (specifically emails and passwords) and create login database
+Make user class to identify users and associate data with then to create more functionalities
+

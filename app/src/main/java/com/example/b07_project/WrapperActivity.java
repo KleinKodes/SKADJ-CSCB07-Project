@@ -148,7 +148,7 @@ public class WrapperActivity extends AppCompatActivity {
                     public void run(){
                         userServices.routeUser(getBaseContext());
                     }
-                }, 1000);
+                }, 1150);
 
                 //Resources res = getResources();
                 //res.
