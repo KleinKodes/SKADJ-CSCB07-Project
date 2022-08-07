@@ -16,7 +16,8 @@ public class MainActivityDeprecated extends AppCompatActivity { // new MainActiv
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_deprecated);
 
-        auth = this.getIntent().getIntExtra("auth", 0);
+        UserServices userServices = new UserServices();
+        auth = userServices.getCurrentUserAuth();
         //System.out.println("Main AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         System.out.println(auth);
     }

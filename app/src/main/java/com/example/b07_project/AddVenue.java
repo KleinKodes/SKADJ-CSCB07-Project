@@ -39,6 +39,9 @@ public class AddVenue extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_venue_denny);
+
+        UserServices userServices = new UserServices();
+        auth = userServices.getCurrentUserAuth();
         mode = this.getIntent().getIntExtra("mode", 0);
 
         venueID = this.getIntent().getIntExtra("venueId",-1);

@@ -51,7 +51,9 @@ public class AddEventDenny extends AppCompatActivity {
 
         selectedVenueId = -1;
 
-        firstName = getIntent().getStringExtra("firstName");
+        userServices = new UserServices();
+
+        firstName = userServices.getCurrentUserName();
         if(firstName != null){
             TextView textView = findViewById(R.id.profileUserName);
             textView.setText(firstName);
@@ -181,7 +183,7 @@ public class AddEventDenny extends AppCompatActivity {
 
         event.sport = sports.getSelectedItem().toString();
         event.venueId = selectedVenueId;
-        event.ownerId = getIntent().getStringExtra("userId");
+        event.ownerId = userServices.getCurrentUserId();
         if (event.ownerId == null) event.ownerId = "default";
 
 

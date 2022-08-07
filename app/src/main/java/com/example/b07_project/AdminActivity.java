@@ -27,7 +27,8 @@ public class AdminActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
-        auth = this.getIntent().getIntExtra("auth", 0);
+        UserServices userServices = new UserServices();
+        auth = userServices.getCurrentUserAuth();
         System.out.println("Admin AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         System.out.println(auth);
     }
@@ -193,7 +194,8 @@ public class AdminActivity extends AppCompatActivity {
     public void transitionToAddVenue(View view)
     {
         Intent intent = new Intent(this, AddVenue.class);
-        int auth = this.getIntent().getIntExtra("auth", 0);
+        UserServices userServices = new UserServices();
+        int auth = userServices.getCurrentUserAuth();
         intent.putExtra("auth", 1);
         intent.putExtra("mode", 0);
         startActivity(intent);

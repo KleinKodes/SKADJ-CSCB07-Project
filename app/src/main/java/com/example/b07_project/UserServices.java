@@ -310,17 +310,6 @@ public class UserServices {
 
     public void routeUser(Context context) {
 
-//        currentUser = findUserByUserId(userId);
-//        while (currentUser.getEmail() == null){
-//            try {
-//                wait(1000);
-//            }catch(Exception e){
-//                Log.e("UserService Error", "could not find user");
-//            }
-//        }
-//
-//        Log.i("userInfo", "email:" + currentUser.getEmail() + " auth:" + currentUser.getAuth());
-
 
         Log.i("Current user", firebaseAuth.getCurrentUser().getUid());
         userRef.child(firebaseAuth.getCurrentUser().getUid()).child("auth").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
