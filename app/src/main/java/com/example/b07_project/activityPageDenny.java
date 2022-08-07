@@ -70,10 +70,6 @@ public class activityPageDenny extends AppCompatActivity {
                 Intent intent = getIntent();
 
                 mode = intent.getBooleanExtra("approvalNeeded", false);
-                //if mode == 0 then we want to view approved events
-                //if mode == 1 then we want to view unapproved events
-
-
                 firstName = getIntent().getStringExtra("firstName");
                 venueId = intent.getIntExtra("venueId", -1);
                 if(firstName != null){
@@ -92,8 +88,6 @@ public class activityPageDenny extends AppCompatActivity {
 
                 userId = getIntent().getStringExtra("userID");
                 if (userId == null) userId = "";
-
-                //changes text if we want to approve unapproved events
                 if (mode){
                     TextView textView = (TextView) findViewById(R.id.upcomingEventHeaderDenny);
                     textView.setText("Unapproved Events");
@@ -111,16 +105,10 @@ public class activityPageDenny extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<DataSnapshot> task) {
                         Event event;
-                        //((ViewGroup) findViewById(R.id.profilePage)).removeView(findViewById(R.id.sampleEventCard));
                         for(DataSnapshot i : task.getResult().getChildren())
                         {
                             event = i.getValue(Event.class);
                             Event finalEvent = event;
-
-
-
-
-                            // only shows event if we want to see approved and it is or if we want to see unapproved and it isn't
                             if (((!mode && event.approved) || mode && !event.approved )&& ((venueId == -1) || event.getVenueId() == venueId))
                                 userRef.child(event.getOwnerId() + "").child("firstName").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                                     @Override
@@ -139,86 +127,6 @@ public class activityPageDenny extends AppCompatActivity {
             }
         }, 1200);
 
-        /*setContentView(R.layout.activity_page_denny);
-
-        LayoutInflater layoutInflater = (LayoutInflater)
-                getSystemService(LAYOUT_INFLATER_SERVICE);
-        View loadingView = layoutInflater.inflate(R.layout.loading_activity, null);
-
-
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        Intent intent = getIntent();
-
-        mode = intent.getBooleanExtra("approvalNeeded", false);
-        //if mode == 0 then we want to view approved events
-        //if mode == 1 then we want to view unapproved events
-
-
-        userServices = new UserServices();
-        firstName = userServices.getCurrentUserName();
-        venueId = intent.getIntExtra("venueId", -1);
-        if(firstName != null){
-            TextView textView = findViewById(R.id.profileUserName);
-            textView.setText(firstName);
-        }
-
-        View home = findViewById(R.id.homeButton);
-        home.setOnClickListener(new Navigation());
-        View profile = findViewById(R.id.profileButton);
-        profile.setOnClickListener(new Navigation());
-        View logOut = findViewById(R.id.logOutButton);
-        logOut.setOnClickListener(new Navigation());
-
-        userServices = new UserServices();
-        ((TextView)findViewById(R.id.profileUserName)).setText(userServices.getCurrentUserName());
-
-        userId = getIntent().getStringExtra("userID");
-        if (userId == null) userId = "";
-
-        //changes text if we want to approve unapproved events
-        if (mode){
-            TextView textView = (TextView) findViewById(R.id.upcomingEventHeaderDenny);
-            textView.setText("Unapproved Events");
-
-                View navView =(View) logOut.getParent();
-                navView.setVisibility(View.GONE);
-
-        }
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference eventRef = database.getReference("Events");
-        DatabaseReference userRef = database.getReference("Users");
-
-        eventRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                Event event;
-                //((ViewGroup) findViewById(R.id.profilePage)).removeView(findViewById(R.id.sampleEventCard));
-                for(DataSnapshot i : task.getResult().getChildren())
-                {
-                    event = i.getValue(Event.class);
-                    Event finalEvent = event;
-
-
-
-
-                    // only shows event if we want to see approved and it is or if we want to see unapproved and it isn't
-                    if (((!mode && event.approved) || mode && !event.approved )&& ((venueId == -1) || event.getVenueId() == venueId))
-                    userRef.child(event.getOwnerId() + "").child("firstName").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<DataSnapshot> task) {
-                            String hostName = task.getResult().getValue(String.class);
-                            addCard(findViewById(R.id.profilePage), finalEvent, hostName);
-                        }
-                    });
-
-
-
-                }
-
-            }
-        });*/
-
     }
 
     public void addCard(View view, Event event, String hostName) {
@@ -228,7 +136,6 @@ public class activityPageDenny extends AppCompatActivity {
         if (hostName == null) hostName = "default";
         textView.setText(hostName);
         textView.setHint(event.getOwnerId());
-        //Log.i("ownerId", event.getOwnerId());
         textView = v.findViewById(R.id.cardEventDate);
         textView.setText(event.getStartDateString());
         textView = v.findViewById(R.id.startTime);

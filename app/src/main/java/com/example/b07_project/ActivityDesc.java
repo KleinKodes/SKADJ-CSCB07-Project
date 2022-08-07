@@ -97,13 +97,9 @@ public class ActivityDesc extends AppCompatActivity {
                 if (isThisMyEvent){
 
                     button.setVisibility(View.GONE);
-                    //button.setClickable(false);
-
                 }else
                 if (event.attendees != null && event.attendees.contains(userId)){
                     button.setText("Exit");
-                    //button.setClickable(false);
-
                 }
 
             }
@@ -186,55 +182,9 @@ public class ActivityDesc extends AppCompatActivity {
                 }
                 if (event.attendees == null) event.attendees = new ArrayList<String>();
                 if (event.attendees.contains(userId)){
-
-
                     userServices.removeUserFromEvent(userId, eventId);
-
-                    //TODO: Remove the event from the user's joined events list
-//                    userRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<DataSnapshot> task) {
-//                            ArrayList<Integer> joinedEvents = (ArrayList<Integer>) task.getResult().getValue();
-//                            if (joinedEvents!= null) joinedEvents.remove(joinedEvents.indexOf(eventId));
-//
-//                            userRef.setValue(joinedEvents);
-//                            event.attendees.remove(event.attendees.indexOf(userId));
-//                            eventRef.child(eventId + "").setValue(event);
-//
-//                            Intent intent = new Intent(getBaseContext(), activityPageDenny.class);
-//                            intent.putExtra("approvalNeeded", mode);
-//                            startActivity(intent);
-//                            finish();
-//
-//                        }
-//                    });
-
-
                 }else {
-
-
-                    //TODO: OPTIMIZE
-
                     userServices.addCurrentUserToEvent(eventId);
-//
-//                    userRef.child(eventId + "").setValue(eventId);
-//                    eventRef.child(eventId + "").child("attendees").child(userId).setValue(userId);
-//                    userRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<DataSnapshot> task) {
-//                            ArrayList<Integer> joinedEvents = (ArrayList<Integer>) task.getResult().getValue();
-//                            if (joinedEvents== null) joinedEvents = new ArrayList<Integer>();
-//
-//                            joinedEvents.add(eventId);
-//
-//                            userRef.setValue(joinedEvents);
-//                            event.attendees.add(userId);
-//                            eventRef.child(eventId + "").setValue(event);
-//
-
-//
-//                        }
-//                    });
                 }
 
                 Intent intent = new Intent(getBaseContext(), activityPageDenny.class);

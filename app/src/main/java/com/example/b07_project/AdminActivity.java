@@ -136,9 +136,6 @@ public class AdminActivity extends AppCompatActivity {
     }
 
     public void initializeTwoVenues(View view){
-        //BLOCK
-        //The code below creates a new venue... temporary until admin view done
-
         Venue venue = new Venue();
         venue.id = 69;
         venue.capacity = 100;
@@ -172,10 +169,6 @@ public class AdminActivity extends AppCompatActivity {
         venue.scheduledEvents = scheduledEvents;
 
         venueRef.child(venue.id + "").setValue(venue);
-
-//
-//event.venueId = 69;
-        //ENDBLOCK
 
 
     }
