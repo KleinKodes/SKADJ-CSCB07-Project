@@ -77,6 +77,7 @@ public class UpcomingEventsAdapter extends RecyclerView.Adapter<UpcomingEventsAd
                 Intent intent = new Intent(v.getContext(), ActivityDesc.class);
                 intent.putExtra("eventId", eventId);
                 intent.putExtra("currClass", currClass);
+                intent.putExtra("auth", 1);
 //                if(auth == 1) {
 //                    intent.setClass(v.getContext(), AddVenue.class);
 //                    intent.putExtra("mode", 1);

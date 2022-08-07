@@ -56,6 +56,12 @@ public class ActivityDesc extends AppCompatActivity {
         mode = intent.getBooleanExtra("approvalNeeded", false);
         Log.i("mode", mode.toString());
 
+
+        if(auth == 1)
+        {
+            findViewById(R.id.joinEventButton).setVisibility(View.GONE);
+        }
+
         if (userId == null) userId = "";
         firstName = userServices.getCurrentUserName();
         if(firstName != null){
