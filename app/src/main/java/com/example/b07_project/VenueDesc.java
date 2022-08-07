@@ -32,7 +32,7 @@ public class VenueDesc extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.loading_activity); // FIX
+        setContentView(R.layout.loading_activity); 
         ProgressBar p = (ProgressBar)findViewById(R.id.progressBar);
         Handler h = new Handler();
         new Thread(new Runnable() {

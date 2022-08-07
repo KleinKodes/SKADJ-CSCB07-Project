@@ -95,48 +95,13 @@ public class WrapperActivity extends AppCompatActivity {
                     }
                 }).start();
 
-                new Handler().postDelayed(new Runnable() { // can I change this?
+                new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run(){
                         userServices.routeUser(getBaseContext());
                     }
                 }, 1150);
-
-
-
-
-//                currentUser2 = userServices.findUserByUserId(firebaseAuth.getCurrentUser().getUid());
-//
-////                Log.i("userInfo", "email:" + currentUser.getEmail() + " auth:" + currentUser.getAuth());
-////
-////
-////
-////                //userServices.routeUser(getBaseContext(), firebaseAuth.getUid());
-////
-////
-////
-//                if (currentUser2.getAuth() == 1){
-//                    Intent adminIntent = new Intent(getBaseContext(), AdminActivity.class);
-//                    adminIntent.putExtra("auth", currentUser2.getAuth());
-//                    adminIntent.putExtra("firstName", currentUser2.getFirstName());
-//                    adminIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                    startActivity(adminIntent);
-//                    finish();
-//
-//                }else if (currentUser2.getAuth() == 0){
-//                    Intent customerIntent = new Intent(getBaseContext(), VenuePageDennt.class);
-//                    customerIntent.putExtra("auth", currentUser2.getAuth());
-//                    customerIntent.putExtra("firstName", currentUser2.getFirstName());
-//                    startActivity(customerIntent);
-//                    customerIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                    finish();
-//                } else{
-//                    Log.e("LoginIssue", "user does not have correct auth value");
-//                }
-
-
                 return;
-
            }
         });
 
