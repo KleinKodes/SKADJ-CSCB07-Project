@@ -170,6 +170,9 @@ public class activityPageDenny extends AppCompatActivity {
     }
 
     public void transitionToDesc(View view){
+        Log.i("debug info", "view with id: " + view.getId() + " pressed");
+        if (view.getId() != R.id.cardContainer) return;
+
         ViewGroup newView = (ViewGroup) view;
 
         ViewGroup eventContainer1 = (ViewGroup) newView.getChildAt(1);
