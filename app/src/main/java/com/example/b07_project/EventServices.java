@@ -1,6 +1,8 @@
 package com.example.b07_project;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 
@@ -239,6 +241,34 @@ public class EventServices {
         ArrayList<String> searchResults = new ArrayList<String>();
         for (String id : findEventById(eventId).attendees) searchResults.add(userServices.findUserByUserId(id).getFullName());
         return searchResults;
+    }
+
+    public void ViewEventAttendees(int eventId, Context context){
+
+        eventRef.child(eventId + "").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+
+
+                ArrayList<String> attendeeList = new ArrayList<String>();
+                for (String userId : task.getResult().getValue(Event.class).attendees){
+                    userRef.child(userId).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DataSnapshot> task) {
+
+                            attendeeList.add(task.getResult().getValue(User.class).getFullName());
+                        }
+                    });
+                }
+
+                Intent intent = new Intent(context, profile.class); //change this from profile LOL
+                intent.putExtra("attendeeList", attendeeList);
+                context.startActivity(intent);
+
+
+            }
+        });
+
     }
 
     public void purgeOldEvents(){

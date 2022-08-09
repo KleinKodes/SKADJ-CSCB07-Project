@@ -173,6 +173,21 @@ public class profile extends AppCompatActivity {
         button.setHint(event.getId() + "");
         textView = v.findViewById(R.id.profileApproval);
 
+        View leftHalf = v.findViewById(R.id.linearLayout2);
+        leftHalf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent eventIntent = new Intent(getBaseContext(), ActivityDesc.class);
+                if (state == 1) eventIntent.putExtra("isThisMyEvent", true);
+                else eventIntent.putExtra("isThisMyEvent", false);
+                eventIntent.putExtra("eventId", event.getId());
+                eventIntent.putExtra("hostName", hostName);
+                eventIntent.putExtra("venueName", venueName);
+                startActivity(eventIntent);
+            }
+        });
+
         if(event.getApproved() == true){textView.setVisibility(View.GONE);}
         else {textView.setText("Waiting For Approval...");}
 

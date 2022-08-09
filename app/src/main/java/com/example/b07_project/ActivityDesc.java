@@ -183,10 +183,10 @@ public class ActivityDesc extends AppCompatActivity {
                 if (mode){
                     event.approved = true;
                     eventRef.child(eventId + "").setValue(event);
-                    Intent intent = new Intent(getBaseContext(), activityPageDenny.class);
-                    intent.putExtra("approvalNeeded", mode);
+                    //Intent intent = new Intent(getBaseContext(), activityPageDenny.class);
+                    //intent.putExtra("approvalNeeded", mode);
 //                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
+                    //startActivity(intent);
                     finish();
                     return;
 
@@ -200,11 +200,11 @@ public class ActivityDesc extends AppCompatActivity {
 //
                 }
 
-                Intent intent = new Intent(getBaseContext(), activityPageDenny.class);
-                intent.putExtra("approvalNeeded", mode);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                //Intent intent = new Intent(getBaseContext(), activityPageDenny.class);
+                //intent.putExtra("approvalNeeded", mode);
+                //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
-                startActivity(intent);
+                //startActivity(intent);
                 finish();
 
             }
