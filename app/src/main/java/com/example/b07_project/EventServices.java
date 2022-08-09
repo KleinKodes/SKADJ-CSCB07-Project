@@ -41,12 +41,26 @@ public class EventServices {
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 Event event = task.getResult().getValue(Event.class);
                 if (event == null) return;
-                if (event.attendees != null) {
-                    for (String i : event.attendees) {
-                        userServices.removeUserFromEvent(i, eventId);
+                DatabaseReference scheduledEventsRef = venueRef.child(event.venueId + "").child("scheduledEvents");
+                        scheduledEventsRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                        if (task.getResult().getValue() != null) {
+                            ArrayList<Integer> scheduledEvents = (ArrayList<Integer>) task.getResult().getValue();
+
+                            if (scheduledEvents.contains(eventId)) scheduledEvents.remove(scheduledEvents.indexOf(eventId));
+                            scheduledEventsRef.setValue(scheduledEvents);
+
+                            if (event.attendees != null) {
+                                for (String i : event.attendees) {
+                                    userServices.removeUserFromEvent(i, eventId);
+                                }
+                            }
+                            eventRef.child(eventId + "").removeValue();
+                        }
                     }
-                }
-                eventRef.child(eventId + "").removeValue();
+                });
+
             }
         });
 
@@ -228,12 +242,17 @@ public class EventServices {
     }
 
     public void purgeOldEvents(){
-//        eventRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<DataSnapshot> task) {
-//                for (DatabaseSnapshot childsnapshot: task.getResult().getChildren())
-//            }
-//        });
+        eventRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                ArrayList<Event> allEventsList = new ArrayList<Event>();
+                for (DataSnapshot childSnapshot : task.getResult().getChildren()){
+                    allEventsList.add(childSnapshot.getValue(Event.class));
+                }
+
+                for (Event event :allEventsList) if (event.getEndTimeStamp() < Instant.now().toEpochMilli()) deleteEventById(event.getId());
+            }
+        });
     }
 
 
