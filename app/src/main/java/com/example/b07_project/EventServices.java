@@ -183,21 +183,18 @@ public class EventServices {
 
             Log.i("status", "validating event");
             if (event.getStartTimeStamp() < Instant.now().toEpochMilli()) {
-                //makePopUp(view, "Invalid start date");
                 Snackbar mySnackbar = Snackbar.make(view, "Invalid start date", BaseTransientBottomBar.LENGTH_SHORT);
                 mySnackbar.show();
                 return false;
             }
 
             if (event.getEndTimeStamp() < event.getStartTimeStamp()) {
-                //makePopUp(view, "Invalid end date");
                 Snackbar mySnackbar = Snackbar.make(view, "Invalid end date", BaseTransientBottomBar.LENGTH_SHORT);
                 mySnackbar.show();
                 return false;
             }
 
             if (event.getCapacity() < 10){
-                //makePopUp(view, "Capacity too low");
                 Log.i("status", "capacity low, should give popup");
                 Snackbar mySnackbar = Snackbar.make(view, "Capacity too low", BaseTransientBottomBar.LENGTH_SHORT);
                 mySnackbar.show();
@@ -205,13 +202,11 @@ public class EventServices {
             }
 
             if (event.getName().trim().isEmpty() || event.getName().trim() == "Name"){
-                //makePopUp(view, "Please give your event a name");
                 Snackbar mySnackbar = Snackbar.make(view, "Please give your event a name", BaseTransientBottomBar.LENGTH_SHORT);
                 mySnackbar.show();
                 return false;
             }
             if (event.getEventDescription().length() < 20){
-                //makePopUp(view, "Please give your event a good description.");
                 Snackbar mySnackbar = Snackbar.make(view, "Please give your event a good description", BaseTransientBottomBar.LENGTH_SHORT);
                 mySnackbar.show();
                 return false;
@@ -295,7 +290,6 @@ public class EventServices {
             }
         });
     }
-
 
 
 

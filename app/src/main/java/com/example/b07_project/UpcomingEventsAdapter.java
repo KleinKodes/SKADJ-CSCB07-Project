@@ -94,7 +94,7 @@ public class UpcomingEventsAdapter extends RecyclerView.Adapter<UpcomingEventsAd
             }
         });
 
-//        textView.setHint(event.get);
+
         Log.i("Jacky", String.valueOf(event.getId()));
         Button button = holder.goToButton;
         button.setText("View Event");
@@ -110,18 +110,7 @@ public class UpcomingEventsAdapter extends RecyclerView.Adapter<UpcomingEventsAd
                 intent.putExtra("currClass", currClass);
                 intent.putExtra("host", textViewHost.getText());
                 intent.putExtra("auth", 1);
-//                if(auth == 1) {
-//                    intent.setClass(v.getContext(), AddVenue.class);
-//                    intent.putExtra("mode", 1);
-//                    intent.putExtra("auth", 1);
-//                }
-
-//                intent.putStringArrayListExtra("sports", venue.getSports());
-//                intent.putExtra("venue", venue.getName());
-//                intent.putExtra("venueId", venue.getId());
-//                intent.putExtra("auth", auth);
                 v.getContext().startActivity(intent);
-
             }
         });
     }

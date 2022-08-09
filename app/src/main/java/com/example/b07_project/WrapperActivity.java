@@ -49,14 +49,9 @@ public class WrapperActivity extends AppCompatActivity {
         Handler h = new Handler();
 
 
-
         firebaseAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-
-
-                //Log.i("userInfo", "email:" + currentUser.getEmail() + " auth:" + currentUser.getAuth());
-
                 Intent loginIntent = new Intent(getBaseContext(), LoginActivity.class);
                 if (firebaseAuth.getCurrentUser() == null){
 
@@ -78,8 +73,6 @@ public class WrapperActivity extends AppCompatActivity {
                             finish();
                         }
                     }).start();
-/*                    startActivity(loginIntent);
-                    finish();*/
                     return;
                 }
 
@@ -106,9 +99,7 @@ public class WrapperActivity extends AppCompatActivity {
                     }
                 }, 1150);
 
-
                 return;
-
            }
         });
 

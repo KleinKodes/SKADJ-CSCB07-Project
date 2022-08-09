@@ -116,7 +116,6 @@ public class ChooseVenue extends AppCompatActivity {
             }
         //END BLOCK
         }, 1200);
-
     }
 
 

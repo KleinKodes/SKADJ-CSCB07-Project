@@ -13,15 +13,12 @@ public class Navigation extends AppCompatActivity implements View.OnClickListene
     public void onClick(View view)
     {
         UserServices userServices = new UserServices();
-        System.out.println(view.getId());
+        ////    System.out.println(view.getId());
         switch (view.getId())
         {
             case R.id.homeButton:
                 Intent intent1 = new Intent(view.getContext(), VenuePageDennt.class);
-                //intent1.putExtra("auth", intent1.g;
-                //userId = userServices.getCurrentUserId();
                 if (userId != null)intent1.putExtra("userId", userId);
-                System.out.println("BRUH");
                 view.getContext().startActivity(intent1);
                 finish();
 
@@ -29,8 +26,6 @@ public class Navigation extends AppCompatActivity implements View.OnClickListene
 
             case R.id.profileButton:
                 Intent intent2 = new Intent(view.getContext(), profile.class);
-               //intent2.putExtra("auth", auth);
-                System.out.println("lmao");
                 view.getContext().startActivity(intent2);
                 finish();
                 break;

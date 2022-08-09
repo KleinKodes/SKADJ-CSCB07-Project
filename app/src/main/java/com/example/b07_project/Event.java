@@ -38,7 +38,7 @@ public class Event {
     @Exclude
     public void setStartDate(GregorianCalendar date) {
       this.startTimeStamp = date.getTimeInMillis();
-      System.out.println(this.getStartDate());
+      ////    System.out.println(this.getStartDate());
     }
 
     @Exclude
@@ -53,7 +53,7 @@ public class Event {
     @Exclude
     public void setEndDate(GregorianCalendar date) {
         this.endTimeStamp = date.getTimeInMillis();
-        System.out.println(this.getEndDate());
+        ////    System.out.println(this.getEndDate());
     }
 
     public int getCapacity(){

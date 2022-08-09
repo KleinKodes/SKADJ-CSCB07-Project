@@ -29,8 +29,7 @@ public class AdminActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin);
         UserServices userServices = new UserServices();
         auth = userServices.getCurrentUserAuth();
-        System.out.println("Admin AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        System.out.println(auth);
+        ////    System.out.println(auth);
     }
 
     
@@ -60,15 +59,12 @@ public class AdminActivity extends AppCompatActivity {
 
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
-                System.out.println("why do we exist? just to suffer?");
                 if (!task.isSuccessful()) {
                     Log.e("demo", "Error getting data", task.getException());
                 }
                 else {
                     for (DataSnapshot childSnapshot : task.getResult().getChildren()) {
                         myRef.child(childSnapshot.getKey()).removeValue();
-
-//
                     }
 
 
@@ -85,21 +81,15 @@ public class AdminActivity extends AppCompatActivity {
 
 
         myRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
-                System.out.println("why do we exist? just to suffer?");
                 if (!task.isSuccessful()) {
                     Log.e("demo", "Error getting data", task.getException());
                 }
                 else {
                     for (DataSnapshot childSnapshot : task.getResult().getChildren()) {
                         myRef.child(childSnapshot.getKey()).removeValue();
-
-//
                     }
-
-
                 }
             }
         });
@@ -117,15 +107,12 @@ public class AdminActivity extends AppCompatActivity {
 
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
-                System.out.println("why do we exist? just to suffer?");
                 if (!task.isSuccessful()) {
                     Log.e("demo", "Error getting data", task.getException());
                 }
                 else {
                     for (DataSnapshot childSnapshot : task.getResult().getChildren()) {
                         myRef.child(childSnapshot.getKey()).removeValue();
-
-//
                     }
 
 
@@ -136,9 +123,6 @@ public class AdminActivity extends AppCompatActivity {
     }
 
     public void initializeTwoVenues(View view){
-        //BLOCK
-        //The code below creates a new venue... temporary until admin view done
-
         Venue venue = new Venue();
         venue.id = 69;
         venue.capacity = 100;
@@ -172,10 +156,6 @@ public class AdminActivity extends AppCompatActivity {
         venue.scheduledEvents = scheduledEvents;
 
         venueRef.child(venue.id + "").setValue(venue);
-
-//
-//event.venueId = 69;
-        //ENDBLOCK
 
 
     }

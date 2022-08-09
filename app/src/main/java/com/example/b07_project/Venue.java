@@ -21,9 +21,7 @@ public class Venue {
 
     public ArrayList<Integer> scheduledEvents;
     public Time availableFrom, availableTo;
-    public String daysAvailable; //String containing 7 characters. "1" means available and "0" means its not. Week starts on Monday
-
-
+    public String daysAvailable;
     public int getId() {
         return id;
     }

@@ -28,8 +28,6 @@ public class UserServices {
     DatabaseReference userRef;
     DatabaseReference venueRef;
     FirebaseAuth firebaseAuth;
-    //EventServices eventServices;
-
     public static User currentUser;
 
     public UserServices(){
@@ -38,8 +36,6 @@ public class UserServices {
         this.eventRef = database.getReference("Events");
         this.userRef = database.getReference("Users");
         this.venueRef = database.getReference("Venues");
-        //this.currentUser = new User();
-        //this.eventServices = new EventServices();
         if (this.currentUser != null)Log.i("UserInfo", "Name: " + currentUser.getFirstName() + " email: " + currentUser.getEmail() + " id: " + currentUser.getId() + " auth: " + currentUser.getAuth());
         if (firebaseAuth.getCurrentUser() != null && this.currentUser == null) {
             userRef.child(firebaseAuth.getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
@@ -57,18 +53,8 @@ public class UserServices {
     public String getCurrentUserName(){return currentUser.getFirstName();}
     public User getCurrentUser(){return currentUser;}
     public int getCurrentUserAuth(){return currentUser.auth;}
-
-//    public void setCurrentUser(User currentUser) {
-//        this.currentUser = currentUser;
-//    }
-
     public ArrayList<Integer> getCurrentUserJoinedEventIds() {return currentUser.joinedEvents;}
     public ArrayList<Integer> getCurrentUserCreatedEventIds() {return currentUser.createdEvents;}
-
-
-    //EXPERIMENTAL CODE - AVOID USING WHENEVER POSSIBLE
-
-    //it's so funny that i accidentally used this and it really works so far
     public User findUserByUserId(String userId) {
         final User[] user = {new User()};
 
@@ -96,34 +82,18 @@ public class UserServices {
 
 
     }
-
-    //END EXPERIMENTAL CODE BLOCK
-
-
-
-
-
-
     public void deleteUserFromDatabase(String userId){
 
     }
 
     public void removeUserFromEvent(String userId, int eventId){
-        //two parts - delete event from user's joined events list, delete user from attendees list
-//
-//        userRef.child(userId).child("joinedEvents").child(eventId + "").removeValue();
-//        eventRef.child(eventId + "").child("attendees").child(userId).removeValue();
-
-
         Log.i("status", "event id =" + eventId);
-        //Log.i("status", "AAAAAAA");
         DatabaseReference joinedEventsRef = userRef.child(userId).child("joinedEvents");
         joinedEventsRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 ArrayList<Long> joinedEvents = (ArrayList<Long>) task.getResult().getValue();
                 if (joinedEvents == null) { Log.i("status", "joined events was null");return;}
-                //if (!joinedEvents.contains((Integer)eventId)) { Log.i("status", "joined events did not have correct event id..." + joinedEvents.toString());return;}
                 Boolean flag = false;
                 for (Long i : joinedEvents){
                     if (i == eventId) flag = true;
@@ -272,8 +242,6 @@ public class UserServices {
                             currentUser = task.getResult().getValue(User.class);
                         }
                     });
-                    //activity.finish();
-
                 } else {
                     Log.i("Login", "LOGIN FAILED NOOO");
 
@@ -346,30 +314,6 @@ public class UserServices {
                 }
             }
         });
-
-//        if (currentUser.getAuth() == 1){
-//            Intent adminIntent = new Intent(context, AdminActivity.class);
-//            adminIntent.putExtra("auth", currentUser.getAuth());
-//            adminIntent.putExtra("firstName", currentUser.getFirstName());
-//            adminIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//            context.startActivity(adminIntent);
-//
-//
-//
-//
-//        }else if (currentUser.getAuth() == 0){
-//            Intent customerIntent = new Intent(context, VenuePageDennt.class);
-//            customerIntent.putExtra("auth", currentUser.getAuth());
-//            customerIntent.putExtra("firstName", currentUser.getFirstName());
-//
-//            customerIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//            context.startActivity(customerIntent);
-//
-//        } else{
-//            Log.e("LoginIssue", "user does not have correct auth value");
-//        }
-
-
         return;
     }
 

@@ -37,7 +37,7 @@ public class activityPageDenny extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         userServices = new UserServices();
 
-        setContentView(R.layout.loading_activity); // FIX
+        setContentView(R.layout.loading_activity);  
         ProgressBar p = (ProgressBar)findViewById(R.id.progressBar);
         Handler h = new Handler();
         new Thread(new Runnable() {
@@ -70,10 +70,6 @@ public class activityPageDenny extends AppCompatActivity {
                 Intent intent = getIntent();
 
                 mode = intent.getBooleanExtra("approvalNeeded", false);
-                //if mode == 0 then we want to view approved events
-                //if mode == 1 then we want to view unapproved events
-
-
                 firstName = userServices.getCurrentUserName();
                 venueId = intent.getIntExtra("venueId", -1);
                 if(firstName != null){
@@ -87,13 +83,8 @@ public class activityPageDenny extends AppCompatActivity {
                 profile.setOnClickListener(new Navigation());
                 View logOut = findViewById(R.id.logOutButton);
                 logOut.setOnClickListener(new Navigation());
-
-
-
                 userId = userServices.getCurrentUserId();
                 if (userId == null) userId = "unset";
-
-                //changes text if we want to approve unapproved events
                 if (mode){
                     TextView textView = (TextView) findViewById(R.id.upcomingEventHeaderDenny);
                     textView.setText("Unapproved Events");
@@ -125,16 +116,10 @@ public class activityPageDenny extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<DataSnapshot> task) {
                         Event event;
-                        //((ViewGroup) findViewById(R.id.profilePage)).removeView(findViewById(R.id.sampleEventCard));
                         for(DataSnapshot i : task.getResult().getChildren())
                         {
                             event = i.getValue(Event.class);
                             Event finalEvent = event;
-
-
-
-
-                            // only shows event if we want to see approved and it is or if we want to see unapproved and it isn't
                             if (((!mode && event.approved) || mode && !event.approved )&& ((venueId == -1) || event.getVenueId() == venueId))
                                 userRef.child(event.getOwnerId() + "").child("firstName").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                                     @Override
@@ -163,7 +148,6 @@ public class activityPageDenny extends AppCompatActivity {
         if (hostName == null) hostName = "default";
         textView.setText(hostName);
         textView.setHint(event.getOwnerId());
-        //Log.i("ownerId", event.getOwnerId());
         textView = v.findViewById(R.id.cardEventDate);
         textView.setText(event.getStartDateString());
         textView = v.findViewById(R.id.startTime);
@@ -201,7 +185,6 @@ public class activityPageDenny extends AppCompatActivity {
 
         int eventId = Integer.parseInt(event.getHint().toString());
         isThisMyEvent = host.getHint().toString().equals(userId);
-        //Log.i("host id", host.getHint());
         Log.i("do i own this event?", isThisMyEvent.toString());
 
         addProfile.putExtra("isThisMyEvent", isThisMyEvent);

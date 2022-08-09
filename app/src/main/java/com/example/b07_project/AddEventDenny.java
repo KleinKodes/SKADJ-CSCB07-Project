@@ -54,12 +54,6 @@ public class AddEventDenny extends AppCompatActivity {
         userServices = new UserServices();
 
 
-        //firstName = userServices.getCurrentUserName();
-//        View home = findViewById(R.id.homeButton);
-//        home.setOnClickListener(new Navigation());
-//        View profile = findViewById(R.id.profileButton);
-//        profile.setOnClickListener(new Navigation());
-
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Venues");
         getdata();
@@ -88,7 +82,8 @@ public class AddEventDenny extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                System.out.println(error);
+                DatabaseError e = error;
+                System.out.println(e.getCode());
             }
         });
     }
@@ -121,11 +116,11 @@ public class AddEventDenny extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         List<String> list = new ArrayList<String>();
-                        System.out.println(snapshot.getChildrenCount());
+                        ////    System.out.println(snapshot.getChildrenCount());
                         for (DataSnapshot snap : snapshot.getChildren()) {
                             Venue venue = snap.getValue(Venue.class);
                             currVenue = venue;
-                            System.out.println(venue.getSports());
+                            ////    System.out.println(venue.getSports());
                             if (venue.getName() == parent.getItemAtPosition(position).toString()) {
                                 setSportDropdown(venue.getSports());
                                 selectedVenueId = venue.getId();
@@ -136,7 +131,8 @@ public class AddEventDenny extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        System.out.println(error);
+                        DatabaseError e = error;
+                        System.out.println(e.getCode());
                     }
                 });
             }
@@ -154,11 +150,8 @@ public class AddEventDenny extends AppCompatActivity {
 
     public void createDennyEvent(View view)
     {
-        System.out.println("someone clicked the button");
-        final int[] curMaxId = {-1}; //java made me use a final length 1 array instead of an integer idk y
-
-
-
+        ////    System.out.println("someone clicked the button");
+        final int[] curMaxId = {-1};
         EditText editText = (EditText) findViewById(R.id.eventNameDenny);
         String eventName = editText.getText().toString();
         editText = (EditText) findViewById(R.id.eventCapacityDenny);

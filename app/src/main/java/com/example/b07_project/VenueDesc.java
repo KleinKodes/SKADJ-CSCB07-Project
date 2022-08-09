@@ -33,7 +33,7 @@ public class VenueDesc extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.loading_activity); // FIX
+        setContentView(R.layout.loading_activity); 
         ProgressBar p = (ProgressBar)findViewById(R.id.progressBar);
         Handler h = new Handler();
         userServices = new UserServices();
@@ -78,27 +78,6 @@ public class VenueDesc extends AppCompatActivity {
                 initializeInfo();
             }
         }, 1200);
-/*        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_venue_desc);
-        Intent intent = getIntent();
-        venueName = intent.getStringExtra(VenuePageDennt.venueName);
-        TextView venueText = (TextView) findViewById(R.id.venueDescVenue);
-        venueText.setText(venueName);
-
-        View home = findViewById(R.id.homeButton);
-        home.setOnClickListener(new Navigation());
-        View profile = findViewById(R.id.profileButton);
-        profile.setOnClickListener(new Navigation());
-        View logout = findViewById(R.id.logOutButton);
-        logout.setOnClickListener(new Navigation());
-
-        userServices = new UserServices();
-        ((TextView)findViewById(R.id.profileUserName)).setText(userServices.getCurrentUserName());
-
-
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("Venues");
-        initializeInfo();*/
     }
 
     public void initializeInfo(){
@@ -116,7 +95,8 @@ public class VenueDesc extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                System.out.println(error);
+                DatabaseError e = error;
+                System.out.println(e.getCode());
             }
         });
     }

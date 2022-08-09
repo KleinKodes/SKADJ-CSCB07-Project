@@ -105,13 +105,9 @@ public class ActivityDesc extends AppCompatActivity {
                 if (isThisMyEvent){
 
                     button.setVisibility(View.GONE);
-                    //button.setClickable(false);
-
                 }else
                 if (event.attendees != null && event.attendees.contains(userId)){
                     button.setText("Exit");
-                    //button.setClickable(false);
-
                 }
 
             }
@@ -196,8 +192,6 @@ public class ActivityDesc extends AppCompatActivity {
                     userServices.removeUserFromEvent(userId, eventId);
                 }else {
                     userServices.addCurrentUserToEvent(eventId);
-//
-//
                 }
 
                 //Intent intent = new Intent(getBaseContext(), activityPageDenny.class);
