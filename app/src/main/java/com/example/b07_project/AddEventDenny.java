@@ -87,7 +87,8 @@ public class AddEventDenny extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                ////     System.out.println(error);
+                DatabaseError e = error;
+                System.out.println(e.getCode());
             }
         });
     }
@@ -134,7 +135,8 @@ public class AddEventDenny extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        ////    System.out.println(error);
+                        DatabaseError e = error;
+                        System.out.println(e.getCode());
                     }
                 });
             }

@@ -57,7 +57,8 @@ public class ChooseVenue extends AppCompatActivity {
             }
 
             public void onCancelled(DatabaseError error) {
-                ////    System.out.println("The read failed: " + error.getCode());
+                DatabaseError e = error;
+                System.out.println(e.getCode());
             }
         });
     }

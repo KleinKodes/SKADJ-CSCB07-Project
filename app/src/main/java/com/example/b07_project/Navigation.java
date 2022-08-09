@@ -19,7 +19,6 @@ public class Navigation extends AppCompatActivity implements View.OnClickListene
             case R.id.homeButton:
                 Intent intent1 = new Intent(view.getContext(), VenuePageDennt.class);
                 if (userId != null)intent1.putExtra("userId", userId);
-                ////    System.out.println("BRUH");
                 view.getContext().startActivity(intent1);
                 finish();
 
@@ -27,7 +26,6 @@ public class Navigation extends AppCompatActivity implements View.OnClickListene
 
             case R.id.profileButton:
                 Intent intent2 = new Intent(view.getContext(), profile.class);
-                ////    System.out.println("lmao");
                 view.getContext().startActivity(intent2);
                 finish();
                 break;

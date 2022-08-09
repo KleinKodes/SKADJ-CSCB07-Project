@@ -29,7 +29,6 @@ public class AdminActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin);
         UserServices userServices = new UserServices();
         auth = userServices.getCurrentUserAuth();
-        ////    System.out.println("Admin AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         ////    System.out.println(auth);
     }
 
@@ -60,7 +59,6 @@ public class AdminActivity extends AppCompatActivity {
 
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
-                ////    System.out.println("why do we exist? just to suffer?");
                 if (!task.isSuccessful()) {
                     Log.e("demo", "Error getting data", task.getException());
                 }
@@ -85,7 +83,6 @@ public class AdminActivity extends AppCompatActivity {
         myRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
-                ////    System.out.println("why do we exist? just to suffer?");
                 if (!task.isSuccessful()) {
                     Log.e("demo", "Error getting data", task.getException());
                 }
@@ -110,7 +107,6 @@ public class AdminActivity extends AppCompatActivity {
 
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
-                ////    System.out.println("why do we exist? just to suffer?");
                 if (!task.isSuccessful()) {
                     Log.e("demo", "Error getting data", task.getException());
                 }

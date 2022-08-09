@@ -211,7 +211,6 @@ public class AddVenue extends AppCompatActivity {
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 for(DataSnapshot i : task.getResult().getChildren())
                 {
-                    ////    System.out.println("NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
                     Event event = (Event)i.getValue(Event.class);
                     if(event.venueId == venueID){
                         Snackbar mySnackbar = Snackbar.make(view, "There are still Events at this Venue!", BaseTransientBottomBar.LENGTH_SHORT);
