@@ -327,26 +327,26 @@
 
                     <LinearLayout
                         android:id="@+id/venueDays"
-                        android:layout_width="wrap_content"
-                        android:layout_height="326dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical">
 
                         <CheckBox
                             android:id="@+id/monday"
-                            android:layout_width="match_parent"
+                            android:layout_width="218dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="114dp"
                             android:layout_marginTop="39dp"
                             android:layout_marginEnd="100dp"
-                            android:text="monday"
+                            android:text="Monday"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintStart_toEndOf="@+id/textView7" />
 
                         <CheckBox
                             android:id="@+id/tuesday"
-                            android:layout_width="match_parent"
+                            android:layout_width="218dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="114dp"
                             android:layout_marginEnd="100dp"
@@ -357,7 +357,7 @@
 
                         <CheckBox
                             android:id="@+id/wednesday"
-                            android:layout_width="match_parent"
+                            android:layout_width="218dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="114dp"
                             android:layout_marginEnd="100dp"
@@ -368,7 +368,7 @@
 
                         <CheckBox
                             android:id="@+id/thursday"
-                            android:layout_width="match_parent"
+                            android:layout_width="218dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="114dp"
                             android:layout_marginEnd="100dp"
@@ -379,7 +379,7 @@
 
                         <CheckBox
                             android:id="@+id/friday"
-                            android:layout_width="match_parent"
+                            android:layout_width="218dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="114dp"
                             android:layout_marginEnd="100dp"
@@ -390,7 +390,7 @@
 
                         <CheckBox
                             android:id="@+id/saturday"
-                            android:layout_width="match_parent"
+                            android:layout_width="218dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="114dp"
                             android:layout_marginTop="4dp"
@@ -403,7 +403,7 @@
 
                         <CheckBox
                             android:id="@+id/sunday"
-                            android:layout_width="match_parent"
+                            android:layout_width="218dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="114dp"
                             android:layout_marginTop="4dp"
@@ -574,6 +574,7 @@
                         android:layout_weight="1"
                         android:ems="10"
                         android:gravity="start|top"
+                        android:hint="Minimum 20 Characters"
                         android:inputType="textMultiLine"
                         app:layout_constraintBottom_toBottomOf="parent" />
 
