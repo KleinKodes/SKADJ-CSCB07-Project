@@ -256,7 +256,7 @@ public class UserServices {
     }
 
     public void signUpUser(String email, String password, View view){
-        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
@@ -288,13 +288,11 @@ public class UserServices {
                     loginIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     context.startActivity(loginIntent);
                 }
+
                 int auth = task.getResult().getValue(int.class);
 
                 if (auth == 1){
                     Intent adminIntent = new Intent(context, AdminActivity.class);
-                    adminIntent.putExtra("auth", currentUser.getAuth());
-                    adminIntent.putExtra("firstName", currentUser.getFirstName());
-                    adminIntent.putExtra("userId", currentUser.getId());
                     adminIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     context.startActivity(adminIntent);
 
@@ -303,9 +301,6 @@ public class UserServices {
 
                 }else if (auth == 0){
                     Intent customerIntent = new Intent(context, VenuePageDennt.class);
-                    customerIntent.putExtra("auth", currentUser.getAuth());
-                    customerIntent.putExtra("firstName", currentUser.getFirstName());
-                    customerIntent.putExtra("userId", currentUser.getId());
                     customerIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     context.startActivity(customerIntent);
 
