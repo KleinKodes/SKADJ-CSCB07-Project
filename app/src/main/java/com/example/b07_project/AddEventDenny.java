@@ -54,11 +54,8 @@ public class AddEventDenny extends AppCompatActivity {
 
         userServices = new UserServices();
 
-/*        firstName = userServices.getCurrentUserName();
-        if(firstName != null){
-            TextView textView = (TextView)findViewById(R.id.profileUserName);
-            textView.setText(firstName);
-        }*/
+        //firstName = userServices.getCurrentUserName();
+
 
 //        View home = findViewById(R.id.homeButton);
 //        home.setOnClickListener(new Navigation());
