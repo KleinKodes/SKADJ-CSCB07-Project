@@ -1,6 +1,9 @@
 package com.example.b07_project;
 
 import android.app.Activity;
+import android.os.Handler;
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 
@@ -30,6 +33,7 @@ public class EventServices {
         this.userRef = database.getReference("Users");
         this.venueRef = database.getReference("Venues");
         this.userServices = new UserServices();
+
     }
 
     public void deleteEventById(int eventId){
@@ -41,12 +45,26 @@ public class EventServices {
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 Event event = task.getResult().getValue(Event.class);
                 if (event == null) return;
-                if (event.attendees != null) {
-                    for (String i : event.attendees) {
-                        userServices.removeUserFromEvent(i, eventId);
+                DatabaseReference scheduledEventsRef = venueRef.child(event.venueId + "").child("scheduledEvents");
+                        scheduledEventsRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                        if (task.getResult().getValue() != null) {
+                            ArrayList<Integer> scheduledEvents = (ArrayList<Integer>) task.getResult().getValue();
+
+                            if (scheduledEvents.contains(eventId)) scheduledEvents.remove(scheduledEvents.indexOf(eventId));
+                            scheduledEventsRef.setValue(scheduledEvents);
+
+                            if (event.attendees != null) {
+                                for (String i : event.attendees) {
+                                    userServices.removeUserFromEvent(i, eventId);
+                                }
+                            }
+                            eventRef.child(eventId + "").removeValue();
+                        }
                     }
-                }
-                eventRef.child(eventId + "").removeValue();
+                });
+
             }
         });
 
@@ -111,10 +129,10 @@ public class EventServices {
 
     }
 
-    public void addEvent(Activity activity, View view, Event event){
+    public void addEvent(Activity activity, View view, Event event, Venue venue){
 
 
-        if(view != null && validateEvent(view, event)) {
+        if(view != null && validateEvent(view, event, venue)) {
 
             DatabaseReference scheduledEvents = venueRef.child(event.venueId + "").child("scheduledEvents");
                     scheduledEvents.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
@@ -160,7 +178,7 @@ public class EventServices {
             return curMax + 1;
     }
 
-    public Boolean validateEvent(View view, Event event){
+    public Boolean validateEvent(View view, Event event, Venue venue){
 
 
             Log.i("status", "validating event");
@@ -200,6 +218,15 @@ public class EventServices {
             }
 
 
+
+                    if((venue != null) && (event.capacity > venue.capacity))
+                    {
+                        Snackbar mySnackbar = Snackbar.make(view, "CAPACITY OVERLOAD!!! (Capacity is larger than venue's max)", BaseTransientBottomBar.LENGTH_SHORT);
+                        mySnackbar.show();
+                        return false;
+                    }
+
+
             return true;
 
 
@@ -227,13 +254,46 @@ public class EventServices {
         return searchResults;
     }
 
+    public void ViewEventAttendees(int eventId, Context context){
+
+        eventRef.child(eventId + "").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+
+
+                ArrayList<String> attendeeList = new ArrayList<String>();
+                for (String userId : task.getResult().getValue(Event.class).attendees){
+                    userRef.child(userId).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DataSnapshot> task) {
+
+                            attendeeList.add(task.getResult().getValue(User.class).getFullName());
+                        }
+                    });
+                }
+
+                Intent intent = new Intent(context, profile.class); //change this from profile LOL
+                intent.putExtra("attendeeList", attendeeList);
+                context.startActivity(intent);
+
+
+            }
+        });
+
+    }
+
     public void purgeOldEvents(){
-//        eventRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<DataSnapshot> task) {
-//                for (DatabaseSnapshot childsnapshot: task.getResult().getChildren())
-//            }
-//        });
+        eventRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                ArrayList<Event> allEventsList = new ArrayList<Event>();
+                for (DataSnapshot childSnapshot : task.getResult().getChildren()){
+                    allEventsList.add(childSnapshot.getValue(Event.class));
+                }
+
+                for (Event event :allEventsList) if (event.getEndTimeStamp() < Instant.now().toEpochMilli()) deleteEventById(event.getId());
+            }
+        });
     }
 
 

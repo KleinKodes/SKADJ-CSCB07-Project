@@ -25,7 +25,7 @@ public class ActivityDesc extends AppCompatActivity {
     DatabaseReference eventRef;
     DatabaseReference venueRef;
     DatabaseReference userRef;
-    String[] activityInfo;
+    String hostName;
     int eventId;
     String userId;
     Event event;
@@ -39,9 +39,10 @@ public class ActivityDesc extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_desc);
+
         Intent intent = getIntent();
         userServices = new UserServices();
-        activityInfo= intent.getStringArrayExtra(activityPageDenny.activity);
+        hostName = intent.getStringExtra("host");
         eventId = intent.getIntExtra("eventId", -1);
         userId = userServices.getCurrentUserId();
         isThisMyEvent = intent.getBooleanExtra("isThisMyEvent", false);
@@ -58,13 +59,20 @@ public class ActivityDesc extends AppCompatActivity {
 
         ((TextView)findViewById(R.id.profileUserName)).setText(userServices.getCurrentUserName());
 
+        if(intent.getStringExtra("currClass")!=null && intent.getStringExtra("currClass").equals("UpcomingEvent")){
+            findViewById(R.id.joinEventButton).setVisibility(View.GONE);
+        }
+
+
         mode = intent.getBooleanExtra("approvalNeeded", false);
         Log.i("mode", mode.toString());
 
 
         if(auth == 1)
         {
-            findViewById(R.id.joinEventButton).setVisibility(View.GONE);
+            ((TextView)findViewById(R.id.joinEventButton)).setText("Accept");
+            View parent = (View)findViewById(R.id.homeButton).getParent();
+            parent.setVisibility(View.GONE);
         }
 
         if (userId == null) userId = "";
@@ -145,7 +153,7 @@ public class ActivityDesc extends AppCompatActivity {
                 TextView cap = (TextView) findViewById(R.id.activityDescCapacity);
                 TextView venueName = (TextView) findViewById(R.id.activityDescVenue);
 
-                host.setText(event.getOwnerId());
+                host.setText(hostName);
                 start.setText("Start Time: "+event.getStartTimeString());
                 startEnd.setText("End Time: "+event.getEndTimeString());
                 date.setText("Start Date: "+event.getStartDateString());
@@ -175,38 +183,28 @@ public class ActivityDesc extends AppCompatActivity {
                 if (mode){
                     event.approved = true;
                     eventRef.child(eventId + "").setValue(event);
-                    Intent intent = new Intent(getBaseContext(), activityPageDenny.class);
-                    intent.putExtra("approvalNeeded", mode);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
+                    //Intent intent = new Intent(getBaseContext(), activityPageDenny.class);
+                    //intent.putExtra("approvalNeeded", mode);
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    //startActivity(intent);
                     finish();
                     return;
 
                 }
                 if (event.attendees == null) event.attendees = new ArrayList<String>();
                 if (event.attendees.contains(userId)){
-
-
                     userServices.removeUserFromEvent(userId, eventId);
-
-
-
-
                 }else {
-
-
-
-
                     userServices.addCurrentUserToEvent(eventId);
 //
 //
                 }
 
-                Intent intent = new Intent(getBaseContext(), activityPageDenny.class);
-                intent.putExtra("approvalNeeded", mode);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                //Intent intent = new Intent(getBaseContext(), activityPageDenny.class);
+                //intent.putExtra("approvalNeeded", mode);
+                //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
-                startActivity(intent);
+                //startActivity(intent);
                 finish();
 
             }
@@ -227,5 +225,6 @@ public class ActivityDesc extends AppCompatActivity {
 
     public void backToActivityPage(View view){
         super.onBackPressed();
+        finish();
     }
 }

@@ -18,21 +18,31 @@
     <LinearLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="58dp"
+        android:layout_height="wrap_content"
         android:background="#2B782E"
-        android:contentDescription="@string/todo">
+        android:contentDescription="@string/todo"
+        android:gravity="center"
+        android:paddingVertical="10dp">
 
       <TextView
           android:id="@+id/textView9"
-          android:layout_width="match_parent"
-          android:layout_height="27dp"
-          android:layout_marginStart="16dp"
-          android:layout_marginTop="16dp"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_weight="0.9"
+          android:paddingHorizontal="20dp"
           android:text="Admin"
           android:textColor="#FFFFFF"
           android:textSize="20sp"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toTopOf="parent" />
+
+      <ImageView
+          android:id="@+id/imageView4"
+          android:layout_width="30dp"
+          android:layout_height="30dp"
+          android:layout_weight="0.1"
+          android:onClick="goBackToPage"
+          app:srcCompat="@drawable/returntopage" />
     </LinearLayout>
 
     <LinearLayout
