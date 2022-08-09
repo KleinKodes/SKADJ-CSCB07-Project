@@ -167,170 +167,174 @@
                 android:layout_width="409dp"
                 android:layout_height="3dp"
                 android:background="?android:attr/listDivider" />
+
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/infoContainer"
+        <ScrollView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/Navbar"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
-            app:layout_constraintVertical_bias="1.0">
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingHorizontal="20dp">
-
-                <Button
-                    android:id="@+id/joinEventButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:layout_marginRight="20dp"
-                    android:backgroundTint="#2B782E"
-                    android:onClick="joinEvent"
-                    android:text="Join" />
-
-                <Button
-                    android:id="@+id/denyEventButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:layout_marginRight="20dp"
-                    android:backgroundTint="#2B782E"
-                    android:onClick="DenyEvent"
-                    android:text="Deny"
-                    android:visibility="gone" />
-
-                <Button
-                    android:id="@+id/approveEventButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="#2B782E"
-                    android:onClick="DenyEvent"
-                    android:text="Deny"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:id="@+id/activityDescCapacity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text=": / :"
-                    android:textColor="#2B782E"
-                    android:textSize="25dp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/venueDescProvince"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:text="Host"
-                android:textColor="#000000"
-                android:textSize="18dp" />
-
-            <TextView
-                android:id="@+id/venueDescStreetAddress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:text="StartTime"
-                android:textColor="#000000"
-                android:textSize="18dp" />
-
-            <TextView
-                android:id="@+id/venueDescCity"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:text="EndTime"
-                android:textColor="#000000"
-                android:textSize="18dp" />
-
-            <TextView
-                android:id="@+id/venueDescPostal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:text="Date"
-                android:textColor="#040000"
-                android:textSize="18dp" />
-
-            <TextView
-                android:id="@+id/activityDescEndDate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:text="Date"
-                android:textColor="#040000"
-                android:textSize="18dp" />
-
-            <View
-                android:id="@+id/divider12"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="?android:attr/listDivider"
-                android:backgroundTint="#000000" />
-
-            <LinearLayout
+                android:id="@+id/infoContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/activityDescSports"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="5dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="20dp">
+
+                    <Button
+                        android:id="@+id/joinEventButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_marginRight="20dp"
+                        android:backgroundTint="#2B782E"
+                        android:onClick="joinEvent"
+                        android:text="Join" />
+
+                    <Button
+                        android:id="@+id/denyEventButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_marginRight="20dp"
+                        android:backgroundTint="#2B782E"
+                        android:onClick="DenyEvent"
+                        android:text="Deny"
+                        android:visibility="gone" />
+
+                    <Button
+                        android:id="@+id/approveEventButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#2B782E"
+                        android:onClick="DenyEvent"
+                        android:text="Deny"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/activityDescCapacity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text=": / :"
+                        android:textColor="#2B782E"
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/venueDescProvince"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
-                    android:paddingLeft="30dp"
+                    android:paddingLeft="20dp"
                     android:paddingRight="20dp"
-                    android:text="Sport"
+                    android:text="Host"
+                    android:textColor="#000000"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/venueDescStreetAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="StartTime"
+                    android:textColor="#000000"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/venueDescCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="EndTime"
+                    android:textColor="#000000"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/venueDescPostal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="Date"
                     android:textColor="#040000"
                     android:textSize="18dp" />
 
+                <TextView
+                    android:id="@+id/activityDescEndDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="Date"
+                    android:textColor="#040000"
+                    android:textSize="18dp" />
+
+                <View
+                    android:id="@+id/divider12"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="?android:attr/listDivider"
+                    android:backgroundTint="#000000" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/activityDescSports"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="sans-serif"
+                        android:paddingLeft="30dp"
+                        android:paddingRight="20dp"
+                        android:text="Sport"
+                        android:textColor="#040000"
+                        android:textSize="18dp" />
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider13"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="?android:attr/listDivider"
+                    android:backgroundTint="#000000" />
+
+                <TextView
+                    android:id="@+id/activityDescDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="20dp"
+                    android:paddingRight="20dp"
+                    android:text="Description"
+                    android:textColor="#000000"
+                    android:textSize="18dp" />
             </LinearLayout>
-
-            <View
-                android:id="@+id/divider13"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="?android:attr/listDivider"
-                android:backgroundTint="#000000" />
-
-            <TextView
-                android:id="@+id/activityDescDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:paddingLeft="20dp"
-                android:paddingTop="20dp"
-                android:paddingRight="20dp"
-                android:text="Description"
-                android:textColor="#000000"
-                android:textSize="18dp" />
-        </LinearLayout>
+        </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

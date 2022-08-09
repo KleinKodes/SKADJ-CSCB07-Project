@@ -74,6 +74,7 @@ public class UpcomingEventsAdapter extends RecyclerView.Adapter<UpcomingEventsAd
 
         Event event = eventsList.get(position);
         UserServices host = new UserServices();
+        String hostName;
 
         TextView textViewVenue = holder.upcomingName;
         TextView textViewHost = holder.hostName;
@@ -107,6 +108,7 @@ public class UpcomingEventsAdapter extends RecyclerView.Adapter<UpcomingEventsAd
                 Intent intent = new Intent(v.getContext(), ActivityDesc.class);
                 intent.putExtra("eventId", eventId);
                 intent.putExtra("currClass", currClass);
+                intent.putExtra("host", textViewHost.getText());
                 intent.putExtra("auth", 1);
 //                if(auth == 1) {
 //                    intent.setClass(v.getContext(), AddVenue.class);

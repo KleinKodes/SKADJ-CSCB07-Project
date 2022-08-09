@@ -24,7 +24,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class activityPageDenny extends AppCompatActivity {
     public static String activity;
-    public static String[] activityInfo = new String[5];
     public static String userId;
     public static Boolean isThisMyEvent = false;
     public boolean mode;
@@ -117,6 +116,7 @@ public class activityPageDenny extends AppCompatActivity {
                     returnHome.setVisibility(View.GONE);
                 }
 
+
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference eventRef = database.getReference("Events");
                 DatabaseReference userRef = database.getReference("Users");
@@ -198,18 +198,14 @@ public class activityPageDenny extends AppCompatActivity {
         TextView host = (TextView) eventContainer2.getChildAt(1);
 
         Intent addProfile = new Intent(this, ActivityDesc.class);
-        activityInfo[0] = date.getText().toString();
-        activityInfo[1] = start.getText().toString();
-        activityInfo[2] = end.getText().toString();
-        activityInfo[3] = event.getText().toString();
-        activityInfo[4] = host.getText().toString();
+
         int eventId = Integer.parseInt(event.getHint().toString());
         isThisMyEvent = host.getHint().toString().equals(userId);
         //Log.i("host id", host.getHint());
         Log.i("do i own this event?", isThisMyEvent.toString());
 
         addProfile.putExtra("isThisMyEvent", isThisMyEvent);
-        addProfile.putExtra(activity, activityInfo);
+        addProfile.putExtra("host", host.getText());
         addProfile.putExtra("eventId", eventId);
 
         addProfile.putExtra("approvalNeeded", mode);

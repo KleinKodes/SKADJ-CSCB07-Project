@@ -25,7 +25,7 @@ public class ActivityDesc extends AppCompatActivity {
     DatabaseReference eventRef;
     DatabaseReference venueRef;
     DatabaseReference userRef;
-    String[] activityInfo;
+    String hostName;
     int eventId;
     String userId;
     Event event;
@@ -39,9 +39,10 @@ public class ActivityDesc extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_desc);
+
         Intent intent = getIntent();
         userServices = new UserServices();
-        activityInfo= intent.getStringArrayExtra(activityPageDenny.activity);
+        hostName = intent.getStringExtra("host");
         eventId = intent.getIntExtra("eventId", -1);
         userId = userServices.getCurrentUserId();
         isThisMyEvent = intent.getBooleanExtra("isThisMyEvent", false);
@@ -57,6 +58,11 @@ public class ActivityDesc extends AppCompatActivity {
         logout.setOnClickListener(new Navigation());
 
         ((TextView)findViewById(R.id.profileUserName)).setText(userServices.getCurrentUserName());
+
+        if(intent.getStringExtra("currClass")!=null && intent.getStringExtra("currClass").equals("UpcomingEvent")){
+            findViewById(R.id.joinEventButton).setVisibility(View.GONE);
+        }
+
 
         mode = intent.getBooleanExtra("approvalNeeded", false);
         Log.i("mode", mode.toString());
@@ -147,7 +153,7 @@ public class ActivityDesc extends AppCompatActivity {
                 TextView cap = (TextView) findViewById(R.id.activityDescCapacity);
                 TextView venueName = (TextView) findViewById(R.id.activityDescVenue);
 
-                host.setText(event.getOwnerId());
+                host.setText(hostName);
                 start.setText("Start Time: "+event.getStartTimeString());
                 startEnd.setText("End Time: "+event.getEndTimeString());
                 date.setText("Start Date: "+event.getStartDateString());
