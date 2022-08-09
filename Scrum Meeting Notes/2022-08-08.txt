@@ -1,0 +1,16 @@
+2022/08/08
+Denny
+Tasks Done: added back buttons to UI to go back, fixed bugs, removed add button for admin view that can add events.
+Jacky
+Tasks Done: All loading screens finished, fixed bug related to app crashing when clicking on adding events 
+FInd more bugs and put scrum notes on github
+Add title card to loading screen (stretch goal)
+Klein
+Tasks Done: worked on assignment for CSCB58, looked for bugs in the code.
+ Fix scroll wheel bug that crashes the app
+Anthony
+Tasks Done: Looked for bugs in the code
+Look for more bugs in app
+Seven 
+Tasks Done: Looked for bugs in the code
+Look for more bugs in app 

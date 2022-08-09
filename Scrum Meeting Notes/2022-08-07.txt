@@ -1,0 +1,17 @@
+2022/08/07
+Denny
+Tasks Done: Fixed code and bugs that were overwritten a few days ago, added venue name into activity description
+Continue finding bugs and fixing code if needed
+Jacky
+Tasks Done: Added notes from scrum document on github
+Needs to add loading screen on admin view and search for bugs
+Add logo onto loading screen
+Klein
+Tasks Done: Worked on a lot of bug fixes related to snackbar class, and fixed the functionality for the user class.
+Find and fix more bugs.
+Anthony
+Tasks Done: Added ability to delete venues and fixed a few bugs 
+Find more bugs to fix
+Seven 
+Tasks Done: worked on other courses such as cscb36
+Find more bugs to fix, delete comments, delete files that aren't in use, delete methods that aren't in use such as auth passes to intents.
