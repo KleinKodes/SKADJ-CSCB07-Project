@@ -34,6 +34,11 @@ public class AttendeeList extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         eventRef = database.getReference("Events");
         userRef = database.getReference("Users");
+        UserServices userServices;
+
+        userServices = new UserServices();
+        ((TextView)findViewById(R.id.profileUserName)).setText(userServices.getCurrentUserName());
+
         int eventId = intent.getIntExtra("eventID",1);
         Log.i("Denny", String.valueOf(eventId));
         eventRef.child(eventId + "").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {

@@ -17,12 +17,12 @@
         android:paddingVertical="10dp">
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/profileUserName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.9"
             android:paddingHorizontal="20dp"
-            android:text="Admin"
+            android:text="username"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"

@@ -59,7 +59,6 @@ public class UpcomingEventsDriver extends AppCompatActivity {
             public void run(){
                 setContentView(R.layout.activity_upcoming_events_driver);
 
-                filterUpcomingByVenue filter = new filterUpcomingByVenue();
                 setSpinner();
 
                 //below shows upcoming events, and upcoming events by venue if specified
@@ -280,15 +279,8 @@ public class UpcomingEventsDriver extends AppCompatActivity {
         }*/
     }
 
-    public void onFilterByVenue(View v){
-        Intent I = new Intent(this, filterUpcomingByVenue.class);
-        finish();
-        startActivity(I);
-    }
-
     public void setSpinner(){
         // create spinner for list of venues
-        Intent testIntent = new Intent(this, filterUpcomingByVenue.class);
         DatabaseReference databaseVenues = FirebaseDatabase.getInstance().getReference().child("Venues");
         databaseVenues.addValueEventListener(new ValueEventListener() {
             @Override

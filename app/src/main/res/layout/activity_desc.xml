@@ -185,61 +185,78 @@
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="20dp">
+                    android:orientation="vertical">
 
-                    <Button
-                        android:id="@+id/joinEventButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="48dp"
-                        android:layout_marginRight="20dp"
-                        android:backgroundTint="#2B782E"
-                        android:onClick="joinEvent"
-                        android:text="Join" />
-
-                    <Button
-                        android:id="@+id/denyEventButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="48dp"
-                        android:layout_marginRight="20dp"
-                        android:backgroundTint="#2B782E"
-                        android:onClick="DenyEvent"
-                        android:text="Deny"
-                        android:visibility="gone" />
-
-                    <Button
-                        android:id="@+id/approveEventButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="48dp"
-                        android:layout_marginRight="20dp"
-                        android:layout_weight="1"
-                        android:backgroundTint="#2B782E"
-                        android:onClick="DenyEvent"
-                        android:text="Deny"
-                        android:visibility="gone" />
-
-                    <TextView
-                        android:id="@+id/textView8"
-                        android:layout_width="50dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Capacity:"
-                        android:textColor="@color/light_green"
-                        android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/activityDescCapacity"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text=": / :"
-                        android:textColor="#2B782E"
-                        android:textSize="25dp"
-                        android:textStyle="bold" />
+                        android:layout_marginBottom="10dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="20dp">
+
+                        <Button
+                            android:id="@+id/joinEventButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:layout_marginRight="20dp"
+                            android:backgroundTint="#2B782E"
+                            android:onClick="joinEvent"
+                            android:text="Join" />
+
+                        <Button
+                            android:id="@+id/denyEventButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:layout_marginRight="20dp"
+                            android:backgroundTint="#2B782E"
+                            android:onClick="DenyEvent"
+                            android:text="Deny"
+                            android:visibility="gone" />
+
+                        <Button
+                            android:id="@+id/approveEventButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_weight="1"
+                            android:backgroundTint="#2B782E"
+                            android:onClick="DenyEvent"
+                            android:text="Deny"
+                            android:visibility="gone" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                        android:paddingHorizontal="20dp">
+
+                        <TextView
+                            android:id="@+id/textView8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Capacity:"
+                            android:textColor="@color/light_green"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/activityDescCapacity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingHorizontal="10dp"
+                            android:text=": / :"
+                            android:textColor="#000000"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
                 </LinearLayout>
 
                 <TextView
