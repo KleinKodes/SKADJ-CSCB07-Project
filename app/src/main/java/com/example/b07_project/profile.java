@@ -171,6 +171,10 @@ public class profile extends AppCompatActivity {
         textView.setHint(event.getId() + "");
         Button button = v.findViewById(R.id.profileDelete);
         button.setHint(event.getId() + "");
+        textView = v.findViewById(R.id.profileApproval);
+
+        if(event.getApproved() == true){textView.setVisibility(View.GONE);}
+        else {textView.setText("Waiting For Approval...");}
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
