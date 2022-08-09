@@ -42,8 +42,6 @@ public class VenuePageDennt extends AppCompatActivity {
 
         userServices = new UserServices();
 
-
-
         View home = findViewById(R.id.homeButton);
         home.setOnClickListener(new Navigation());
         View profile = findViewById(R.id.profileButton);
@@ -52,9 +50,6 @@ public class VenuePageDennt extends AppCompatActivity {
         logout.setOnClickListener(new Navigation());
         TextView userName = findViewById(R.id.profileUserName);
         userName.setText(userServices.getCurrentUserName());
-
-
-
 
 
         firebaseDatabase = FirebaseDatabase.getInstance();

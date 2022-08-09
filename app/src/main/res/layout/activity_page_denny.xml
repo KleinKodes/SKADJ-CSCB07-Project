@@ -46,6 +46,19 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/plus" />
 
+        <ImageView
+            android:id="@+id/returnHome"
+            android:layout_width="33dp"
+            android:layout_height="29dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="@string/todo"
+            android:onClick="backToPage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/returntopage"
+            tools:visibility="gone" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout

@@ -217,4 +217,9 @@ public class UpcomingEventsDriver extends AppCompatActivity {
 
     }
 
+    public void goBackToPage(View view){
+        super.onBackPressed();
+        finish();
+    }
+
 }

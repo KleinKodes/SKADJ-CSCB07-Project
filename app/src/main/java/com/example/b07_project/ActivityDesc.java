@@ -64,7 +64,9 @@ public class ActivityDesc extends AppCompatActivity {
 
         if(auth == 1)
         {
-            findViewById(R.id.joinEventButton).setVisibility(View.GONE);
+            ((TextView)findViewById(R.id.joinEventButton)).setText("Accept");
+            View parent = (View)findViewById(R.id.homeButton).getParent();
+            parent.setVisibility(View.GONE);
         }
 
         if (userId == null) userId = "";
@@ -177,7 +179,7 @@ public class ActivityDesc extends AppCompatActivity {
                     eventRef.child(eventId + "").setValue(event);
                     Intent intent = new Intent(getBaseContext(), activityPageDenny.class);
                     intent.putExtra("approvalNeeded", mode);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                     finish();
                     return;
@@ -185,18 +187,8 @@ public class ActivityDesc extends AppCompatActivity {
                 }
                 if (event.attendees == null) event.attendees = new ArrayList<String>();
                 if (event.attendees.contains(userId)){
-
-
                     userServices.removeUserFromEvent(userId, eventId);
-
-
-
-
                 }else {
-
-
-
-
                     userServices.addCurrentUserToEvent(eventId);
 //
 //
@@ -227,5 +219,6 @@ public class ActivityDesc extends AppCompatActivity {
 
     public void backToActivityPage(View view){
         super.onBackPressed();
+        finish();
     }
 }

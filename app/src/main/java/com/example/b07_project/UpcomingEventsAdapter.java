@@ -13,21 +13,33 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 public class UpcomingEventsAdapter extends RecyclerView.Adapter<UpcomingEventsAdapter.ViewHolder>{
 
     private ArrayList<Event> eventsList;
+    DatabaseReference userRef;
     public static String currClass;
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView upcomingTextView;
+        public TextView upcomingName;
+        public TextView hostName;
+        public TextView date;
+
         public Button goToButton;
 
         public ViewHolder(View itemView){
             super(itemView);
-            upcomingTextView = itemView.findViewById(R.id.textName);
+            upcomingName = itemView.findViewById(R.id.listLayName);
+            hostName = itemView.findViewById(R.id.listLayHost);
+            date = itemView.findViewById(R.id.listLayDate);
             goToButton = itemView.findViewById(R.id.select_venue);
         }
     }
@@ -61,8 +73,26 @@ public class UpcomingEventsAdapter extends RecyclerView.Adapter<UpcomingEventsAd
 
 
         Event event = eventsList.get(position);
-        TextView textView = holder.upcomingTextView;
-        textView.setText(event.getName());
+        UserServices host = new UserServices();
+
+        TextView textViewVenue = holder.upcomingName;
+        TextView textViewHost = holder.hostName;
+        TextView textViewDate = holder.date;
+
+        textViewVenue.setText(event.getName());
+        textViewDate.setText(event.getStartDateString());
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        userRef = database.getReference("Users");
+
+        userRef.child(event.getOwnerId() + "").child("firstName").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                String hostName = task.getResult().getValue(String.class);
+                textViewHost.setText(hostName);
+            }
+        });
+
 //        textView.setHint(event.get);
         Log.i("Jacky", String.valueOf(event.getId()));
         Button button = holder.goToButton;

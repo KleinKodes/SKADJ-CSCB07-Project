@@ -102,6 +102,19 @@ public class activityPageDenny extends AppCompatActivity {
                     View navView =(View) logOut.getParent();
                     navView.setVisibility(View.GONE);
 
+                    View addPost = findViewById(R.id.addPost);
+                    addPost.setVisibility(View.GONE);
+
+                    View returnHome = findViewById(R.id.returnHome);
+                    returnHome.setVisibility(View.VISIBLE);
+
+                    TextView profileName = (TextView) findViewById(R.id.profileUserName);
+                    profileName.setText("Admin");
+
+                }
+                else{
+                    View returnHome = findViewById(R.id.returnHome);
+                    returnHome.setVisibility(View.GONE);
                 }
 
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -214,6 +227,11 @@ public class activityPageDenny extends AppCompatActivity {
     public void transitionToAddEvent(View view){
         Intent intent = new Intent(this, AddEventDenny.class);
         startActivity(intent);
+    }
+
+    public void backToPage(View view){
+        super.onBackPressed();
+        finish();
     }
 
 }
