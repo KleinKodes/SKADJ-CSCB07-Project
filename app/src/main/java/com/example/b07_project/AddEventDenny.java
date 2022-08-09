@@ -42,6 +42,7 @@ public class AddEventDenny extends AppCompatActivity {
     String firstName;
     EventServices eventServices;
     UserServices userServices;
+    Venue currVenue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,6 +124,7 @@ public class AddEventDenny extends AppCompatActivity {
                         System.out.println(snapshot.getChildrenCount());
                         for (DataSnapshot snap : snapshot.getChildren()) {
                             Venue venue = snap.getValue(Venue.class);
+                            currVenue = venue;
                             System.out.println(venue.getSports());
                             if (venue.getName() == parent.getItemAtPosition(position).toString()) {
                                 setSportDropdown(venue.getSports());
@@ -162,7 +164,12 @@ public class AddEventDenny extends AppCompatActivity {
         editText = (EditText) findViewById(R.id.eventCapacityDenny);
         Event event = new Event(eventName);
 
-        if (editText.getText().toString() != null)event.capacity = Integer.parseInt(editText.getText().toString());
+        if (editText.getText().toString().length()<6 && editText.getText().toString() != null)event.capacity = Integer.parseInt(editText.getText().toString());
+        else{
+            Snackbar mySnackbar = Snackbar.make(view, "Invalid Max Capacity", BaseTransientBottomBar.LENGTH_SHORT);
+            mySnackbar.show();
+            return;
+        }
         editText= (EditText) findViewById(R.id.eventDescriptionDenny);
         event.eventDescription= editText.getText().toString();
         TimePicker timePicker = (TimePicker) findViewById(R.id.eventStartTimeDenny);
@@ -183,7 +190,7 @@ public class AddEventDenny extends AppCompatActivity {
 
 
 
-        eventServices.addEvent(this, view, event);
+        eventServices.addEvent(this, view, event, currVenue);
 
 
     }

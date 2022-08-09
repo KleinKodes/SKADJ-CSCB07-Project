@@ -1,6 +1,7 @@
 package com.example.b07_project;
 
 import android.app.Activity;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 
@@ -30,6 +31,7 @@ public class EventServices {
         this.userRef = database.getReference("Users");
         this.venueRef = database.getReference("Venues");
         this.userServices = new UserServices();
+
     }
 
     public void deleteEventById(int eventId){
@@ -125,10 +127,10 @@ public class EventServices {
 
     }
 
-    public void addEvent(Activity activity, View view, Event event){
+    public void addEvent(Activity activity, View view, Event event, Venue venue){
 
 
-        if(view != null && validateEvent(view, event)) {
+        if(view != null && validateEvent(view, event, venue)) {
 
             DatabaseReference scheduledEvents = venueRef.child(event.venueId + "").child("scheduledEvents");
                     scheduledEvents.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
@@ -174,7 +176,7 @@ public class EventServices {
             return curMax + 1;
     }
 
-    public Boolean validateEvent(View view, Event event){
+    public Boolean validateEvent(View view, Event event, Venue venue){
 
 
             Log.i("status", "validating event");
@@ -212,6 +214,15 @@ public class EventServices {
                 mySnackbar.show();
                 return false;
             }
+
+
+
+                    if((venue != null) && (event.capacity > venue.capacity))
+                    {
+                        Snackbar mySnackbar = Snackbar.make(view, "CAPACITY OVERLOAD!!! (Capacity is larger than venue's max)", BaseTransientBottomBar.LENGTH_SHORT);
+                        mySnackbar.show();
+                        return false;
+                    }
 
 
             return true;
