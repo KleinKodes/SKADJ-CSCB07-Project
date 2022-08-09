@@ -1,6 +1,8 @@
 2022/08/04
 Denny
 Tasks Done: Fixed minor bugs on description page and other pages.
+Made proper UI for the login and sign up pages.
+Added onclick functionality for transitioning between the login and signup
 Work more on testing the app via bug fixes.
 Jacky
 Tasks Done: Checked up on app and oversaw the merging of pages with UI.

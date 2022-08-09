@@ -1,7 +1,7 @@
 2022/08/01
 Denny
 Tasks Done: Connected backend to description page with full information about the venues.
-Needs to implement functionality for bottom buttons from the UI
+Needs to implement functionality for the app’s navigation bar
 Jacky
 Tasks Done: Finished implementing data validation for sign in, login, and adding a venue.
 Needs to debug data validation and work on list sorting if time permits.

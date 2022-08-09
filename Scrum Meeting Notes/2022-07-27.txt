@@ -3,7 +3,7 @@ Denny
 Split some work with Jacky
 Jacky is doing list of venues design
 Tasks Done: Events page, profile page (see all joined/created events)
-To do: make functionality work
+To do: make functionality work and make all the functions work for the button’s onclick in the event and profile page
 Jacky
 Tasks Done: Created github branch and started progress on venue lists
 Should continue working on venue lists
