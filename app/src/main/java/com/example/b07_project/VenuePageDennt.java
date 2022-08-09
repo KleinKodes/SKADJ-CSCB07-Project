@@ -75,14 +75,14 @@ public class VenuePageDennt extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot snap : snapshot.getChildren()) {
                     Venue venue = snap.getValue(Venue.class);
-                    System.out.println("Venues: "+venue.getName());
+                    ////    System.out.println("Venues: "+venue.getName());
                     addVenues(venue.getName(), venue.getId());
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                System.out.println(error);
+                ////    System.out.println(error);
             }
         });
 

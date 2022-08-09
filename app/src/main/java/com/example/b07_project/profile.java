@@ -47,7 +47,7 @@ public class profile extends AppCompatActivity {
         userId = userServices.getCurrentUserId();
         if (userId == null) userId = "";
         Log.i("userid ", userId);
-        System.out.println(state);
+        ////    System.out.println(state);
 
         View home = findViewById(R.id.homeButton);
         home.setOnClickListener(new Navigation());

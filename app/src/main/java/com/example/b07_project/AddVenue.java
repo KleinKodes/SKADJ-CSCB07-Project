@@ -108,7 +108,7 @@ public class AddVenue extends AppCompatActivity {
         venue.name = ((EditText)findViewById(R.id.venueName)).getText().toString();
         Locale locale = new Locale("English", ((EditText)findViewById(R.id.venueCountry)).getText().toString());
 
-        System.out.println("Done Setting Name");
+        ////    System.out.println("Done Setting Name");
         Address address = new Address();
         address.streetAddress = ((EditText)findViewById(R.id.venueStreetAddress)).getText().toString();
         address.city = ((EditText)findViewById(R.id.venueCity)).getText().toString();
@@ -116,7 +116,7 @@ public class AddVenue extends AppCompatActivity {
         address.state = ((EditText)findViewById(R.id.venueState)).getText().toString();
         address.postalCode = ((EditText)findViewById(R.id.venuePostalCode)).getText().toString();
         venue.address = address;
-        System.out.println("Done Setting Address");
+        ////    System.out.println("Done Setting Address");
 
         if(((EditText) findViewById(R.id.venueMaxCapacity)).getText().toString().equals("")){
             venue.capacity = 0;
@@ -124,7 +124,7 @@ public class AddVenue extends AppCompatActivity {
         else {
             venue.capacity = Integer.parseInt(((EditText) findViewById(R.id.venueMaxCapacity)).getText().toString());
         }
-        System.out.println("Done Setting Max Cap");
+        ////    System.out.println("Done Setting Max Cap");
         TimePicker pickedStartTime = (TimePicker)findViewById(R.id.venueStartTime);
         Time startTime = new Time();
         startTime.setHour(pickedStartTime.getHour());
@@ -211,7 +211,7 @@ public class AddVenue extends AppCompatActivity {
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 for(DataSnapshot i : task.getResult().getChildren())
                 {
-                    System.out.println("NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+                    ////    System.out.println("NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
                     Event event = (Event)i.getValue(Event.class);
                     if(event.venueId == venueID){
                         Snackbar mySnackbar = Snackbar.make(view, "There are still Events at this Venue!", BaseTransientBottomBar.LENGTH_SHORT);

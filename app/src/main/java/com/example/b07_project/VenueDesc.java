@@ -88,7 +88,7 @@ public class VenueDesc extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                System.out.println(error);
+                ////    System.out.println(error);
             }
         });
     }

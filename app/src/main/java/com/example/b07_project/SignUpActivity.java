@@ -48,7 +48,7 @@ public class SignUpActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            System.out.println(user.getDisplayName());
+                            ////    System.out.println(user.getDisplayName());
                         }
                     }
                 });
@@ -70,7 +70,7 @@ public class SignUpActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                System.out.println("SIGN UP WAS SUCCESSFUL  :((((");
+                                ////    System.out.println("SIGN UP WAS SUCCESSFUL  :((((");
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 updateUserProfile(name.getText().toString());
                                 User newUser = new User();
@@ -104,7 +104,7 @@ public class SignUpActivity extends AppCompatActivity {
                                         }
                                     });
                             } else {
-                                System.out.println("SIGN IN FAILED   :((((");
+                                ////    System.out.println("SIGN IN FAILED   :((((");
                                 TextView loginFail = (TextView) findViewById(R.id.Sign_Up_Error_Message);
                                 loginFail.setText(task.getException().getMessage());
                             }
