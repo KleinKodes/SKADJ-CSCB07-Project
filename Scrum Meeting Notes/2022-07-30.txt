@@ -1,7 +1,10 @@
 2022/07/30
 Denny
-Tasks Done: Finished UI for creating an event page and adding venue page.
-Work on Events page UI. 
+Tasks Done: Finished making 4 new UI
+Created UI for add venue form fill out
+Created UI for add event form fill out and connected spinner to backend (It now displays all the possible venue you can filter by)
+Created UI for venue page
+Created UI for venue description page
 Jacky
 Tasks Done: Finished filtering upcoming events by venue, and upcoming events are now sorted by latest to furthest via time.
 Currently working on sorting features for more lists and data validation.

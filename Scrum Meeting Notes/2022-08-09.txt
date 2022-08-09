@@ -1,0 +1,17 @@
+2022/08/09
+Denny
+Tasks Done: Added awaiting for acceptance on UI, so people know what events are accepted
+Added attendee list on the created tab so that the creator can navigate to a page to view their attendees
+Stress test the app. 
+Jacky
+Tasks Done: Added logo onto loading screen of app.
+Fix bugs if needed, and add notes on github.
+Klein
+Tasks Done: deleting events now removes events from the venue scheduled events list, there is now an expired events function for getting rid of expired events, added view attendees method as well.
+Stress test the app.
+Anthony
+Tasks Done: Fixed UI bugs and added max capacity validation for events.
+Stress test the app more. 
+Seven 
+Tasks Done: deleted deprecated files and code.
+Stress test the app with someone. 

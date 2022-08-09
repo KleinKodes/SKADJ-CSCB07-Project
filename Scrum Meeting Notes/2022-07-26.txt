@@ -1,6 +1,7 @@
 2022/07/26
 Denny
 Tasks Done: N/A
+Start Creating the UI for events page and profile page
 Needs suggestions for UI interface 
 Can help with event pages
 Jacky
