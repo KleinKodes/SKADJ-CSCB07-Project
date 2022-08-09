@@ -372,7 +372,7 @@ public class AddVenue extends AppCompatActivity {
             return false;
         }
         //Check if venue has any sports, if the number of sports exceeds the max event amount, or if the max amount is empty
-        if(venue.sports.size() == 0 || venue.maxConcurrentActivities == 0){
+        if(venue.sports.size() == 0 || venue.maxConcurrentActivities == 0 || venue.maxConcurrentActivities < venue.sports.size()){
             //makePopUp(view, "Number of sports/maximum sports size invalid.");
             Snackbar mySnackbar = Snackbar.make(view, "Number of sports/maximum sports size invalid", BaseTransientBottomBar.LENGTH_SHORT);
             mySnackbar.show();

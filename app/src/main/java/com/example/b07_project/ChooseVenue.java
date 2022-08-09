@@ -9,10 +9,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -33,59 +35,87 @@ public class ChooseVenue extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
+
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_venue_sport);
-        UserServices userServices = new UserServices();
 
-        int auth = userServices.getCurrentUserAuth();
+        setContentView(R.layout.loading_activity);
+        ProgressBar p = (ProgressBar)findViewById(R.id.progressBar);
+        Handler h = new Handler();
 
-        RecyclerView recyclerView = findViewById(R.id.rvVenues);
-        RecycleViewAdapter recycleViewAdapter = new RecycleViewAdapter(venues, auth);
-        recyclerView.setAdapter(recycleViewAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(pStatus < 100){
+                    pStatus++;
+                    android.os.SystemClock.sleep(10);
+                    h.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            p.setProgress(pStatus);
+                        }
+                    });
+                }
+            }
+        }).start();
 
-        Log.i("status", "in choose venue view");
-
-        //CountDownLatch countDownLatch = new CountDownLatch(1);
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference venueRef = database.getReference("Venues");
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
 
 
-        Log.i("status", "potential crash site 1");
+                setContentView(R.layout.activity_choose_venue_sport);
+                UserServices userServices = new UserServices();
+
+                int auth = userServices.getCurrentUserAuth();
+
+                RecyclerView recyclerView = findViewById(R.id.rvVenues);
+                RecycleViewAdapter recycleViewAdapter = new RecycleViewAdapter(venues, auth);
+                recyclerView.setAdapter(recycleViewAdapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(ChooseVenue.this));
+
+                Log.i("status", "in choose venue view");
+
+                //CountDownLatch countDownLatch = new CountDownLatch(1);
+
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference venueRef = database.getReference("Venues");
+
+
+                Log.i("status", "potential crash site 1");
 
 //
 
 
-        //BLOCK EXPERIMENT
-        venueRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                //System.out.println("we are here");
+                //BLOCK EXPERIMENT
+                venueRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        //System.out.println("we are here");
 
 
-                //dataSnapshot.g
-                for (DataSnapshot childSnapshot: dataSnapshot.getChildren()) {
+                        //dataSnapshot.g
+                        for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
 
 
-
-                    Venue venue =childSnapshot.getValue(Venue.class);
-                    if (!venues.contains(venue)) {venues.add(venue); recycleViewAdapter.notifyItemInserted(venues.size() - 1);}
-
-
-                }
-
+                            Venue venue = childSnapshot.getValue(Venue.class);
+                            if (!venues.contains(venue)) {
+                                venues.add(venue);
+                                recycleViewAdapter.notifyItemInserted(venues.size() - 1);
+                            }
 
 
+                        }
+
+
+                    }
+
+                    public void onCancelled(DatabaseError error) {
+                        System.out.println("The read failed: " + error.getCode());
+                    }
+                });
             }
-
-            public void onCancelled(DatabaseError error) {
-                System.out.println("The read failed: " + error.getCode());
-            }
-        });
-
         //END BLOCK
-
+        }, 1200);
 
     }
 
