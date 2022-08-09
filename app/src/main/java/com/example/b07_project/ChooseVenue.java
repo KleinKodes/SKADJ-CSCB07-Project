@@ -93,13 +93,8 @@ public class ChooseVenue extends AppCompatActivity {
     public void backToAdminView(View view)
     {
         Intent intent = new Intent(this, AdminActivity.class);
-
-
         startActivity(intent);
-
-
-
-
+        finish();
     }
 
 

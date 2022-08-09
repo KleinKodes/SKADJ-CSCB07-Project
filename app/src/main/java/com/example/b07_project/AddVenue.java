@@ -301,6 +301,11 @@ public class AddVenue extends AppCompatActivity {
         layout.addView(v);
     }
 
+    public void goBackToPage(View view){
+        super.onBackPressed();
+        finish();
+    }
+
 /*    private void makePopUp(View view, String message){
         // inflate layout of popup window
         LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);

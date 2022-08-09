@@ -49,16 +49,8 @@ public class AddEventDenny extends AppCompatActivity {
         setContentView(R.layout.activity_add_event_denny);
 
         eventServices = new EventServices();
-
         selectedVenueId = -1;
-
         userServices = new UserServices();
-
-        firstName = userServices.getCurrentUserName();
-        if(firstName != null){
-            TextView textView = findViewById(R.id.profileUserName);
-            textView.setText(firstName);
-        }
 
 //        View home = findViewById(R.id.homeButton);
 //        home.setOnClickListener(new Navigation());

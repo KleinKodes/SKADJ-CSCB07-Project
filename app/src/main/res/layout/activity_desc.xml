@@ -208,6 +208,17 @@
                     android:text="Deny"
                     android:visibility="gone" />
 
+                <Button
+                    android:id="@+id/approveEventButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#2B782E"
+                    android:onClick="DenyEvent"
+                    android:text="Deny"
+                    android:visibility="gone" />
+
                 <TextView
                     android:id="@+id/activityDescCapacity"
                     android:layout_width="wrap_content"
