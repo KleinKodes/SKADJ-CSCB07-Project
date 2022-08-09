@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
              android:layout_height="match_parent">
 
@@ -33,7 +34,7 @@
             <LinearLayout
                 android:id="@+id/linearLayout2"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginStart="1dp"
                 android:layout_weight="0.8"
                 android:background="#1E5120"
@@ -78,10 +79,11 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="91dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingVertical="10dp">
 
                 <TextView
                     android:id="@+id/profileDate"
@@ -95,16 +97,37 @@
                     android:layout_height="wrap_content"
                     android:text="@string/time" />
 
-                <Button
-                    android:id="@+id/profileDelete"
-                    android:layout_width="91dp"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#1E5120"
-                    android:text="Delete"
-                    android:textSize="12dp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <Button
+                        android:id="@+id/profileDelete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:backgroundTint="#1E5120"
+                        android:text="Delete"
+                        android:textSize="12dp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <Button
+                        android:id="@+id/profileAttendee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:backgroundTint="#1E5120"
+                        android:onClick="transitionToAttendee"
+                        android:text="Attendee"
+                        android:textSize="12dp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Attendee" />
+
+                </LinearLayout>
 
             </LinearLayout>
         </LinearLayout>

@@ -271,9 +271,9 @@ public class EventServices {
                         }
                     });
                 }
-
-                Intent intent = new Intent(context, profile.class); //change this from profile LOL
-                intent.putExtra("attendeeList", attendeeList);
+                Intent intent = new Intent(context, AttendeeList.class); //change this from profile LOL
+                String[] attendees = (String[]) attendeeList.toArray();
+                intent.putExtra("attendeeList", attendees);
                 context.startActivity(intent);
 
 

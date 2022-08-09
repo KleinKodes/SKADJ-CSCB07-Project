@@ -3,6 +3,7 @@ package com.example.b07_project;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
@@ -35,6 +36,9 @@ public class VenueDesc extends AppCompatActivity {
         setContentView(R.layout.loading_activity); // FIX
         ProgressBar p = (ProgressBar)findViewById(R.id.progressBar);
         Handler h = new Handler();
+        userServices = new UserServices();
+
+
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -65,6 +69,9 @@ public class VenueDesc extends AppCompatActivity {
                 profile.setOnClickListener(new Navigation());
                 View logout = findViewById(R.id.logOutButton);
                 logout.setOnClickListener(new Navigation());
+
+                TextView profileName = (TextView) findViewById(R.id.profileUserName);
+                profileName.setText(userServices.getCurrentUserName());
 
                 firebaseDatabase = FirebaseDatabase.getInstance();
                 databaseReference = firebaseDatabase.getReference("Venues");
@@ -115,6 +122,9 @@ public class VenueDesc extends AppCompatActivity {
     }
 
     public void overwriteInfo(Venue venue){
+
+        TextView capacity = (TextView) findViewById(R.id.venueDescCapNum);
+
         TextView streetAddress = (TextView) findViewById(R.id.venueDescStreetAddress);
         TextView city = (TextView) findViewById(R.id.venueDescCity);
         TextView province = (TextView) findViewById(R.id.venueDescProvince);
@@ -133,6 +143,8 @@ public class VenueDesc extends AppCompatActivity {
 
         TextView start = (TextView) findViewById(R.id.venueDescStart);
         TextView end = (TextView) findViewById(R.id.venueDescEnd);
+
+        capacity.setText(String.valueOf(venue.getCapacity()));
 
         monday.setText(String.format("Monday: %s", (venue.daysAvailable.charAt(0) == '0') ? "Not Available":"Available"));
         tuesday.setText(String.format("Tuesday: %s", (venue.daysAvailable.charAt(1) == '0') ? "Not Available":"Available"));

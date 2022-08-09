@@ -68,7 +68,6 @@ public class profile extends AppCompatActivity {
         TextView profileName = findViewById(R.id.profileUserName);
         profileName.setText(userServices.getCurrentUserName());
 
-
         eventRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -79,12 +78,9 @@ public class profile extends AppCompatActivity {
                     if (event.ownerId == null) event.ownerId = "";
                     Log.i("ownerId", event.getOwnerId());
 
-
-
                     if (state == 1 && event.getOwnerId() != null && event.getOwnerId().equals(userId)) {
 
                         Log.i("status", "found a owner match");
-
                         Event finalEvent = event;
 
 
@@ -170,9 +166,14 @@ public class profile extends AppCompatActivity {
         textView.setText(event.getName());
         textView.setHint(event.getId() + "");
         Button button = v.findViewById(R.id.profileDelete);
+        Button buttonAttendee = v.findViewById(R.id.profileAttendee);
         button.setHint(event.getId() + "");
+        buttonAttendee.setHint(event.getId() + "");
         textView = v.findViewById(R.id.profileApproval);
 
+        if (state == 2){
+            buttonAttendee.setVisibility(View.GONE);
+        }
         View leftHalf = v.findViewById(R.id.linearLayout2);
         leftHalf.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -208,7 +209,7 @@ public class profile extends AppCompatActivity {
 
 
                 }
-                View parent = (View)v.getParent().getParent();
+                View parent = (View)v.getParent().getParent().getParent();
                 parent.setVisibility(View.GONE);
             }
         });
@@ -252,5 +253,15 @@ public class profile extends AppCompatActivity {
     public void removeCards(View view){
         LinearLayout layout = (LinearLayout) findViewById(R.id.cardList);
         //layout.child
+    }
+
+    public void transitionToAttendee(View view){
+        Button button = (Button) view;
+        Log.i("Denny2", String.valueOf(Integer.parseInt(button.getHint().toString())));
+        Intent intent = new Intent(view.getContext(), AttendeeList.class);
+        int eventID = Integer.parseInt(button.getHint().toString());
+        intent.putExtra("eventID", eventID);
+        startActivity(intent);
+
     }
 }

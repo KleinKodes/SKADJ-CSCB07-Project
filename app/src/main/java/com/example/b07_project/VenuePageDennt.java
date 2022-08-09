@@ -48,6 +48,7 @@ public class VenuePageDennt extends AppCompatActivity {
         profile.setOnClickListener(new Navigation());
         View logout = findViewById(R.id.logOutButton);
         logout.setOnClickListener(new Navigation());
+
         TextView userName = findViewById(R.id.profileUserName);
         userName.setText(userServices.getCurrentUserName());
 
