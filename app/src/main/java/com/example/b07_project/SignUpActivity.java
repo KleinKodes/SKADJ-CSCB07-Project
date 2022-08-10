@@ -109,8 +109,8 @@ public class SignUpActivity extends AppCompatActivity {
                                         }
                                     });
                             } else {
-                                TextView loginFail = (TextView) findViewById(R.id.Sign_Up_Error_Message);
-                                loginFail.setText(task.getException().getMessage());
+                                Snackbar mySnackbar = Snackbar.make(view, task.getException().getMessage(), BaseTransientBottomBar.LENGTH_SHORT);
+                                mySnackbar.show();
                             }
                         }
                     });
