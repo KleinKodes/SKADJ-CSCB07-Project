@@ -77,6 +77,7 @@ public class AddEventDenny extends AppCompatActivity {
 
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 sports.setAdapter(adapter);
+                sports.setSelection(getIntent().getIntExtra("CurrVenue", 1));
                 initializeSports();
             }
 
@@ -98,6 +99,7 @@ public class AddEventDenny extends AppCompatActivity {
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sports.setAdapter(adapter);
+
 
     }
 

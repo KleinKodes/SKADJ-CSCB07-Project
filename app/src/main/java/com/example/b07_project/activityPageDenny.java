@@ -199,12 +199,12 @@ public class activityPageDenny extends AppCompatActivity {
 
     private void transitionToViewUpcomingEvents(View view){
         Intent intent = new Intent(this, UpcomingEventsDriver.class);
-
         startActivity(intent);
     }
 
     public void transitionToAddEvent(View view){
         Intent intent = new Intent(this, AddEventDenny.class);
+        intent.putExtra("CurrVenue", venueId);
         startActivity(intent);
     }
 

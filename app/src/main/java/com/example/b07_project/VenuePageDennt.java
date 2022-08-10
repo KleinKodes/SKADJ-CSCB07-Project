@@ -69,10 +69,12 @@ public class VenuePageDennt extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int counter = 0;
                 for (DataSnapshot snap : snapshot.getChildren()) {
                     Venue venue = snap.getValue(Venue.class);
+                    counter ++;
                     ////    System.out.println("Venues: "+venue.getName());
-                    addVenues(venue.getName(), venue.getId());
+                    addVenues(venue.getName(), venue.getId(), counter);
                 }
             }
 
@@ -85,7 +87,7 @@ public class VenuePageDennt extends AppCompatActivity {
 
     }
 
-    public void addVenues(String name, int venueId){
+    public void addVenues(String name, int venueId, int count){
         LinearLayout layout = (LinearLayout) findViewById(R.id.venuePageCardList);
         View v = LayoutInflater.from(this).inflate(R.layout.venue_place_card, null);
         layout.addView(v);
@@ -108,6 +110,7 @@ public class VenuePageDennt extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), activityPageDenny.class);
                 intent.putExtra("venueId", venueId);
+                intent.putExtra("index", count);
                 startActivity(intent);
             }
         });
