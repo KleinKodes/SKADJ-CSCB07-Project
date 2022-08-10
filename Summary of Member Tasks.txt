@@ -1,0 +1,47 @@
+Tasks done by each member.
+
+Denny: Application UI, responsible for user story 2,
+Responsible part of user story 4) (User can check if their events are approved and view participants)
+Made UI for all the pages on the app
+Connected description pages to the backend (Pressing more info on the Venue page, and clicking on an activity card on the event page)
+Set up proper navigations between all pages
+Connected venue page to backend (It displays all the venues on the venue page)
+
+Jacky: 
+responsible for user story 7) As an admin, I should be able to filter upcoming
+events by venue, so that I can make the necessary arrangements at that venue.
+worked on data validation when data is submitted by users or admins.
+worked on loading screens for the app.
+Helped with making recyclerview lists for the app.
+
+Klein: 
+Performed Scrum Master Duties
+Responsible for user story 3 As a customer, I want to see a list of upcoming events, so that I can join an event I like).
+Responsible for classes managing event data and user data by creating UserServices and EventServices classes.
+Dealt with logistical issues
+Set up wrapper class to manage state data
+Optimized algorithmic efficiency
+
+Anthony:
+Responsible for story 5 creating functionality for Admins to Add/Edit/Delete venues.
+Worked on Story 6, creating functionality for Admins Add new Venues so that customers can create events at them
+Helped Seven with Login/Sign-Up
+
+Seven: 
+responsible for user story 1 and 5, as well as refactoring code and other features (ex. Log out)
+Cleared redundant Code and Files (Ex. Using service classes instead)
+Firebase Credential Validation and helped with User Management in database
+ Ex. Customer vs. Admin (Ex. authentication/access/sign out)
+Aided with more intuitive User Experience
+Helped Anthony some of his Sprint Tasks.
+🚨IMPORTANT NOTE🚨 from Seven Jang (1008078768) to Prof. Rawad and TA Alejandro:
+ As Posted on the B07 Piazza Forum, on   question  @180, the android emulator only works less than half the time and running android studio gave me many many blue screens (BSoD), making it very difficult for me to work on the project 
+After exploring many options, Alejandro and I were unable to fix it (Ex. reinstalling everything)
+As such, I opted to just using Visual Studio, for doing tasks that don’t require me to test my code  (because I was unable to run it on the emulator)
+Another thing that I’ve done is that I got some of my Team Members to share their screen while they were working on the Project, so that I could help them with their Sprint instead (ex. Anthony would share his screen on Discord while he worked on the project and I would help him)
+This was to hopefully “ make up for ” the work I was unable to do because of the blue screens
+Another note is that on the SCRUM Notes, it mentioned that I was “ on a trip ” from August 1 - 4. 
+What this was, was an important four day gathering for this belief called 道 (Tao)
+https://en.wikipedia.org/wiki/Tao  for reference (not a religion)
+This is why I skipped four SCRUM meetings
+I have already explained my situation and explored accommodation options with Alejandro 

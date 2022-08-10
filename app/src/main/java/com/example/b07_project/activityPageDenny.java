@@ -151,9 +151,9 @@ public class activityPageDenny extends AppCompatActivity {
         textView = v.findViewById(R.id.cardEventDate);
         textView.setText(event.getStartDateString());
         textView = v.findViewById(R.id.startTime);
-        textView.setText(event.getStartTimeString());
+        textView.setText("Start: "+event.getStartTimeString());
         textView = v.findViewById(R.id.endTime);
-        textView.setText(event.getEndTimeString());
+        textView.setText("End: "+event.getEndTimeString());
         textView = v.findViewById(R.id.profileEventName);
         textView.setText(event.getName());
         textView.setHint(event.getId() + "");
@@ -199,12 +199,13 @@ public class activityPageDenny extends AppCompatActivity {
 
     private void transitionToViewUpcomingEvents(View view){
         Intent intent = new Intent(this, UpcomingEventsDriver.class);
-
         startActivity(intent);
     }
 
     public void transitionToAddEvent(View view){
         Intent intent = new Intent(this, AddEventDenny.class);
+        intent.putExtra("CurrVenue", venueId);
+        intent.putExtra("index", getIntent().getIntExtra("index", 0));
         startActivity(intent);
     }
 

@@ -150,7 +150,7 @@ public class profile extends AppCompatActivity {
         textView = v.findViewById(R.id.profileDate);
         textView.setText(event.getStartDateString());
         textView = v.findViewById(R.id.profileStartTime);
-        textView.setText(event.getStartTimeString());
+        textView.setText("Start: "+event.getStartTimeString());
         textView = v.findViewById(R.id.profileVenueName);
         textView.setText(venueName);
         textView = v.findViewById(R.id.profileEventName);
