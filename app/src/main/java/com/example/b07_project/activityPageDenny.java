@@ -205,6 +205,7 @@ public class activityPageDenny extends AppCompatActivity {
     public void transitionToAddEvent(View view){
         Intent intent = new Intent(this, AddEventDenny.class);
         intent.putExtra("CurrVenue", venueId);
+        intent.putExtra("index", getIntent().getIntExtra("index", 0));
         startActivity(intent);
     }
 
