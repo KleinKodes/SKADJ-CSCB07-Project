@@ -171,9 +171,10 @@ public class AddEventDenny extends AppCompatActivity {
 
         DatePicker datePicker = (DatePicker) findViewById(R.id.eventDateDenny);
 
-        event.setStartDate(new GregorianCalendar(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth(), timePicker.getCurrentHour(), timePicker.getCurrentMinute()));
+        Log.i("debugging", "Month is: " + datePicker.getMonth());
+        event.setStartDate(new GregorianCalendar(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth(), timePicker.getHour(), timePicker.getMinute()));
         timePicker = (TimePicker) findViewById(R.id.eventEndTimeDenny);
-        event.setEndDate(new GregorianCalendar(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth(), timePicker.getCurrentHour(), timePicker.getCurrentMinute()));
+        event.setEndDate(new GregorianCalendar(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth(), timePicker.getHour(), timePicker.getMinute()));
 
 
         Spinner sports = (Spinner) findViewById(R.id.eventSportSpinner);

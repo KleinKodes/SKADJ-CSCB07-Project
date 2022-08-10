@@ -1,6 +1,7 @@
 2022/08/02
 Denny
 Tasks Done: created functionality for home, logout, and profile buttons on the bottom page. 
+Connected each of the navigation buttons to their respected function
 Needs to take out plus and search from the top window of the UI
 Jacky
 Tasks Done: Created buttons for implementation of what customer view should look like. 

@@ -1,6 +1,7 @@
 2022/08/09
 Denny
-Tasks Done: Added awaiting for acceptance on UI, so people know what events are accepted, added attendee lists.
+Tasks Done: Added awaiting for acceptance on UI, so people know what events are accepted
+Added attendee list on the created tab so that the creator can navigate to a page to view their attendees
 Stress test the app. 
 Jacky
 Tasks Done: Added logo onto loading screen of app.

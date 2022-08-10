@@ -2,6 +2,8 @@
 Denny
 Tasks Done: Made UI for admin view.
 Needs to put all java and xml files together.
+Changed the UI for upcoming events on the admin page. The filter spinner is now properly displayed on the upcoming events page
+Added cards to display each of the events in upcoming events page and edit venue page from the admin panel
 Jacky
 Tasks Done: Fixed major bug involving popups crashing the app.
 Should work on loading screens for app and debugging validation later on

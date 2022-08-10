@@ -3,6 +3,7 @@ package com.example.b07_project;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,6 +27,8 @@ import com.google.firebase.database.FirebaseDatabase;
 public class SignUpActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private int pStatus=0;
+    private UserServices userServices;
+    Activity activity;
 
 
 
@@ -34,6 +37,8 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         mAuth = FirebaseAuth.getInstance();
+        activity = this;
+        userServices = new UserServices();
 
     }
 
@@ -81,6 +86,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                                 DatabaseReference myRef = database.getReference("Users");
                                 myRef.child(newUser.id).setValue(newUser);
+                                userServices.logInUser(newUser.email,password.getText().toString(), view, activity);
                                 mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
                                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                         @Override
