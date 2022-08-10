@@ -92,31 +92,37 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/upcomingEventHeaderDenny"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:text="Upcoming Events"
-        android:textColor="#173C18"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/cards"
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Logo" />
+        app:layout_constraintTop_toBottomOf="@+id/Logo">
+
+        <TextView
+            android:id="@+id/upcomingEventHeaderDenny"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Upcoming Events"
+            android:textColor="#173C18"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <ScrollView
         android:id="@+id/cards"
         android:layout_width="0dp"
-        android:layout_height="415dp"
-        android:layout_marginTop="30dp"
+        android:layout_height="0dp"
         android:background="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/Navbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/upcomingEventHeaderDenny"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="SpeakableTextPresentCheck">
 

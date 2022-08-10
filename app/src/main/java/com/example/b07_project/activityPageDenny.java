@@ -151,9 +151,9 @@ public class activityPageDenny extends AppCompatActivity {
         textView = v.findViewById(R.id.cardEventDate);
         textView.setText(event.getStartDateString());
         textView = v.findViewById(R.id.startTime);
-        textView.setText(event.getStartTimeString());
+        textView.setText("Start: "+event.getStartTimeString());
         textView = v.findViewById(R.id.endTime);
-        textView.setText(event.getEndTimeString());
+        textView.setText("End: "+event.getEndTimeString());
         textView = v.findViewById(R.id.profileEventName);
         textView.setText(event.getName());
         textView.setHint(event.getId() + "");
