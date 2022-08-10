@@ -1,0 +1,370 @@
+2022/07/25
+* Denny
+   * Tasks Done: N/A
+   * Needs suggestions for UI interface 
+   * Can help with event pages
+* Jacky
+   * Tasks Done: N/A
+   * Should figure out how to display venue lists and customers’ scheduled events
+   * Can help with UI or event Page 
+* Klein (Scrum Master)
+   * Tasks Done: N/A
+   * Should set up Firebase backend and github repo
+   * Help with UI and event pages
+* Anthony
+   * Tasks Done: N/A
+   * Work on creating a page for admin view
+   * Should need help on admin view vs customer view
+* Seven 
+   * Tasks Done: N/A
+   * Should figure out how to create login for admin and customers
+   * Can help with event pages
+2022/07/26
+* Denny
+   * Tasks Done: N/A
+   * Start Creating the UI for events page and profile page
+   * Needs suggestions for UI interface 
+   * Can help with event pages
+* Jacky
+   * Tasks Done: Familiarized with Github desktop and android studio environment. 
+   * Finalize UI with the application.
+   * Figure out how to make lists in android studio.
+* Klein (Scrum Master)
+   * Tasks Done: N/A
+   * Should set up Firebase backend and github repo
+   * Help with UI and event pages
+* Anthony
+   * Tasks Done: Created the form the admin fills out to create a venue
+   * Need to add functionality to push data to server
+
+
+* Seven 
+   * Tasks Done: N/A
+   * Should figure out how to create login for admin and customers
+   * Can help with event pages
+
+
+
+
+2022/07/27
+* Denny
+   * Split some work with Jacky
+   * Jacky is doing list of venues design
+   * Tasks Done: Events page, profile page (see all joined/created events)
+   * To do: make functionality work and make all the functions work for the button’s onclick in the event and profile page
+* Jacky
+   * Tasks Done: Created github branch and started progress on venue lists
+   * Should continue working on venue lists
+   * Needs help with dynamic pages for each venue with a sports list
+   * Needs help with updating the venue and sports information on firebase
+* Klein
+   * Tasks Done: Created github repo and got functionality for create/add/edit event page
+   * Switched Task: Took on create/add event page from Anthony
+   * Needs to work on the layout of create/add/edit event page
+* Anthony
+   * Tasks Done: Implemented the ability to read input data from the user.
+   * Switched Task: Gave create/add event page to Klein and took on admin view add venue page
+   * Needs to work on creating the venues and editing the venues.
+* Seven 
+   * Created Login and Registration UI (Created Login and Registration Activity)
+   * Made it so that App launches with Login Activity instead of Main Activity
+   * Got 3 Blue screens lmao and Android Emulator kept on breaking
+      * I think it has something to do with my Firewall or something
+      * Helped Denny debug
+   * To do: Connect firebase authentication to buttons… 
+      * Registration
+      * App User Class stuff
+         * Admin vs. Customer Class
+         * First Name and Last Name
+Discussion between Anthony and Klein (outside of scrum meeting):
+* Problem: in venues with multiple “courts” (places where sports can happen) it is possible for customers to have overlapping events of different types
+   * Solution: Separate venues into different courts, for instance, Pan-am’s gyms and pool will be treated as 2 different venues.
+      * Each court will have a parameter which dictates how many concurrent events can occur there at a time.
+      * Each court will have a list of possible sports which can be played there
+
+
+
+
+        *Extra Note about availability: court’s will have a parameter which indicates which days of the week it is available for events. An “availableFrom” and “availableTo” variable is used to represent what time the venue is available on these days. This time period cannot be modulated throughout the week as that will take too much work on our part.
+
+
+
+
+2022/07/28
+* Denny
+   * Tasks Done: Applied UI interface on venue join/create pages
+   * Work on UI for activity, profile, and description page
+* Jacky
+   * Tasks Done: Created a functional available/upcoming events page using firebase to query information.
+   * Needs to work on the list so that it clearly represents available events.
+   * Needs to work on making the events page list in order of upcoming.
+* Klein
+   * Tasks Done: Main functionality of adding a new event page (including admin functionality).
+   * Do data validation, link events to creators, modularize venue recyclerview to make reusability easier.
+* Anthony
+   * Tasks Done: Created and completed main functionality for adding venues 
+   * Still need to implement the ability for the admin to view/edit all venues.
+* Seven 
+   * Had to completely restart and started a new branch
+      * Nothing in the previous branch was working (was using a predefined template for Logins and Sign up Activities) and got many Blue Screen Errors and Emulator errors for the past week. 
+   * Tasks Done: Created signup and login activity page, logins now check credentials and signups creates new users. 
+   * Needs to do regex for login values (specifically emails and passwords) and create login database
+   * Make user class to identify users and associate data with then to create more functionalities
+2022/07/29
+* Denny
+   * Tasks Done: UI for activity, profile, and description page done.
+   * Connected the activity’s description page to the backend (It displays the proper information for each event)
+   * Continue working on UI design for pages
+* Jacky
+   * Tasks Done: Merged personal branch with main branch and finished planning out tasks for the second sprint. 
+   * Work on implementing sorting features on recyclerview lists and apply them to functionalities
+   * Help with data validation for classes. 
+* Klein
+   * Tasks Done: Completed add events page and hooked up with venues and sports. Did a bit of data validation for events. Created an id connection between venues and events.
+   * Work mostly on data validation and database connection for pages.
+* Anthony
+   * Tasks Done: Made new page for editing venues
+   * Needs to get user data pushed to the database to take use of data authentication.  
+* Seven 
+   * Tasks Done: Trying to fix android studio from crashing his laptop, needs to reinstall all applications.
+   * Passed login activities and tasks and is now assisting with them.
+   * Refactor code and fix warnings if code does not break doing so
+2022/07/30
+* Denny
+   * Tasks Done: Finished UI for creating an event page and adding venue page.
+   * Fixed minor bug in previous pages such as making the width and height more dynamic for some of the views
+* Jacky
+   * Tasks Done: Finished filtering upcoming events by venue, and upcoming events are now sorted by latest to furthest via time.
+   * Currently working on sorting features for more lists (if possible) and data validation.
+* Klein
+   * Tasks Done: Added database Integration to multiple pages, fixed a bug in view upcoming events page
+   * Needs to merge branch with login branch to remove hardcoded user info, do more testing with more user information, and refactor search user by id.
+* Anthony
+   * Tasks Done: Users can now be added to the firebase database when accounts are made.
+   * Needs to edit venues: make it so that it can dynamically react to session data to people who login with an account, and connect old xml with new UI
+* Seven 
+   * Tasks Done: Helped with user connection to the database. 
+   * Needs to continue refactoring code.
+2022/07/31
+* Denny
+   * Tasks Done: Finished making 4 new UI
+   * Created UI for add venue form fill out
+   * Created UI for add event form fill out and connected spinner to backend (It now displays all the possible venue you can filter by)
+   * Created UI for venue page
+   * Created UI for venue description page
+* Jacky
+   * Tasks Done: rename sort by venue to filter by venue to distinguish between the features.
+   * Focus on working with sorting features for lists and data validation for classes if possible (upcoming events should be by filter, venues should be by sorting).
+* Klein
+   * Tasks Done: Added delete event and remove user from event functions and buttons to profile page, also fixed bugs when merging.
+   * TODO: fix upcoming merge issues and make code interact with new User class
+* Anthony
+   * Tasks Done: 
+   * Added ability for Admins to view and edit created venues
+   * We are now able to track session data and also login and stuff
+* Seven 
+   * Tasks Done: Did some refactoring on the code, could not figure out how to make sure my changes don’t break the program (because can’t test/run the app). Solution: Trust me. 
+   * Continue to refactor code and work on tasks with Anthony with his and my sprint stuff.
+      * Still need to redirect Admins to a different page and logging out and make certain changes for efficiency in the User database
+2022/08/01
+* Denny
+   * Tasks Done: Connected backend to description page with full information about the venues.
+   * Needs to implement functionality for the app’s navigation bar
+* Jacky
+   * Tasks Done: Finished implementing data validation for sign in, login, and adding a venue.
+   * Needs to debug data validation and work on list sorting if time permits.
+   * Make a customer route for pages.
+* Klein
+   * Tasks Done: Added feature where creating new events now go to the database
+   * Will work on the admin page for viewing requested events.
+* Anthony
+   * Tasks Done: Adding venues now go to the database when created.
+   * Fix bug involving an extra sport when venues are added
+   * Make an admin route for pages.
+* Seven 
+   * Tasks Done: Users can now automatically login after signing in, and added other login/signup features among refactoring code. 
+   * Currently away for a trip. 
+2022/08/02
+* Denny
+   * Tasks Done: created functionality for home, logout, and profile buttons on the bottom page. 
+   * Connected each of the navigation buttons to their respected function
+   * Needs to take out plus and search from the top window of the UI
+* Jacky
+   * Tasks Done: Created buttons for implementation of what customer view should look like. 
+   * Needs to debug and fix issues regarding data validation
+   * Continue working on the pathing for customer view
+* Klein
+   * Tasks Done: created event confirmation on admin side, and when event gets denied, it is removed from the list of upcoming events.
+   * Work on fixing bugs when merging branches
+* Anthony
+   * Tasks Done: Created buttons for implementation of what admin view should look like.
+* Seven 
+   * Tasks Done: Out of commission
+   * Needs to come back from trip
+2022/08/03
+* Denny
+   * Tasks Done: Made UI for admin view.
+   * Needs to put all java and xml files together.
+   * Changed the UI for upcoming events on the admin page. The filter spinner is now properly displayed on the upcoming events page
+   * Added cards to display each of the events in upcoming events page and edit venue page from the admin panel
+* Jacky
+   * Tasks Done: Fixed major bug involving popups crashing the app.
+   * Should work on loading screens for app and debugging validation later on
+* Klein
+   * Tasks Done: Worked on other courses, including CSCB58
+   * Needs to put all java and xml files together.
+* Anthony
+   * Tasks Done: Worked on other courses including CSCB36 and MATB24
+   * Needs to work on deleting venues and deleting sports from venues. 
+* Seven 
+   * Tasks Done: Out of commission
+   * Needs to come back from trip
+2022/08/04
+* Denny
+   * Tasks Done: Fixed minor bugs on description page and other pages.
+   * Made proper UI for the login and sign up pages.
+   * Added onclick functionality for transitioning between the login and signup
+   * Work more on testing the app via bug fixes.
+* Jacky
+   * Tasks Done: Checked up on app and oversaw the merging of pages with UI.
+   * Make sure loading screens work on all pages (i.e implement all loading screens for the app).
+   * Work on bug fixing the app as well.
+* Klein
+   * Tasks Done: Created layout for app loading screen for one specific page, also fixed bugs and merged pages with UI.
+   * Work more on merging the pages and testing apps more.
+   * Debug events joined for customer view
+* Anthony
+   * Tasks Done: worked on other coursework and also oversaw merging of UI.
+   * Add minus button for adding venues, also testing. 
+* Seven 
+   * Tasks Done: On trip
+   * Needs to come back
+2022/08/05
+* Denny
+   * Tasks Done: Made it so that upcoming events navigates to activity description
+   * Find bugs on the app and fix/report them if need be.
+* Jacky
+   * Tasks Done: Created loading screen for logging in and signing up
+   * Work on capacity logic for events and adding loading screens to areas where data loads. Also fix bugs 
+* Klein
+   * Tasks Done: Fixed bugs to the app involving the phone returning to the home screen when trying to log in.
+   * Work on finding more bugs
+* Anthony
+   * Tasks Done: Created minus button to get rid of venues.
+   * Needs to work on capacity logic for venues and fix bugs. 
+* Seven 
+   * Tasks Done: Back from trip.
+   * Find bugs and refactor code if needed. 
+2022/08/06
+* Denny
+   * Tasks Done: Add more information from firebase to the activity description.
+   * Needs to fix overridden changes from previous branches.
+   * Jacky
+   * Tasks Done: finished loading screen for venue description and upcoming events for each venue
+   * Add loading screens for data in admin view (add all notes on github as well)
+* Klein
+   * Tasks Done: Worked on CSCB09 Assignment, Fixed bug regarding loading screen.
+   * Debug more and do other coursework
+* Anthony
+   * Tasks Done: Add delete button for sports when editing venues in admin view.
+   * Debug delete button, get the latest version of the branch when editing.
+* Seven 
+   * Tasks Done: Figure out what files are needed to delete, refactored code
+   * Need to delete comments and clean out redundant code. 
+2022/08/07
+* Denny
+   * Tasks Done: Fixed code and bugs that were overwritten a few days ago, added venue name into activity description
+   * Continue finding bugs and fixing code if needed
+* Jacky
+   * Tasks Done: Added notes from scrum document on github
+   * Needs to add loading screen on admin view and search for bugs
+   * Add logo onto loading screen
+* Klein
+   * Tasks Done: Worked on a lot of bug fixes related to snackbar class, and fixed the functionality for the user class.
+   * Find and fix more bugs.
+* Anthony
+   * Tasks Done: Added ability to delete venues and fixed a few bugs 
+   * Find more bugs to fix
+* Seven 
+   * Tasks Done: worked on other courses such as cscb36
+   * Find more bugs to fix, delete comments, delete files that aren't in use, delete methods that aren't in use such as auth passes to intents.
+2022/08/08
+* Denny
+   * Tasks Done: added back buttons to UI to go back, fixed bugs, removed add button for admin view that can add events.
+   * Find more bugs as well as refactor code.
+* Jacky
+   * Tasks Done: All loading screens finished, fixed bug related to app crashing when clicking on adding events 
+   * FInd more bugs and put scrum notes on github
+   * Add title card to loading screen (stretch goal)
+* Klein
+   * Tasks Done: worked on assignment for CSCB58, looked for bugs in the code.
+   *  Fix scroll wheel bug that crashes the app
+* Anthony
+   * Tasks Done: Looked for bugs in the code
+   * Look for more bugs in app
+* Seven 
+   * Tasks Done: Looked for bugs in the code
+   * Look for more bugs in app 
+2022/08/09
+* Denny
+   * Tasks Done: Added awaiting for acceptance on UI, so people know what events are accepted
+   *  Added attendee list on the created tab so that the creator can navigate to a page to view their attendees
+   * Stress test the app. 
+* Jacky
+   * Tasks Done: Added logo onto loading screen of app.
+   * Fix bugs if needed, and add notes on github.
+* Klein
+   * Tasks Done: deleting events now removes events from the venue scheduled events list, there is now an expired events function for getting rid of expired events, added view attendees method as well.
+   * Stress test the app.
+* Anthony
+   * Tasks Done: Fixed UI bugs and added max capacity validation for events.
+   * Stress test the app more. 
+* Seven 
+   * Tasks Done: deleted deprecated files and code.
+   * Stress test the app with someone. 
+
+
+Tasks done by each member.
+* Denny: Application UI, responsible for user story 2,
+   * Responsible part of user story 4) (User can check if their events are approved and view participants)
+   * Made UI for all the pages on the app
+   * Connected description pages to the backend (Pressing more info on the Venue page, and clicking on an activity card on the event page)
+   * Set up proper navigations between all pages
+   * Connected venue page to backend (It displays all the venues on the venue page)
+
+
+* Jacky: 
+   * responsible for user story 7) As an admin, I should be able to filter upcoming
+events by venue, so that I can make the necessary arrangements at that venue.
+   * worked on data validation when data is submitted by users or admins.
+   * worked on loading screens for the app.
+   * Helped with making recyclerview lists for the app.
+* Klein: 
+   * Performed Scrum Master Duties
+   * Responsible for user story 3 As a customer, I want to see a list of upcoming events, so that I can join an event I like).
+   * Responsible for classes managing event data and user data by creating UserServices and EventServices classes.
+   * Dealt with logistical issues
+   * Set up wrapper class to manage state data
+   * Optimized algorithmic efficiency
+* Anthony:
+   * Responsible for story 5 creating functionality for Admins to Add/Edit/Delete venues.
+   * Worked on Story 6, creating functionality for Admins Add new Venues so that customers can create events at them
+   * Helped Seven with Login/Sign-Up
+* Seven: 
+   * responsible for user story 1 and 5, as well as refactoring code and other features (ex. Log out)
+   * Cleared redundant Code and Files (Ex. Using service classes instead)
+   * Firebase Credential Validation and helped with User Management in database
+      *  Ex. Customer vs. Admin (Ex. authentication/access/sign out)
+   * Aided with more intuitive User Experience
+   * Helped Anthony some of his Sprint Tasks.
+🚨IMPORTANT NOTE🚨 from Seven Jang (1008078768) to Prof. Rawad and TA Alejandro:
+*  As Posted on the B07 Piazza Forum, on   question  @180, the android emulator only works less than half the time and running android studio gave me many many blue screens (BSoD), making it very difficult for me to work on the project 
+   * After exploring many options, Alejandro and I were unable to fix it (Ex. reinstalling everything)
+* As such, I opted to just using Visual Studio, for doing tasks that don’t require me to  test my code  (because I was unable to run it on the emulator)
+* Another thing that I’ve done is that I got some of my Team Members to share their screen while they were working on the Project, so that I could help them with their Sprint instead (ex. Anthony would share his screen on Discord while he worked on the project and I would help him)
+   * This was to hopefully “ make up for ” the work I was unable to do because of the blue screens
+* Another note is that on the SCRUM Notes, it mentioned that I was “ on a trip ” from August 1 - 4. 
+   * What this was, was an important four day gathering for this belief called 道 (Tao)
+   * https://en.wikipedia.org/wiki/Tao  for reference
+   * This is why I skipped four SCRUM meetings
+* I have already explained my situation and explored accommodation options with Alejandro
