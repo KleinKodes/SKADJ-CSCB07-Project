@@ -1,7 +1,6 @@
 package com.example.b07_project;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
@@ -36,7 +35,7 @@ public class ChooseVenue extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.loading_activity);
