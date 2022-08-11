@@ -312,12 +312,14 @@
                     android:paddingRight="20dp"
                     android:text="Date"
                     android:textColor="#040000"
-                    android:textSize="18dp" />
+                    android:textSize="18dp"
+                    tools:visibility="gone" />
 
                 <View
                     android:id="@+id/divider12"
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
+                    android:layout_marginTop="10dp"
                     android:background="?android:attr/listDivider"
                     android:backgroundTint="#000000" />
 
